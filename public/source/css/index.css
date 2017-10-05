@@ -1,0 +1,162 @@
+.bgimg-index {
+    height: 600px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url("../image/background.jpg");
+}
+
+.intro-text {
+    padding-top: 200px;
+    padding-bottom: 100px;
+    text-align: center;
+    color: white;
+}
+
+.intro-text .intro-lead-in {
+    font-size: 40px;
+    font-style: italic;
+    line-height: 40px;
+    margin-bottom: 25px;
+    font-family: 'Droid Serif', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.intro-text .intro-heading {
+    font-size: 75px;
+    font-weight: 700;
+    line-height: 75px;
+    margin-bottom: 50px;
+    font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    text-transform: uppercase;
+}
+
+.background-search-box {
+    background-color: #FF7038;
+    width: 100%;
+    padding: 50px;
+}
+
+.search-box {
+    margin: auto;
+    width: 50%;
+}
+
+.search-box .search-box-title {
+    color: white;
+    text-align: center;
+}
+
+.hr-title {
+    width: 500px;
+    height: 2px;
+    background: linear-gradient(to right, rgba(138, 194, 73, 1) 0%, rgba(0, 188, 212, 1) 100%);
+    margin: auto;
+    border-radius: 1px;
+}
+
+.search-box .search-box-form {}
+
+.search-box .search-box-form input {
+    /*width: 75%;*/
+    margin: auto;
+}
+
+.search-box .search-box-form button {
+    padding: 10px 40px;
+}
+
+.background-service {
+    background-color: #FFFFFF;
+    width: 100%;
+    padding: 50px;
+}
+
+.service {
+    margin: auto;
+    width: 75%;
+}
+
+.service .service-title {
+    color: #FF7038;
+    text-align: center;
+}
+
+.service .service-content {}
+
+.service .service-content .service-question,
+.service-answer,
+.service-documentation {
+    margin: 0px 50px;
+    text-align: center;
+}
+
+.service-content .service-icon {
+    font-size: 100px;
+    color: #FF7038;
+}
+
+.background-team-info {
+    background-color: #F8F8F8;
+    width: 100%;
+    padding: 50px;
+}
+
+.team-info {
+    margin: auto;
+    width: 75%;
+}
+
+.team-info .team-info-title {
+    text-align: center;
+}
+
+.team-info .team-info-content {
+    text-align: center;
+}
+
+.team-info-content .partner {
+    margin: 0px 100px;
+}
+
+.list-social {
+    color: #FFFFFF;
+}
+
+.list-social a {
+    margin: 5px;
+    border-radius: 50%;
+    padding: 20px;
+}
+
+.list-social a i {
+    padding-top: 5px;
+}
+
+.background-contact {
+    background-image: url("../image/map-image.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #262121;
+    width: 100%;
+    padding: 50px;
+}
+
+.contact {
+    width: 60%;
+    margin: auto;
+}
+
+.contact .contact-title {
+    text-align: center;
+    color: #FF7038;
+}
+
+.contact .contact-form {}
+
+.contact-form button {
+    padding: 5px 100px;
+}
+
+.contact-info {
+    color: #FFFFFF;
+}
