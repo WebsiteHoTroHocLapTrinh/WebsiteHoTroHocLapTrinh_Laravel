@@ -13,17 +13,11 @@
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="source/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="source/css/style.css">
-    <link rel="stylesheet" type="text/css" href="source/css/index.css">
     <link href="source/bootstrap-social/bootstrap-social.css" rel="stylesheet">
+    @yield('css')
     <!-- Font -->
-    <link rel="stylesheet" type="text/css" href="source/fonts/font-iconic/font/css/open-iconic-bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="source/fonts/font-iconic/css/open-iconic-bootstrap.css">
     <link href="source/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <!-- JS -->
-    <script type="text/javascript" src="source/js/jquery-3.2.1.slim.min.js"></script>
-    <script type="text/javascript" src="source/js/popper.min.js"></script>
-    <script type="text/javascript" src="source/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="source/ckeditor/ckeditor.js"></script>
-    <script type="text/javascript" src="source/js/Chart.min.js"></script>
 </head>
 <!--body-->
 
@@ -31,6 +25,14 @@
     @include('master.header')
     @yield('body') 
     @include('master.footer')
+    <!-- JS -->
+    <script type="text/javascript" src="source/js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="source/js/popper.min.js"></script>
+    <script type="text/javascript" src="source/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="source/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript" src="source/js/Chart.min.js"></script>
+    <script type="text/javascript" src="source/js/arrow34.js"></script>
+    @yield('script')
 </body>
 <!--end body-->
 

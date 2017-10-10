@@ -184,4 +184,23 @@
     @include('master.btnlogin')
 @endsection
 
+@section('css')
+    <link rel="stylesheet" type="text/css" href="source/css/index.css">
+@endsection
 
+@section('script')
+    <script type="text/javascript" src="source/js/scrollreveal.min.js"></script>
+    <script type="text/javascript">
+        window.sr = ScrollReveal();
+        sr.reveal('.intro-text', { duration: 1000, origin: 'top',});
+        sr.reveal('.search-box-title', { duration: 500, origin: 'left',});
+        sr.reveal('.search-box-form', { duration: 1000, origin: 'bottom',});
+        sr.reveal('.service-title', { duration: 500, origin: 'left',});
+        sr.reveal('.service-question', { duration: 1000, origin: 'bottom',});
+        sr.reveal('.service-answer', { duration: 1500,  origin: 'bottom',});
+        sr.reveal('.service-documentation', { duration: 2000,  origin: 'bottom',});
+        sr.reveal('.team-info-title', { duration: 500,  origin: 'left',});
+        sr.reveal('.partner:nth-child(1)', { duration: 1000,  origin: 'bottom',});
+        sr.reveal('.partner:nth-child(2)', { duration: 2000,  origin: 'bottom',});
+    </script>
+@endsection
