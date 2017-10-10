@@ -14,11 +14,10 @@
     <link rel="stylesheet" type="text/css" href="source/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="source/css/style.css">
     <link rel="stylesheet" type="text/css" href="source/css/index.css">
-    <!-- Social Buttons CSS -->
     <link href="source/bootstrap-social/bootstrap-social.css" rel="stylesheet">
     <!-- Font -->
-    <link rel="stylesheet" type="text/css" href="source/font/css/open-iconic-bootstrap.css">
-    <link href="source/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="source/fonts/font-iconic/font/css/open-iconic-bootstrap.css">
+    <link href="source/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <!-- JS -->
     <script type="text/javascript" src="source/js/jquery-3.2.1.slim.min.js"></script>
     <script type="text/javascript" src="source/js/popper.min.js"></script>
