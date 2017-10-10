@@ -61,7 +61,7 @@ button {
     color: #c6c5c5;
 }
 
-.content {
+.container > .content {
     background-color: #E2E2E2;
 }
 
