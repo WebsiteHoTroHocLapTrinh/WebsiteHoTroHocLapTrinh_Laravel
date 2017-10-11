@@ -29,7 +29,7 @@
     <script type="text/javascript" src="source/js/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="source/js/popper.min.js"></script>
     <script type="text/javascript" src="source/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="source/ckeditor/ckeditor.js"></script>
+    {{-- <script type="text/javascript" src="source/ckeditor/ckeditor.js"></script> --}}
     <script type="text/javascript" src="source/js/arrow34.js"></script>
     @yield('script')
 </body>

@@ -363,6 +363,7 @@
 @endsection
 
 @section('script')
+<script type="text/javascript" src="source/ckeditor/ckeditor.js"></script>
 <script type="text/javascript" src="source/js/jquery-comments.js"></script>
 <script type="text/javascript" src="source/js/jquery.textcomplete.js"></script>
 <script type="text/javascript ">

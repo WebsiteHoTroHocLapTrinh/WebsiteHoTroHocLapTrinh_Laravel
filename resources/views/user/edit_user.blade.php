@@ -94,3 +94,11 @@
 @section('login-signin')
     @include('master.btnlogin')
 @endsection
+
+@section('css')
+	{{-- expr --}}
+@endsection
+
+@section('script')
+<script type="text/javascript" src="source/ckeditor/ckeditor.js"></script>
+@endsection

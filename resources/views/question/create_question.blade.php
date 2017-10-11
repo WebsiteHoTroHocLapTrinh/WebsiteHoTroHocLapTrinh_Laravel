@@ -83,6 +83,7 @@
 @endsection
 
 @section('script')
+<script type="text/javascript" src="source/ckeditor/ckeditor.js"></script>
 <script type="text/javascript" src="source/bootstrap-tagsinput/bootstrap-tagsinput.min.js"></script>
 <script type="text/javascript" src="source/bootstrap-tagsinput/custom-bootstrap-tagsinput.js"></script>
 <script type="text/javascript" src="source/js/typeahead.bundle.js"></script>
