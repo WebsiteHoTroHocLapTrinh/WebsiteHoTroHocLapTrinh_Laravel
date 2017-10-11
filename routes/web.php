@@ -66,6 +66,89 @@ route::get('About',function(){
 route::get('About1',function(){
 	return view('about.a');
 });
+Route::group(['prefix' => 'admin'], function() {
+    Route::get('/', function() {
+        return view('admin.index');
+    });
+    Route::group(['prefix' => 'question'], function() {
+        Route::get('list', function() {
+            return view('admin.question.list');
+        });
+        Route::get('add', function() {
+            return view('admin.question.add');
+        });
+        Route::get('edit', function() {
+            return view('admin.question.edit');
+        });
+    });
+    Route::group(['prefix' => 'answer'], function() {
+        Route::get('list', function() {
+            return view('admin.answer.list');
+        });
+        Route::get('add', function() {
+            return view('admin.answer.add');
+        });
+        Route::get('edit', function() {
+            return view('admin.answer.edit');
+        });
+    });
+    Route::group(['prefix' => 'documentation'], function() {
+        Route::get('list', function() {
+            return view('admin.documentation.list');
+        });
+        Route::get('add', function() {
+            return view('admin.documentation.add');
+        });
+        Route::get('edit', function() {
+            return view('admin.documentation.edit');
+        });
+    });
+    Route::group(['prefix' => 'permission'], function() {
+        Route::get('list', function() {
+            return view('admin.permission.list');
+        });
+        Route::get('add', function() {
+            return view('admin.permission.add');
+        });
+        Route::get('edit', function() {
+            return view('admin.permission.edit');
+        });
+    });
+    Route::group(['prefix' => 'subject'], function() {
+        Route::get('list', function() {
+            return view('admin.subject.list');
+        });
+        Route::get('add', function() {
+            return view('admin.subject.add');
+        });
+        Route::get('edit', function() {
+            return view('admin.subject.edit');
+        });
+    });
+    Route::group(['prefix' => 'tag'], function() {
+        Route::get('list', function() {
+            return view('admin.tag.list');
+        });
+        Route::get('add', function() {
+            return view('admin.tag.add');
+        });
+        Route::get('edit', function() {
+            return view('admin.tag.edit');
+        });
+    });
+    Route::group(['prefix' => 'user'], function() {
+        Route::get('list', function() {
+            return view('admin.user.list');
+        });
+        Route::get('add', function() {
+            return view('admin.user.add');
+        });
+        Route::get('edit', function() {
+            return view('admin.user.edit');
+        });
+    });
+
+});
 
 // Test API
 
