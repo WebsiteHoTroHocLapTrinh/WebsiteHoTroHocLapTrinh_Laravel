@@ -43,10 +43,27 @@
 										<div class="card">
 											<div class="card-body">
 												<div class="card-title">
-													<div class="tag-item">
+													<div class="tag-item ToolTip">
 														<button class="btn btn-tag">
 															C# <span class="badge badge-pill badge-primary">x696</span>
 														</button>
+														<div class="show-hide">
+															<div class="head-popup">
+																<p><span class="oi oi-eye"></span></span></p>
+																<p> 500</p>
+																<p class="header-popup-question mr-2">Questions</p>
+																<p class="header-popup-info float-right">
+																	<span class="oi oi-star"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																</p>
+															</div>
+															<div class="body-popup">
+																<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+															</div>
+														</div>
 													</div>
 												</div>
 												<div class="card-text">
@@ -62,10 +79,27 @@
 										<div class="card">
 											<div class="card-body">
 												<div class="card-title">
-													<div class="tag-item">
+													<div class="tag-item ToolTip">
 														<button class="btn btn-tag">
-															Android <span class="badge badge-pill badge-primary">x696</span>
+															C# <span class="badge badge-pill badge-primary">x696</span>
 														</button>
+														<div class="show-hide">
+															<div class="head-popup">
+																<p><span class="oi oi-eye"></span></span></p>
+																<p> 500</p>
+																<p class="header-popup-question mr-2">Questions</p>
+																<p class="header-popup-info float-right">
+																	<span class="oi oi-star"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																</p>
+															</div>
+															<div class="body-popup">
+																<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+															</div>
+														</div>
 													</div>
 												</div>
 												<div class="card-text">
@@ -81,10 +115,27 @@
 										<div class="card">
 											<div class="card-body">
 												<div class="card-title">
-													<div class="tag-item">
+													<div class="tag-item ToolTip">
 														<button class="btn btn-tag">
-															PHP <span class="badge badge-pill badge-primary">x696</span>
+															C# <span class="badge badge-pill badge-primary">x696</span>
 														</button>
+														<div class="show-hide">
+															<div class="head-popup">
+																<p><span class="oi oi-eye"></span></span></p>
+																<p> 500</p>
+																<p class="header-popup-question mr-2">Questions</p>
+																<p class="header-popup-info float-right">
+																	<span class="oi oi-star"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																</p>
+															</div>
+															<div class="body-popup">
+																<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+															</div>
+														</div>
 													</div>
 												</div>
 												<div class="card-text">
@@ -100,10 +151,27 @@
 										<div class="card">
 											<div class="card-body">
 												<div class="card-title">
-													<div class="tag-item">
+													<div class="tag-item ToolTip">
 														<button class="btn btn-tag">
-															Python <span class="badge badge-pill badge-primary">x696</span>
+															C# <span class="badge badge-pill badge-primary">x696</span>
 														</button>
+														<div class="show-hide">
+															<div class="head-popup">
+																<p><span class="oi oi-eye"></span></span></p>
+																<p> 500</p>
+																<p class="header-popup-question mr-2">Questions</p>
+																<p class="header-popup-info float-right">
+																	<span class="oi oi-star"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																</p>
+															</div>
+															<div class="body-popup">
+																<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+															</div>
+														</div>
 													</div>
 												</div>
 												<div class="card-text">
@@ -122,10 +190,27 @@
 										<div class="card">
 											<div class="card-body">
 												<div class="card-title">
-													<div class="tag-item">
+													<div class="tag-item ToolTip">
 														<button class="btn btn-tag">
 															C# <span class="badge badge-pill badge-primary">x696</span>
 														</button>
+														<div class="show-hide">
+															<div class="head-popup">
+																<p><span class="oi oi-eye"></span></span></p>
+																<p> 500</p>
+																<p class="header-popup-question mr-2">Questions</p>
+																<p class="header-popup-info float-right">
+																	<span class="oi oi-star"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																</p>
+															</div>
+															<div class="body-popup">
+																<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+															</div>
+														</div>
 													</div>
 												</div>
 												<div class="card-text">
@@ -141,10 +226,27 @@
 										<div class="card">
 											<div class="card-body">
 												<div class="card-title">
-													<div class="tag-item">
+													<div class="tag-item ToolTip">
 														<button class="btn btn-tag">
-															Android <span class="badge badge-pill badge-primary">x696</span>
+															C# <span class="badge badge-pill badge-primary">x696</span>
 														</button>
+														<div class="show-hide">
+															<div class="head-popup">
+																<p><span class="oi oi-eye"></span></span></p>
+																<p> 500</p>
+																<p class="header-popup-question mr-2">Questions</p>
+																<p class="header-popup-info float-right">
+																	<span class="oi oi-star"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																</p>
+															</div>
+															<div class="body-popup">
+																<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+															</div>
+														</div>
 													</div>
 												</div>
 												<div class="card-text">
@@ -160,10 +262,27 @@
 										<div class="card">
 											<div class="card-body">
 												<div class="card-title">
-													<div class="tag-item">
+													<div class="tag-item ToolTip">
 														<button class="btn btn-tag">
-															PHP <span class="badge badge-pill badge-primary">x696</span>
+															C# <span class="badge badge-pill badge-primary">x696</span>
 														</button>
+														<div class="show-hide">
+															<div class="head-popup">
+																<p><span class="oi oi-eye"></span></span></p>
+																<p> 500</p>
+																<p class="header-popup-question mr-2">Questions</p>
+																<p class="header-popup-info float-right">
+																	<span class="oi oi-star"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																</p>
+															</div>
+															<div class="body-popup">
+																<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+															</div>
+														</div>
 													</div>
 												</div>
 												<div class="card-text">
@@ -179,10 +298,27 @@
 										<div class="card">
 											<div class="card-body">
 												<div class="card-title">
-													<div class="tag-item">
+													<div class="tag-item ToolTip">
 														<button class="btn btn-tag">
-															Python <span class="badge badge-pill badge-primary">x696</span>
+															C# <span class="badge badge-pill badge-primary">x696</span>
 														</button>
+														<div class="show-hide">
+															<div class="head-popup">
+																<p><span class="oi oi-eye"></span></span></p>
+																<p> 500</p>
+																<p class="header-popup-question mr-2">Questions</p>
+																<p class="header-popup-info float-right">
+																	<span class="oi oi-star"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																</p>
+															</div>
+															<div class="body-popup">
+																<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+															</div>
+														</div>
 													</div>
 												</div>
 												<div class="card-text">
@@ -201,10 +337,27 @@
 										<div class="card">
 											<div class="card-body">
 												<div class="card-title">
-													<div class="tag-item">
+													<div class="tag-item ToolTip">
 														<button class="btn btn-tag">
 															C# <span class="badge badge-pill badge-primary">x696</span>
 														</button>
+														<div class="show-hide">
+															<div class="head-popup">
+																<p><span class="oi oi-eye"></span></span></p>
+																<p> 500</p>
+																<p class="header-popup-question mr-2">Questions</p>
+																<p class="header-popup-info float-right">
+																	<span class="oi oi-star"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																</p>
+															</div>
+															<div class="body-popup">
+																<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+															</div>
+														</div>
 													</div>
 												</div>
 												<div class="card-text">
@@ -220,10 +373,27 @@
 										<div class="card">
 											<div class="card-body">
 												<div class="card-title">
-													<div class="tag-item">
+													<div class="tag-item ToolTip">
 														<button class="btn btn-tag">
-															Android <span class="badge badge-pill badge-primary">x696</span>
+															C# <span class="badge badge-pill badge-primary">x696</span>
 														</button>
+														<div class="show-hide">
+															<div class="head-popup">
+																<p><span class="oi oi-eye"></span></span></p>
+																<p> 500</p>
+																<p class="header-popup-question mr-2">Questions</p>
+																<p class="header-popup-info float-right">
+																	<span class="oi oi-star"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																</p>
+															</div>
+															<div class="body-popup">
+																<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+															</div>
+														</div>
 													</div>
 												</div>
 												<div class="card-text">
@@ -239,10 +409,27 @@
 										<div class="card">
 											<div class="card-body">
 												<div class="card-title">
-													<div class="tag-item">
+													<div class="tag-item ToolTip">
 														<button class="btn btn-tag">
-															PHP <span class="badge badge-pill badge-primary">x696</span>
+															C# <span class="badge badge-pill badge-primary">x696</span>
 														</button>
+														<div class="show-hide">
+															<div class="head-popup">
+																<p><span class="oi oi-eye"></span></span></p>
+																<p> 500</p>
+																<p class="header-popup-question mr-2">Questions</p>
+																<p class="header-popup-info float-right">
+																	<span class="oi oi-star"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																</p>
+															</div>
+															<div class="body-popup">
+																<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+															</div>
+														</div>
 													</div>
 												</div>
 												<div class="card-text">
@@ -258,10 +445,27 @@
 										<div class="card">
 											<div class="card-body">
 												<div class="card-title">
-													<div class="tag-item">
+													<div class="tag-item ToolTip">
 														<button class="btn btn-tag">
-															Python <span class="badge badge-pill badge-primary">x696</span>
+															C# <span class="badge badge-pill badge-primary">x696</span>
 														</button>
+														<div class="show-hide">
+															<div class="head-popup">
+																<p><span class="oi oi-eye"></span></span></p>
+																<p> 500</p>
+																<p class="header-popup-question mr-2">Questions</p>
+																<p class="header-popup-info float-right">
+																	<span class="oi oi-star"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																</p>
+															</div>
+															<div class="body-popup">
+																<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+															</div>
+														</div>
 													</div>
 												</div>
 												<div class="card-text">
@@ -280,10 +484,27 @@
 										<div class="card">
 											<div class="card-body">
 												<div class="card-title">
-													<div class="tag-item">
+													<div class="tag-item ToolTip">
 														<button class="btn btn-tag">
 															C# <span class="badge badge-pill badge-primary">x696</span>
 														</button>
+														<div class="show-hide">
+															<div class="head-popup">
+																<p><span class="oi oi-eye"></span></span></p>
+																<p> 500</p>
+																<p class="header-popup-question mr-2">Questions</p>
+																<p class="header-popup-info float-right">
+																	<span class="oi oi-star"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																</p>
+															</div>
+															<div class="body-popup">
+																<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+															</div>
+														</div>
 													</div>
 												</div>
 												<div class="card-text">
@@ -299,10 +520,27 @@
 										<div class="card">
 											<div class="card-body">
 												<div class="card-title">
-													<div class="tag-item">
+													<div class="tag-item ToolTip">
 														<button class="btn btn-tag">
-															Android <span class="badge badge-pill badge-primary">x696</span>
+															C# <span class="badge badge-pill badge-primary">x696</span>
 														</button>
+														<div class="show-hide">
+															<div class="head-popup">
+																<p><span class="oi oi-eye"></span></span></p>
+																<p> 500</p>
+																<p class="header-popup-question mr-2">Questions</p>
+																<p class="header-popup-info float-right">
+																	<span class="oi oi-star"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																</p>
+															</div>
+															<div class="body-popup">
+																<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+															</div>
+														</div>
 													</div>
 												</div>
 												<div class="card-text">
@@ -318,10 +556,27 @@
 										<div class="card">
 											<div class="card-body">
 												<div class="card-title">
-													<div class="tag-item">
+													<div class="tag-item ToolTip">
 														<button class="btn btn-tag">
-															PHP <span class="badge badge-pill badge-primary">x696</span>
+															C# <span class="badge badge-pill badge-primary">x696</span>
 														</button>
+														<div class="show-hide">
+															<div class="head-popup">
+																<p><span class="oi oi-eye"></span></span></p>
+																<p> 500</p>
+																<p class="header-popup-question mr-2">Questions</p>
+																<p class="header-popup-info float-right">
+																	<span class="oi oi-star"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																</p>
+															</div>
+															<div class="body-popup">
+																<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+															</div>
+														</div>
 													</div>
 												</div>
 												<div class="card-text">
@@ -337,10 +592,27 @@
 										<div class="card">
 											<div class="card-body">
 												<div class="card-title">
-													<div class="tag-item">
+													<div class="tag-item ToolTip">
 														<button class="btn btn-tag">
-															Python <span class="badge badge-pill badge-primary">x696</span>
+															C# <span class="badge badge-pill badge-primary">x696</span>
 														</button>
+														<div class="show-hide">
+															<div class="head-popup">
+																<p><span class="oi oi-eye"></span></span></p>
+																<p> 500</p>
+																<p class="header-popup-question mr-2">Questions</p>
+																<p class="header-popup-info float-right">
+																	<span class="oi oi-star"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																</p>
+															</div>
+															<div class="body-popup">
+																<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+															</div>
+														</div>
 													</div>
 												</div>
 												<div class="card-text">
@@ -359,10 +631,27 @@
 										<div class="card">
 											<div class="card-body">
 												<div class="card-title">
-													<div class="tag-item">
+													<div class="tag-item ToolTip">
 														<button class="btn btn-tag">
 															C# <span class="badge badge-pill badge-primary">x696</span>
 														</button>
+														<div class="show-hide">
+															<div class="head-popup">
+																<p><span class="oi oi-eye"></span></span></p>
+																<p> 500</p>
+																<p class="header-popup-question mr-2">Questions</p>
+																<p class="header-popup-info float-right">
+																	<span class="oi oi-star"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																</p>
+															</div>
+															<div class="body-popup">
+																<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+															</div>
+														</div>
 													</div>
 												</div>
 												<div class="card-text">
@@ -378,10 +667,27 @@
 										<div class="card">
 											<div class="card-body">
 												<div class="card-title">
-													<div class="tag-item">
+													<div class="tag-item ToolTip">
 														<button class="btn btn-tag">
-															Android <span class="badge badge-pill badge-primary">x696</span>
+															C# <span class="badge badge-pill badge-primary">x696</span>
 														</button>
+														<div class="show-hide">
+															<div class="head-popup">
+																<p><span class="oi oi-eye"></span></span></p>
+																<p> 500</p>
+																<p class="header-popup-question mr-2">Questions</p>
+																<p class="header-popup-info float-right">
+																	<span class="oi oi-star"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																</p>
+															</div>
+															<div class="body-popup">
+																<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+															</div>
+														</div>
 													</div>
 												</div>
 												<div class="card-text">
@@ -397,10 +703,27 @@
 										<div class="card">
 											<div class="card-body">
 												<div class="card-title">
-													<div class="tag-item">
+													<div class="tag-item ToolTip">
 														<button class="btn btn-tag">
-															PHP <span class="badge badge-pill badge-primary">x696</span>
+															C# <span class="badge badge-pill badge-primary">x696</span>
 														</button>
+														<div class="show-hide">
+															<div class="head-popup">
+																<p><span class="oi oi-eye"></span></span></p>
+																<p> 500</p>
+																<p class="header-popup-question mr-2">Questions</p>
+																<p class="header-popup-info float-right">
+																	<span class="oi oi-star"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																</p>
+															</div>
+															<div class="body-popup">
+																<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+															</div>
+														</div>
 													</div>
 												</div>
 												<div class="card-text">
@@ -416,10 +739,27 @@
 										<div class="card">
 											<div class="card-body">
 												<div class="card-title">
-													<div class="tag-item">
+													<div class="tag-item ToolTip">
 														<button class="btn btn-tag">
-															Python <span class="badge badge-pill badge-primary">x696</span>
+															C# <span class="badge badge-pill badge-primary">x696</span>
 														</button>
+														<div class="show-hide">
+															<div class="head-popup">
+																<p><span class="oi oi-eye"></span></span></p>
+																<p> 500</p>
+																<p class="header-popup-question mr-2">Questions</p>
+																<p class="header-popup-info float-right">
+																	<span class="oi oi-star"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																</p>
+															</div>
+															<div class="body-popup">
+																<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+															</div>
+														</div>
 													</div>
 												</div>
 												<div class="card-text">
@@ -438,10 +778,27 @@
 										<div class="card">
 											<div class="card-body">
 												<div class="card-title">
-													<div class="tag-item">
+													<div class="tag-item ToolTip">
 														<button class="btn btn-tag">
 															C# <span class="badge badge-pill badge-primary">x696</span>
 														</button>
+														<div class="show-hide">
+															<div class="head-popup">
+																<p><span class="oi oi-eye"></span></span></p>
+																<p> 500</p>
+																<p class="header-popup-question mr-2">Questions</p>
+																<p class="header-popup-info float-right">
+																	<span class="oi oi-star"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																</p>
+															</div>
+															<div class="body-popup">
+																<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+															</div>
+														</div>
 													</div>
 												</div>
 												<div class="card-text">
@@ -457,10 +814,27 @@
 										<div class="card">
 											<div class="card-body">
 												<div class="card-title">
-													<div class="tag-item">
+													<div class="tag-item ToolTip">
 														<button class="btn btn-tag">
-															Android <span class="badge badge-pill badge-primary">x696</span>
+															C# <span class="badge badge-pill badge-primary">x696</span>
 														</button>
+														<div class="show-hide">
+															<div class="head-popup">
+																<p><span class="oi oi-eye"></span></span></p>
+																<p> 500</p>
+																<p class="header-popup-question mr-2">Questions</p>
+																<p class="header-popup-info float-right">
+																	<span class="oi oi-star"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																</p>
+															</div>
+															<div class="body-popup">
+																<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+															</div>
+														</div>
 													</div>
 												</div>
 												<div class="card-text">
@@ -476,10 +850,27 @@
 										<div class="card">
 											<div class="card-body">
 												<div class="card-title">
-													<div class="tag-item">
+													<div class="tag-item ToolTip">
 														<button class="btn btn-tag">
-															PHP <span class="badge badge-pill badge-primary">x696</span>
+															C# <span class="badge badge-pill badge-primary">x696</span>
 														</button>
+														<div class="show-hide">
+															<div class="head-popup">
+																<p><span class="oi oi-eye"></span></span></p>
+																<p> 500</p>
+																<p class="header-popup-question mr-2">Questions</p>
+																<p class="header-popup-info float-right">
+																	<span class="oi oi-star"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																</p>
+															</div>
+															<div class="body-popup">
+																<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+															</div>
+														</div>
 													</div>
 												</div>
 												<div class="card-text">
@@ -495,10 +886,27 @@
 										<div class="card">
 											<div class="card-body">
 												<div class="card-title">
-													<div class="tag-item">
+													<div class="tag-item ToolTip">
 														<button class="btn btn-tag">
-															Python <span class="badge badge-pill badge-primary">x696</span>
+															C# <span class="badge badge-pill badge-primary">x696</span>
 														</button>
+														<div class="show-hide">
+															<div class="head-popup">
+																<p><span class="oi oi-eye"></span></span></p>
+																<p> 500</p>
+																<p class="header-popup-question mr-2">Questions</p>
+																<p class="header-popup-info float-right">
+																	<span class="oi oi-star"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																</p>
+															</div>
+															<div class="body-popup">
+																<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+															</div>
+														</div>
 													</div>
 												</div>
 												<div class="card-text">
@@ -542,10 +950,27 @@
 										<div class="card">
 											<div class="card-body">
 												<div class="card-title">
-													<div class="tag-item">
+													<div class="tag-item ToolTip">
 														<button class="btn btn-tag">
 															C# <span class="badge badge-pill badge-primary">x696</span>
 														</button>
+														<div class="show-hide">
+															<div class="head-popup">
+																<p><span class="oi oi-eye"></span></span></p>
+																<p> 500</p>
+																<p class="header-popup-question mr-2">Questions</p>
+																<p class="header-popup-info float-right">
+																	<span class="oi oi-star"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																</p>
+															</div>
+															<div class="body-popup">
+																<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+															</div>
+														</div>
 													</div>
 												</div>
 												<div class="card-text">
@@ -561,10 +986,27 @@
 										<div class="card">
 											<div class="card-body">
 												<div class="card-title">
-													<div class="tag-item">
+													<div class="tag-item ToolTip">
 														<button class="btn btn-tag">
-															Android <span class="badge badge-pill badge-primary">x696</span>
+															C# <span class="badge badge-pill badge-primary">x696</span>
 														</button>
+														<div class="show-hide">
+															<div class="head-popup">
+																<p><span class="oi oi-eye"></span></span></p>
+																<p> 500</p>
+																<p class="header-popup-question mr-2">Questions</p>
+																<p class="header-popup-info float-right">
+																	<span class="oi oi-star"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																</p>
+															</div>
+															<div class="body-popup">
+																<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+															</div>
+														</div>
 													</div>
 												</div>
 												<div class="card-text">
@@ -580,10 +1022,27 @@
 										<div class="card">
 											<div class="card-body">
 												<div class="card-title">
-													<div class="tag-item">
+													<div class="tag-item ToolTip">
 														<button class="btn btn-tag">
-															PHP <span class="badge badge-pill badge-primary">x696</span>
+															C# <span class="badge badge-pill badge-primary">x696</span>
 														</button>
+														<div class="show-hide">
+															<div class="head-popup">
+																<p><span class="oi oi-eye"></span></span></p>
+																<p> 500</p>
+																<p class="header-popup-question mr-2">Questions</p>
+																<p class="header-popup-info float-right">
+																	<span class="oi oi-star"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																</p>
+															</div>
+															<div class="body-popup">
+																<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+															</div>
+														</div>
 													</div>
 												</div>
 												<div class="card-text">
@@ -599,10 +1058,27 @@
 										<div class="card">
 											<div class="card-body">
 												<div class="card-title">
-													<div class="tag-item">
+													<div class="tag-item ToolTip">
 														<button class="btn btn-tag">
-															Python <span class="badge badge-pill badge-primary">x696</span>
+															C# <span class="badge badge-pill badge-primary">x696</span>
 														</button>
+														<div class="show-hide">
+															<div class="head-popup">
+																<p><span class="oi oi-eye"></span></span></p>
+																<p> 500</p>
+																<p class="header-popup-question mr-2">Questions</p>
+																<p class="header-popup-info float-right">
+																	<span class="oi oi-star"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																</p>
+															</div>
+															<div class="body-popup">
+																<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+															</div>
+														</div>
 													</div>
 												</div>
 												<div class="card-text">
@@ -621,10 +1097,27 @@
 										<div class="card">
 											<div class="card-body">
 												<div class="card-title">
-													<div class="tag-item">
+													<div class="tag-item ToolTip">
 														<button class="btn btn-tag">
 															C# <span class="badge badge-pill badge-primary">x696</span>
 														</button>
+														<div class="show-hide">
+															<div class="head-popup">
+																<p><span class="oi oi-eye"></span></span></p>
+																<p> 500</p>
+																<p class="header-popup-question mr-2">Questions</p>
+																<p class="header-popup-info float-right">
+																	<span class="oi oi-star"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																</p>
+															</div>
+															<div class="body-popup">
+																<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+															</div>
+														</div>
 													</div>
 												</div>
 												<div class="card-text">
@@ -640,10 +1133,27 @@
 										<div class="card">
 											<div class="card-body">
 												<div class="card-title">
-													<div class="tag-item">
+													<div class="tag-item ToolTip">
 														<button class="btn btn-tag">
-															Android <span class="badge badge-pill badge-primary">x696</span>
+															C# <span class="badge badge-pill badge-primary">x696</span>
 														</button>
+														<div class="show-hide">
+															<div class="head-popup">
+																<p><span class="oi oi-eye"></span></span></p>
+																<p> 500</p>
+																<p class="header-popup-question mr-2">Questions</p>
+																<p class="header-popup-info float-right">
+																	<span class="oi oi-star"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																</p>
+															</div>
+															<div class="body-popup">
+																<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+															</div>
+														</div>
 													</div>
 												</div>
 												<div class="card-text">
@@ -659,10 +1169,27 @@
 										<div class="card">
 											<div class="card-body">
 												<div class="card-title">
-													<div class="tag-item">
+													<div class="tag-item ToolTip">
 														<button class="btn btn-tag">
-															PHP <span class="badge badge-pill badge-primary">x696</span>
+															C# <span class="badge badge-pill badge-primary">x696</span>
 														</button>
+														<div class="show-hide">
+															<div class="head-popup">
+																<p><span class="oi oi-eye"></span></span></p>
+																<p> 500</p>
+																<p class="header-popup-question mr-2">Questions</p>
+																<p class="header-popup-info float-right">
+																	<span class="oi oi-star"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																</p>
+															</div>
+															<div class="body-popup">
+																<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+															</div>
+														</div>
 													</div>
 												</div>
 												<div class="card-text">
@@ -678,10 +1205,27 @@
 										<div class="card">
 											<div class="card-body">
 												<div class="card-title">
-													<div class="tag-item">
+													<div class="tag-item ToolTip">
 														<button class="btn btn-tag">
-															Python <span class="badge badge-pill badge-primary">x696</span>
+															C# <span class="badge badge-pill badge-primary">x696</span>
 														</button>
+														<div class="show-hide">
+															<div class="head-popup">
+																<p><span class="oi oi-eye"></span></span></p>
+																<p> 500</p>
+																<p class="header-popup-question mr-2">Questions</p>
+																<p class="header-popup-info float-right">
+																	<span class="oi oi-star"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																</p>
+															</div>
+															<div class="body-popup">
+																<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+															</div>
+														</div>
 													</div>
 												</div>
 												<div class="card-text">
@@ -700,10 +1244,27 @@
 										<div class="card">
 											<div class="card-body">
 												<div class="card-title">
-													<div class="tag-item">
+													<div class="tag-item ToolTip">
 														<button class="btn btn-tag">
 															C# <span class="badge badge-pill badge-primary">x696</span>
 														</button>
+														<div class="show-hide">
+															<div class="head-popup">
+																<p><span class="oi oi-eye"></span></span></p>
+																<p> 500</p>
+																<p class="header-popup-question mr-2">Questions</p>
+																<p class="header-popup-info float-right">
+																	<span class="oi oi-star"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																</p>
+															</div>
+															<div class="body-popup">
+																<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+															</div>
+														</div>
 													</div>
 												</div>
 												<div class="card-text">
@@ -719,10 +1280,27 @@
 										<div class="card">
 											<div class="card-body">
 												<div class="card-title">
-													<div class="tag-item">
+													<div class="tag-item ToolTip">
 														<button class="btn btn-tag">
-															Android <span class="badge badge-pill badge-primary">x696</span>
+															C# <span class="badge badge-pill badge-primary">x696</span>
 														</button>
+														<div class="show-hide">
+															<div class="head-popup">
+																<p><span class="oi oi-eye"></span></span></p>
+																<p> 500</p>
+																<p class="header-popup-question mr-2">Questions</p>
+																<p class="header-popup-info float-right">
+																	<span class="oi oi-star"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																</p>
+															</div>
+															<div class="body-popup">
+																<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+															</div>
+														</div>
 													</div>
 												</div>
 												<div class="card-text">
@@ -738,10 +1316,27 @@
 										<div class="card">
 											<div class="card-body">
 												<div class="card-title">
-													<div class="tag-item">
+													<div class="tag-item ToolTip">
 														<button class="btn btn-tag">
-															PHP <span class="badge badge-pill badge-primary">x696</span>
+															C# <span class="badge badge-pill badge-primary">x696</span>
 														</button>
+														<div class="show-hide">
+															<div class="head-popup">
+																<p><span class="oi oi-eye"></span></span></p>
+																<p> 500</p>
+																<p class="header-popup-question mr-2">Questions</p>
+																<p class="header-popup-info float-right">
+																	<span class="oi oi-star"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																</p>
+															</div>
+															<div class="body-popup">
+																<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+															</div>
+														</div>
 													</div>
 												</div>
 												<div class="card-text">
@@ -757,10 +1352,27 @@
 										<div class="card">
 											<div class="card-body">
 												<div class="card-title">
-													<div class="tag-item">
+													<div class="tag-item ToolTip">
 														<button class="btn btn-tag">
-															Python <span class="badge badge-pill badge-primary">x696</span>
+															C# <span class="badge badge-pill badge-primary">x696</span>
 														</button>
+														<div class="show-hide">
+															<div class="head-popup">
+																<p><span class="oi oi-eye"></span></span></p>
+																<p> 500</p>
+																<p class="header-popup-question mr-2">Questions</p>
+																<p class="header-popup-info float-right">
+																	<span class="oi oi-star"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																</p>
+															</div>
+															<div class="body-popup">
+																<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+															</div>
+														</div>
 													</div>
 												</div>
 												<div class="card-text">
@@ -779,10 +1391,27 @@
 										<div class="card">
 											<div class="card-body">
 												<div class="card-title">
-													<div class="tag-item">
+													<div class="tag-item ToolTip">
 														<button class="btn btn-tag">
 															C# <span class="badge badge-pill badge-primary">x696</span>
 														</button>
+														<div class="show-hide">
+															<div class="head-popup">
+																<p><span class="oi oi-eye"></span></span></p>
+																<p> 500</p>
+																<p class="header-popup-question mr-2">Questions</p>
+																<p class="header-popup-info float-right">
+																	<span class="oi oi-star"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																</p>
+															</div>
+															<div class="body-popup">
+																<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+															</div>
+														</div>
 													</div>
 												</div>
 												<div class="card-text">
@@ -798,10 +1427,27 @@
 										<div class="card">
 											<div class="card-body">
 												<div class="card-title">
-													<div class="tag-item">
+													<div class="tag-item ToolTip">
 														<button class="btn btn-tag">
-															Android <span class="badge badge-pill badge-primary">x696</span>
+															C# <span class="badge badge-pill badge-primary">x696</span>
 														</button>
+														<div class="show-hide">
+															<div class="head-popup">
+																<p><span class="oi oi-eye"></span></span></p>
+																<p> 500</p>
+																<p class="header-popup-question mr-2">Questions</p>
+																<p class="header-popup-info float-right">
+																	<span class="oi oi-star"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																</p>
+															</div>
+															<div class="body-popup">
+																<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+															</div>
+														</div>
 													</div>
 												</div>
 												<div class="card-text">
@@ -817,10 +1463,27 @@
 										<div class="card">
 											<div class="card-body">
 												<div class="card-title">
-													<div class="tag-item">
+													<div class="tag-item ToolTip">
 														<button class="btn btn-tag">
-															PHP <span class="badge badge-pill badge-primary">x696</span>
+															C# <span class="badge badge-pill badge-primary">x696</span>
 														</button>
+														<div class="show-hide">
+															<div class="head-popup">
+																<p><span class="oi oi-eye"></span></span></p>
+																<p> 500</p>
+																<p class="header-popup-question mr-2">Questions</p>
+																<p class="header-popup-info float-right">
+																	<span class="oi oi-star"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																</p>
+															</div>
+															<div class="body-popup">
+																<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+															</div>
+														</div>
 													</div>
 												</div>
 												<div class="card-text">
@@ -836,10 +1499,27 @@
 										<div class="card">
 											<div class="card-body">
 												<div class="card-title">
-													<div class="tag-item">
+													<div class="tag-item ToolTip">
 														<button class="btn btn-tag">
-															Python <span class="badge badge-pill badge-primary">x696</span>
+															C# <span class="badge badge-pill badge-primary">x696</span>
 														</button>
+														<div class="show-hide">
+															<div class="head-popup">
+																<p><span class="oi oi-eye"></span></span></p>
+																<p> 500</p>
+																<p class="header-popup-question mr-2">Questions</p>
+																<p class="header-popup-info float-right">
+																	<span class="oi oi-star"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																</p>
+															</div>
+															<div class="body-popup">
+																<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+															</div>
+														</div>
 													</div>
 												</div>
 												<div class="card-text">
@@ -858,10 +1538,27 @@
 										<div class="card">
 											<div class="card-body">
 												<div class="card-title">
-													<div class="tag-item">
+													<div class="tag-item ToolTip">
 														<button class="btn btn-tag">
 															C# <span class="badge badge-pill badge-primary">x696</span>
 														</button>
+														<div class="show-hide">
+															<div class="head-popup">
+																<p><span class="oi oi-eye"></span></span></p>
+																<p> 500</p>
+																<p class="header-popup-question mr-2">Questions</p>
+																<p class="header-popup-info float-right">
+																	<span class="oi oi-star"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																</p>
+															</div>
+															<div class="body-popup">
+																<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+															</div>
+														</div>
 													</div>
 												</div>
 												<div class="card-text">
@@ -877,10 +1574,27 @@
 										<div class="card">
 											<div class="card-body">
 												<div class="card-title">
-													<div class="tag-item">
+													<div class="tag-item ToolTip">
 														<button class="btn btn-tag">
-															Android <span class="badge badge-pill badge-primary">x696</span>
+															C# <span class="badge badge-pill badge-primary">x696</span>
 														</button>
+														<div class="show-hide">
+															<div class="head-popup">
+																<p><span class="oi oi-eye"></span></span></p>
+																<p> 500</p>
+																<p class="header-popup-question mr-2">Questions</p>
+																<p class="header-popup-info float-right">
+																	<span class="oi oi-star"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																</p>
+															</div>
+															<div class="body-popup">
+																<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+															</div>
+														</div>
 													</div>
 												</div>
 												<div class="card-text">
@@ -896,10 +1610,27 @@
 										<div class="card">
 											<div class="card-body">
 												<div class="card-title">
-													<div class="tag-item">
+													<div class="tag-item ToolTip">
 														<button class="btn btn-tag">
-															PHP <span class="badge badge-pill badge-primary">x696</span>
+															C# <span class="badge badge-pill badge-primary">x696</span>
 														</button>
+														<div class="show-hide">
+															<div class="head-popup">
+																<p><span class="oi oi-eye"></span></span></p>
+																<p> 500</p>
+																<p class="header-popup-question mr-2">Questions</p>
+																<p class="header-popup-info float-right">
+																	<span class="oi oi-star"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																</p>
+															</div>
+															<div class="body-popup">
+																<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+															</div>
+														</div>
 													</div>
 												</div>
 												<div class="card-text">
@@ -915,10 +1646,27 @@
 										<div class="card">
 											<div class="card-body">
 												<div class="card-title">
-													<div class="tag-item">
+													<div class="tag-item ToolTip">
 														<button class="btn btn-tag">
-															Python <span class="badge badge-pill badge-primary">x696</span>
+															C# <span class="badge badge-pill badge-primary">x696</span>
 														</button>
+														<div class="show-hide">
+															<div class="head-popup">
+																<p><span class="oi oi-eye"></span></span></p>
+																<p> 500</p>
+																<p class="header-popup-question mr-2">Questions</p>
+																<p class="header-popup-info float-right">
+																	<span class="oi oi-star"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																</p>
+															</div>
+															<div class="body-popup">
+																<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+															</div>
+														</div>
 													</div>
 												</div>
 												<div class="card-text">
@@ -937,10 +1685,27 @@
 										<div class="card">
 											<div class="card-body">
 												<div class="card-title">
-													<div class="tag-item">
+													<div class="tag-item ToolTip">
 														<button class="btn btn-tag">
 															C# <span class="badge badge-pill badge-primary">x696</span>
 														</button>
+														<div class="show-hide">
+															<div class="head-popup">
+																<p><span class="oi oi-eye"></span></span></p>
+																<p> 500</p>
+																<p class="header-popup-question mr-2">Questions</p>
+																<p class="header-popup-info float-right">
+																	<span class="oi oi-star"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																</p>
+															</div>
+															<div class="body-popup">
+																<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+															</div>
+														</div>
 													</div>
 												</div>
 												<div class="card-text">
@@ -956,10 +1721,27 @@
 										<div class="card">
 											<div class="card-body">
 												<div class="card-title">
-													<div class="tag-item">
+													<div class="tag-item ToolTip">
 														<button class="btn btn-tag">
-															Android <span class="badge badge-pill badge-primary">x696</span>
+															C# <span class="badge badge-pill badge-primary">x696</span>
 														</button>
+														<div class="show-hide">
+															<div class="head-popup">
+																<p><span class="oi oi-eye"></span></span></p>
+																<p> 500</p>
+																<p class="header-popup-question mr-2">Questions</p>
+																<p class="header-popup-info float-right">
+																	<span class="oi oi-star"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																</p>
+															</div>
+															<div class="body-popup">
+																<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+															</div>
+														</div>
 													</div>
 												</div>
 												<div class="card-text">
@@ -975,10 +1757,27 @@
 										<div class="card">
 											<div class="card-body">
 												<div class="card-title">
-													<div class="tag-item">
+													<div class="tag-item ToolTip">
 														<button class="btn btn-tag">
-															PHP <span class="badge badge-pill badge-primary">x696</span>
+															C# <span class="badge badge-pill badge-primary">x696</span>
 														</button>
+														<div class="show-hide">
+															<div class="head-popup">
+																<p><span class="oi oi-eye"></span></span></p>
+																<p> 500</p>
+																<p class="header-popup-question mr-2">Questions</p>
+																<p class="header-popup-info float-right">
+																	<span class="oi oi-star"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																</p>
+															</div>
+															<div class="body-popup">
+																<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+															</div>
+														</div>
 													</div>
 												</div>
 												<div class="card-text">
@@ -994,10 +1793,27 @@
 										<div class="card">
 											<div class="card-body">
 												<div class="card-title">
-													<div class="tag-item">
+													<div class="tag-item ToolTip">
 														<button class="btn btn-tag">
-															Python <span class="badge badge-pill badge-primary">x696</span>
+															C# <span class="badge badge-pill badge-primary">x696</span>
 														</button>
+														<div class="show-hide">
+															<div class="head-popup">
+																<p><span class="oi oi-eye"></span></span></p>
+																<p> 500</p>
+																<p class="header-popup-question mr-2">Questions</p>
+																<p class="header-popup-info float-right">
+																	<span class="oi oi-star"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																</p>
+															</div>
+															<div class="body-popup">
+																<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+															</div>
+														</div>
 													</div>
 												</div>
 												<div class="card-text">
@@ -1041,10 +1857,27 @@
 										<div class="card">
 											<div class="card-body">
 												<div class="card-title">
-													<div class="tag-item">
+													<div class="tag-item ToolTip">
 														<button class="btn btn-tag">
 															C# <span class="badge badge-pill badge-primary">x696</span>
 														</button>
+														<div class="show-hide">
+															<div class="head-popup">
+																<p><span class="oi oi-eye"></span></span></p>
+																<p> 500</p>
+																<p class="header-popup-question mr-2">Questions</p>
+																<p class="header-popup-info float-right">
+																	<span class="oi oi-star"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																</p>
+															</div>
+															<div class="body-popup">
+																<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+															</div>
+														</div>
 													</div>
 												</div>
 												<div class="card-text">
@@ -1060,10 +1893,27 @@
 										<div class="card">
 											<div class="card-body">
 												<div class="card-title">
-													<div class="tag-item">
+													<div class="tag-item ToolTip">
 														<button class="btn btn-tag">
-															Android <span class="badge badge-pill badge-primary">x696</span>
+															C# <span class="badge badge-pill badge-primary">x696</span>
 														</button>
+														<div class="show-hide">
+															<div class="head-popup">
+																<p><span class="oi oi-eye"></span></span></p>
+																<p> 500</p>
+																<p class="header-popup-question mr-2">Questions</p>
+																<p class="header-popup-info float-right">
+																	<span class="oi oi-star"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																</p>
+															</div>
+															<div class="body-popup">
+																<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+															</div>
+														</div>
 													</div>
 												</div>
 												<div class="card-text">
@@ -1079,10 +1929,27 @@
 										<div class="card">
 											<div class="card-body">
 												<div class="card-title">
-													<div class="tag-item">
+													<div class="tag-item ToolTip">
 														<button class="btn btn-tag">
-															PHP <span class="badge badge-pill badge-primary">x696</span>
+															C# <span class="badge badge-pill badge-primary">x696</span>
 														</button>
+														<div class="show-hide">
+															<div class="head-popup">
+																<p><span class="oi oi-eye"></span></span></p>
+																<p> 500</p>
+																<p class="header-popup-question mr-2">Questions</p>
+																<p class="header-popup-info float-right">
+																	<span class="oi oi-star"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																</p>
+															</div>
+															<div class="body-popup">
+																<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+															</div>
+														</div>
 													</div>
 												</div>
 												<div class="card-text">
@@ -1098,10 +1965,27 @@
 										<div class="card">
 											<div class="card-body">
 												<div class="card-title">
-													<div class="tag-item">
+													<div class="tag-item ToolTip">
 														<button class="btn btn-tag">
-															Python <span class="badge badge-pill badge-primary">x696</span>
+															C# <span class="badge badge-pill badge-primary">x696</span>
 														</button>
+														<div class="show-hide">
+															<div class="head-popup">
+																<p><span class="oi oi-eye"></span></span></p>
+																<p> 500</p>
+																<p class="header-popup-question mr-2">Questions</p>
+																<p class="header-popup-info float-right">
+																	<span class="oi oi-star"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																</p>
+															</div>
+															<div class="body-popup">
+																<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+															</div>
+														</div>
 													</div>
 												</div>
 												<div class="card-text">
@@ -1120,10 +2004,27 @@
 										<div class="card">
 											<div class="card-body">
 												<div class="card-title">
-													<div class="tag-item">
+													<div class="tag-item ToolTip">
 														<button class="btn btn-tag">
 															C# <span class="badge badge-pill badge-primary">x696</span>
 														</button>
+														<div class="show-hide">
+															<div class="head-popup">
+																<p><span class="oi oi-eye"></span></span></p>
+																<p> 500</p>
+																<p class="header-popup-question mr-2">Questions</p>
+																<p class="header-popup-info float-right">
+																	<span class="oi oi-star"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																</p>
+															</div>
+															<div class="body-popup">
+																<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+															</div>
+														</div>
 													</div>
 												</div>
 												<div class="card-text">
@@ -1139,10 +2040,27 @@
 										<div class="card">
 											<div class="card-body">
 												<div class="card-title">
-													<div class="tag-item">
+													<div class="tag-item ToolTip">
 														<button class="btn btn-tag">
-															Android <span class="badge badge-pill badge-primary">x696</span>
+															C# <span class="badge badge-pill badge-primary">x696</span>
 														</button>
+														<div class="show-hide">
+															<div class="head-popup">
+																<p><span class="oi oi-eye"></span></span></p>
+																<p> 500</p>
+																<p class="header-popup-question mr-2">Questions</p>
+																<p class="header-popup-info float-right">
+																	<span class="oi oi-star"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																</p>
+															</div>
+															<div class="body-popup">
+																<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+															</div>
+														</div>
 													</div>
 												</div>
 												<div class="card-text">
@@ -1158,10 +2076,27 @@
 										<div class="card">
 											<div class="card-body">
 												<div class="card-title">
-													<div class="tag-item">
+													<div class="tag-item ToolTip">
 														<button class="btn btn-tag">
-															PHP <span class="badge badge-pill badge-primary">x696</span>
+															C# <span class="badge badge-pill badge-primary">x696</span>
 														</button>
+														<div class="show-hide">
+															<div class="head-popup">
+																<p><span class="oi oi-eye"></span></span></p>
+																<p> 500</p>
+																<p class="header-popup-question mr-2">Questions</p>
+																<p class="header-popup-info float-right">
+																	<span class="oi oi-star"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																</p>
+															</div>
+															<div class="body-popup">
+																<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+															</div>
+														</div>
 													</div>
 												</div>
 												<div class="card-text">
@@ -1177,10 +2112,27 @@
 										<div class="card">
 											<div class="card-body">
 												<div class="card-title">
-													<div class="tag-item">
+													<div class="tag-item ToolTip">
 														<button class="btn btn-tag">
-															Python <span class="badge badge-pill badge-primary">x696</span>
+															C# <span class="badge badge-pill badge-primary">x696</span>
 														</button>
+														<div class="show-hide">
+															<div class="head-popup">
+																<p><span class="oi oi-eye"></span></span></p>
+																<p> 500</p>
+																<p class="header-popup-question mr-2">Questions</p>
+																<p class="header-popup-info float-right">
+																	<span class="oi oi-star"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																</p>
+															</div>
+															<div class="body-popup">
+																<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+															</div>
+														</div>
 													</div>
 												</div>
 												<div class="card-text">
@@ -1199,10 +2151,27 @@
 										<div class="card">
 											<div class="card-body">
 												<div class="card-title">
-													<div class="tag-item">
+													<div class="tag-item ToolTip">
 														<button class="btn btn-tag">
 															C# <span class="badge badge-pill badge-primary">x696</span>
 														</button>
+														<div class="show-hide">
+															<div class="head-popup">
+																<p><span class="oi oi-eye"></span></span></p>
+																<p> 500</p>
+																<p class="header-popup-question mr-2">Questions</p>
+																<p class="header-popup-info float-right">
+																	<span class="oi oi-star"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																</p>
+															</div>
+															<div class="body-popup">
+																<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+															</div>
+														</div>
 													</div>
 												</div>
 												<div class="card-text">
@@ -1218,10 +2187,27 @@
 										<div class="card">
 											<div class="card-body">
 												<div class="card-title">
-													<div class="tag-item">
+													<div class="tag-item ToolTip">
 														<button class="btn btn-tag">
-															Android <span class="badge badge-pill badge-primary">x696</span>
+															C# <span class="badge badge-pill badge-primary">x696</span>
 														</button>
+														<div class="show-hide">
+															<div class="head-popup">
+																<p><span class="oi oi-eye"></span></span></p>
+																<p> 500</p>
+																<p class="header-popup-question mr-2">Questions</p>
+																<p class="header-popup-info float-right">
+																	<span class="oi oi-star"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																</p>
+															</div>
+															<div class="body-popup">
+																<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+															</div>
+														</div>
 													</div>
 												</div>
 												<div class="card-text">
@@ -1237,10 +2223,27 @@
 										<div class="card">
 											<div class="card-body">
 												<div class="card-title">
-													<div class="tag-item">
+													<div class="tag-item ToolTip">
 														<button class="btn btn-tag">
-															PHP <span class="badge badge-pill badge-primary">x696</span>
+															C# <span class="badge badge-pill badge-primary">x696</span>
 														</button>
+														<div class="show-hide">
+															<div class="head-popup">
+																<p><span class="oi oi-eye"></span></span></p>
+																<p> 500</p>
+																<p class="header-popup-question mr-2">Questions</p>
+																<p class="header-popup-info float-right">
+																	<span class="oi oi-star"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																</p>
+															</div>
+															<div class="body-popup">
+																<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+															</div>
+														</div>
 													</div>
 												</div>
 												<div class="card-text">
@@ -1256,10 +2259,27 @@
 										<div class="card">
 											<div class="card-body">
 												<div class="card-title">
-													<div class="tag-item">
+													<div class="tag-item ToolTip">
 														<button class="btn btn-tag">
-															Python <span class="badge badge-pill badge-primary">x696</span>
+															C# <span class="badge badge-pill badge-primary">x696</span>
 														</button>
+														<div class="show-hide">
+															<div class="head-popup">
+																<p><span class="oi oi-eye"></span></span></p>
+																<p> 500</p>
+																<p class="header-popup-question mr-2">Questions</p>
+																<p class="header-popup-info float-right">
+																	<span class="oi oi-star"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																</p>
+															</div>
+															<div class="body-popup">
+																<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+															</div>
+														</div>
 													</div>
 												</div>
 												<div class="card-text">
@@ -1278,10 +2298,27 @@
 										<div class="card">
 											<div class="card-body">
 												<div class="card-title">
-													<div class="tag-item">
+													<div class="tag-item ToolTip">
 														<button class="btn btn-tag">
 															C# <span class="badge badge-pill badge-primary">x696</span>
 														</button>
+														<div class="show-hide">
+															<div class="head-popup">
+																<p><span class="oi oi-eye"></span></span></p>
+																<p> 500</p>
+																<p class="header-popup-question mr-2">Questions</p>
+																<p class="header-popup-info float-right">
+																	<span class="oi oi-star"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																</p>
+															</div>
+															<div class="body-popup">
+																<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+															</div>
+														</div>
 													</div>
 												</div>
 												<div class="card-text">
@@ -1297,10 +2334,27 @@
 										<div class="card">
 											<div class="card-body">
 												<div class="card-title">
-													<div class="tag-item">
+													<div class="tag-item ToolTip">
 														<button class="btn btn-tag">
-															Android <span class="badge badge-pill badge-primary">x696</span>
+															C# <span class="badge badge-pill badge-primary">x696</span>
 														</button>
+														<div class="show-hide">
+															<div class="head-popup">
+																<p><span class="oi oi-eye"></span></span></p>
+																<p> 500</p>
+																<p class="header-popup-question mr-2">Questions</p>
+																<p class="header-popup-info float-right">
+																	<span class="oi oi-star"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																</p>
+															</div>
+															<div class="body-popup">
+																<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+															</div>
+														</div>
 													</div>
 												</div>
 												<div class="card-text">
@@ -1316,10 +2370,27 @@
 										<div class="card">
 											<div class="card-body">
 												<div class="card-title">
-													<div class="tag-item">
+													<div class="tag-item ToolTip">
 														<button class="btn btn-tag">
-															PHP <span class="badge badge-pill badge-primary">x696</span>
+															C# <span class="badge badge-pill badge-primary">x696</span>
 														</button>
+														<div class="show-hide">
+															<div class="head-popup">
+																<p><span class="oi oi-eye"></span></span></p>
+																<p> 500</p>
+																<p class="header-popup-question mr-2">Questions</p>
+																<p class="header-popup-info float-right">
+																	<span class="oi oi-star"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																</p>
+															</div>
+															<div class="body-popup">
+																<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+															</div>
+														</div>
 													</div>
 												</div>
 												<div class="card-text">
@@ -1335,10 +2406,27 @@
 										<div class="card">
 											<div class="card-body">
 												<div class="card-title">
-													<div class="tag-item">
+													<div class="tag-item ToolTip">
 														<button class="btn btn-tag">
-															Python <span class="badge badge-pill badge-primary">x696</span>
+															C# <span class="badge badge-pill badge-primary">x696</span>
 														</button>
+														<div class="show-hide">
+															<div class="head-popup">
+																<p><span class="oi oi-eye"></span></span></p>
+																<p> 500</p>
+																<p class="header-popup-question mr-2">Questions</p>
+																<p class="header-popup-info float-right">
+																	<span class="oi oi-star"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																</p>
+															</div>
+															<div class="body-popup">
+																<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+															</div>
+														</div>
 													</div>
 												</div>
 												<div class="card-text">
@@ -1357,10 +2445,27 @@
 										<div class="card">
 											<div class="card-body">
 												<div class="card-title">
-													<div class="tag-item">
+													<div class="tag-item ToolTip">
 														<button class="btn btn-tag">
 															C# <span class="badge badge-pill badge-primary">x696</span>
 														</button>
+														<div class="show-hide">
+															<div class="head-popup">
+																<p><span class="oi oi-eye"></span></span></p>
+																<p> 500</p>
+																<p class="header-popup-question mr-2">Questions</p>
+																<p class="header-popup-info float-right">
+																	<span class="oi oi-star"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																</p>
+															</div>
+															<div class="body-popup">
+																<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+															</div>
+														</div>
 													</div>
 												</div>
 												<div class="card-text">
@@ -1376,10 +2481,27 @@
 										<div class="card">
 											<div class="card-body">
 												<div class="card-title">
-													<div class="tag-item">
+													<div class="tag-item ToolTip">
 														<button class="btn btn-tag">
-															Android <span class="badge badge-pill badge-primary">x696</span>
+															C# <span class="badge badge-pill badge-primary">x696</span>
 														</button>
+														<div class="show-hide">
+															<div class="head-popup">
+																<p><span class="oi oi-eye"></span></span></p>
+																<p> 500</p>
+																<p class="header-popup-question mr-2">Questions</p>
+																<p class="header-popup-info float-right">
+																	<span class="oi oi-star"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																</p>
+															</div>
+															<div class="body-popup">
+																<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+															</div>
+														</div>
 													</div>
 												</div>
 												<div class="card-text">
@@ -1395,10 +2517,27 @@
 										<div class="card">
 											<div class="card-body">
 												<div class="card-title">
-													<div class="tag-item">
+													<div class="tag-item ToolTip">
 														<button class="btn btn-tag">
-															PHP <span class="badge badge-pill badge-primary">x696</span>
+															C# <span class="badge badge-pill badge-primary">x696</span>
 														</button>
+														<div class="show-hide">
+															<div class="head-popup">
+																<p><span class="oi oi-eye"></span></span></p>
+																<p> 500</p>
+																<p class="header-popup-question mr-2">Questions</p>
+																<p class="header-popup-info float-right">
+																	<span class="oi oi-star"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																</p>
+															</div>
+															<div class="body-popup">
+																<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+															</div>
+														</div>
 													</div>
 												</div>
 												<div class="card-text">
@@ -1414,10 +2553,27 @@
 										<div class="card">
 											<div class="card-body">
 												<div class="card-title">
-													<div class="tag-item">
+													<div class="tag-item ToolTip">
 														<button class="btn btn-tag">
-															Python <span class="badge badge-pill badge-primary">x696</span>
+															C# <span class="badge badge-pill badge-primary">x696</span>
 														</button>
+														<div class="show-hide">
+															<div class="head-popup">
+																<p><span class="oi oi-eye"></span></span></p>
+																<p> 500</p>
+																<p class="header-popup-question mr-2">Questions</p>
+																<p class="header-popup-info float-right">
+																	<span class="oi oi-star"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																</p>
+															</div>
+															<div class="body-popup">
+																<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+															</div>
+														</div>
 													</div>
 												</div>
 												<div class="card-text">
@@ -1436,10 +2592,27 @@
 										<div class="card">
 											<div class="card-body">
 												<div class="card-title">
-													<div class="tag-item">
+													<div class="tag-item ToolTip">
 														<button class="btn btn-tag">
 															C# <span class="badge badge-pill badge-primary">x696</span>
 														</button>
+														<div class="show-hide">
+															<div class="head-popup">
+																<p><span class="oi oi-eye"></span></span></p>
+																<p> 500</p>
+																<p class="header-popup-question mr-2">Questions</p>
+																<p class="header-popup-info float-right">
+																	<span class="oi oi-star"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																</p>
+															</div>
+															<div class="body-popup">
+																<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+															</div>
+														</div>
 													</div>
 												</div>
 												<div class="card-text">
@@ -1455,10 +2628,27 @@
 										<div class="card">
 											<div class="card-body">
 												<div class="card-title">
-													<div class="tag-item">
+													<div class="tag-item ToolTip">
 														<button class="btn btn-tag">
-															Android <span class="badge badge-pill badge-primary">x696</span>
+															C# <span class="badge badge-pill badge-primary">x696</span>
 														</button>
+														<div class="show-hide">
+															<div class="head-popup">
+																<p><span class="oi oi-eye"></span></span></p>
+																<p> 500</p>
+																<p class="header-popup-question mr-2">Questions</p>
+																<p class="header-popup-info float-right">
+																	<span class="oi oi-star"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																</p>
+															</div>
+															<div class="body-popup">
+																<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+															</div>
+														</div>
 													</div>
 												</div>
 												<div class="card-text">
@@ -1474,10 +2664,27 @@
 										<div class="card">
 											<div class="card-body">
 												<div class="card-title">
-													<div class="tag-item">
+													<div class="tag-item ToolTip">
 														<button class="btn btn-tag">
-															PHP <span class="badge badge-pill badge-primary">x696</span>
+															C# <span class="badge badge-pill badge-primary">x696</span>
 														</button>
+														<div class="show-hide">
+															<div class="head-popup">
+																<p><span class="oi oi-eye"></span></span></p>
+																<p> 500</p>
+																<p class="header-popup-question mr-2">Questions</p>
+																<p class="header-popup-info float-right">
+																	<span class="oi oi-star"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																</p>
+															</div>
+															<div class="body-popup">
+																<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+															</div>
+														</div>
 													</div>
 												</div>
 												<div class="card-text">
@@ -1493,10 +2700,27 @@
 										<div class="card">
 											<div class="card-body">
 												<div class="card-title">
-													<div class="tag-item">
+													<div class="tag-item ToolTip">
 														<button class="btn btn-tag">
-															Python <span class="badge badge-pill badge-primary">x696</span>
+															C# <span class="badge badge-pill badge-primary">x696</span>
 														</button>
+														<div class="show-hide">
+															<div class="head-popup">
+																<p><span class="oi oi-eye"></span></span></p>
+																<p> 500</p>
+																<p class="header-popup-question mr-2">Questions</p>
+																<p class="header-popup-info float-right">
+																	<span class="oi oi-star"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																	<span class="oi oi-star" style="color: yellow;"></span>
+																</p>
+															</div>
+															<div class="body-popup">
+																<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+															</div>
+														</div>
 													</div>
 												</div>
 												<div class="card-text">

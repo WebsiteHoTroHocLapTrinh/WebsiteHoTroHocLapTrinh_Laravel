@@ -182,26 +182,6 @@
 					</div>
 				</div>
 			</div>
-			<!--script biểu đồ-->
-			<script>
-				var buyerData = {
-					labels: ["January", "February", "March", "April", "May", "June"],
-					datasets: [{
-						fillColor: "rgba(172,194,132,0.4)",
-						strokeColor: "#ACC26D",
-						pointColor: "#fff",
-						pointStrokeColor: "#9DB86D",
-						data: [203, 156, 99, 251, 305, 247]
-					}]
-				}
-
-                // get line chart canvas
-                var buyers = document.getElementById('buyers').getContext('2d');
-
-                // draw line chart
-                new Chart(buyers).Line(buyerData);
-            </script>
-            <!--end script biểu đồ-->
         </div>
     </div>
     <!--end active-->
@@ -210,5 +190,29 @@
 @endsection
 
 @section('login-signin')
-    @include('master.btnlogin')
+@include('master.btnlogin')
+@endsection
+
+@section('script')
+<script type="text/javascript" src="source/js/Chart.min.js"></script>
+<!--script biểu đồ-->
+<script type="text/javascript">
+	var buyerData = {
+		labels: ["January", "February", "March", "April", "May", "June"],
+		datasets: [{
+			fillColor: "rgba(172,194,132,0.4)",
+			strokeColor: "#ACC26D",
+			pointColor: "#fff",
+			pointStrokeColor: "#9DB86D",
+			data: [203, 156, 99, 251, 305, 247]
+		}]
+	}
+
+    // get line chart canvas
+    var buyers = document.getElementById('buyers').getContext('2d');
+
+    // draw line chart
+    new Chart(buyers).Line(buyerData);
+</script>
+<!--end script biểu đồ-->
 @endsection

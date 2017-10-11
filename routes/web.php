@@ -12,7 +12,10 @@
 */
 
 // Test giao diện
-Route::get('/', function () {
+Route::get('', function () {
+    return view('index.index');
+});
+Route::get('Index', function () {
     return view('index.index');
 });
 route::get('ListQuestion',function(){

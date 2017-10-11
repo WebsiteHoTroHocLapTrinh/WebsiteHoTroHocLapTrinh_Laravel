@@ -2,7 +2,7 @@
     <div class="container">
         <nav class="navbar fixed-top navbar-expand-lg navbar-light" style="background-color: #FFFFFF;">
             <!--brand-->
-            <a class="navbar-brand" href="/">
+            <a class="navbar-brand" href="Index">
 				<img class="img-responsive mr-sm-5" src="source/image/elearning-logo.png" width="150" height="50" alt=" ">
 			</a>
             <!--/brand-->
