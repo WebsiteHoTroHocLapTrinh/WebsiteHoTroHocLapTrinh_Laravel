@@ -19,9 +19,10 @@ class DatabaseSeeder extends Seeder
         $this->call(TaggablesSeeder::class);
         $this->call(DocumentationsSeeder::class);
         $this->call(CommentsSeeder::class);
-        $this->call(TagUserSeeder::class);
+        $this->call(UserFavoriteTagsSeeder::class);
         $this->call(SubjectsSeeder::class);
         $this->call(VotesSeeder::class);
         $this->call(ActivitiesSeeder::class);
+        $this->call(PingsSeeder::class);
     }
 }

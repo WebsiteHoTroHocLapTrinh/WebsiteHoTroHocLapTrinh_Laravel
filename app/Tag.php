@@ -16,8 +16,8 @@ class Tag extends Model
     	return $this->morphedByMany('App\Documentation', 'taggable');
     }
 
-    public function users() {
-        return $this->belongsToMany('App\User', 'tag_user', 'tag_id', 'user_id');
+    public function users_favorited() {
+        return $this->belongsToMany('App\User', 'user_favorite_tags', 'tag_id', 'user_id');
     }
          
     public function user_created() {

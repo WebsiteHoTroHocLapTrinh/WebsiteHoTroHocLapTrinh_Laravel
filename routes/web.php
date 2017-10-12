@@ -158,7 +158,7 @@ Route::group(['prefix' => 'user'], function() {
     Route::get('answers/{user_id}', 'UserController@answers');
     Route::get('documentations/{user_id}', 'UserController@documentations');
     Route::get('comments/{user_id}', 'UserController@comments');
-    Route::get('tags/{user_id}', 'UserController@tags');
+    Route::get('tags_favorited/{user_id}', 'UserController@tags_favorited');
     Route::get('votes/{user_id}', 'UserController@votes');
     Route::get('permission_created/{user_id}', 'UserController@permission_created');
     Route::get('subject_created/{user_id}', 'UserController@subject_created');
@@ -187,6 +187,7 @@ Route::group(['prefix' => 'answer'], function() {
 Route::group(['prefix' => 'comment'], function() {
     Route::get('user/{comment_id}', 'CommentController@user');
     Route::get('commentable/{comment_id}', 'CommentController@commentable');
+    Route::get('pings/{comment_id}', 'CommentController@pings');
 });
 Route::group(['prefix' => 'permission'], function() {
     Route::get('users/{permission_id}', 'PermissionController@users');
@@ -199,6 +200,6 @@ Route::group(['prefix' => 'subject'], function() {
 Route::group(['prefix' => 'tag'], function() {
     Route::get('questions/{tag_id}', 'TagController@questions');
     Route::get('documentations/{tag_id}', 'TagController@documentations');
-    Route::get('users/{tag_id}', 'TagController@users');
+    Route::get('users_favorited/{tag_id}', 'TagController@users_favorited');
     Route::get('user_created/{tag_id}', 'TagController@user_created');
 });

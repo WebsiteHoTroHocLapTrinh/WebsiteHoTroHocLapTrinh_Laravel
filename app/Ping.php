@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class TagUser extends Model
+class Ping extends Model
 {
-    //
+	protected $table = "pings";
 }

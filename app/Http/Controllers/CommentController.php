@@ -24,4 +24,8 @@ class CommentController extends Controller
     	$commentable = Comment::find($comment_id)->commentable;
     	return $commentable;
     }
+    public function pings($comment_id) {
+    	$pings = Comment::find($comment_id)->pings;
+    	return $pings;
+    }
 }

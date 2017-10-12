@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class TagUserSeeder extends Seeder
+class UserFavoriteTagsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,7 +15,7 @@ class TagUserSeeder extends Seeder
     	for ($i=1; $i <= 10; $i++) { 
             $n = rand(3,5);
             for ($j=1; $j <= $n; $j++) { 
-                DB::table('tag_user')->insert([
+                DB::table('user_favorite_tags')->insert([
                     'user_id' => $i,
                     'tag_id' => rand(1,20),
                     'created_at' => new DateTime(),

@@ -36,9 +36,9 @@ class UserController extends Controller
     	$comments = User::find($user_id)->comments;
     	return $comments;
     }
-    public function tags($user_id) {
-    	$tags = User::find($user_id)->tags;
-    	return $tags;
+    public function tags_favorited($user_id) {
+    	$tags_favorited = User::find($user_id)->tags_favorited;
+    	return $tags_favorited;
     }
     public function votes($user_id) {
         $votes = User::find($user_id)->votes;

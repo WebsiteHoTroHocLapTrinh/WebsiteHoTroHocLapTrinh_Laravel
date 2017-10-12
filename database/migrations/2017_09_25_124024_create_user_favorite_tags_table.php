@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCommentsTable extends Migration
+class CreateUserFavoriteTagsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,11 @@ class CreateCommentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('comments', function (Blueprint $table) {
+        Schema::create('user_favorite_tags', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('tag_id')->unsigned();
             $table->integer('user_id')->unsigned();
-            $table->integer('parent')->unsigned()->nullable();
-            $table->integer('commentable_id')->unsigned();
-            $table->string('commentable_type');
-            $table->text('content');
             $table->boolean('active')->default(true);
-            $table->boolean('checked')->default(false);
             $table->timestamps();
         });
     }
@@ -33,6 +29,6 @@ class CreateCommentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('comment');
+        Schema::dropIfExists('user_favorite_tags');
     }
 }

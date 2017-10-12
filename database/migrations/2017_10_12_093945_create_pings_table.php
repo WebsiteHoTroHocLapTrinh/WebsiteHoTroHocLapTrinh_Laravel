@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTagUserTable extends Migration
+class CreatePingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateTagUserTable extends Migration
      */
     public function up()
     {
-        Schema::create('tag_user', function (Blueprint $table) {
+        Schema::create('pings', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('tag_id')->unsigned();
+            $table->integer('comment_id')->unsigned();
             $table->integer('user_id')->unsigned();
-            $table->boolean('active')->default(true);
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ class CreateTagUserTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tag_user');
+        Schema::dropIfExists('pings');
     }
 }

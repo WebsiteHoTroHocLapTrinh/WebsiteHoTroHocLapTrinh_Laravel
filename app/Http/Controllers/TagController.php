@@ -25,9 +25,9 @@ class TagController extends Controller
     	$documentations = Tag::find($tag_id)->documentations;
     	return $documentations;
     }
-    public function users($tag_id) {
-    	$users = Tag::find($tag_id)->users;
-    	return $users;
+    public function users_favorited($tag_id) {
+    	$users_favorited = Tag::find($tag_id)->users_favorited;
+    	return $users_favorited;
     }
     public function user_created($tag_id) {
         $user_created = Tag::find($tag_id)->user_created;
