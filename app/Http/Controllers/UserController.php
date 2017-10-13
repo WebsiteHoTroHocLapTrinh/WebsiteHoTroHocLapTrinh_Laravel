@@ -56,4 +56,12 @@ class UserController extends Controller
         $tag_created = User::find($user_id)->tag_created;
         return $tag_created;
     }
+
+    public function getLogin() {
+        return view('user.login');
+    }
+
+    public function postLogin(Request $request) {
+        
+    }
 }

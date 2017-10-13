@@ -74,19 +74,19 @@
 <!-- end Content -->
 @endsection
 
-@section('login-signin')
-@include('master.btnlogin')
+@section('title')
+	{{ "Tạo Câu Hỏi" }}
 @endsection
 
 @section('css')
-<link rel="stylesheet" type="text/css" href="source/bootstrap-tagsinput/bootstrap-tagsinput.css">
+<link rel="stylesheet" type="text/css" href="bootstrap-tagsinput/bootstrap-tagsinput.css">
 @endsection
 
 @section('script')
-<script type="text/javascript" src="source/ckeditor/ckeditor.js"></script>
-<script type="text/javascript" src="source/bootstrap-tagsinput/bootstrap-tagsinput.min.js"></script>
-<script type="text/javascript" src="source/bootstrap-tagsinput/custom-bootstrap-tagsinput.js"></script>
-<script type="text/javascript" src="source/js/typeahead.bundle.js"></script>
+<script type="text/javascript" src="ckeditor/ckeditor.js"></script>
+<script type="text/javascript" src="bootstrap-tagsinput/bootstrap-tagsinput.min.js"></script>
+<script type="text/javascript" src="bootstrap-tagsinput/custom-bootstrap-tagsinput.js"></script>
+<script type="text/javascript" src="js/typeahead.bundle.js"></script>
 <script type="text/javascript">
 	var tags = new Bloodhound({
 		datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),

@@ -2770,3 +2770,15 @@
 </div>
 <!-- end Content -->
 @endsection
+
+@section('title')
+    {{ "Danh Sách Thẻ" }}
+@endsection
+
+@section('css')
+    {{-- expr --}}
+@endsection
+
+@section('script')
+    {{-- expr --}}
+@endsection

@@ -8,8 +8,8 @@
 		<div class="border-login">
 			<!--sign up gg fb-->
 			<div id="border-gg-fb">
-				<a href="#"><img src="source/image/googlelg.png" alt=""></a>
-				<a href="#"><img src="source/image/fblg.png" alt=""></a>
+				<a href="#"><img src="image/googlelg.png" alt=""></a>
+				<a href="#"><img src="image/fblg.png" alt=""></a>
 			</div>
 			<!--/sign up gg fb-->
 			<br>
@@ -50,6 +50,14 @@
 <!--end sign up-->
 @endsection
 
-@section('login-signin')
-    @include('master.btnlogin')
+@section('title')
+    {{ "Đăng Ký" }}
+@endsection
+
+@section('css')
+    {{-- expr --}}
+@endsection
+
+@section('script')
+    {{-- expr --}}
 @endsection

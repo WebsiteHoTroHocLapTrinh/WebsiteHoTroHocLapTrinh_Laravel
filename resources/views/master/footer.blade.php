@@ -3,7 +3,7 @@
             <div class="row">
                 <div class="col">
                     <a class="navbar-brand" href="">
-						<img class="img-responsive mr-sm-5" src="source/image/logofooter.png" width="150" height="50" alt=" ">
+						<img class="img-responsive mr-sm-5" src="image/logofooter.png" width="150" height="50" alt=" ">
 					</a>
                 </div>
                 <div class="col">

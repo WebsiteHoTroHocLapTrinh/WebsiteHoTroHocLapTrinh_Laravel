@@ -55,6 +55,14 @@
 <!-- end Content -->
 @endsection
 
-@section('login-signin')
-    @include('master.btnlogin')
+@section('title')
+	{{ "Lưu Ý" }}
+@endsection
+
+@section('css')
+	{{-- expr --}}
+@endsection
+
+@section('script')
+	{{-- expr --}}
 @endsection

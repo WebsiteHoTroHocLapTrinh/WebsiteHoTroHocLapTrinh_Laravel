@@ -42,7 +42,7 @@
 			<div class="row">
 				<div class="col">
 					<div class="image-avt">
-						<img src="source/image/avata.png" alt="" class="rounded-circle">
+						<img src="image/avata.png" alt="" class="rounded-circle">
 					</div>
 					<div id="name">
 						Dinh Sa
@@ -53,7 +53,7 @@
 				</div>
 				<div class="col">
 					<div class="image-avt">
-						<img src="source/image/k17.jpg" alt="" class="rounded-circle">
+						<img src="image/k17.jpg" alt="" class="rounded-circle">
 					</div>
 					<div id="name">
 						Thanh Tung
@@ -64,7 +64,7 @@
 				</div>
 				<div class="col">
 					<div class="image-avt">
-						<img src="source/image/boss2.jpg" alt="" class="rounded-circle">
+						<img src="image/boss2.jpg" alt="" class="rounded-circle">
 					</div>
 					<div id="name">
 						Kim Giao
@@ -75,7 +75,7 @@
 				</div>
 				<div class="col">
 					<div class="image-avt">
-						<img src="source/image/boss1.jpg" alt="" class="rounded-circle">
+						<img src="image/boss1.jpg" alt="" class="rounded-circle">
 					</div>
 					<div id="name">
 						Thanh Dung
@@ -92,7 +92,14 @@
 <!--end about-->
 @endsection
 
-<!--button login sign in-->
-@section('login-signin')
-@include('master.btnlogin')
+@section('title')
+    {{ "Giới Thiệu" }}
+@endsection
+
+@section('css')
+    {{-- expr --}}
+@endsection
+
+@section('script')
+    {{-- expr --}}
 @endsection

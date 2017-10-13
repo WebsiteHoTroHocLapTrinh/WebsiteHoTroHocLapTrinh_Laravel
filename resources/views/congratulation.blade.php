@@ -25,6 +25,14 @@
 <!-- end Content -->
 @endsection
 
-@section('login-signin')
-    @include('master.btnlogin')
+@section('title')
+	{{ "Chúc Mừng" }}
+@endsection
+
+@section('css')
+	{{-- expr --}}
+@endsection
+
+@section('script')
+	{{-- expr --}}
 @endsection

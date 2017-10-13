@@ -8,7 +8,7 @@
 		<div class="row">
 			<div class="col-lg-3 avatar">
 				<div class="card">
-					<img class="card-img-top" src="source/image/avata.png" alt="Card image cap">
+					<img class="card-img-top" src="image/avata.png" alt="Card image cap">
 					<div class="card-body">
 						<h4 class="card-title">Dinh Sa</h4>
 						<div class="point">
@@ -57,16 +57,16 @@
 					</div>
 					<div class="contact-user">
 						<div>
-							<img src="source/image/fb_user.png" alt="...">
+							<img src="image/fb_user.png" alt="...">
 						</div>
 						<div>
-							<img src="source/image/google_user.png" alt="...">
+							<img src="image/google_user.png" alt="...">
 						</div>
 						<div>
-							<img src="source/image/twitter_user.png" alt="...">
+							<img src="image/twitter_user.png" alt="...">
 						</div>
 						<div>
-							<img src="source/image/inlinked_user.png" alt="...">
+							<img src="image/inlinked_user.png" alt="...">
 						</div>
 					</div>
 				</div>
@@ -189,12 +189,16 @@
 <!--end body-->
 @endsection
 
-@section('login-signin')
-@include('master.btnlogin')
+@section('title')
+	{{ "Thông Tin Người Dùng" }}
+@endsection
+
+@section('css')
+	{{-- expr --}}
 @endsection
 
 @section('script')
-<script type="text/javascript" src="source/js/Chart.min.js"></script>
+<script type="text/javascript" src="js/Chart.min.js"></script>
 <!--script biểu đồ-->
 <script type="text/javascript">
 	var buyerData = {

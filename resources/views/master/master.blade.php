@@ -8,16 +8,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Website Hỗ Trợ Học Lập Trình - Hỏi Đáp - Tài Liệu">
     <meta name="author" content="">
-    <title>Website Hỗ Trợ Học Lập Trình - Hỏi Đáp - Tài Liệu</title>
-    <link rel="shortcut icon" href="source/image/tab-icon.png">
+    <title>@yield('title')</title>
+    <link rel="shortcut icon" href="image/tab-icon.png">
     <!-- CSS -->
-    <link rel="stylesheet" type="text/css" href="source/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="source/css/style.css">
-    <link href="source/bootstrap-social/bootstrap-social.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link href="bootstrap-social/bootstrap-social.css" rel="stylesheet">
     @yield('css')
     <!-- Font -->
-    <link rel="stylesheet" type="text/css" href="source/fonts/font-iconic/css/open-iconic-bootstrap.css">
-    <link href="source/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="fonts/font-iconic/css/open-iconic-bootstrap.css">
+    <link href="fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 </head>
 <!--body-->
 
@@ -26,11 +26,10 @@
     @yield('body') 
     @include('master.footer')
     <!-- JS -->
-    <script type="text/javascript" src="source/js/jquery-3.2.1.min.js"></script>
-    <script type="text/javascript" src="source/js/popper.min.js"></script>
-    <script type="text/javascript" src="source/js/bootstrap.min.js"></script>
-    {{-- <script type="text/javascript" src="source/ckeditor/ckeditor.js"></script> --}}
-    <script type="text/javascript" src="source/js/arrow34.js"></script>
+    <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="js/popper.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/arrow34.js"></script>
     @yield('script')
 </body>
 <!--end body-->

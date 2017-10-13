@@ -11,8 +11,12 @@ use App\Answer;
 use App\Taggable;
 use App\Documentation;
 use App\Comment;
-use App\TagUser;
+use App\UserFavoriteTag;
 use App\PasswordReset;
+use App\Activity;
+use App\Ping;
+use App\Subject;
+use App\Vote;
 
 class QuestionController extends Controller
 {
@@ -36,5 +40,27 @@ class QuestionController extends Controller
         $countvotes_up = Question::find($question_id)->votes->where('vote_action', 'up')->count();
         $countvotes_down = Question::find($question_id)->votes->where('vote_action', 'down')->count();
         return $countvotes_up - $countvotes_down;
+    }
+
+    // Admin
+    public function getList() {
+        $questions = Question::all();
+        return view('admin.question.list', ['questions' => $questions]);
+    }
+
+    public function getAdd() {
+        $tags = Tag::where('active', '1')->get();
+        return view('admin.question.add', ['tags' => $tags]);
+    }
+
+    public function postAdd(Requestư $request) {
+        $this->validate($request, 
+            [
+
+            ],
+            [
+                
+            ] 
+        );
     }
 }

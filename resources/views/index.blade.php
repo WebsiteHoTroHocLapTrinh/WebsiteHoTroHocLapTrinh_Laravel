@@ -97,7 +97,7 @@
                     </div>
                     <div class="team-info-content d-flex justify-content-center">
                         <div class="partner d-inline">
-                            <img class="partner-avatar rounded-circle" src="source/image/k17.jpg" width="200">
+                            <img class="partner-avatar rounded-circle" src="image/k17.jpg" width="200">
                             <br>
                             <br>
                             <h4 class="partner-name">Thanh Tùng</h4>
@@ -111,7 +111,7 @@
                             </div>
                         </div>
                         <div class="partner d-inline">
-                            <img class="partner-avatar rounded-circle" src="source/image/avata.png" width="200">
+                            <img class="partner-avatar rounded-circle" src="image/avata.png" width="200">
                             <br>
                             <br>
                             <h4 class="partner-name">Dinh Sa</h4>
@@ -180,16 +180,16 @@
 <!-- end Content -->
 @endsection
 
-@section('login-signin')
-    @include('master.btnlogin')
+@section('title')
+    {{ "Trang Chủ" }}
 @endsection
 
 @section('css')
-    <link rel="stylesheet" type="text/css" href="source/css/index.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
 @endsection
 
 @section('script')
-    <script type="text/javascript" src="source/js/scrollreveal.min.js"></script>
+    <script type="text/javascript" src="js/scrollreveal.min.js"></script>
     <script type="text/javascript">
         window.sr = ScrollReveal();
         sr.reveal('.intro-text', { duration: 1000, origin: 'top',});

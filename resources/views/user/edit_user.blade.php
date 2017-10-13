@@ -12,7 +12,7 @@
 						Edit Photo
 					</div>
 					<div class="photo">
-						<img src="source/image/avata.png" alt="" class="rounded-circle">
+						<img src="image/avata.png" alt="" class="rounded-circle">
 					</div>
 					<div class="text">
 						<span class="text-muted">Profile photo will be changed automatically</span>
@@ -91,8 +91,8 @@
 <!--end frofile-->
 @endsection
 
-@section('login-signin')
-    @include('master.btnlogin')
+@section('title')
+	{{ "Chỉnh Sửa Người Dùng" }}
 @endsection
 
 @section('css')
@@ -100,5 +100,5 @@
 @endsection
 
 @section('script')
-<script type="text/javascript" src="source/ckeditor/ckeditor.js"></script>
+<script type="text/javascript" src="ckeditor/ckeditor.js"></script>
 @endsection
