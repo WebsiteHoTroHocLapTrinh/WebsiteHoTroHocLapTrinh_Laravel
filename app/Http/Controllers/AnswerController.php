@@ -20,6 +20,10 @@ class AnswerController extends Controller
     	$user = Answer::find($answer_id)->user;
     	return $user;
     }
+    public function question($answer_id) {
+        $question = Answer::find($answer_id)->question;
+        return $question;
+    }
     public function comments($answer_id) {
     	$comments = Answer::find($answer_id)->comments;
     	return $comments;

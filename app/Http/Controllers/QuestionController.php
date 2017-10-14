@@ -31,6 +31,10 @@ class QuestionController extends Controller
     	$tags = Question::find($question_id)->tags;
     	return $tags;
     }
+    public function answers($question_id) {
+        $answers = Question::find($question_id)->answers;
+        return $answers;
+    }
     public function comments($question_id) {
     	$comments = Question::find($question_id)->comments;
     	return $comments;
