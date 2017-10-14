@@ -1,4 +1,4 @@
-@extends('master.master')
+@extends('layout.master')
 
 @section('body')
 <!-- Content -->
@@ -9,11 +9,11 @@
 				<div class="main-content">
 					<div class="content-card">
 						<div class="congratulation-content">
-							<h1>Câu hỏi của bạn đã được đăng tải !!!</h1>
-							<br>
-							<h3>Bạn được cộng 10 điểm cho mỗi lần đặt câu hỏi thành công</h3>
-							<br>
-							<a href=""><p>Chuyển tới trang chủ</p></a>
+							@if (session('thongbao'))
+				                {!! session('thongbao') !!}
+				            @endif
+				            <p id="count-down" style="text-align: center; font-size: 50px;">5</p>
+							<a href="/"><p>Chuyển tới trang chủ</p></a>
 						</div>	
 					</div>
 				</div>
@@ -34,5 +34,15 @@
 @endsection
 
 @section('script')
-	{{-- expr --}}
+	<script type="text/javascript">
+		var time_count_down = 5;
+		var x = setInterval(function() {
+			var distance = time_count_down--;
+			document.getElementById("count-down").innerHTML = distance;
+			if (distance === 0) {
+			    clearInterval(x);
+			    window.location.href = "/";
+			}
+		}, 1000);
+	</script>
 @endsection

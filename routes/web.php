@@ -55,7 +55,7 @@ route::get('about',function(){
 	return view('about');
 });
 
-Route::group(['prefix' => 'admin'], function() {
+Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function() {
     Route::get('/', function() {
         return view('admin.index');
     });
@@ -63,9 +63,8 @@ Route::group(['prefix' => 'admin'], function() {
         Route::get('list', 'QuestionController@getList');
         Route::get('add', 'QuestionController@getAdd');
         Route::post('add', 'QuestionController@postAdd');
-        Route::get('edit', function() {
-            return view('admin.question.edit');
-        });
+        Route::get('edit/{idQuestion}', 'QuestionController@getEdit');
+        Route::post('edit/{idQuestion}', 'QuestionController@postEdit');
     });
     Route::group(['prefix' => 'answer'], function() {
         Route::get('list', function() {
@@ -141,28 +140,31 @@ Route::group(['prefix' => 'ajax'], function() {
 
 Route::get('login', 'UserController@getLogin');
 Route::post('login', 'UserController@postLogin');
+Route::get('register', 'UserController@getRegister');
+Route::post('register', 'UserController@postRegister');
+Route::get('logout', 'UserController@getLogout');
 
 // Test API
 
-// Route::group(['prefix' => 'user'], function() {
-//     Route::get('permission/{user_id}', 'UserController@permission');
-//     Route::get('questions/{user_id}', 'UserController@questions');
-//     Route::get('answers/{user_id}', 'UserController@answers');
-//     Route::get('documentations/{user_id}', 'UserController@documentations');
-//     Route::get('comments/{user_id}', 'UserController@comments');
-//     Route::get('tags_favorited/{user_id}', 'UserController@tags_favorited');
-//     Route::get('votes/{user_id}', 'UserController@votes');
-//     Route::get('permission_created/{user_id}', 'UserController@permission_created');
-//     Route::get('subject_created/{user_id}', 'UserController@subject_created');
-//     Route::get('tag_created/{user_id}', 'UserController@tag_created');
-// });
-// Route::group(['prefix' => 'question'], function() {
-//     Route::get('user/{question_id}', 'QuestionController@user');
-//     Route::get('tags/{question_id}', 'QuestionController@tags');
-//     Route::get('comments/{question_id}', 'QuestionController@comments');
-//     Route::get('votes/{question_id}', 'QuestionController@votes');
-//     Route::get('countvotes/{question_id}', 'QuestionController@countvotes');  
-// });
+Route::group(['prefix' => 'user'], function() {
+    Route::get('permission/{user_id}', 'UserController@permission');
+    Route::get('questions/{user_id}', 'UserController@questions');
+    Route::get('answers/{user_id}', 'UserController@answers');
+    Route::get('documentations/{user_id}', 'UserController@documentations');
+    Route::get('comments/{user_id}', 'UserController@comments');
+    Route::get('tags/{user_id}', 'UserController@tags');
+    Route::get('votes/{user_id}', 'UserController@votes');
+    Route::get('permission_created/{user_id}', 'UserController@permission_created');
+    Route::get('subject_created/{user_id}', 'UserController@subject_created');
+    Route::get('tag_created/{user_id}', 'UserController@tag_created');
+});
+Route::group(['prefix' => 'question'], function() {
+    Route::get('user/{question_id}', 'QuestionController@user');
+    Route::get('tags/{question_id}', 'QuestionController@tags');
+    Route::get('comments/{question_id}', 'QuestionController@comments');
+    Route::get('votes/{question_id}', 'QuestionController@votes');
+    Route::get('countvotes/{question_id}', 'QuestionController@countvotes');  
+});
 // Route::group(['prefix' => 'documentation'], function() {
 //     Route::get('user/{documentation_id}', 'DocumentationController@user');
 //     Route::get('tags/{documentation_id}', 'DocumentationController@tags');

@@ -1,7 +1,7 @@
-@extends('master.master')
+@extends('layout.master')
 
 @section('body')
-@include('master.imageHeader')
+@include('layout.imageHeader')
 <!-- Content -->
 <div class="content">
 	<div class="container">

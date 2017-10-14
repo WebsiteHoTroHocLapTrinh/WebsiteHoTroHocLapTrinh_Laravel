@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Validator;
+use DateTime;
+use Auth;
 use App\Permission;
 use App\User;
 use App\Tag;
@@ -36,9 +39,9 @@ class UserController extends Controller
     	$comments = User::find($user_id)->comments;
     	return $comments;
     }
-    public function tags_favorited($user_id) {
-    	$tags_favorited = User::find($user_id)->tags_favorited;
-    	return $tags_favorited;
+    public function tags($user_id) {
+    	$tags = User::find($user_id)->tags;
+    	return $tags;
     }
     public function votes($user_id) {
         $votes = User::find($user_id)->votes;
@@ -62,6 +65,88 @@ class UserController extends Controller
     }
 
     public function postLogin(Request $request) {
-        
+        $validator = Validator::make($request->all(), 
+            [
+                'email' => 'required|email',
+                'password' => 'required|min:6|max:32',
+            ], 
+            [
+                'email.required' => 'Bạn chưa nhập email',
+                'email.email' => 'Bạn chưa nhập đúng định dạng email',
+                'password.required' => 'Bạn chưa nhập password',
+                'password.min' => 'Mật khẩu phải có độ dài từ 6 đến 32 ký tự',
+                'password.max' => 'Mật khẩu phải có độ dài từ 6 đến 32 ký tự',
+            ]
+        );
+        if ($validator->fails()) {
+            return redirect()->back()
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+             return redirect('congratulation')->with('thongbao', 
+            '<h1>Đăng Nhập Thành Công !!!</h1>
+            <br>
+            <h3>Hãy cùng giúp nhau để phát triễn nhé. Thân !!!</h3>
+            <br>');
+        }
+        else {
+            return redirect()->back()->with('thongbao','Sai tên đăng nhập hoặc mật khẩu');
+        }
+
+    }
+
+    public function getLogout() {
+        Auth::user()->last_online = new DateTime();
+        Auth::logout();
+        return redirect('/');
+    }
+
+    public function getRegister() {
+        return view('user.register');
+    }
+
+    public function postRegister(Request $request) {
+        $validator = Validator::make($request->all(), 
+            [
+                'name' => 'required',
+                'email' => 'required|email|unique:users',
+                'password' => 'required|min:6|max:32',
+                'confirm_password' => 'required|same:password',
+            ], 
+            [
+                'name.required' => 'Bạn chưa nhập tên hiển thị',
+                'email.required' => 'Bạn chưa nhập email',
+                'email.email' => 'Bạn chưa nhập đúng định dạng email',
+                'email.unique' => 'Email này đã tồn tại',
+                'password.required' => 'Bạn chưa nhập password',
+                'password.min' => 'Mật khẩu phải có độ dài từ 6 đến 32 ký tự',
+                'password.max' => 'Mật khẩu phải có độ dài từ 6 đến 32 ký tự',
+                'confirm_password.required' => 'Bạn chưa nhập lại password',
+                'confirm_password.same' => 'Nhập lại password sai',
+            ]
+        );
+        if ($validator->fails()) {
+            return redirect()->back()
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
+        $user = new User;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = bcrypt($request->password);
+        $user->last_online = new DateTime();
+        $user->created_at = new DateTime();
+        $user->updated_at = new DateTime();
+        $user->save();
+
+        Auth::attempt(['email' => $request->email, 'password' => $request->password]);
+
+        return redirect('congratulation')->with('thongbao', 
+            '<h1>Đăng Ký Thành Công !!!</h1>
+            <br>
+            <h3>Hãy cùng giúp nhau để phát triễn nhé. Thân !!!</h3>
+            <br>');
     }
 }

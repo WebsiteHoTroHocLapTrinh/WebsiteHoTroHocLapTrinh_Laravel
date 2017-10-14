@@ -47,8 +47,8 @@ class User extends Authenticatable
         return $this->hasMany('App\Comment', 'user_id', 'id');
     }
 
-    public function tags_favorited() {
-        return $this->belongsToMany('App\Tag', 'user_favorite_tags', 'user_id', 'tag_id');
+    public function tags() {
+        return $this->morphToMany('App\Tag', 'taggable');
     }
 
     public function votes() {

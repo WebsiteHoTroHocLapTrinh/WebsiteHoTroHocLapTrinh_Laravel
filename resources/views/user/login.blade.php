@@ -1,4 +1,4 @@
-@extends('master.master')
+@extends('layout.master')
 
 @section('body')
 <!--login-->
@@ -13,18 +13,31 @@
 			</div>
 			<!--/login gg fb-->
 			<br>
+			@if (count($errors) > 0)
+	            <div class="alert alert-warning">
+	                @foreach ($errors->all() as $err)
+	                {{ $err }} <br>
+	                @endforeach
+	            </div>
+	       	@endif
+	       	@if (session('thongbao'))
+	            <div class="alert alert-danger">
+	                {{ session('thongbao') }}
+	            </div>
+	      	@endif
 			<!--login main-->
-			<form action="Login_SignUp_submit" method="get" accept-charset="utf-8">
+			<form action="login" method="POST" accept-charset="utf-8">
+				{{ csrf_field() }}
 				<div class="form-group">
 					<label class="form-login">Email</label>
-					<input class="form-login form-control" type="text" name="" placeholder="you@example.com">
+					<input class="form-login form-control" type="email" name="email" placeholder="you@example.com" value="{{ old('email') }}">
 				</div>
 				<div class="form-group ">
 					<label class="form-login">Password</label>
-					<input class="form-login form-control" type="text" name="" placeholder="*****">
+					<input class="form-login form-control" type="password" name="password" placeholder="*****">
 				</div>
 				<div id="btnlogin">
-					<button class="btn colr" type="sybmit">Log in</button>
+					<button class="btn colr" type="submit">Log in</button>
 					<a href="#">forgot password?</a>
 				</div>
 			</form>

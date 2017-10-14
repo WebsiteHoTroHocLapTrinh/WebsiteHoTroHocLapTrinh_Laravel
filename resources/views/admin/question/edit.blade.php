@@ -4,7 +4,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header"><small>Chỉnh sửa câu hỏi</small> Làm sao để hết FA ?</h1>
+                    <h1 class="page-header"><small>Chỉnh sửa câu hỏi</small> {{ $question->title }}</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -15,26 +15,43 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
+                                    @if (count($errors) > 0)
+                                    <div class="alert alert-warning">
+                                        @foreach ($errors->all() as $err)
+                                        {{ $err }} <br>
+                                        @endforeach
+                                    </div>
+                                    @endif
+                                    @if (session('thongbao'))
+                                    <div class="alert alert-success">
+                                        {{ session('thongbao') }}
+                                    </div>
+                                    @endif
                                     <div class="tags-editor">
-                                        <form role="form">
+                                        <form action="admin/question/edit/{{ $question->id }}" method="POST" role="form">
+                                            {{ csrf_field() }}
                                             <div class="form-group">
                                                 <label>Tiêu Đề</label>
-                                                <input type="text" class="form-control" placeholder="Nhập tiêu đề câu hỏi" value="Làm sao để hết FA ?">
+                                                <input type="text" class="form-control" placeholder="Nhập tiêu đề câu hỏi" value="{{ $question->title }}" name="title">
                                             </div>
                                             <div class="form-group">
                                                 <label>Nội Dung</label>
-                                                <textarea class="form-control ckeditor" name="content" rows="10">Tao cũng <strong>không</strong> biết nữa</textarea>
+                                                <textarea class="form-control ckeditor" name="content" rows="10" name="content">{!! $question->content !!}</textarea>
                                             </div>
                                             <div class="form-group">
                                                 <label>Thẻ</label>
                                                 <input type="text" class="form-control" placeholder="Nhập các thẻ liên quan" data-role="tagsinput">
-                                                <input type="text" name="" id="list-tag" hidden="">
+                                                <input type="text" id="list-tag" hidden="" name="list_tag">
                                             </div>
                                             <div class="form-group">
                                                 <label>Ẩn/Hiện</label>
                                                 <br>
                                                 <label class="switch">
-                                                    <input type="checkbox" checked>
+                                                    <input type="checkbox" name="active"
+                                                    @if ($question->active)
+                                                        {{ "checked" }}
+                                                    @endif
+                                                    >
                                                     <span class="slider round"></span>
                                                 </label>
                                             </div>
@@ -77,27 +94,7 @@
     var tags = new Bloodhound({
         datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
         queryTokenizer: Bloodhound.tokenizers.whitespace,
-        local: [{ "id": 1, "name": "PHP" },
-            { "id": 2, "name": "C#" },
-            { "id": 3, "name": "AngularJS" },
-            { "id": 4, "name": "Android" },
-            { "id": 5, "name": "Java" },
-            { "id": 6, "name": "C++" },
-            { "id": 7, "name": "Python" },
-            { "id": 8, "name": "MongoDB" },
-            { "id": 9, "name": "SQL" },
-            { "id": 10, "name": "MySQL" },
-            { "id": 11, "name": "Laravel" },
-            { "id": 12, "name": "NodeJS" },
-            { "id": 13, "name": "Reactive" },
-            { "id": 14, "name": "ExpressJS" },
-            { "id": 15, "name": "iOS" },
-            { "id": 16, "name": "CSS" },
-            { "id": 17, "name": "JavaScript" },
-            { "id": 18, "name": "ASP.NET" },
-            { "id": 19, "name": "R" },
-            { "id": 20, "name": "HTML" },
-        ]
+        local: {!! $tags !!}
     });
     tags.initialize();
 
@@ -111,8 +108,10 @@
             source: tags.ttAdapter()
         }
     });
-    elt.tagsinput('add', { "id": 1 , "name": "PHP" });
-	elt.tagsinput('add', { "id": 4 , "name": "Android" });
-	elt.tagsinput('add', { "id": 7 , "name": "Python" });
+
+    var stringTags = {!! $question->tags !!}
+    stringTags.forEach(function(item) {
+        elt.tagsinput('add', item);
+    });
     </script>
 @endsection

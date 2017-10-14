@@ -1,7 +1,7 @@
-@extends('master.master')
+@extends('layout.master')
 
 @section('body')
-@include('master.imageHeader')
+@include('layout.imageHeader')
 <!-- Content -->
 <div class="content">
 	<div class="container">
@@ -413,7 +413,7 @@
             	"content": "@Đinh Sa Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. ",
             	"pings": [2],
             	"creator": 1,
-            	"created_by_current_user ": true,
+            	"created_by_current_user": true,
             	"fullname": "Thanh Tùng ",
             	"profile_picture_url": "image/k17.jpg ",
             	"profile_url": "https://www.google.com/ "

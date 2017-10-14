@@ -1,4 +1,4 @@
-@extends('master.master')
+@extends('layout.master')
 
 @section('body')
 <!-- Content -->

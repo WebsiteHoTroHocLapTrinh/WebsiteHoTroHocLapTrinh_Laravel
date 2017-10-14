@@ -15,19 +15,32 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <form role="form">
+                                    @if (count($errors) > 0)
+                                    <div class="alert alert-warning">
+                                        @foreach ($errors->all() as $err)
+                                        {{ $err }} <br>
+                                        @endforeach
+                                    </div>
+                                    @endif
+                                    @if (session('thongbao'))
+                                    <div class="alert alert-success">
+                                        {{ session('thongbao') }}
+                                    </div>
+                                    @endif
+                                    <form action="admin/question/add" method="POST" role="form">
+                                        {{ csrf_field() }}
                                         <div class="form-group">
                                             <label>Tiêu Đề</label>
-                                            <input type="text" class="form-control" placeholder="Nhập tiêu đề câu hỏi" name="title">
+                                            <input type="text" class="form-control" placeholder="Nhập tiêu đề câu hỏi" name="title" value="{{ old('title')}}">
                                         </div>
                                         <div class="form-group">
                                             <label>Nội Dung</label>
-                                            <textarea class="form-control ckeditor" name="content" rows="10" name="content"></textarea>
+                                            <textarea class="form-control ckeditor" name="content" rows="10" name="content">{!! old('content') !!}</textarea>
                                         </div>
                                         <div class="form-group">
                                             <label>Thẻ</label>
                                             <input type="text" class="form-control" placeholder="Nhập các thẻ liên quan" data-role="tagsinput">
-                                            <input type="text" id="list-tag" hidden="" name="list-tag">
+                                            <input type="text" id="list-tag" hidden="" name="list_tag">
                                         </div>
                                         <div class="form-group">
                                             <label>Ẩn/Hiện</label>

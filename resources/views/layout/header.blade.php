@@ -42,10 +42,28 @@
              </span>
          </div>
          <!--/search box-->
-         <!--login signup-->
-         <button type="button" class="btn mr-3" href="login">Log In</button>
-         <button class="btn colr" href="register"> Sign Up</button>
-         <!--/login signup-->
+        @if (!Auth::check())
+             <!--login signup-->
+             <a href="login"><button type="button" class="btn mr-3">Log In</button></a>
+             <a href="register"><button class="btn colr" href="register"> Sign Up</button></a>
+             <!--/login signup-->
+        @else
+            <div class="dropdown">
+                <div class="" id="dropdownMenuButton" data-toggle="dropdown" >
+                    <img src="image/k17.jpg" width="40">
+                </div>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    @if (Auth::user()->permission_id == 2)
+                        <a class="dropdown-item" href="admin/">Về Trang Admin</a>
+                    @endif
+                    <a class="dropdown-item" href="user-information">Thông Tin Cá Nhân</a>
+                    <a class="dropdown-item" href="#">Cài Đặt</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="logout">Đăng Xuất</a>
+                </div>
+            </div>
+        @endif
+         
      </div>
      <!--/nav-->
  </nav>

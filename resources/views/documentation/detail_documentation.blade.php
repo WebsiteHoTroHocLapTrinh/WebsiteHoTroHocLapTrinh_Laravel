@@ -1,8 +1,8 @@
-@extends('master.master')
+@extends('layout.master')
 
 @section('body')
 <!--image header-->
-@include('master.imageHeader')
+@include('layout.imageHeader')
 <!--end image header-->
 
 <!-- Content -->

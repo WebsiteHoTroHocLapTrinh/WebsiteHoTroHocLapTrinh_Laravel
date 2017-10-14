@@ -1,4 +1,4 @@
-@extends('master.master')
+@extends('layout.master')
 
 @section('body')
 <!--sign up-->
@@ -13,26 +13,34 @@
 			</div>
 			<!--/sign up gg fb-->
 			<br>
+			@if (count($errors) > 0)
+	            <div class="alert alert-warning">
+	                @foreach ($errors->all() as $err)
+	                {{ $err }} <br>
+	                @endforeach
+	            </div>
+	       	@endif
 			<!--sign up main-->
-			<form action="Login_SignUp_submit" method="get" accept-charset="utf-8">
+			<form action="register" method="POST" accept-charset="utf-8">
+				{{ csrf_field() }}
 				<div class="form-group">
 					<label class="form-login">Display Name</label>
-					<input class="form-login form-control" type="text" name="" placeholder="Jonh">
+					<input class="form-login form-control" type="text" name="name" placeholder="Jonh" value="{{ old('name') }}">
 				</div>
 				<div class="form-group">
 					<label class="form-login">Email</label>
-					<input class="form-login form-control" type="text" name="" placeholder="you@example.com">
+					<input class="form-login form-control" type="email" name="email" placeholder="you@example.com" value="{{ old('email') }}">
 				</div>
 				<div class="form-group ">
 					<label class="form-login">Password</label>
-					<input class="form-login form-control" type="text" name="" placeholder="*****">
+					<input class="form-login form-control" type="password" name="password" placeholder="*****">
 				</div>
 				<div class="form-group">
 					<label class="form-login">Confirm Password</label>
-					<input class="form-login form-control" type="text" name="" placeholder="*****">
+					<input class="form-login form-control" type="password" name="confirm_password" placeholder="*****">
 				</div>
 				<div id="btn-Signup">
-					<button class="btn colr policy" type="sybmit">Sign Up</button>
+					<button class="btn colr policy" type="submit">Sign Up</button>
 					<span class="policy">By registering, you agree to the privacy policy and terms of service.</span>
 				</div>
 			</form>
@@ -42,7 +50,7 @@
 		<div class="border-login">
 			<div id="dont-acc">
 				<span>Already have an account?</span>
-				<a href="#"email me">Log in</a>
+				<a href="login" email me">Log in</a>
 			</div>
 		</div>
 	</div>
