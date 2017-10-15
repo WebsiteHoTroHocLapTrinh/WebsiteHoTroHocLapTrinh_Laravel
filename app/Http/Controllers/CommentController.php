@@ -28,4 +28,16 @@ class CommentController extends Controller
     	$pings = Comment::find($comment_id)->pings;
     	return $pings;
     }
+
+    // Admin
+    public function getDelete($idComment) {
+        $comment = Comment::find($idComment);
+        $pingsOfComment = $comment->pings;
+        foreach ($pingsOfComment as $ping) {
+            $ping->delete();    // Delete pings of comment
+        }
+        $comment->delete();  // Delete comments of answer
+
+        return redirect()->back()->with('thongbao_comment', 'Xóa Thành Công');
+    }
 }

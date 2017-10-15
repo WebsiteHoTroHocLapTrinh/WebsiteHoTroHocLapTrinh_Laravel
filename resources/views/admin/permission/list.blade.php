@@ -13,6 +13,11 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-body">
+                            @if (session('thongbao'))
+                                <div class="alert alert-success">
+                                    {{ session('thongbao') }}
+                                </div>
+                            @endif
                             <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-list-permission">
                                 <thead>
                                     <tr>
@@ -28,38 +33,28 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Thành Viên</td>
-                                        <td>1</td>
-                                        <td>Thanh Tùng</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>
-                                            <label class="switch">
-                                                <input type="checkbox" checked="">
-                                                <span class="slider round"></span>
-                                            </label>
-                                        </td>
-                                        <td><a href="/admin/permission/edit"><i style="font-size: 40px;" class="fa fa-edit"></i></a></td>
-                                        <td><a onclick="return confirm('Bạn có chắc là muốn xóa không?')" href=""><i style="font-size: 40px;" class="fa fa-trash-o"></i></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Quản Trị Viên</td>
-                                        <td>2</td>
-                                        <td>Thanh Tùng</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>
-                                            <label class="switch">
-                                                <input type="checkbox" checked="">
-                                                <span class="slider round"></span>
-                                            </label>
-                                        </td>
-                                        <td><a href="/admin/permission/edit"><i style="font-size: 40px;" class="fa fa-edit"></i></a></td>
-                                        <td><a onclick="return confirm('Bạn có chắc là muốn xóa không?')" href=""><i style="font-size: 40px;" class="fa fa-trash-o"></i></a></td>
-                                    </tr>
+                                    @foreach ($permissions as $per)
+                                        <tr>
+                                            <td>{{ $per->id }}</td>
+                                            <td>{{ $per->name }}</td>
+                                            <td>{{ $per->key }}</td>
+                                            <td>{{ $per->user_created->name }}</td>
+                                            <td>{{ $per->created_at }}</td>
+                                            <td>{{ $per->updated_at }}</td>
+                                            <td>
+                                                <label class="switch">
+                                                    <input type="checkbox" 
+                                                        @if ($per->active)
+                                                            {{ "checked" }}
+                                                        @endif>
+                                                    >
+                                                    <span class="slider round"></span>
+                                                </label>
+                                            </td>
+                                            <td><a href="admin/permission/edit/{{ $per->id }}"><i style="font-size: 40px;" class="fa fa-edit"></i></a></td>
+                                            <td><a onclick="return confirm('Bạn có chắc là muốn xóa không?')" href="admin/permission/delete/{{ $per->id }}"><i style="font-size: 40px;" class="fa fa-trash-o"></i></a></td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                             <!-- /.table-responsive -->

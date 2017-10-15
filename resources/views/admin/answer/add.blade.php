@@ -4,7 +4,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Câu trả lời mới</h1>
+                    <h1 class="page-header">Câu trả lời mới <a href="admin/question/answer/list/{{ $question->id }}"><button style="margin-left: 20px;" class="btn btn-success "><i class="fa fa-list fa-fw"></i>    Về danh sách câu trả lời</button></a></h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -12,20 +12,27 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3><small>Thêm câu trả lời cho câu hỏi:</small> <a href="" target="_blank">{{ $question->title }}</a></h3>
+                        </div>
+                        <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <form role="form">
-                                        <div class="form-group">
-                                            <label>Câu hỏi cần trả lời</label>
-                                            <select class="form-control">
-                                                <option value="1">Làm sao để hết FA ?</option>
-                                                <option value="1">Làm sao để hết FA ?</option>
-                                                <option value="1">Làm sao để hết FA ?</option>
-                                                <option value="1">Làm sao để hết FA ?</option>
-                                                <option value="1">Làm sao để hết FA ?</option>
-                                            </select>
-                                        </div>
+                                    @if (count($errors) > 0)
+                                    <div class="alert alert-warning">
+                                        @foreach ($errors->all() as $err)
+                                        {{ $err }} <br>
+                                        @endforeach
+                                    </div>
+                                    @endif
+                                    @if (session('thongbao'))
+                                    <div class="alert alert-success">
+                                        {{ session('thongbao') }}
+                                    </div>
+                                    @endif
+                                    <form action="admin/question/answer/add/{{ $question->id }}" method="POST" role="form">
+                                        {{ csrf_field() }}
                                         <div class="form-group">
                                             <label>Nội Dung</label>
                                             <textarea class="form-control ckeditor" name="content" rows="10"></textarea>
@@ -34,7 +41,7 @@
                                             <label>Ẩn/Hiện</label>
                                             <br>
                                             <label class="switch">
-                                                <input type="checkbox" checked>
+                                                <input type="checkbox" checked name="active">
                                                 <span class="slider round"></span>
                                             </label>
                                         </div>
