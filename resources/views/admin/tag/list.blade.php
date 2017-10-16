@@ -13,6 +13,11 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-body">
+                            @if (session('thongbao'))
+                                <div class="alert alert-success">
+                                    {{ session('thongbao') }}
+                                </div>
+                            @endif
                             <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-list-tag">
                                 <thead>
                                     <tr>
@@ -29,346 +34,29 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>C#</td>
-                                        <td>C# is da bezt</td>
-                                        <td>696</td>
-                                        <td>Thanh Tùng</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>
-                                            <label class="switch">
-                                                <input type="checkbox">
-                                                <span class="slider round"></span>
-                                            </label>
-                                        </td>
-                                        <td><a href="/admin/tag/edit"><i style="font-size: 40px;" class="fa fa-edit"></i></a></td>
-                                        <td><a onclick="return confirm('Bạn có chắc là muốn xóa không?')" href=""><i style="font-size: 40px;" class="fa fa-trash-o"></i></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>PHP</td>
-                                        <td>PHP is da bezt</td>
-                                        <td>696</td>
-                                        <td>Thanh Tùng</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>
-                                            <label class="switch">
-                                                <input type="checkbox" checked="">
-                                                <span class="slider round"></span>
-                                            </label>
-                                        </td>
-                                        <td><a href="/admin/tag/edit"><i style="font-size: 40px;" class="fa fa-edit"></i></a></td>
-                                        <td><a onclick="return confirm('Bạn có chắc là muốn xóa không?')" href=""><i style="font-size: 40px;" class="fa fa-trash-o"></i></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>C#</td>
-                                        <td>C# is da bezt</td>
-                                        <td>696</td>
-                                        <td>Thanh Tùng</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>
-                                            <label class="switch">
-                                                <input type="checkbox">
-                                                <span class="slider round"></span>
-                                            </label>
-                                        </td>
-                                        <td><a href="/admin/tag/edit"><i style="font-size: 40px;" class="fa fa-edit"></i></a></td>
-                                        <td><a onclick="return confirm('Bạn có chắc là muốn xóa không?')" href=""><i style="font-size: 40px;" class="fa fa-trash-o"></i></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>PHP</td>
-                                        <td>PHP is da bezt</td>
-                                        <td>696</td>
-                                        <td>Thanh Tùng</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>
-                                            <label class="switch">
-                                                <input type="checkbox" checked="">
-                                                <span class="slider round"></span>
-                                            </label>
-                                        </td>
-                                        <td><a href="/admin/tag/edit"><i style="font-size: 40px;" class="fa fa-edit"></i></a></td>
-                                        <td><a onclick="return confirm('Bạn có chắc là muốn xóa không?')" href=""><i style="font-size: 40px;" class="fa fa-trash-o"></i></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>C#</td>
-                                        <td>C# is da bezt</td>
-                                        <td>696</td>
-                                        <td>Thanh Tùng</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>
-                                            <label class="switch">
-                                                <input type="checkbox">
-                                                <span class="slider round"></span>
-                                            </label>
-                                        </td>
-                                        <td><a href="/admin/tag/edit"><i style="font-size: 40px;" class="fa fa-edit"></i></a></td>
-                                        <td><a onclick="return confirm('Bạn có chắc là muốn xóa không?')" href=""><i style="font-size: 40px;" class="fa fa-trash-o"></i></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>PHP</td>
-                                        <td>PHP is da bezt</td>
-                                        <td>696</td>
-                                        <td>Thanh Tùng</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>
-                                            <label class="switch">
-                                                <input type="checkbox" checked="">
-                                                <span class="slider round"></span>
-                                            </label>
-                                        </td>
-                                        <td><a href="/admin/tag/edit"><i style="font-size: 40px;" class="fa fa-edit"></i></a></td>
-                                        <td><a onclick="return confirm('Bạn có chắc là muốn xóa không?')" href=""><i style="font-size: 40px;" class="fa fa-trash-o"></i></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>C#</td>
-                                        <td>C# is da bezt</td>
-                                        <td>696</td>
-                                        <td>Thanh Tùng</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>
-                                            <label class="switch">
-                                                <input type="checkbox">
-                                                <span class="slider round"></span>
-                                            </label>
-                                        </td>
-                                        <td><a href="/admin/tag/edit"><i style="font-size: 40px;" class="fa fa-edit"></i></a></td>
-                                        <td><a onclick="return confirm('Bạn có chắc là muốn xóa không?')" href=""><i style="font-size: 40px;" class="fa fa-trash-o"></i></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>PHP</td>
-                                        <td>PHP is da bezt</td>
-                                        <td>696</td>
-                                        <td>Thanh Tùng</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>
-                                            <label class="switch">
-                                                <input type="checkbox" checked="">
-                                                <span class="slider round"></span>
-                                            </label>
-                                        </td>
-                                        <td><a href="/admin/tag/edit"><i style="font-size: 40px;" class="fa fa-edit"></i></a></td>
-                                        <td><a onclick="return confirm('Bạn có chắc là muốn xóa không?')" href=""><i style="font-size: 40px;" class="fa fa-trash-o"></i></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>C#</td>
-                                        <td>C# is da bezt</td>
-                                        <td>696</td>
-                                        <td>Thanh Tùng</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>
-                                            <label class="switch">
-                                                <input type="checkbox">
-                                                <span class="slider round"></span>
-                                            </label>
-                                        </td>
-                                        <td><a href="/admin/tag/edit"><i style="font-size: 40px;" class="fa fa-edit"></i></a></td>
-                                        <td><a onclick="return confirm('Bạn có chắc là muốn xóa không?')" href=""><i style="font-size: 40px;" class="fa fa-trash-o"></i></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>PHP</td>
-                                        <td>PHP is da bezt</td>
-                                        <td>696</td>
-                                        <td>Thanh Tùng</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>
-                                            <label class="switch">
-                                                <input type="checkbox" checked="">
-                                                <span class="slider round"></span>
-                                            </label>
-                                        </td>
-                                        <td><a href="/admin/tag/edit"><i style="font-size: 40px;" class="fa fa-edit"></i></a></td>
-                                        <td><a onclick="return confirm('Bạn có chắc là muốn xóa không?')" href=""><i style="font-size: 40px;" class="fa fa-trash-o"></i></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>C#</td>
-                                        <td>C# is da bezt</td>
-                                        <td>696</td>
-                                        <td>Thanh Tùng</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>
-                                            <label class="switch">
-                                                <input type="checkbox">
-                                                <span class="slider round"></span>
-                                            </label>
-                                        </td>
-                                        <td><a href="/admin/tag/edit"><i style="font-size: 40px;" class="fa fa-edit"></i></a></td>
-                                        <td><a onclick="return confirm('Bạn có chắc là muốn xóa không?')" href=""><i style="font-size: 40px;" class="fa fa-trash-o"></i></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>PHP</td>
-                                        <td>PHP is da bezt</td>
-                                        <td>696</td>
-                                        <td>Thanh Tùng</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>
-                                            <label class="switch">
-                                                <input type="checkbox" checked="">
-                                                <span class="slider round"></span>
-                                            </label>
-                                        </td>
-                                        <td><a href="/admin/tag/edit"><i style="font-size: 40px;" class="fa fa-edit"></i></a></td>
-                                        <td><a onclick="return confirm('Bạn có chắc là muốn xóa không?')" href=""><i style="font-size: 40px;" class="fa fa-trash-o"></i></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>C#</td>
-                                        <td>C# is da bezt</td>
-                                        <td>696</td>
-                                        <td>Thanh Tùng</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>
-                                            <label class="switch">
-                                                <input type="checkbox">
-                                                <span class="slider round"></span>
-                                            </label>
-                                        </td>
-                                        <td><a href="/admin/tag/edit"><i style="font-size: 40px;" class="fa fa-edit"></i></a></td>
-                                        <td><a onclick="return confirm('Bạn có chắc là muốn xóa không?')" href=""><i style="font-size: 40px;" class="fa fa-trash-o"></i></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>PHP</td>
-                                        <td>PHP is da bezt</td>
-                                        <td>696</td>
-                                        <td>Thanh Tùng</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>
-                                            <label class="switch">
-                                                <input type="checkbox" checked="">
-                                                <span class="slider round"></span>
-                                            </label>
-                                        </td>
-                                        <td><a href="/admin/tag/edit"><i style="font-size: 40px;" class="fa fa-edit"></i></a></td>
-                                        <td><a onclick="return confirm('Bạn có chắc là muốn xóa không?')" href=""><i style="font-size: 40px;" class="fa fa-trash-o"></i></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>C#</td>
-                                        <td>C# is da bezt</td>
-                                        <td>696</td>
-                                        <td>Thanh Tùng</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>
-                                            <label class="switch">
-                                                <input type="checkbox">
-                                                <span class="slider round"></span>
-                                            </label>
-                                        </td>
-                                        <td><a href="/admin/tag/edit"><i style="font-size: 40px;" class="fa fa-edit"></i></a></td>
-                                        <td><a onclick="return confirm('Bạn có chắc là muốn xóa không?')" href=""><i style="font-size: 40px;" class="fa fa-trash-o"></i></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>PHP</td>
-                                        <td>PHP is da bezt</td>
-                                        <td>696</td>
-                                        <td>Thanh Tùng</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>
-                                            <label class="switch">
-                                                <input type="checkbox" checked="">
-                                                <span class="slider round"></span>
-                                            </label>
-                                        </td>
-                                        <td><a href="/admin/tag/edit"><i style="font-size: 40px;" class="fa fa-edit"></i></a></td>
-                                        <td><a onclick="return confirm('Bạn có chắc là muốn xóa không?')" href=""><i style="font-size: 40px;" class="fa fa-trash-o"></i></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>C#</td>
-                                        <td>C# is da bezt</td>
-                                        <td>696</td>
-                                        <td>Thanh Tùng</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>
-                                            <label class="switch">
-                                                <input type="checkbox">
-                                                <span class="slider round"></span>
-                                            </label>
-                                        </td>
-                                        <td><a href="/admin/tag/edit"><i style="font-size: 40px;" class="fa fa-edit"></i></a></td>
-                                        <td><a onclick="return confirm('Bạn có chắc là muốn xóa không?')" href=""><i style="font-size: 40px;" class="fa fa-trash-o"></i></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>PHP</td>
-                                        <td>PHP is da bezt</td>
-                                        <td>696</td>
-                                        <td>Thanh Tùng</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>
-                                            <label class="switch">
-                                                <input type="checkbox" checked="">
-                                                <span class="slider round"></span>
-                                            </label>
-                                        </td>
-                                        <td><a href="/admin/tag/edit"><i style="font-size: 40px;" class="fa fa-edit"></i></a></td>
-                                        <td><a onclick="return confirm('Bạn có chắc là muốn xóa không?')" href=""><i style="font-size: 40px;" class="fa fa-trash-o"></i></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>C#</td>
-                                        <td>C# is da bezt</td>
-                                        <td>696</td>
-                                        <td>Thanh Tùng</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>
-                                            <label class="switch">
-                                                <input type="checkbox">
-                                                <span class="slider round"></span>
-                                            </label>
-                                        </td>
-                                        <td><a href="/admin/tag/edit"><i style="font-size: 40px;" class="fa fa-edit"></i></a></td>
-                                        <td><a onclick="return confirm('Bạn có chắc là muốn xóa không?')" href=""><i style="font-size: 40px;" class="fa fa-trash-o"></i></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>PHP</td>
-                                        <td>PHP is da bezt</td>
-                                        <td>696</td>
-                                        <td>Thanh Tùng</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>
-                                            <label class="switch">
-                                                <input type="checkbox" checked="">
-                                                <span class="slider round"></span>
-                                            </label>
-                                        </td>
-                                        <td><a href="/admin/tag/edit"><i style="font-size: 40px;" class="fa fa-edit"></i></a></td>
-                                        <td><a onclick="return confirm('Bạn có chắc là muốn xóa không?')" href=""><i style="font-size: 40px;" class="fa fa-trash-o"></i></a></td>
-                                    </tr>
+                                    @foreach ($tags as $tag)
+                                        <tr>
+                                            <td>{{ $tag->id }}</td>
+                                            <td>{{ $tag->name }}</td>
+                                            <td>{{ $tag->description }}</td>
+                                            <td>{{ $tag->users->count() + $tag->questions->count() + $tag->documentations->count() }}</td>
+                                            <td>{{ $tag->user_created->name }}</td>
+                                            <td>{{ $tag->created_at }}</td>
+                                            <td>{{ $tag->updated_at }}</td>
+                                            <td>
+                                                <label class="switch">
+                                                    <input type="checkbox" 
+                                                        @if ($tag->active)
+                                                            {{ "checked" }}
+                                                        @endif>
+                                                    >
+                                                    <span class="slider round"></span>
+                                                </label>
+                                            </td>
+                                            <td><a href="admin/tag/edit/{{ $tag->id }}"><i style="font-size: 40px;" class="fa fa-edit"></i></a></td>
+                                            <td><a onclick="return confirm('Bạn có chắc là muốn xóa không?')" href="admin/tag/delete/{{ $tag->id }}"><i style="font-size: 40px;" class="fa fa-trash-o"></i></a></td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                             <!-- /.table-responsive -->

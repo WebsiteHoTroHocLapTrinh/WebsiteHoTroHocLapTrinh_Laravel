@@ -176,6 +176,7 @@ class QuestionController extends Controller
         return redirect()->back()->with('thongbao', 'Cập Nhật Thành Công');
     }
 
+
     //List Question
     public function ListQuestion()
     {
@@ -187,5 +188,41 @@ class QuestionController extends Controller
             return $SortByAnswer->answers->where('active',1)->count();
         });
         return view('question.list_question',['list'=>$ListQuestion,'user_rank'=>$user_rank,'SortByAnswer'=>$SortByAnswer]);
+
+    public function getDelete($idQuestion) {
+        $question = Question::find($idQuestion);
+        // Delete all comment of question
+        $commentsOfQuestion = $question->comments;
+        foreach ($commentsOfQuestion as $cmt) {
+            $pingsOfComment = $cmt->pings;
+            foreach ($pingsOfComment as $ping) {
+                $ping->delete();    // Delete pings of comment
+            }
+            $cmt->delete();  // Delete comments of question
+        }
+        // Delete all answer of question
+        $answers = $question->answers;
+        foreach ($answers as $ans) {
+            $commentsOfAnswer = $ans->comments;
+            foreach ($commentsOfAnswer as $cmt) {
+                $pingsOfComment = $cmt->pings;
+                foreach ($pingsOfComment as $ping) {
+                    $ping->delete();    // Delete pings of comment
+                }
+                $cmt->delete();  // Delete comments of question
+            }
+            $ans->delete(); // Delete answers of quesion
+        }
+        // Delete all taggable of question
+        foreach ($question->tags as $tag) {
+            Taggable::where([
+                ['taggable_id', $tag->pivot->taggable_id], 
+                ['tag_id', $tag->pivot->tag_id]
+            ])->delete();
+        }
+
+        $question->delete(); // Delete question
+
+        return redirect()->back()->with('thongbao', 'Xóa Thành Công');
     }
 }

@@ -27,7 +27,7 @@
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
-                        <li>
+                        {{-- <li>
                             <a href="#"><i class="fa fa-reply fa-fw"></i> Quản lý câu trả lời<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
@@ -38,7 +38,7 @@
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
-                        </li>
+                        </li> --}}
                         <li>
                             <a href="#"><i class="fa fa-file-text fa-fw"></i> Quản lý tài liệu<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">

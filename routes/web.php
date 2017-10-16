@@ -27,7 +27,7 @@ route::get('note-create-question',function(){
 });
 route::get('congratulation',function(){
 	return view('congratulation');
-});
+})->middleware('login');
 route::get('list-documentation',function(){
 	return view('documentation.list_documentation');
 });
@@ -63,18 +63,22 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function() {
         Route::post('add', 'QuestionController@postAdd');
         Route::get('edit/{idQuestion}', 'QuestionController@getEdit');
         Route::post('edit/{idQuestion}', 'QuestionController@postEdit');
+        Route::get('delete/{idQuestion}', 'QuestionController@getDelete');
+
+        Route::group(['prefix' => 'answer'], function() {
+            Route::get('list/{idQuestion}', 'AnswerController@getList');
+            Route::get('add/{idQuestion}', 'AnswerController@getAdd');
+            Route::post('add/{idQuestion}', 'AnswerController@postAdd');
+            Route::get('edit/{idAnswer}', 'AnswerController@getEdit');
+            Route::post('edit/{idAnswer}', 'AnswerController@postEdit');
+            Route::get('delete/{idAnswer}', 'AnswerController@getDelete');
+        });
     });
-    Route::group(['prefix' => 'answer'], function() {
-        Route::get('list', function() {
-            return view('admin.answer.list');
-        });
-        Route::get('add', function() {
-            return view('admin.answer.add');
-        });
-        Route::get('edit', function() {
-            return view('admin.answer.edit');
-        });
+
+    Route::group(['prefix' => 'comment'], function() {
+        Route::get('delete/{idComment}', 'CommentController@getDelete');
     });
+    
     Route::group(['prefix' => 'documentation'], function() {
         Route::get('list','DocumentationController@List');
         Route::get('add', function() {
@@ -85,15 +89,12 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function() {
         });
     });
     Route::group(['prefix' => 'permission'], function() {
-        Route::get('list', function() {
-            return view('admin.permission.list');
-        });
-        Route::get('add', function() {
-            return view('admin.permission.add');
-        });
-        Route::get('edit', function() {
-            return view('admin.permission.edit');
-        });
+        Route::get('list', 'PermissionController@getList');
+        Route::get('add', 'PermissionController@getAdd');
+        Route::post('add', 'PermissionController@postAdd');
+        Route::get('edit/{idPermission}', 'PermissionController@getEdit');
+        Route::post('edit/{idPermission}', 'PermissionController@postEdit');
+        Route::get('delete/{idPermission}', 'PermissionController@getDelete');
     });
     Route::group(['prefix' => 'subject'], function() {
         Route::get('list', function() {
@@ -107,15 +108,12 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function() {
         });
     });
     Route::group(['prefix' => 'tag'], function() {
-        Route::get('list', function() {
-            return view('admin.tag.list');
-        });
-        Route::get('add', function() {
-            return view('admin.tag.add');
-        });
-        Route::get('edit', function() {
-            return view('admin.tag.edit');
-        });
+        Route::get('list', 'TagController@getList');
+        Route::get('add', 'TagController@getAdd');
+        Route::post('add', 'TagController@postAdd');
+        Route::get('edit/{idTag}', 'TagController@getEdit');
+        Route::post('edit/{idTag}', 'TagController@postEdit');
+        Route::get('delete/{idTag}', 'TagController@getDelete');
     });
     Route::group(['prefix' => 'user'], function() {
         Route::get('list', function() {
@@ -132,12 +130,17 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function() {
 
 Route::group(['prefix' => 'ajax'], function() {
     Route::get('commentsOfQuestion/{idQuestion}', 'AjaxController@getCommentsOfQuestion');
+<<<<<<< HEAD
     Route::get('commentsOfDocument/{idDocument}', 'AjaxController@getCommentsOfDocument');
+=======
+    Route::get('commentsOfAnswer/{idAnswer}', 'AjaxController@getCommentsOfAnswer');
+    Route::get('changeActive/{type}/{id}/{value}', 'AjaxController@changeActive');
+>>>>>>> 53df9552857f88647e491eda3335a15f69f74917
 });
 
-Route::get('login', 'UserController@getLogin');
+Route::get('login', 'UserController@getLogin')->middleware('login');
 Route::post('login', 'UserController@postLogin');
-Route::get('register', 'UserController@getRegister');
+Route::get('register', 'UserController@getRegister')->middleware('login');
 Route::post('register', 'UserController@postRegister');
 Route::get('logout', 'UserController@getLogout');
 //
@@ -196,6 +199,6 @@ Route::group(['prefix' => 'question'], function() {
 // Route::group(['prefix' => 'tag'], function() {
 //     Route::get('questions/{tag_id}', 'TagController@questions');
 //     Route::get('documentations/{tag_id}', 'TagController@documentations');
-//     Route::get('users_favorited/{tag_id}', 'TagController@users_favorited');
+//     Route::get('users/{tag_id}', 'TagController@users');
 //     Route::get('user_created/{tag_id}', 'TagController@user_created');
 // });

@@ -4,7 +4,7 @@
                 <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header"><small>Chỉnh sửa câu trả lời</small> ID: 1</h1>
+                    <h1 class="page-header"><small>Chỉnh sửa câu trả lời</small> <a href="" target="_blank">ID: {{ $answer->id }}</a>    <a href="admin/question/answer/list/{{ $answer->question->id }}"><button style="margin-left: 20px;" class="btn btn-success "><i class="fa fa-list fa-fw"></i>    Về danh sách câu trả lời</button></a></h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -15,27 +15,34 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
+                                    @if (count($errors) > 0)
+                                    <div class="alert alert-warning">
+                                        @foreach ($errors->all() as $err)
+                                        {{ $err }} <br>
+                                        @endforeach
+                                    </div>
+                                    @endif
+                                    @if (session('thongbao'))
+                                    <div class="alert alert-success">
+                                        {{ session('thongbao') }}
+                                    </div>
+                                    @endif
                                     <div class="tags-editor">
-                                        <form role="form">
-                                            <div class="form-group">
-                                                <label>Câu hỏi cần trả lời</label>
-                                                <select class="form-control" disabled="">
-                                                    <option value="1">Làm sao để hết FA ?</option>
-                                                    <option value="1">Làm sao để hết FA ?</option>
-                                                    <option value="1">Làm sao để hết FA ?</option>
-                                                    <option value="1">Làm sao để hết FA ?</option>
-                                                    <option value="1">Làm sao để hết FA ?</option>
-                                                </select>
-                                            </div>
+                                        <form action="admin/question/answer/edit/{{ $answer->id }}" method="POST" role="form">
+                                            {{ csrf_field() }}
                                             <div class="form-group">
                                                 <label>Nội Dung</label>
-                                                <textarea class="form-control ckeditor" name="content" rows="10">Tao cũng <strong>không</strong> biết nữa</textarea>
+                                                <textarea class="form-control ckeditor" name="content" rows="10">{!! $answer->content !!}</textarea>
                                             </div>
                                             <div class="form-group">
                                                 <label>Ẩn/Hiện</label>
                                                 <br>
                                                 <label class="switch">
-                                                    <input type="checkbox" checked>
+                                                    <input type="checkbox" name="active" 
+                                                        @if ($answer->active)
+                                                            {{ "checked" }}
+                                                        @endif
+                                                    >
                                                     <span class="slider round"></span>
                                                 </label>
                                             </div>

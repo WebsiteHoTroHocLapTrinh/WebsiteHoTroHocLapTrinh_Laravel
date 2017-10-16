@@ -13,6 +13,11 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-body">
+                            @if (session('thongbao'))
+                                <div class="alert alert-success">
+                                    {{ session('thongbao') }}
+                                </div>
+                            @endif
                             <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-list-question">
                                 <thead>
                                     <tr>
@@ -26,6 +31,7 @@
                                         <th>Ẩn/Hiện</th>
                                         <th>Sửa</th>
                                         <th>Xóa</th>
+                                        <th>Trả Lời</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -40,14 +46,16 @@
                                         <td>{{ $qt->updated_at }}</td>
                                         <td>
                                             <label class="switch">
-                                                <input type="checkbox" @if ($qt->active)
-                                                    {{ "checked" }}
-                                                @endif>
+                                                <input type="checkbox" 
+                                                    @if ($qt->active)
+                                                        {{ "checked" }}
+                                                    @endif>
                                                 <span class="slider round"></span>
                                             </label>
                                         </td>
-                                        <td><a href="/admin/question/edit/{{ $qt->id }}"><i style="font-size: 40px;" class="fa fa-edit"></i></a></td>
-                                        <td><a onclick="return confirm('Bạn có chắc là muốn xóa không?')" href="/admin/question/delete/{{ $qt->id }}"><i style="font-size: 40px;" class="fa fa-trash-o"></i></a></td>
+                                        <td><a href="admin/question/edit/{{ $qt->id }}"><i style="font-size: 40px;" class="fa fa-edit"></i></a></td>
+                                        <td><a onclick="return confirm('Bạn có chắc là muốn xóa không?')" href="admin/question/delete/{{ $qt->id }}"><i style="font-size: 40px;" class="fa fa-trash-o"></i></a></td>
+                                        <td><a href="admin/question/answer/list/{{ $qt->id }}"><button class="btn btn-success"><i class="fa fa-eye"></i></button></a></td>
                                     </tr>
                                     @endforeach   
                                 </tbody>
@@ -63,6 +71,11 @@
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
+                            @if (session('thongbao_comment'))
+                                <div class="alert alert-success">
+                                    {{ session('thongbao_comment') }}
+                                </div>
+                            @endif
                             <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-list-comment">
                                 <thead>
                                     <tr>

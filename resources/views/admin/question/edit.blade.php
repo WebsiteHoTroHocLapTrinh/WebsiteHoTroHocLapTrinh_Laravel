@@ -4,7 +4,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header"><small>Chỉnh sửa câu hỏi</small> {{ $question->title }}</h1>
+                    <h1 class="page-header"><small>Chỉnh sửa câu hỏi</small> <a href="" target="_blank">{{ $question->title }}</a></h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -48,9 +48,9 @@
                                                 <br>
                                                 <label class="switch">
                                                     <input type="checkbox" name="active"
-                                                    @if ($question->active)
-                                                        {{ "checked" }}
-                                                    @endif
+                                                        @if ($question->active)
+                                                            {{ "checked" }}
+                                                        @endif
                                                     >
                                                     <span class="slider round"></span>
                                                 </label>
