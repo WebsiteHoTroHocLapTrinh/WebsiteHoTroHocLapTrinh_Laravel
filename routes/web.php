@@ -15,9 +15,7 @@
 Route::get('', function () {
     return view('index');
 });
-route::get('list-question',function(){
-	return view('question.list_question');
-});
+
 route::get('detail-question', function(){
 	return view('question.detail_question');
 });
@@ -78,9 +76,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function() {
         });
     });
     Route::group(['prefix' => 'documentation'], function() {
-        Route::get('list', function() {
-            return view('admin.documentation.list');
-        });
+        Route::get('list','DocumentationController@List');
         Route::get('add', function() {
             return view('admin.documentation.add');
         });
@@ -136,6 +132,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function() {
 
 Route::group(['prefix' => 'ajax'], function() {
     Route::get('commentsOfQuestion/{idQuestion}', 'AjaxController@getCommentsOfQuestion');
+    Route::get('commentsOfDocument/{idDocument}', 'AjaxController@getCommentsOfDocument');
 });
 
 Route::get('login', 'UserController@getLogin');
@@ -143,6 +140,8 @@ Route::post('login', 'UserController@postLogin');
 Route::get('register', 'UserController@getRegister');
 Route::post('register', 'UserController@postRegister');
 Route::get('logout', 'UserController@getLogout');
+//
+
 
 // Test API
 
@@ -158,14 +157,15 @@ Route::get('logout', 'UserController@getLogout');
 //     Route::get('subject_created/{user_id}', 'UserController@subject_created');
 //     Route::get('tag_created/{user_id}', 'UserController@tag_created');
 // });
-// Route::group(['prefix' => 'question'], function() {
-//     Route::get('user/{question_id}', 'QuestionController@user');
-//     Route::get('tags/{question_id}', 'QuestionController@tags');
-//     Route::get('answers/{question_id}', 'QuestionController@answers');
-//     Route::get('comments/{question_id}', 'QuestionController@comments');
-//     Route::get('votes/{question_id}', 'QuestionController@votes');
-//     Route::get('countvotes/{question_id}', 'QuestionController@countvotes');  
-// });
+Route::group(['prefix' => 'question'], function() {
+    route::get('list-question','QuestionController@ListQuestion');
+    Route::get('user/{user_id}', 'QuestionController@user');
+    Route::get('tags/{question_id}', 'QuestionController@tags');
+    Route::get('answers/{question_id}', 'QuestionController@answers');
+    Route::get('comments/{question_id}', 'QuestionController@comments');
+    Route::get('votes/{question_id}', 'QuestionController@votes');
+    Route::get('countvotes/{question_id}', 'QuestionController@countvotes');  
+});
 // Route::group(['prefix' => 'documentation'], function() {
 //     Route::get('user/{documentation_id}', 'DocumentationController@user');
 //     Route::get('tags/{documentation_id}', 'DocumentationController@tags');

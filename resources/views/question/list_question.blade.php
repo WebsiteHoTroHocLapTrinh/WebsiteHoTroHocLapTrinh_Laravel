@@ -26,341 +26,66 @@
                             </ul>
                             <div class="tab-content" id="QuestionsTabContent">
                                 <div class="tab-pane fade show active" id="moinhat" role="tabpanel" aria-labelledby="moinhat-tab">
+                                    <?php
+                                    $ListNew = $list->sortByDesc('id');
+                                    ?>
+                                    @foreach($ListNew as $lt)
                                     <div class="question-summary">
                                         <div class="row">
                                             <div class="statistic col-lg-4">
                                                 <div class="count-views">
-                                                    <span>1</span>
+                                                    <span>{{ $lt->view }}</span>
                                                     <div>lượt xem</div>
                                                 </div>
                                                 <div class="count-answers answered">
-                                                    <span>2</span>
+                                                    <span>{{ count($lt->answers->where('active',1))}}</span>
                                                     <div>câu trả lời</div>
                                                 </div>
                                                 <div class="count-votes">
-                                                    <span>3</span>
+                                                    <span>{{ $lt->point_rating }}</span>
                                                     <div>bình chọn</div>
                                                 </div>
                                             </div>
                                             <div class="summary col-lg-8">
                                                 <div class="summary-title">
                                                     <div class="summary-title">
-                                                        <h6><a href="">Adding php.exe to my system variables</a></h6>
+                                                        <h6><a href="">{{ $lt->title }}</a></h6>
                                                     </div>
                                                 </div>
-                                                <div class="list-tag">
-                                                    <p class="tag">C#</p>
-                                                    <p class="tag">Android</p>
-                                                    <p class="tag">PHP</p>
-                                                </div>
-                                                <div class="started">
-                                                    <p class="user"><a href="">Thanh Tùng</a></p>
-                                                    <p class="action">đã hỏi</p>
-                                                    <p class="time">1 ngày trước</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="question-summary">
-                                        <div class="row">
-                                            <div class="statistic col-lg-4">
-                                                <div class="count-views">
-                                                    <span>1</span>
-                                                    <div>lượt xem</div>
-                                                </div>
-                                                <div class="count-answers answered-accepted">
-                                                    <span>2</span>
-                                                    <div>câu trả lời</div>
-                                                </div>
-                                                <div class="count-votes">
-                                                    <span>3</span>
-                                                    <div>bình chọn</div>
-                                                </div>
-                                            </div>
-                                            <div class="summary col-lg-8">
-                                                <div class="summa-title">
-                                                    <h6><a href="">Adding php.exe to my system variables</a></h6>
-                                                </div>
-                                                <div class="list-tag">
-                                                    <p class="tag">C#</p>
-                                                    <p class="tag">Android</p>
-                                                    <p class="tag">PHP</p>
-                                                </div>
-                                                <div class="started">
-                                                    <p class="user"><a href="">Thanh Tùng</a></p>
-                                                    <p class="action">đã hỏi</p>
-                                                    <p class="time">1 ngày trước</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="question-summary">
-                                        <div class="row">
-                                            <div class="statistic col-lg-4">
-                                                <div class="count-views">
-                                                    <span>1</span>
-                                                    <div>lượt xem</div>
-                                                </div>
-                                                <div class="count-answers answered">
-                                                    <span>2</span>
-                                                    <div>câu trả lời</div>
-                                                </div>
-                                                <div class="count-votes">
-                                                    <span>3</span>
-                                                    <div>bình chọn</div>
-                                                </div>
-                                            </div>
-                                            <div class="summary col-lg-8">
-                                                <div class="summa-title">
-                                                    <h6><a href="">Adding php.exe to my system variables</a></h6>
-                                                </div>
-                                                <div class="list-tag">
-                                                    <p class="tag">C#</p>
-                                                    <p class="tag">Android</p>
-                                                    <p class="tag">PHP</p>
-                                                </div>
-                                                <div class="started">
-                                                    <p class="user"><a href="">Thanh Tùng</a></p>
-                                                    <p class="action">đã hỏi</p>
-                                                    <p class="time">1 ngày trước</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="question-summary">
-                                        <div class="row">
-                                            <div class="statistic col-lg-4">
-                                                <div class="count-views">
-                                                    <span>1</span>
-                                                    <div>lượt xem</div>
-                                                </div>
-                                                <div class="count-answers answered">
-                                                    <span>2</span>
-                                                    <div>câu trả lời</div>
-                                                </div>
-                                                <div class="count-votes">
-                                                    <span>3</span>
-                                                    <div>bình chọn</div>
-                                                </div>
-                                            </div>
-                                            <div class="summary col-lg-8">
-                                                <div class="summa-title">
-                                                    <h6><a href="">Adding php.exe to my system variables</a></h6>
-                                                </div>
-                                                <div class="list-tag">
-                                                    <p class="tag">C#</p>
-                                                    <p class="tag">Android</p>
-                                                    <p class="tag">PHP</p>
-                                                </div>
-                                                <div class="started">
-                                                    <p class="user"><a href="">Thanh Tùng</a></p>
-                                                    <p class="action">đã hỏi</p>
-                                                    <p class="time">1 ngày trước</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="question-summary">
-                                        <div class="row">
-                                            <div class="statistic col-lg-4">
-                                                <div class="count-views">
-                                                    <span>1</span>
-                                                    <div>lượt xem</div>
-                                                </div>
-                                                <div class="count-answers answered-accepted">
-                                                    <span>2</span>
-                                                    <div>câu trả lời</div>
-                                                </div>
-                                                <div class="count-votes">
-                                                    <span>3</span>
-                                                    <div>bình chọn</div>
-                                                </div>
-                                            </div>
-                                            <div class="summary col-lg-8">
-                                                <div class="summa-title">
-                                                    <h6><a href="">Adding php.exe to my system variables</a></h6>
-                                                </div>
-                                                <div class="list-tag">
-                                                    <p class="tag">C#</p>
-                                                    <p class="tag">Android</p>
-                                                    <p class="tag">PHP</p>
-                                                </div>
-                                                <div class="started">
-                                                    <p class="user"><a href="">Thanh Tùng</a></p>
-                                                    <p class="action">đã hỏi</p>
-                                                    <p class="time">1 ngày trước</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="question-summary">
-                                        <div class="row">
-                                            <div class="statistic col-lg-4">
-                                                <div class="count-views">
-                                                    <span>1</span>
-                                                    <div>lượt xem</div>
-                                                </div>
-                                                <div class="count-answers answered">
-                                                    <span>2</span>
-                                                    <div>câu trả lời</div>
-                                                </div>
-                                                <div class="count-votes">
-                                                    <span>3</span>
-                                                    <div>bình chọn</div>
-                                                </div>
-                                            </div>
-                                            <div class="summary col-lg-8">
-                                                <div class="summa-title">
-                                                    <h6><a href="">Adding php.exe to my system variables</a></h6>
-                                                </div>
-                                                <div class="list-tag">
-                                                    <p class="tag">C#</p>
-                                                    <p class="tag">Android</p>
-                                                    <p class="tag">PHP</p>
-                                                </div>
-                                                <div class="started">
-                                                    <p class="user"><a href="">Thanh Tùng</a></p>
-                                                    <p class="action">đã hỏi</p>
-                                                    <p class="time">1 ngày trước</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="question-summary">
-                                        <div class="row">
-                                            <div class="statistic col-lg-4">
-                                                <div class="count-views">
-                                                    <span>1</span>
-                                                    <div>lượt xem</div>
-                                                </div>
-                                                <div class="count-answers answered-accepted">
-                                                    <span>2</span>
-                                                    <div>câu trả lời</div>
-                                                </div>
-                                                <div class="count-votes">
-                                                    <span>3</span>
-                                                    <div>bình chọn</div>
-                                                </div>
-                                            </div>
-                                            <div class="summary col-lg-8">
-                                                <div class="summa-title">
-                                                    <h6><a href="">Adding php.exe to my system variables</a></h6>
-                                                </div>
-                                                <div class="list-tag">
-                                                    <p class="tag">C#</p>
-                                                    <p class="tag">Android</p>
-                                                    <p class="tag">PHP</p>
-                                                </div>
-                                                <div class="started">
-                                                    <p class="user"><a href="">Thanh Tùng</a></p>
-                                                    <p class="action">đã hỏi</p>
-                                                    <p class="time">1 ngày trước</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="question-summary">
-                                        <div class="row">
-                                            <div class="statistic col-lg-4">
-                                                <div class="count-views">
-                                                    <span>1</span>
-                                                    <div>lượt xem</div>
-                                                </div>
-                                                <div class="count-answers">
-                                                    <span>2</span>
-                                                    <div>câu trả lời
+                                                <div class="row">
+                                                   <div class="list-tag col-lg-8">
+                                                    @foreach($lt->tags as $tag_new)
+                                                    <p class="tag">{{ $tag_new->name }}</p>
+                                                    @endforeach
+                                                    </div>
+                                                    <div class="started col-lg-4">
+                                                        <?php
+                                                        $date1 = $lt->created_at;
+                                                        $date2 = Carbon\Carbon::now();
+                                                        $interval = $date1->diff($date2);
+                                                        ?>
+                                                        @if($interval->y!=0) 
+                                                        <?php $time= $interval->y . " năm trước"; ?>
+                                                        @elseif ($interval->m!=0)
+                                                        <?php $time= $interval->m . " tháng trước"; ?>
+                                                        @elseif ($interval->d!=0)
+                                                        <?php $time= $interval->d . " ngày trước"; ?>
+                                                        @elseif($interval->H!=0)
+                                                        <?php $time= $interval->H . " giờ trước"; ?>
+                                                        @elseif($interval->i!=0)
+                                                        <?php $time= $interval->i . " phút trước"; ?>
+                                                        @else
+                                                        <?php $time=" just now"; ?>
+                                                        @endif
+                                                        <p class="user"><a href="{{ url('question/user') }}/{{ $lt->user_id }}">{{ $lt->user->name }}</a></p>
+                                                        <p class="action">đã hỏi</p>
+                                                        <p class="time">{{ $time }}</p>
                                                     </div>
                                                 </div>
-                                                <div class="count-votes">
-                                                    <span>3</span>
-                                                    <div>bình chọn</div>
-                                                </div>
-                                            </div>
-                                            <div class="summary col-lg-8">
-                                                <div class="summa-title">
-                                                    <h6><a href="">Adding php.exe to my system variables</a></h6>
-                                                </div>
-                                                <div class="list-tag">
-                                                    <p class="tag">C#</p>
-                                                    <p class="tag">Android</p>
-                                                    <p class="tag">PHP</p>
-                                                </div>
-                                                <div class="started">
-                                                    <p class="user"><a href="">Thanh Tùng</a></p>
-                                                    <p class="action">đã hỏi</p>
-                                                    <p class="time">1 ngày trước</p>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="question-summary">
-                                        <div class="row">
-                                            <div class="statistic col-lg-4">
-                                                <div class="count-views">
-                                                    <span>1</span>
-                                                    <div>lượt xem</div>
-                                                </div>
-                                                <div class="count-answers answered-accepted">
-                                                    <span>2</span>
-                                                    <div>câu trả lời
-                                                    </div>
-                                                </div>
-                                                <div class="count-votes">
-                                                    <span>3</span>
-                                                    <div>bình chọn</div>
-                                                </div>
-                                            </div>
-                                            <div class="summary col-lg-8">
-                                                <div class="summa-title">
-                                                    <h6><a href="">Adding php.exe to my system variables</a></h6>
-                                                </div>
-                                                <div class="list-tag">
-                                                    <p class="tag">C#</p>
-                                                    <p class="tag">Android</p>
-                                                    <p class="tag">PHP</p>
-                                                </div>
-                                                <div class="started">
-                                                    <p class="user"><a href="">Thanh Tùng</a></p>
-                                                    <p class="action">đã hỏi</p>
-                                                    <p class="time">1 ngày trước</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="question-summary">
-                                        <div class="row">
-                                            <div class="statistic col-lg-4">
-                                                <div class="count-views">
-                                                    <span>1</span>
-                                                    <div>lượt xem</div>
-                                                </div>
-                                                <div class="count-answers">
-                                                    <span>2</span>
-                                                    <div>câu trả lời
-                                                    </div>
-                                                </div>
-                                                <div class="count-votes">
-                                                    <span>3</span>
-                                                    <div>bình chọn</div>
-                                                </div>
-                                            </div>
-                                            <div class="summary col-lg-8">
-                                                <div class="summa-title">
-                                                    <h6><a href="">Adding php.exe to my system variables</a></h6>
-                                                </div>
-                                                <div class="list-tag">
-                                                    <p class="tag">C#</p>
-                                                    <p class="tag">Android</p>
-                                                    <p class="tag">PHP</p>
-                                                </div>
-                                                <div class="started">
-                                                    <p class="user"><a href="">Thanh Tùng</a></p>
-                                                    <p class="action">đã hỏi</p>
-                                                    <p class="time">1 ngày trước</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    @endforeach
                                     <nav aria-label="Page navigation question">
                                         <ul class="pagination justify-content-center" style="margin-top: 20px;">
                                             <li class="page-item">
@@ -385,177 +110,66 @@
                                     </nav>
                                 </div>
                                 <div class="tab-pane fade" id="luotxem" role="tabpanel" aria-labelledby="luotxem-tab">
+                                    <?php
+                                    $ListView = $list->sortByDesc('view');
+                                    ?>
+                                    @foreach($ListView as $lstView)
                                     <div class="question-summary">
                                         <div class="row">
                                             <div class="statistic col-lg-4">
                                                 <div class="count-views">
-                                                    <span>1</span>
+                                                    <span>{{ $lstView->view }}</span>
                                                     <div>lượt xem</div>
                                                 </div>
                                                 <div class="count-answers">
-                                                    <span>2</span>
+                                                    <span>{{ count($lstView->answers->where('active',1)) }}</span>
                                                     <div>câu trả lời
                                                     </div>
                                                 </div>
                                                 <div class="count-votes">
-                                                    <span>3</span>
+                                                    <span>{{ $lstView->point_rating }}</span>
                                                     <div>bình chọn</div>
                                                 </div>
                                             </div>
                                             <div class="summary col-lg-8">
                                                 <div class="summa-title">
-                                                    <h6><a href="">Adding php.exe to my system variables</a></h6>
+                                                    <h6><a href="">{{ $lstView->title }}</a></h6>
                                                 </div>
-                                                <div class="list-tag">
-                                                    <p class="tag">C#</p>
-                                                    <p class="tag">Android</p>
-                                                    <p class="tag">PHP</p>
-                                                </div>
-                                                <div class="started">
-                                                    <p class="user"><a href="">Thanh Tùng</a></p>
-                                                    <p class="action">đã hỏi</p>
-                                                    <p class="time">1 ngày trước</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="question-summary">
-                                        <div class="row">
-                                            <div class="statistic col-lg-4">
-                                                <div class="count-views">
-                                                    <span>1</span>
-                                                    <div>lượt xem</div>
-                                                </div>
-                                                <div class="count-answers">
-                                                    <span>2</span>
-                                                    <div>câu trả lời
+                                                <div class="row">
+                                                    <div class="list-tag col-lg-8">
+                                                        @foreach($lstView->tags as $tag_view)
+                                                        <p class="tag">{{ $tag_view->name }}</p>
+                                                        @endforeach
+                                                    </div>
+                                                    <div class="started col-lg-4">
+                                                     <?php
+                                                     $date1 = $lstView->created_at;
+                                                     $date2 = Carbon\Carbon::now();
+                                                     $interval = $date1->diff($date2);
+                                                     ?>
+                                                     @if($interval->y!=0) 
+                                                     <?php $time= $interval->y . " năm trước"; ?>
+                                                     @elseif ($interval->m!=0)
+                                                     <?php $time= $interval->m . " tháng trước"; ?>
+                                                     @elseif ($interval->d!=0)
+                                                     <?php $time= $interval->d . " ngày trước"; ?>
+                                                     @elseif($interval->H!=0)
+                                                     <?php $time= $interval->H . " giờ trước"; ?>
+                                                     @elseif($interval->i!=0)
+                                                     <?php $time= $interval->i . " phút trước"; ?>
+                                                     @else
+                                                     <?php $time=" just now"; ?>
+                                                     @endif
+                                                     <p class="user"><a href="{{ url('question/user') }}/{{ $lstView->user_id }}">{{ $lstView->user->name }}</a></p>
+                                                     <p class="action">đã hỏi</p>
+                                                     <p class="time">{{ $time }}</p>
                                                     </div>
                                                 </div>
-                                                <div class="count-votes">
-                                                    <span>3</span>
-                                                    <div>bình chọn</div>
-                                                </div>
-                                            </div>
-                                            <div class="summary col-lg-8">
-                                                <div class="summa-title">
-                                                    <h6><a href="">Adding php.exe to my system variables</a></h6>
-                                                </div>
-                                                <div class="list-tag">
-                                                    <p class="tag">C#</p>
-                                                    <p class="tag">Android</p>
-                                                    <p class="tag">PHP</p>
-                                                </div>
-                                                <div class="started">
-                                                    <p class="user"><a href="">Thanh Tùng</a></p>
-                                                    <p class="action">đã hỏi</p>
-                                                    <p class="time">1 ngày trước</p>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="question-summary">
-                                        <div class="row">
-                                            <div class="statistic col-lg-4">
-                                                <div class="count-views">
-                                                    <span>1</span>
-                                                    <div>lượt xem</div>
-                                                </div>
-                                                <div class="count-answers">
-                                                    <span>2</span>
-                                                    <div>câu trả lời
-                                                    </div>
-                                                </div>
-                                                <div class="count-votes">
-                                                    <span>3</span>
-                                                    <div>bình chọn</div>
-                                                </div>
-                                            </div>
-                                            <div class="summary col-lg-8">
-                                                <div class="summa-title">
-                                                    <h6><a href="">Adding php.exe to my system variables</a></h6>
-                                                </div>
-                                                <div class="list-tag">
-                                                    <p class="tag">C#</p>
-                                                    <p class="tag">Android</p>
-                                                    <p class="tag">PHP</p>
-                                                </div>
-                                                <div class="started">
-                                                    <p class="user"><a href="">Thanh Tùng</a></p>
-                                                    <p class="action">đã hỏi</p>
-                                                    <p class="time">1 ngày trước</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="question-summary">
-                                        <div class="row">
-                                            <div class="statistic col-lg-4">
-                                                <div class="count-views">
-                                                    <span>1</span>
-                                                    <div>lượt xem</div>
-                                                </div>
-                                                <div class="count-answers answered">
-                                                    <span>2</span>
-                                                    <div>câu trả lời
-                                                    </div>
-                                                </div>
-                                                <div class="count-votes">
-                                                    <span>3</span>
-                                                    <div>bình chọn</div>
-                                                </div>
-                                            </div>
-                                            <div class="summary col-lg-8">
-                                                <div class="summa-title">
-                                                    <h6><a href="">Adding php.exe to my system variables</a></h6>
-                                                </div>
-                                                <div class="list-tag">
-                                                    <p class="tag">C#</p>
-                                                    <p class="tag">Android</p>
-                                                    <p class="tag">PHP</p>
-                                                </div>
-                                                <div class="started">
-                                                    <p class="user"><a href="">Thanh Tùng</a></p>
-                                                    <p class="action">đã hỏi</p>
-                                                    <p class="time">1 ngày trước</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="question-summary">
-                                        <div class="row">
-                                            <div class="statistic col-lg-4">
-                                                <div class="count-views">
-                                                    <span>1</span>
-                                                    <div>lượt xem</div>
-                                                </div>
-                                                <div class="count-answers">
-                                                    <span>2</span>
-                                                    <div>câu trả lời
-                                                    </div>
-                                                </div>
-                                                <div class="count-votes">
-                                                    <span>3</span>
-                                                    <div>bình chọn</div>
-                                                </div>
-                                            </div>
-                                            <div class="summary col-lg-8">
-                                                <div class="summa-title">
-                                                    <h6><a href="">Adding php.exe to my system variables</a></h6>
-                                                </div>
-                                                <div class="list-tag">
-                                                    <p class="tag">C#</p>
-                                                    <p class="tag">Android</p>
-                                                    <p class="tag">PHP</p>
-                                                </div>
-                                                <div class="started">
-                                                    <p class="user"><a href="">Thanh Tùng</a></p>
-                                                    <p class="action">đã hỏi</p>
-                                                    <p class="time">1 ngày trước</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <nav aria-label="Page navigation question">
+                                    @endforeach
+                                     <nav aria-label="Page navigation question">
                                         <ul class="pagination justify-content-center" style="margin-top: 20px;">
                                             <li class="page-item">
                                                 <a class="page-link" href="#" aria-label="Previous">
@@ -579,176 +193,64 @@
                                     </nav>
                                 </div>
                                 <div class="tab-pane fade" id="traloi" role="tabpanel" aria-labelledby="traloi-tab">
-                                    <div class="question-summary">
+                                 @foreach($SortByAnswer as $SortByAnswer)
+                                     <div class="question-summary">
                                         <div class="row">
                                             <div class="statistic col-lg-4">
                                                 <div class="count-views">
-                                                    <span>1</span>
+                                                    <span>{{ $SortByAnswer->view }}</span>
                                                     <div>lượt xem</div>
                                                 </div>
                                                 <div class="count-answers">
-                                                    <span>2</span>
+                                                    <span>{{ $SortByAnswer->answers->where('active',1)->count() }}</span>
                                                     <div>câu trả lời
                                                     </div>
                                                 </div>
                                                 <div class="count-votes">
-                                                    <span>3</span>
+                                                    <span>{{ $SortByAnswer->point_rating }}</span>
                                                     <div>bình chọn</div>
                                                 </div>
                                             </div>
                                             <div class="summary col-lg-8">
                                                 <div class="summa-title">
-                                                    <h6><a href="">Adding php.exe to my system variables</a></h6>
+                                                    <h6><a href="">{{ $SortByAnswer->title }}</a></h6>
                                                 </div>
-                                                <div class="list-tag">
-                                                    <p class="tag">C#</p>
-                                                    <p class="tag">Android</p>
-                                                    <p class="tag">PHP</p>
-                                                </div>
-                                                <div class="started">
-                                                    <p class="user"><a href="">Thanh Tùng</a></p>
-                                                    <p class="action">đã hỏi</p>
-                                                    <p class="time">1 ngày trước</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="question-summary">
-                                        <div class="row">
-                                            <div class="statistic col-lg-4">
-                                                <div class="count-views">
-                                                    <span>1</span>
-                                                    <div>lượt xem</div>
-                                                </div>
-                                                <div class="count-answers answered-accepted">
-                                                    <span>2</span>
-                                                    <div>câu trả lời
+                                                <div class="row">
+                                                    <div class="list-tag col-lg-8">
+                                                        @foreach($SortByAnswer->tags as $tag_SortByAnswer)
+                                                        <p class="tag">{{ $tag_SortByAnswer->name }}</p>
+                                                        @endforeach
+                                                    </div>
+                                                    <div class="started col-lg-4">
+                                                        <?php
+                                                        $date1 = $SortByAnswer->created_at;
+                                                        $date2 = Carbon\Carbon::now();
+                                                        $interval = $date1->diff($date2);
+                                                        ?>
+                                                        @if($interval->y!=0) 
+                                                        <?php $time= $interval->y . " năm trước"; ?>
+                                                        @elseif ($interval->m!=0)
+                                                        <?php $time= $interval->m . " tháng trước"; ?>
+                                                        @elseif ($interval->d!=0)
+                                                        <?php $time= $interval->d . " ngày trước"; ?>
+                                                        @elseif($interval->H!=0)
+                                                        <?php $time= $interval->H . " giờ trước"; ?>
+                                                        @elseif($interval->i!=0)
+                                                        <?php $time= $interval->i . " phút trước"; ?>
+                                                        @else
+                                                        <?php $time=" just now"; ?>
+                                                        @endif
+                                                        <p class="user"><a href="{{ url('question/user') }}/{{ $SortByAnswer->user_id }}">{{ $SortByAnswer->user->name }}</a></p>
+                                                        <p class="action">đã hỏi</p>
+                                                        <p class="time">{{ $time }}</p>
                                                     </div>
                                                 </div>
-                                                <div class="count-votes">
-                                                    <span>3</span>
-                                                    <div>bình chọn</div>
-                                                </div>
-                                            </div>
-                                            <div class="summary col-lg-8">
-                                                <div class="summa-title">
-                                                    <h6><a href="">Adding php.exe to my system variables</a></h6>
-                                                </div>
-                                                <div class="list-tag">
-                                                    <p class="tag">C#</p>
-                                                    <p class="tag">Android</p>
-                                                    <p class="tag">PHP</p>
-                                                </div>
-                                                <div class="started">
-                                                    <p class="user"><a href="">Thanh Tùng</a></p>
-                                                    <p class="action">đã hỏi</p>
-                                                    <p class="time">1 ngày trước</p>
-                                                </div>
+                                                
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="question-summary">
-                                        <div class="row">
-                                            <div class="statistic col-lg-4">
-                                                <div class="count-views">
-                                                    <span>1</span>
-                                                    <div>lượt xem</div>
-                                                </div>
-                                                <div class="count-answers answered-accepted">
-                                                    <span>2</span>
-                                                    <div>câu trả lời
-                                                    </div>
-                                                </div>
-                                                <div class="count-votes">
-                                                    <span>3</span>
-                                                    <div>bình chọn</div>
-                                                </div>
-                                            </div>
-                                            <div class="summary col-lg-8">
-                                                <div class="summa-title">
-                                                    <h6><a href="">Adding php.exe to my system variables</a></h6>
-                                                </div>
-                                                <div class="list-tag">
-                                                    <p class="tag">C#</p>
-                                                    <p class="tag">Android</p>
-                                                    <p class="tag">PHP</p>
-                                                </div>
-                                                <div class="started">
-                                                    <p class="user"><a href="">Thanh Tùng</a></p>
-                                                    <p class="action">đã hỏi</p>
-                                                    <p class="time">1 ngày trước</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="question-summary">
-                                        <div class="row">
-                                            <div class="statistic col-lg-4">
-                                                <div class="count-views">
-                                                    <span>1</span>
-                                                    <div>lượt xem</div>
-                                                </div>
-                                                <div class="count-answers">
-                                                    <span>2</span>
-                                                    <div>câu trả lời
-                                                    </div>
-                                                </div>
-                                                <div class="count-votes">
-                                                    <span>3</span>
-                                                    <div>bình chọn</div>
-                                                </div>
-                                            </div>
-                                            <div class="summary col-lg-8">
-                                                <div class="summa-title">
-                                                    <h6><a href="">Adding php.exe to my system variables</a></h6>
-                                                </div>
-                                                <div class="list-tag">
-                                                    <p class="tag">C#</p>
-                                                    <p class="tag">Android</p>
-                                                    <p class="tag">PHP</p>
-                                                </div>
-                                                <div class="started">
-                                                    <p class="user"><a href="">Thanh Tùng</a></p>
-                                                    <p class="action">đã hỏi</p>
-                                                    <p class="time">1 ngày trước</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="question-summary">
-                                        <div class="row">
-                                            <div class="statistic col-lg-4">
-                                                <div class="count-views">
-                                                    <span>1</span>
-                                                    <div>lượt xem</div>
-                                                </div>
-                                                <div class="count-answers">
-                                                    <span>2</span>
-                                                    <div>câu trả lời
-                                                    </div>
-                                                </div>
-                                                <div class="count-votes">
-                                                    <span>3</span>
-                                                    <div>bình chọn</div>
-                                                </div>
-                                            </div>
-                                            <div class="summary col-lg-8">
-                                                <div class="summa-title">
-                                                    <h6><a href="">Adding php.exe to my system variables</a></h6>
-                                                </div>
-                                                <div class="list-tag">
-                                                    <p class="tag">C#</p>
-                                                    <p class="tag">Android</p>
-                                                    <p class="tag">PHP</p>
-                                                </div>
-                                                <div class="started">
-                                                    <p class="user"><a href="">Thanh Tùng</a></p>
-                                                    <p class="action">đã hỏi</p>
-                                                    <p class="time">1 ngày trước</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    @endforeach
+
                                     <nav aria-label="Page navigation question">
                                         <ul class="pagination justify-content-center" style="margin-top: 20px;">
                                             <li class="page-item">
@@ -773,176 +275,65 @@
                                     </nav>
                                 </div>
                                 <div class="tab-pane fade" id="binhchon" role="tabpanel" aria-labelledby="binhchon-tab">
-                                    <div class="question-summary">
+                                     <?php
+                                     $ListRating = $list->sortByDesc('point_rating');
+                                     ?>
+                                     @foreach($ListRating as $rating)
+                                     <div class="question-summary">
                                         <div class="row">
                                             <div class="statistic col-lg-4">
                                                 <div class="count-views">
-                                                    <span>1</span>
+                                                    <span>{{ $rating->view }}</span>
                                                     <div>lượt xem</div>
                                                 </div>
                                                 <div class="count-answers">
-                                                    <span>2</span>
+                                                    <span>{{ count($rating->answers->where('active',1)) }}</span>
                                                     <div>câu trả lời
                                                     </div>
                                                 </div>
                                                 <div class="count-votes">
-                                                    <span>3</span>
+                                                    <span>{{ $rating->point_rating }}</span>
                                                     <div>bình chọn</div>
                                                 </div>
                                             </div>
                                             <div class="summary col-lg-8">
                                                 <div class="summa-title">
-                                                    <h6><a href="">Adding php.exe to my system variables</a></h6>
+                                                    <h6><a href="">{{ $rating->title }}</a></h6>
                                                 </div>
-                                                <div class="list-tag">
-                                                    <p class="tag">C#</p>
-                                                    <p class="tag">Android</p>
-                                                    <p class="tag">PHP</p>
-                                                </div>
-                                                <div class="started">
-                                                    <p class="user"><a href="">Thanh Tùng</a></p>
-                                                    <p class="action">đã hỏi</p>
-                                                    <p class="time">1 ngày trước</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="question-summary">
-                                        <div class="row">
-                                            <div class="statistic col-lg-4">
-                                                <div class="count-views">
-                                                    <span>1</span>
-                                                    <div>lượt xem</div>
-                                                </div>
-                                                <div class="count-answers answered">
-                                                    <span>2</span>
-                                                    <div>câu trả lời
+                                                <div class="row">
+                                                    <div class="list-tag col-lg-8">
+                                                        @foreach($rating->tags as $tag_rating)
+                                                        <p class="tag">{{ $tag_rating->name }}</p>
+                                                        @endforeach
+                                                    </div>
+                                                    <div class="started col-lg-4">
+                                                        <?php
+                                                        $date1 = $rating->created_at;
+                                                        $date2 = Carbon\Carbon::now();
+                                                        $interval = $date1->diff($date2);
+                                                        ?>
+                                                        @if($interval->y!=0) 
+                                                        <?php $time= $interval->y . " năm trước"; ?>
+                                                        @elseif ($interval->m!=0)
+                                                        <?php $time= $interval->m . " tháng trước"; ?>
+                                                        @elseif ($interval->d!=0)
+                                                        <?php $time= $interval->d . " ngày trước"; ?>
+                                                        @elseif($interval->H!=0)
+                                                        <?php $time= $interval->H . " giờ trước"; ?>
+                                                        @elseif($interval->i!=0)
+                                                        <?php $time= $interval->i . " phút trước"; ?>
+                                                        @else
+                                                        <?php $time=" just now"; ?>
+                                                        @endif
+                                                        <p class="user"><a href="{{ url('question/user') }}/{{ $rating->user_id }}">{{ $rating->user->name }}</a></p>
+                                                        <p class="action">đã hỏi</p>
+                                                        <p class="time">{{ $time }}</p>
                                                     </div>
                                                 </div>
-                                                <div class="count-votes">
-                                                    <span>3</span>
-                                                    <div>bình chọn</div>
-                                                </div>
-                                            </div>
-                                            <div class="summary col-lg-8">
-                                                <div class="summa-title">
-                                                    <h6><a href="">Adding php.exe to my system variables</a></h6>
-                                                </div>
-                                                <div class="list-tag">
-                                                    <p class="tag">C#</p>
-                                                    <p class="tag">Android</p>
-                                                    <p class="tag">PHP</p>
-                                                </div>
-                                                <div class="started">
-                                                    <p class="user"><a href="">Thanh Tùng</a></p>
-                                                    <p class="action">đã hỏi</p>
-                                                    <p class="time">1 ngày trước</p>
-                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="question-summary">
-                                        <div class="row">
-                                            <div class="statistic col-lg-4">
-                                                <div class="count-views">
-                                                    <span>1</span>
-                                                    <div>lượt xem</div>
-                                                </div>
-                                                <div class="count-answers answered">
-                                                    <span>2</span>
-                                                    <div>câu trả lời
-                                                    </div>
-                                                </div>
-                                                <div class="count-votes">
-                                                    <span>3</span>
-                                                    <div>bình chọn</div>
-                                                </div>
-                                            </div>
-                                            <div class="summary col-lg-8">
-                                                <div class="summa-title">
-                                                    <h6><a href="">Adding php.exe to my system variables</a></h6>
-                                                </div>
-                                                <div class="list-tag">
-                                                    <p class="tag">C#</p>
-                                                    <p class="tag">Android</p>
-                                                    <p class="tag">PHP</p>
-                                                </div>
-                                                <div class="started">
-                                                    <p class="user"><a href="">Thanh Tùng</a></p>
-                                                    <p class="action">đã hỏi</p>
-                                                    <p class="time">1 ngày trước</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="question-summary">
-                                        <div class="row">
-                                            <div class="statistic col-lg-4">
-                                                <div class="count-views">
-                                                    <span>1</span>
-                                                    <div>lượt xem</div>
-                                                </div>
-                                                <div class="count-answers">
-                                                    <span>2</span>
-                                                    <div>câu trả lời
-                                                    </div>
-                                                </div>
-                                                <div class="count-votes">
-                                                    <span>3</span>
-                                                    <div>bình chọn</div>
-                                                </div>
-                                            </div>
-                                            <div class="summary col-lg-8">
-                                                <div class="summa-title">
-                                                    <h6><a href="">Adding php.exe to my system variables</a></h6>
-                                                </div>
-                                                <div class="list-tag">
-                                                    <p class="tag">C#</p>
-                                                    <p class="tag">Android</p>
-                                                    <p class="tag">PHP</p>
-                                                </div>
-                                                <div class="started">
-                                                    <p class="user"><a href="">Thanh Tùng</a></p>
-                                                    <p class="action">đã hỏi</p>
-                                                    <p class="time">1 ngày trước</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="question-summary">
-                                        <div class="row">
-                                            <div class="statistic col-lg-4">
-                                                <div class="count-views">
-                                                    <span>1</span>
-                                                    <div>lượt xem</div>
-                                                </div>
-                                                <div class="count-answers answered-accepted">
-                                                    <span>2</span>
-                                                    <div>câu trả lời
-                                                    </div>
-                                                </div>
-                                                <div class="count-votes">
-                                                    <span>3</span>
-                                                    <div>bình chọn</div>
-                                                </div>
-                                            </div>
-                                            <div class="summary col-lg-8">
-                                                <div class="summa-title">
-                                                    <h6><a href="">Adding php.exe to my system variables</a></h6>
-                                                </div>
-                                                <div class="list-tag">
-                                                    <p class="tag">C#</p>
-                                                    <p class="tag">Android</p>
-                                                    <p class="tag">PHP</p>
-                                                </div>
-                                                <div class="started">
-                                                    <p class="user"><a href="">Thanh Tùng</a></p>
-                                                    <p class="action">đã hỏi</p>
-                                                    <p class="time">1 ngày trước</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                     </div>
+                                     @endforeach
                                     <nav aria-label="Page navigation question">
                                         <ul class="pagination justify-content-center" style="margin-top: 20px;">
                                             <li class="page-item">
@@ -980,15 +371,27 @@
                         <div class="stats-container">
                             <div class="row">
                                 <div class="stats">
-                                    <span>111</span>
+                                    <span>{{ count($list) }}</span>
                                     <div>câu hỏi</div>
                                 </div>
                                 <div class="stats">
-                                    <span>222</span>
+                                    <?php $d=0; ?>
+                                    @foreach($list as $listAnswer)
+                                    <?php 
+                                    $d= $d + count($listAnswer->answers->where('active',1)); 
+                                    ?>
+                                    @endforeach
+                                    <span>{{ $d }}</span>
                                     <div>câu trả lời</div>
                                 </div>
                                 <div class="stats">
-                                    <span>333</span>
+                                    <?php $c=0; ?>
+                                    @foreach($list as $list)
+                                    <?php 
+                                    $c= $c + count($list->comments->where('active',1)); 
+                                    ?>
+                                    @endforeach
+                                    <span>{{ $c}}</span>
                                     <div>bình luận</div>
                                 </div>
                             </div>
@@ -1001,146 +404,28 @@
                         </div>
                         <hr>
                         <div class="rank-items">
+                            <?php 
+                            $top_user= $user_rank->sortByDesc('point_reputation')->take(10);
+                            $i=1;
+                            ?>
+                            @foreach($top_user as $top_user)
                             <div class="item">
                                 <div class="d-inline" style="">
-                                    #1
+                                    #{{ $i }}
                                 </div>
                                 <div class="d-inline">
                                     <img src="image/k17.jpg" class="rounded-circle" width="30" height="30">
                                 </div>
                                 <div class="d-inline">
-                                    Thanh Tùng
+                                    {{ $top_user->name }}
                                 </div>
                                 <div class="d-inline float-right">
-                                    <strong>696</strong>
+                                    <strong>{{ $top_user->point_reputation }}</strong>
                                 </div>
                             </div>
-                            <div class="item">
-                                <div class="d-inline" style="">
-                                    #2
-                                </div>
-                                <div class="d-inline">
-                                    <img src="image/k17.jpg" class="rounded-circle" width="30" height="30">
-                                </div>
-                                <div class="d-inline">
-                                    Thanh Tùng
-                                </div>
-                                <div class="d-inline float-right">
-                                    <strong>696</strong>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="d-inline" style="">
-                                    #3
-                                </div>
-                                <div class="d-inline">
-                                    <img src="image/k17.jpg" class="rounded-circle" width="30" height="30">
-                                </div>
-                                <div class="d-inline">
-                                    Thanh Tùng
-                                </div>
-                                <div class="d-inline float-right">
-                                    <strong>696</strong>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="d-inline" style="">
-                                    #4
-                                </div>
-                                <div class="d-inline">
-                                    <img src="image/k17.jpg" class="rounded-circle" width="30" height="30">
-                                </div>
-                                <div class="d-inline">
-                                    Thanh Tùng
-                                </div>
-                                <div class="d-inline float-right">
-                                    <strong>696</strong>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="d-inline" style="">
-                                    #5
-                                </div>
-                                <div class="d-inline">
-                                    <img src="image/k17.jpg" class="rounded-circle" width="30" height="30">
-                                </div>
-                                <div class="d-inline">
-                                    Thanh Tùng
-                                </div>
-                                <div class="d-inline float-right">
-                                    <strong>696</strong>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="d-inline" style="">
-                                    #6
-                                </div>
-                                <div class="d-inline">
-                                    <img src="image/k17.jpg" class="rounded-circle" width="30" height="30">
-                                </div>
-                                <div class="d-inline">
-                                    Thanh Tùng
-                                </div>
-                                <div class="d-inline float-right">
-                                    <strong>696</strong>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="d-inline" style="">
-                                    #7
-                                </div>
-                                <div class="d-inline">
-                                    <img src="image/k17.jpg" class="rounded-circle" width="30" height="30">
-                                </div>
-                                <div class="d-inline">
-                                    Thanh Tùng
-                                </div>
-                                <div class="d-inline float-right">
-                                    <strong>696</strong>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="d-inline" style="">
-                                    #8
-                                </div>
-                                <div class="d-inline">
-                                    <img src="image/k17.jpg" class="rounded-circle" width="30" height="30">
-                                </div>
-                                <div class="d-inline">
-                                    Thanh Tùng
-                                </div>
-                                <div class="d-inline float-right">
-                                    <strong>696</strong>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="d-inline" style="">
-                                    #9
-                                </div>
-                                <div class="d-inline">
-                                    <img src="image/k17.jpg" class="rounded-circle" width="30" height="30">
-                                </div>
-                                <div class="d-inline">
-                                    Thanh Tùng
-                                </div>
-                                <div class="d-inline float-right">
-                                    <strong>696</strong>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="d-inline" style="">
-                                    #10
-                                </div>
-                                <div class="d-inline">
-                                    <img src="image/k17.jpg" class="rounded-circle" width="30" height="30">
-                                </div>
-                                <div class="d-inline">
-                                    Thanh Tùng
-                                </div>
-                                <div class="d-inline float-right">
-                                    <strong>6916</strong>
-                                </div>
-                            </div>
+                            <?php $i=$i+1?>
+                            @endforeach
+
                         </div>
                     </div>
                     <div class="tag-common">
@@ -1212,13 +497,13 @@
 @endsection
 
 @section('title')
-    {{ "Danh Sách Câu Hỏi" }}
+{{ "Danh Sách Câu Hỏi" }}
 @endsection
 
 @section('css')
-    {{-- expr --}}
+{{-- expr --}}
 @endsection
 
 @section('script')
-    {{-- expr --}}
+{{-- expr --}}
 @endsection

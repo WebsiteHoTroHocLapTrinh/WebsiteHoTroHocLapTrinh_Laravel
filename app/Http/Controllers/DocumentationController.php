@@ -38,4 +38,10 @@ class DocumentationController extends Controller
         $countvotes_down = Documentation::find($documentation_id)->votes->where('vote_action', 'down')->count();
         return $countvotes_up - $countvotes_down;
     }
+
+    //Admin
+    public function List(){
+        $List = Documentation::all();
+        return view('admin.documentation.list',['list'=>$List]);
+    }
 }

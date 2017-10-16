@@ -42,4 +42,28 @@ class AjaxController extends Controller
 			';
 		}
 	}
+
+	public function getCommentsOfDocument($idDocument)
+	{
+		$comments = Documentation::find($idDocument)->comments;
+		foreach($comments as $cmt){
+			echo '
+				<tr>
+				<td>'.$cmt->id.'</td>
+				<td>'.$cmt->content.'</td>
+				<td>'.$cmt->user->name.'</td>
+				<td>'.$cmt->created_at.'</td>
+				<td>'.$cmt->updated_at.'</td>
+				<td>
+					<label class="switch">
+						<input type="checkbox" '
+						.(($cmt->active) ? "checked" : "").'>
+						<span class="slider round"></span>
+					</label>
+				</td>
+				<td><a onclick="return confirm('."'Bạn có chắc là muốn xóa không?'".')" href=""><i style="font-size: 40px;" class="fa fa-trash-o"></i></a></td>
+			</tr>
+			';
+		}
+	}
 }

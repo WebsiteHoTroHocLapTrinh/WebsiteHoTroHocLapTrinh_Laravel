@@ -9,6 +9,7 @@
     <meta name="description" content="Website Hỗ Trợ Học Lập Trình - Hỏi Đáp - Tài Liệu">
     <meta name="author" content="">
     <title>@yield('title')</title>
+    <base href="{{ asset('') }}">
     <link rel="shortcut icon" href="image/tab-icon.png">
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">

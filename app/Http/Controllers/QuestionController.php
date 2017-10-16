@@ -23,9 +23,9 @@ use App\Vote;
 
 class QuestionController extends Controller
 {
-    public function user($question_id) {
-    	$user = Question::find($question_id)->user;
-    	return $user;
+    public function user($user_id) {
+    	$user = User::find($user_id);
+    	return view('user.user_information',['user'=>$user]);
     }
     public function tags($question_id) {
     	$tags = Question::find($question_id)->tags;
@@ -77,8 +77,8 @@ class QuestionController extends Controller
         );
         if ($validator->fails()) {
             return redirect()->back()
-                        ->withErrors($validator)
-                        ->withInput();
+            ->withErrors($validator)
+            ->withInput();
         }
 
         // Create Model Question and set properties
@@ -137,8 +137,8 @@ class QuestionController extends Controller
         );
         if ($validator->fails()) {
             return redirect()->back()
-                        ->withErrors($validator)
-                        ->withInput();
+            ->withErrors($validator)
+            ->withInput();
         }
 
         // Get Model Question and set properties
@@ -174,5 +174,18 @@ class QuestionController extends Controller
         }
 
         return redirect()->back()->with('thongbao', 'Cập Nhật Thành Công');
+    }
+
+    //List Question
+    public function ListQuestion()
+    {
+        $ListQuestion = Question::where('active',1)->get();
+        //$AllAnswer= Answer::where('active',1)->get();
+        $user_rank = User::where('active',1)->get();
+        $SortByAnswer = Question::with('answers')->where('active',1)->get()->sortByDesc(function($SortByAnswer)
+        {
+            return $SortByAnswer->answers->where('active',1)->count();
+        });
+        return view('question.list_question',['list'=>$ListQuestion,'user_rank'=>$user_rank,'SortByAnswer'=>$SortByAnswer]);
     }
 }
