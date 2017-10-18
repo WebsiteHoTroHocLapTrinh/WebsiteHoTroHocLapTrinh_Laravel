@@ -176,20 +176,8 @@ class QuestionController extends Controller
         return redirect()->back()->with('thongbao', 'Cập Nhật Thành Công');
     }
 
-
-    //List Question
-    public function ListQuestion()
-    {
-        $ListQuestion = Question::where('active',1)->get();
-        //$AllAnswer= Answer::where('active',1)->get();
-        $user_rank = User::where('active',1)->get();
-        $SortByAnswer = Question::with('answers')->where('active',1)->get()->sortByDesc(function($SortByAnswer)
-        {
-            return $SortByAnswer->answers->where('active',1)->count();
-        });
-        return view('question.list_question',['list'=>$ListQuestion,'user_rank'=>$user_rank,'SortByAnswer'=>$SortByAnswer]);
-
-    public function getDelete($idQuestion) {
+    public function getDelete($idQuestion) 
+     {
         $question = Question::find($idQuestion);
         // Delete all comment of question
         $commentsOfQuestion = $question->comments;
@@ -225,4 +213,21 @@ class QuestionController extends Controller
 
         return redirect()->back()->with('thongbao', 'Xóa Thành Công');
     }
+
+
+
+    //List Question
+    public function ListQuestion()
+    {
+        $ListQuestion = Question::where('active',1)->get();
+        //$AllAnswer= Answer::where('active',1)->get();
+        $user_rank = User::where('active',1)->get();
+        $SortByAnswer = Question::with('answers')->where('active',1)->get()->sortByDesc(function($SortByAnswer)
+        {
+            return $SortByAnswer->answers->where('active',1)->count();
+        });
+        return view('question.list_question',['list'=>$ListQuestion,'user_rank'=>$user_rank,'SortByAnswer'=>$SortByAnswer]);
+    }
+
+   
 }

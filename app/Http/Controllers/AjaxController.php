@@ -61,7 +61,7 @@ class AjaxController extends Controller
 						<span class="slider round"></span>
 					</label>
 				</td>
-				<td><a onclick="return confirm('."'Bạn có chắc là muốn xóa không?'".')" href=""><i style="font-size: 40px;" class="fa fa-trash-o"></i></a></td>
+				<td><a onclick="return confirm('."'Bạn có chắc là muốn xóa không?'".')" href="admin/comment/delete/'.$cmt->id.'"><i style="font-size: 40px;" class="fa fa-trash-o"></i></a></td>
 			</tr>
 			';
 		}
@@ -125,7 +125,7 @@ class AjaxController extends Controller
 				break;
 		}
 		if ($value) {
-			$object->active = true;;
+			$object->active = true;
 		}
 		else {
 			$object->active = false;

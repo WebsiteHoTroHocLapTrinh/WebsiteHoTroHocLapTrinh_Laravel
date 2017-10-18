@@ -4,7 +4,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header"><small>Chỉnh sửa người dùng</small> Thanh Tùng</h1>
+                    <h3 class="page-header">Chỉnh sửa người dùng: <strong style="color: blue;">{{ $user->name }}</strong></h3>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -15,71 +15,51 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <form role="form">
+                                    <form role="form" action="admin/user/edit/{{ $user->id }}" method="POST">
+                                        {{ csrf_field() }}
                                         <div class="col-lg-6">
+                                            @if (count($errors) > 0)
+                                           <div class="alert alert-warning">
+                                            @foreach ($errors->all() as $err)
+                                            {{ $err }} <br>
+                                            @endforeach
+                                            </div>
+                                            @endif
+                                            @if (session('thongbao'))
+                                            <div class="alert alert-success">
+                                                {{ session('thongbao') }}
+                                            </div>
+                                            @endif
                                             <div class="form-group">
                                                 <label>Tên</label>
-                                                <input type="text" class="form-control" placeholder="Nhập tên người dùng" value="Thanh Tùng">
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Phân Quyền</label>
-                                                <select class="form-control">
-                                                    <option value="1">Thành Viên</option>
-                                                    <option value="2">Quản Trị Viên</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Giới Thiệu</label>
-                                                <textarea class="form-control ckeditor" name="content" rows="10">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</textarea>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Địa Chỉ</label>
-                                                <input type="text" class="form-control" placeholder="Nhập địa chỉ người dùng" value="TP.HCM">
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Tuổi</label>
-                                                <input type="number" class="form-control" placeholder="Nhập tuổi người dùng" value="21">
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Nghề Nghiệp</label>
-                                                <input type="text" class="form-control" placeholder="Nhập nghề nghiệp người dùng" value="Sinh Viên">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <div class="form-group">
-                                                <div class="row">
-                                                    <div class="col-lg-7">
-                                                        <div class="thumbnail">
-                                                            <img src="admin_asset/k17.jpg" width="">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-5">
-                                                        <label>Chọn hình ảnh đại diện</label>
-                                                        <input type="file" name="">
-                                                    </div>
-                                                </div>
+                                                <input type="text" name="name" class="form-control" placeholder="Nhập tên người dùng" value="{{ $user->name }}">
                                             </div>
                                             <div class="form-group">
                                                 <label>Email</label>
-                                                <input type="email" class="form-control" placeholder="Nhập email người dùng" value="nguyenhoangthanhtung1610@gmail.com" disabled="">
+                                                <input type="email" class="form-control" placeholder="Nhập email người dùng" value="{{ $user->email }}" disabled="">
                                             </div>
                                             <div class="form-group">
+                                                <label>Phân Quyền</label>
+                                                <select class="form-control" name="permission">
+                                                    <option value="{{ $user->permission_id }}">{{ $user->permission->name }}</option>
+                                                    @foreach($permission as $pr)
+                                                    <option value="{{ $pr->id }}">{{ $pr->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+
+                                            <!-- <div class="form-group">
                                                 <label>Thẻ Yêu Thích</label>
                                                 <input type="text" class="form-control" placeholder="Nhập các thẻ liên quan" data-role="tagsinput">
                                                 <input type="text" name="" id="list-tag" hidden="">
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Ẩn/Hiện</label>
-                                                <br>
-                                                <label class="switch">
-                                                    <input type="checkbox" checked>
-                                                    <span class="slider round"></span>
-                                                </label>
-                                            </div>
+                                            </div> -->
+                                        
                                             <button type="submit" class="btn btn-primary">Cập nhật người dùng</button>
                                             <a href="change_password.html">
-                                                <button type="button" class="btn btn-success">Đổi mật khẩu</button>
+                                                <button type="button" class="btn btn-success">Reset Password</button>
                                             </a>
+                                        </div>
+                                        <div class="col-lg-6">
                                         </div>
                                     </form>
                                 </div>

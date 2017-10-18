@@ -16,19 +16,19 @@
             <!--danh mục-->
             <ul class="navbar-nav">
                 <li class="nav-item mr-sm-3">
-                    <a class="nav-link" href="{{ url('question/list-question') }}"><strong>Questions</strong> <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="question/list-question"><strong>Questions</strong> <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item mr-sm-3">
-                    <a class="nav-link" href="{{ url('list-documentation') }}"><strong>Documentations</strong></a>
+                    <a class="nav-link" href="list-documentation"><strong>Documentations</strong></a>
                 </li>
                 <li class="nav-item mr-sm-3">
-                    <a class="nav-link" href="{{ url('list-tag') }}"><strong>Tags</strong></a>
+                    <a class="nav-link" href="list-tag"><strong>Tags</strong></a>
                 </li>
                 <li class="nav-item mr-sm-3">
-                    <a class="nav-link" href="{{ url('list-user') }}"><strong>Users</strong></a>
+                    <a class="nav-link" href="list-user"><strong>Users</strong></a>
                 </li>
                 <li class="nav-item mr-sm-3">
-                    <a class="nav-link mr-sm-5" href="{{ url('about') }}"><strong>About</strong></a>
+                    <a class="nav-link mr-sm-5" href="about"><strong>About</strong></a>
                 </li>
             </ul>
             <!--/danh mục-->

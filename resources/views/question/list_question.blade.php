@@ -70,8 +70,8 @@
                                                         <?php $time= $interval->m . " tháng trước"; ?>
                                                         @elseif ($interval->d!=0)
                                                         <?php $time= $interval->d . " ngày trước"; ?>
-                                                        @elseif($interval->H!=0)
-                                                        <?php $time= $interval->H . " giờ trước"; ?>
+                                                        @elseif($interval->h!=0)
+                                                        <?php $time= $interval->h . " giờ trước"; ?>
                                                         @elseif($interval->i!=0)
                                                         <?php $time= $interval->i . " phút trước"; ?>
                                                         @else
@@ -153,8 +153,8 @@
                                                      <?php $time= $interval->m . " tháng trước"; ?>
                                                      @elseif ($interval->d!=0)
                                                      <?php $time= $interval->d . " ngày trước"; ?>
-                                                     @elseif($interval->H!=0)
-                                                     <?php $time= $interval->H . " giờ trước"; ?>
+                                                     @elseif($interval->h!=0)
+                                                     <?php $time= $interval->h . " giờ trước"; ?>
                                                      @elseif($interval->i!=0)
                                                      <?php $time= $interval->i . " phút trước"; ?>
                                                      @else
@@ -233,8 +233,8 @@
                                                         <?php $time= $interval->m . " tháng trước"; ?>
                                                         @elseif ($interval->d!=0)
                                                         <?php $time= $interval->d . " ngày trước"; ?>
-                                                        @elseif($interval->H!=0)
-                                                        <?php $time= $interval->H . " giờ trước"; ?>
+                                                        @elseif($interval->h!=0)
+                                                        <?php $time= $interval->h . " giờ trước"; ?>
                                                         @elseif($interval->i!=0)
                                                         <?php $time= $interval->i . " phút trước"; ?>
                                                         @else
@@ -318,8 +318,8 @@
                                                         <?php $time= $interval->m . " tháng trước"; ?>
                                                         @elseif ($interval->d!=0)
                                                         <?php $time= $interval->d . " ngày trước"; ?>
-                                                        @elseif($interval->H!=0)
-                                                        <?php $time= $interval->H . " giờ trước"; ?>
+                                                        @elseif($interval->h!=0)
+                                                        <?php $time= $interval->h . " giờ trước"; ?>
                                                         @elseif($interval->i!=0)
                                                         <?php $time= $interval->i . " phút trước"; ?>
                                                         @else

@@ -36,7 +36,7 @@ class CommentController extends Controller
         foreach ($pingsOfComment as $ping) {
             $ping->delete();    // Delete pings of comment
         }
-        $comment->delete();  // Delete comments of answer
+        $comment->delete();
 
         return redirect()->back()->with('thongbao_comment', 'Xóa Thành Công');
     }

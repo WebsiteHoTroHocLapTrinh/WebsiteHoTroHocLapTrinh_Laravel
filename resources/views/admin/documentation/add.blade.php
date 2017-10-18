@@ -15,23 +15,31 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <form role="form">
+                                   @if (count($errors) > 0)
+                                   <div class="alert alert-warning">
+                                        @foreach ($errors->all() as $err)
+                                        {{ $err }} <br>
+                                        @endforeach
+                                    </div>
+                                    @endif
+                                    @if (session('thongbao'))
+                                    <div class="alert alert-success">
+                                        {{ session('thongbao') }}
+                                    </div>
+                                    @endif
+                                    <form action="admin/documentation/add" method="POST" role="form">
+                                        {{ csrf_field() }}
                                         <div class="form-group">
                                             <label>Chủ Đề</label>
-                                            <select class="form-control">
-                                                <option value="1">Lập Trình</option>
-                                                <option value="2">Microsoft Office</option>
-                                                <option value="3">IT & Phần Mềm</option>
-                                                <option value="4">Đồ Họa Hình Ảnh</option>
-                                                <option value="5">Kinh Tế</option>
-                                                <option value="6">Ngoại Ngữ</option>
-                                                <option value="7">Kỹ Năng Mềm</option>
-                                                <option value="8">Khác</option>
+                                            <select class="form-control" name="subject">
+                                                @foreach($subjects as $subj)
+                                                <option value="{{ $subj->id }}">{{ $subj->name }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                         <div class="form-group">
                                             <label>Tiêu Đề</label>
-                                            <input type="text" class="form-control" placeholder="Nhập tiêu đề tài liệu">
+                                            <input type="text" class="form-control" name="title" placeholder="Nhập tiêu đề tài liệu">
                                         </div>
                                         <div class="form-group">
                                             <label>Nội Dung</label>
@@ -39,17 +47,17 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Link</label>
-                                            <input type="text" class="form-control" placeholder="Nhập link tải">
+                                            <input type="text" class="form-control" name="link" placeholder="Nhập link tải">
                                         </div>
                                         <div class="form-group">
                                             <label>Thẻ</label>
                                             <input type="text" class="form-control" placeholder="Nhập các thẻ liên quan" data-role="tagsinput">
-                                            <input type="text" name="" id="list-tag" hidden="">
+                                            <input type="text" id="list-tag" name="list_tag" hidden="">
                                         </div>
                                         <div class="form-group">
                                                 <label>Ẩn/Hiện</label><br>
                                                 <label class="switch">
-                                                    <input type="checkbox" checked>
+                                                    <input type="checkbox" checked name="active">
                                                     <span class="slider round"></span>
                                                 </label>
                                             </div>
@@ -80,8 +88,6 @@
 @endsection
 
 @section('script')
-<!-- Toggle Switch Checkbox -->
-    <script src="admin_asset/js/toggle_switch.js"></script>
     <!-- CKEditor -->
     <script src="admin_asset/ckeditor/ckeditor.js"></script>
     <!-- Bootstrap Tags Input -->
@@ -92,27 +98,7 @@
     var tags = new Bloodhound({
         datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
         queryTokenizer: Bloodhound.tokenizers.whitespace,
-        local: [{ "id": 1, "name": "PHP" },
-            { "id": 2, "name": "C#" },
-            { "id": 3, "name": "AngularJS" },
-            { "id": 4, "name": "Android" },
-            { "id": 5, "name": "Java" },
-            { "id": 6, "name": "C++" },
-            { "id": 7, "name": "Python" },
-            { "id": 8, "name": "MongoDB" },
-            { "id": 9, "name": "SQL" },
-            { "id": 10, "name": "MySQL" },
-            { "id": 11, "name": "Laravel" },
-            { "id": 12, "name": "NodeJS" },
-            { "id": 13, "name": "Reactive" },
-            { "id": 14, "name": "ExpressJS" },
-            { "id": 15, "name": "iOS" },
-            { "id": 16, "name": "CSS" },
-            { "id": 17, "name": "JavaScript" },
-            { "id": 18, "name": "ASP.NET" },
-            { "id": 19, "name": "R" },
-            { "id": 20, "name": "HTML" },
-        ]
+        local: {!! $tags !!}
     });
     tags.initialize();
 

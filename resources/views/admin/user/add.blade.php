@@ -15,55 +15,69 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <form role="form">
+                                    @if (count($errors) > 0)
+                                    <div class="alert alert-warning">
+                                    @foreach ($errors->all() as $err)
+                                    {{ $err }} <br>
+                                    @endforeach
+                                    </div>
+                                    @endif
+                                    @if (session('thongbao'))
+                                    <div class="alert alert-success">
+                                        {{ session('thongbao') }}
+                                    </div>
+                                    @endif
+                                    <form role="form" method="POST" action="admin/user/add">
+                                        {{ csrf_field() }}
                                         <div class="col-lg-6">
                                             <div class="form-group">
                                                 <label>Tên</label>
-                                                <input type="text" class="form-control" placeholder="Nhập tên người dùng">
+                                                <input type="text" name="name" class="form-control" placeholder="Nhập tên người dùng">
                                             </div>
                                             <div class="form-group">
                                                 <label>Phân Quyền</label>
-                                                <select class="form-control">
-                                                    <option value="1">Thành Viên</option>
-                                                    <option value="2">Quản Trị Viên</option>
+                                                <select class="form-control" name="permission">
+                                                    @foreach($permissions as $permissions)
+                                                    <option value="{{ $permissions->id }}">{{ $permissions->name }}</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
-                                            <div class="form-group">
-                                                <label>Giới Thiệu</label>
-                                                <textarea class="form-control ckeditor" name="content" rows="10"></textarea>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Địa Chỉ</label>
-                                                <input type="text" class="form-control" placeholder="Nhập địa chỉ người dùng">
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Tuổi</label>
-                                                <input type="number" class="form-control" placeholder="Nhập tuổi người dùng">
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Nghề Nghiệp</label>
-                                                <input type="text" class="form-control" placeholder="Nhập nghề nghiệp người dùng">
-                                            </div>
+                                           <!--  <div class="form-group">
+                                               <label>Giới Thiệu</label>
+                                               <textarea class="form-control ckeditor" name="content" rows="10"></textarea>
+                                           </div>
+                                           <div class="form-group">
+                                               <label>Địa Chỉ</label>
+                                               <input type="text" class="form-control" placeholder="Nhập địa chỉ người dùng">
+                                           </div>
+                                           <div class="form-group">
+                                               <label>Tuổi</label>
+                                               <input type="number" class="form-control" placeholder="Nhập tuổi người dùng">
+                                           </div>
+                                           <div class="form-group">
+                                               <label>Nghề Nghiệp</label>
+                                               <input type="text" class="form-control" placeholder="Nhập nghề nghiệp người dùng">
+                                           </div> -->
                                         </div>
                                         <div class="col-lg-6">
-                                            <div class="form-group">
-                                                <div class="row">
-                                                    <div class="col-lg-7">
-                                                        <div class="thumbnail">
-                                                            <img src="admin_asset/k17.jpg" width="">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-5">
-                                                        <label>Chọn hình ảnh đại diện</label>
-                                                        <input type="file" name="">
-                                                    </div>
-                                                </div>
-                                            </div>
+                                           <!--  <div class="form-group">
+                                               <div class="row">
+                                                   <div class="col-lg-7">
+                                                       <div class="thumbnail">
+                                                           <img src="admin_asset/k17.jpg" width="">
+                                                       </div>
+                                                   </div>
+                                                   <div class="col-lg-5">
+                                                       <label>Chọn hình ảnh đại diện</label>
+                                                       <input type="file" name="">
+                                                   </div>
+                                               </div>
+                                           </div> -->
                                             <div class="form-group">
                                                 <label>Email</label>
-                                                <input type="email" class="form-control" placeholder="Nhập email người dùng">
+                                                <input type="email" name="email" class="form-control" placeholder="Nhập email người dùng">
                                             </div>
-                                            <div class="form-group">
+                                            <!-- <div class="form-group">
                                                 <label>Mật Khẩu</label>
                                                 <input type="password" class="form-control" placeholder="Nhập mật khẩu người dùng">
                                             </div>
@@ -71,12 +85,12 @@
                                                 <label>Thẻ Yêu Thích</label>
                                                 <input type="text" class="form-control" placeholder="Nhập các thẻ yêu thích" data-role="tagsinput">
                                                 <input type="text" name="" id="list-tag" hidden="">
-                                            </div>
+                                            </div> -->
                                             <div class="form-group">
                                                 <label>Ẩn/Hiện</label>
                                                 <br>
                                                 <label class="switch">
-                                                    <input type="checkbox" checked>
+                                                    <input type="checkbox" checked name="active">
                                                     <span class="slider round"></span>
                                                 </label>
                                             </div>

@@ -149,4 +149,88 @@ class UserController extends Controller
             <h3>Hãy cùng giúp nhau để phát triễn nhé. Thân !!!</h3>
             <br>');
     }
+
+    public function getList(){
+        $Users = User::all();
+        return view('admin.user.list',['users'=>$Users]);
+    }
+
+    public function getEdit($idUser){
+        $user = User::find($idUser);
+        $permission = Permission::where('id','!=',$user->permission_id)->get();
+        return view('admin.user.edit',['user'=>$user, 'permission'=>$permission]);
+    }
+
+    public function postEdit(Request $request, $idUser){
+        // Validate date input
+        $validator = Validator::make($request->all(), 
+            [
+                'name' => 'required',
+                
+            ],
+            [
+                'name.required' => 'Bạn chưa nhập tên',
+            ] 
+        );
+        if ($validator->fails()) {
+            return redirect()->back()
+            ->withErrors($validator)
+            ->withInput();
+        }
+
+        $user = User::find($idUser);
+        $user->permission_id = $request->permission;
+        $user->name = $request->name;
+        $user->save();
+
+        return redirect()->back()->with('thongbao', 'Cập Nhật Thành Công');  
+    }
+
+    public function getResetPassword($idUser){
+        $user = User::find($idUser);
+        $user->password = bcrypt('000000');
+
+        return redirect()->back()->with('thongbao_resetpass', 'ResetPassword Thành Công');  
+    }
+
+    public function getAdd(){
+        $permissions = Permission::where('active', 1)->get();
+        return view('admin.user.add',['permissions'=>$permissions]);
+    }
+
+    public function postAdd(Request $request){
+        // Validate date input
+        $validator = Validator::make($request->all(), 
+            [
+                'name' => 'required',
+                'email' => 'required|email|unique:users',
+                
+            ],
+            [
+                'name.required' => 'Bạn chưa nhập tên',
+                'email.required' => 'Bạn chưa nhập email',
+                'email.email' => 'Bạn chưa nhập đúng định dạng email',
+                'email.unique' => 'Email này đã tồn tại',
+            ] 
+        );
+        if ($validator->fails()) {
+            return redirect()->back()
+            ->withErrors($validator)
+            ->withInput();
+        }
+
+        //Add user
+        $user = new User;
+        $user->permission_id = $request->permission;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = bcrypt('123456');
+        if($request->has('active'))
+            $user->active = true;
+        else
+            $user->active=false;
+        $user->save();
+
+         return redirect()->back()->with('thongbao', 'Thêm user Thành Công');
+    }
 }

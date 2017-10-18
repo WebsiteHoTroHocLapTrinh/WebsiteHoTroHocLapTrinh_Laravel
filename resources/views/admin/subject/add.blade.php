@@ -15,16 +15,29 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <form role="form">
+                                    @if (count($errors) > 0)
+                                    <div class="alert alert-warning">
+                                    @foreach ($errors->all() as $err)
+                                        {{ $err }} <br>
+                                    @endforeach
+                                    </div>
+                                    @endif
+                                    @if (session('thongbao'))
+                                    <div class="alert alert-success">
+                                        {{ session('thongbao') }}
+                                    </div>
+                                    @endif
+                                    <form action="admin/subject/add" method="POST" role="form">
+                                         {{ csrf_field() }}
                                         <div class="form-group">
                                             <label>Tên</label>
-                                            <input type="text" class="form-control" placeholder="Nhập tên chủ đề">
+                                            <input type="text" class="form-control" name="name" placeholder="Nhập tên chủ đề">
                                         </div>
                                         <div class="form-group">
                                             <label>Ẩn/Hiện</label>
                                             <br>
                                             <label class="switch">
-                                                <input type="checkbox" checked>
+                                                <input type="checkbox" checked name="active">
                                                 <span class="slider round"></span>
                                             </label>
                                         </div>

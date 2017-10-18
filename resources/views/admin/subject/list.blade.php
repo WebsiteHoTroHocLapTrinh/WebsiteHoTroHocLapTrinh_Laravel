@@ -24,138 +24,31 @@
                                         <th>Thời gian chỉnh sửa</th>
                                         <th>Ẩn/Hiện</th>
                                         <th>Sửa</th>
-                                        <th>Xóa</th>
+                                        <!-- <th>Xóa</th> -->
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach($subjects as $sbj)
                                     <tr>
-                                        <td>1</td>
-                                        <td>Lập Trình</td>
-                                        <td>100</td>
-                                        <td>Thanh Tùng</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>30/09/2017 22:00:00</td>
+                                        <td>{{ $sbj->id }}</td>
+                                        <td>{{ $sbj->name }}</td>
+                                        <td>{{ $sbj->documentations->count() }}</td>
+                                        <td>{{ $sbj->user_created->name }}</td>
+                                        <td>{{ $sbj->created_at }}</td>
+                                        <td>{{ $sbj->updated_at }}</td>
                                         <td>
                                             <label class="switch">
-                                                <input type="checkbox">
+                                                <input type="checkbox"
+                                                @if($sbj->active)
+                                                {{ "checked" }}
+                                                @endif>
                                                 <span class="slider round"></span>
                                             </label>
                                         </td>
-                                        <td><a href="/admin/subject/edit"><i style="font-size: 40px;" class="fa fa-edit"></i></a></td>
-                                        <td><a onclick="return confirm('Bạn có chắc là muốn xóa không?')" href=""><i style="font-size: 40px;" class="fa fa-trash-o"></i></a></td>
+                                        <td><a href="/admin/subject/edit/{{ $sbj->id }}"><i style="font-size: 40px;" class="fa fa-edit"></i></a></td>
+                                       <!--  <td><a onclick="return confirm('Bạn có chắc là muốn xóa không?')" href=""><i style="font-size: 40px;" class="fa fa-trash-o"></i></a></td> -->
                                     </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Lập Trình</td>
-                                        <td>100</td>
-                                        <td>Thanh Tùng</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>
-                                            <label class="switch">
-                                                <input type="checkbox" checked="">
-                                                <span class="slider round"></span>
-                                            </label>
-                                        </td>
-                                        <td><a href="/admin/subject/edit"><i style="font-size: 40px;" class="fa fa-edit"></i></a></td>
-                                        <td><a onclick="return confirm('Bạn có chắc là muốn xóa không?')" href=""><i style="font-size: 40px;" class="fa fa-trash-o"></i></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Lập Trình</td>
-                                        <td>100</td>
-                                        <td>Thanh Tùng</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>
-                                            <label class="switch">
-                                                <input type="checkbox">
-                                                <span class="slider round"></span>
-                                            </label>
-                                        </td>
-                                        <td><a href="/admin/subject/edit"><i style="font-size: 40px;" class="fa fa-edit"></i></a></td>
-                                        <td><a onclick="return confirm('Bạn có chắc là muốn xóa không?')" href=""><i style="font-size: 40px;" class="fa fa-trash-o"></i></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Lập Trình</td>
-                                        <td>100</td>
-                                        <td>Thanh Tùng</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>
-                                            <label class="switch">
-                                                <input type="checkbox" checked="">
-                                                <span class="slider round"></span>
-                                            </label>
-                                        </td>
-                                        <td><a href="/admin/subject/edit"><i style="font-size: 40px;" class="fa fa-edit"></i></a></td>
-                                        <td><a onclick="return confirm('Bạn có chắc là muốn xóa không?')" href=""><i style="font-size: 40px;" class="fa fa-trash-o"></i></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Lập Trình</td>
-                                        <td>100</td>
-                                        <td>Thanh Tùng</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>
-                                            <label class="switch">
-                                                <input type="checkbox">
-                                                <span class="slider round"></span>
-                                            </label>
-                                        </td>
-                                        <td><a href="/admin/subject/edit"><i style="font-size: 40px;" class="fa fa-edit"></i></a></td>
-                                        <td><a onclick="return confirm('Bạn có chắc là muốn xóa không?')" href=""><i style="font-size: 40px;" class="fa fa-trash-o"></i></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Lập Trình</td>
-                                        <td>100</td>
-                                        <td>Thanh Tùng</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>
-                                            <label class="switch">
-                                                <input type="checkbox" checked="">
-                                                <span class="slider round"></span>
-                                            </label>
-                                        </td>
-                                        <td><a href="/admin/subject/edit"><i style="font-size: 40px;" class="fa fa-edit"></i></a></td>
-                                        <td><a onclick="return confirm('Bạn có chắc là muốn xóa không?')" href=""><i style="font-size: 40px;" class="fa fa-trash-o"></i></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Lập Trình</td>
-                                        <td>100</td>
-                                        <td>Thanh Tùng</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>
-                                            <label class="switch">
-                                                <input type="checkbox">
-                                                <span class="slider round"></span>
-                                            </label>
-                                        </td>
-                                        <td><a href="/admin/subject/edit"><i style="font-size: 40px;" class="fa fa-edit"></i></a></td>
-                                        <td><a onclick="return confirm('Bạn có chắc là muốn xóa không?')" href=""><i style="font-size: 40px;" class="fa fa-trash-o"></i></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Lập Trình</td>
-                                        <td>100</td>
-                                        <td>Thanh Tùng</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>
-                                            <label class="switch">
-                                                <input type="checkbox" checked="">
-                                                <span class="slider round"></span>
-                                            </label>
-                                        </td>
-                                        <td><a href="/admin/subject/edit"><i style="font-size: 40px;" class="fa fa-edit"></i></a></td>
-                                        <td><a onclick="return confirm('Bạn có chắc là muốn xóa không?')" href=""><i style="font-size: 40px;" class="fa fa-trash-o"></i></a></td>
-                                    </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                             <!-- /.table-responsive -->

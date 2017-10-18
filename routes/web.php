@@ -53,10 +53,15 @@ route::get('about',function(){
 	return view('about');
 });
 
+//////////////////////////////////////////////////
+
+
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function() {
     Route::get('/', function() {
         return view('admin.index');
     });
+
+    //Question
     Route::group(['prefix' => 'question'], function() {
         Route::get('list', 'QuestionController@getList');
         Route::get('add', 'QuestionController@getAdd');
@@ -75,19 +80,47 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function() {
         });
     });
 
+    //Documents
+    Route::group(['prefix' => 'documentation'], function() {
+        Route::get('list','DocumentationController@getList');
+        Route::get('edit/{idDocument}', 'DocumentationController@getEdit');
+        Route::post('edit/{idDocument}', 'DocumentationController@postEdit');
+        Route::get('delete/{idDocument}', 'DocumentationController@DeleteDocument');
+        Route::get('add','DocumentationController@getAdd');
+        Route::post('add','DocumentationController@postAdd');
+        
+    });
+
+     //Subject
+    Route::group(['prefix' => 'subject'], function() {
+        Route::get('list','SubjectController@getList');
+        Route::get('edit/{idSubject}','SubjectController@getEdit');
+        Route::post('edit/{idSubject}','SubjectController@postEdit');
+        Route::post('add','SubjectController@postAdd');
+        Route::get('add', function() {
+            return view('admin.subject.add');
+        });
+    });
+
+
+    //User
+   Route::group(['prefix' => 'user'], function() {
+        Route::get('list','UserController@getList');
+        Route::get('edit/{idUser}','UserController@getEdit');
+        Route::post('edit/{idUser}','UserController@postEdit');
+        Route::get('editpass/{idUser}','UserController@getResetPassword');
+        Route::get('add','UserController@getAdd');
+        Route::post('add','UserController@postAdd');
+        
+    });
+    
+
+
     Route::group(['prefix' => 'comment'], function() {
         Route::get('delete/{idComment}', 'CommentController@getDelete');
     });
     
-    Route::group(['prefix' => 'documentation'], function() {
-        Route::get('list','DocumentationController@List');
-        Route::get('add', function() {
-            return view('admin.documentation.add');
-        });
-        Route::get('edit', function() {
-            return view('admin.documentation.edit');
-        });
-    });
+    
     Route::group(['prefix' => 'permission'], function() {
         Route::get('list', 'PermissionController@getList');
         Route::get('add', 'PermissionController@getAdd');
@@ -96,17 +129,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function() {
         Route::post('edit/{idPermission}', 'PermissionController@postEdit');
         Route::get('delete/{idPermission}', 'PermissionController@getDelete');
     });
-    Route::group(['prefix' => 'subject'], function() {
-        Route::get('list', function() {
-            return view('admin.subject.list');
-        });
-        Route::get('add', function() {
-            return view('admin.subject.add');
-        });
-        Route::get('edit', function() {
-            return view('admin.subject.edit');
-        });
-    });
+
+   
+
     Route::group(['prefix' => 'tag'], function() {
         Route::get('list', 'TagController@getList');
         Route::get('add', 'TagController@getAdd');
@@ -115,27 +140,14 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function() {
         Route::post('edit/{idTag}', 'TagController@postEdit');
         Route::get('delete/{idTag}', 'TagController@getDelete');
     });
-    Route::group(['prefix' => 'user'], function() {
-        Route::get('list', function() {
-            return view('admin.user.list');
-        });
-        Route::get('add', function() {
-            return view('admin.user.add');
-        });
-        Route::get('edit', function() {
-            return view('admin.user.edit');
-        });
-    });
 });
 
 Route::group(['prefix' => 'ajax'], function() {
     Route::get('commentsOfQuestion/{idQuestion}', 'AjaxController@getCommentsOfQuestion');
-<<<<<<< HEAD
     Route::get('commentsOfDocument/{idDocument}', 'AjaxController@getCommentsOfDocument');
-=======
     Route::get('commentsOfAnswer/{idAnswer}', 'AjaxController@getCommentsOfAnswer');
     Route::get('changeActive/{type}/{id}/{value}', 'AjaxController@changeActive');
->>>>>>> 53df9552857f88647e491eda3335a15f69f74917
+
 });
 
 Route::get('login', 'UserController@getLogin')->middleware('login');
@@ -143,9 +155,17 @@ Route::post('login', 'UserController@postLogin');
 Route::get('register', 'UserController@getRegister')->middleware('login');
 Route::post('register', 'UserController@postRegister');
 Route::get('logout', 'UserController@getLogout');
-//
 
-
+//Group Questions
+Route::group(['prefix' => 'question'], function() {
+    route::get('list-question','QuestionController@ListQuestion');
+    Route::get('user/{user_id}', 'QuestionController@user');
+    Route::get('tags/{question_id}', 'QuestionController@tags');
+    Route::get('answers/{question_id}', 'QuestionController@answers');
+    Route::get('comments/{question_id}', 'QuestionController@comments');
+    Route::get('votes/{question_id}', 'QuestionController@votes');
+    Route::get('countvotes/{question_id}', 'QuestionController@countvotes');  
+});
 // Test API
 
 // Route::group(['prefix' => 'user'], function() {
@@ -160,15 +180,7 @@ Route::get('logout', 'UserController@getLogout');
 //     Route::get('subject_created/{user_id}', 'UserController@subject_created');
 //     Route::get('tag_created/{user_id}', 'UserController@tag_created');
 // });
-Route::group(['prefix' => 'question'], function() {
-    route::get('list-question','QuestionController@ListQuestion');
-    Route::get('user/{user_id}', 'QuestionController@user');
-    Route::get('tags/{question_id}', 'QuestionController@tags');
-    Route::get('answers/{question_id}', 'QuestionController@answers');
-    Route::get('comments/{question_id}', 'QuestionController@comments');
-    Route::get('votes/{question_id}', 'QuestionController@votes');
-    Route::get('countvotes/{question_id}', 'QuestionController@countvotes');  
-});
+
 // Route::group(['prefix' => 'documentation'], function() {
 //     Route::get('user/{documentation_id}', 'DocumentationController@user');
 //     Route::get('tags/{documentation_id}', 'DocumentationController@tags');

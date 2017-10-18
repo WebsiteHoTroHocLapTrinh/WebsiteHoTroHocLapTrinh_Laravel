@@ -24,9 +24,9 @@ class UsersSeeder extends Seeder
               [
                  'permission_id' => 1,
                  'name' => 'User_'.$i,
+                 'status' => 'Common Baby!',
                  'about' => 'Hi, I am User_'.$i,
                  'location' => 'TP.HCM',
-                 'age' => rand(18,30),
                  'job' => $job[rand(0,4)],
                  'avatar' => 'k17.jpg',
                  'email' => 'user_'.$i.'@gmail.com',
@@ -42,9 +42,9 @@ class UsersSeeder extends Seeder
             [
                 'permission_id' => 2,
                 'name' => 'Thanh Tùng',
+                'status' => 'Common Baby!',
                 'about' => 'Hi, I am Admin',
                 'location' => 'TP.HCM',
-                'age' => rand(18,30),
                 'job' => $job[rand(0,4)],
                 'avatar' => 'k17.jpg',
                 'email' => 'nguyenhoangthanhtung1610@gmail.com',
@@ -58,9 +58,9 @@ class UsersSeeder extends Seeder
             [
                 'permission_id' => 2,
                 'name' => 'Đinh Sa',
+                'status' => 'Common Baby!',
                 'about' => 'Hi, I am Admin',
                 'location' => 'TP.HCM',
-                'age' => rand(18,30),
                 'job' => $job[rand(0,4)],
                 'avatar' => 'k17.jpg',
                 'email' => 'dinhsa@gmail.com',

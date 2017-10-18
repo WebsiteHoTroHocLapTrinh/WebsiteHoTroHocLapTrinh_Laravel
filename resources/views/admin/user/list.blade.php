@@ -20,7 +20,6 @@
                                         <th>Giới thiệu</th>
                                         <th>Phân quyền</th>
                                         <th>Địa chỉ</th>
-                                        <th>Tuổi</th>
                                         <th>Nghề nghiệp</th>
                                         <th>Điểm uy tín</th>
                                         <th>Email</th>
@@ -29,388 +28,42 @@
                                         <th>Thời gian chỉnh sửa</th>
                                         <th>Ẩn/Hiện</th>
                                         <th>Sửa</th>
-                                        <th>Xóa</th>
+                                       <!--  <th>Xóa</th> -->
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach($users as $user)
                                     <tr>
-                                        <td>1</td>
+                                        <td>{{ $user->id }}</td>
                                         <td>
                                             <div class="intro">
                                                 <img src="admin_asset/k17.jpg" class="img-circle intro-img" width="80">
-                                                <p class="intro-name"><strong>Thanh Tùng</strong></p>
-                                                <p class="intro-about">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                                <p class="intro-name"><strong>{{ $user->name }}</strong></p>
+                                                <p class="intro-about">{{ $user->about }}</p>
                                             </div>
                                         </td>
-                                        <td>Thành Viên</td>
-                                        <td>TP.HCM</td>
-                                        <td>21</td>
-                                        <td>Sinh Viên</td>
-                                        <td>696</td>
-                                        <td>nguyenhoangthanhtung1610@gmail.com</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>30/09/2017 22:00:00</td>
+                                        <td>{{ $user->permission->name }}</td>
+                                        <td>{{ $user->location }}</td>
+                                        <td>{{ $user->job }}</td>
+                                        <td>{{ $user->point_reputation }}</td>
+                                        <td>{{ $user->email }}</td>
+                                        <td>{{ $user->last_online }}</td>
+                                        <td>{{ $user->created_at }}</td>
+                                        <td>{{ $user->updated_at }}</td>
                                         <td>
                                             <label class="switch">
-                                                <input type="checkbox">
+                                                <input type="checkbox"
+                                                @if($user->active)
+                                                    {{ "checked" }}
+                                                @endif
+                                                >
                                                 <span class="slider round"></span>
                                             </label>
                                         </td>
-                                        <td><a href="/admin/user/edit"><i style="font-size: 40px;" class="fa fa-edit"></i></a></td>
-                                        <td><a onclick="return confirm('Bạn có chắc là muốn xóa không?')" href=""><i style="font-size: 40px;" class="fa fa-trash-o"></i></a></td>
+                                        <td><a href="/admin/user/edit/{{ $user->id }}"><i style="font-size: 40px;" class="fa fa-edit"></i></a></td>
+                                        <!-- <td><a onclick="return confirm('Bạn có chắc là muốn xóa không?')" href=""><i style="font-size: 40px;" class="fa fa-trash-o"></i></a></td> -->
                                     </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>
-                                            <div class="intro">
-                                                <img src="admin_asset/k17.jpg" class="img-circle intro-img" width="80">
-                                                <p class="intro-name"><strong>Thanh Tùng</strong></p>
-                                                <p class="intro-about">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                                            </div>
-                                        </td>
-                                        <td>Quản Trị Viên</td>
-                                        <td>TP.HCM</td>
-                                        <td>21</td>
-                                        <td>Sinh Viên</td>
-                                        <td>696</td>
-                                        <td>nguyenhoangthanhtung1610@gmail.com</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>
-                                            <label class="switch">
-                                                <input type="checkbox" checked="">
-                                                <span class="slider round"></span>
-                                            </label>
-                                        </td>
-                                        <td><a href="/admin/user/edit"><i style="font-size: 40px;" class="fa fa-edit"></i></a></td>
-                                        <td><a onclick="return confirm('Bạn có chắc là muốn xóa không?')" href=""><i style="font-size: 40px;" class="fa fa-trash-o"></i></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>
-                                            <div class="intro">
-                                                <img src="admin_asset/k17.jpg" class="img-circle intro-img" width="80">
-                                                <p class="intro-name"><strong>Thanh Tùng</strong></p>
-                                                <p class="intro-about">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                                            </div>
-                                        </td>
-                                        <td>Thành Viên</td>
-                                        <td>TP.HCM</td>
-                                        <td>21</td>
-                                        <td>Sinh Viên</td>
-                                        <td>696</td>
-                                        <td>nguyenhoangthanhtung1610@gmail.com</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>
-                                            <label class="switch">
-                                                <input type="checkbox">
-                                                <span class="slider round"></span>
-                                            </label>
-                                        </td>
-                                        <td><a href="/admin/user/edit"><i style="font-size: 40px;" class="fa fa-edit"></i></a></td>
-                                        <td><a onclick="return confirm('Bạn có chắc là muốn xóa không?')" href=""><i style="font-size: 40px;" class="fa fa-trash-o"></i></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>
-                                            <div class="intro">
-                                                <img src="admin_asset/k17.jpg" class="img-circle intro-img" width="80">
-                                                <p class="intro-name"><strong>Thanh Tùng</strong></p>
-                                                <p class="intro-about">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                                            </div>
-                                        </td>
-                                        <td>Quản Trị Viên</td>
-                                        <td>TP.HCM</td>
-                                        <td>21</td>
-                                        <td>Sinh Viên</td>
-                                        <td>696</td>
-                                        <td>nguyenhoangthanhtung1610@gmail.com</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>
-                                            <label class="switch">
-                                                <input type="checkbox" checked="">
-                                                <span class="slider round"></span>
-                                            </label>
-                                        </td>
-                                        <td><a href="/admin/user/edit"><i style="font-size: 40px;" class="fa fa-edit"></i></a></td>
-                                        <td><a onclick="return confirm('Bạn có chắc là muốn xóa không?')" href=""><i style="font-size: 40px;" class="fa fa-trash-o"></i></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>
-                                            <div class="intro">
-                                                <img src="admin_asset/k17.jpg" class="img-circle intro-img" width="80">
-                                                <p class="intro-name"><strong>Thanh Tùng</strong></p>
-                                                <p class="intro-about">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                                            </div>
-                                        </td>
-                                        <td>Thành Viên</td>
-                                        <td>TP.HCM</td>
-                                        <td>21</td>
-                                        <td>Sinh Viên</td>
-                                        <td>696</td>
-                                        <td>nguyenhoangthanhtung1610@gmail.com</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>
-                                            <label class="switch">
-                                                <input type="checkbox">
-                                                <span class="slider round"></span>
-                                            </label>
-                                        </td>
-                                        <td><a href="/admin/user/edit"><i style="font-size: 40px;" class="fa fa-edit"></i></a></td>
-                                        <td><a onclick="return confirm('Bạn có chắc là muốn xóa không?')" href=""><i style="font-size: 40px;" class="fa fa-trash-o"></i></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>
-                                            <div class="intro">
-                                                <img src="admin_asset/k17.jpg" class="img-circle intro-img" width="80">
-                                                <p class="intro-name"><strong>Thanh Tùng</strong></p>
-                                                <p class="intro-about">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                                            </div>
-                                        </td>
-                                        <td>Quản Trị Viên</td>
-                                        <td>TP.HCM</td>
-                                        <td>21</td>
-                                        <td>Sinh Viên</td>
-                                        <td>696</td>
-                                        <td>nguyenhoangthanhtung1610@gmail.com</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>
-                                            <label class="switch">
-                                                <input type="checkbox" checked="">
-                                                <span class="slider round"></span>
-                                            </label>
-                                        </td>
-                                        <td><a href="/admin/user/edit"><i style="font-size: 40px;" class="fa fa-edit"></i></a></td>
-                                        <td><a onclick="return confirm('Bạn có chắc là muốn xóa không?')" href=""><i style="font-size: 40px;" class="fa fa-trash-o"></i></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>
-                                            <div class="intro">
-                                                <img src="admin_asset/k17.jpg" class="img-circle intro-img" width="80">
-                                                <p class="intro-name"><strong>Thanh Tùng</strong></p>
-                                                <p class="intro-about">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                                            </div>
-                                        </td>
-                                        <td>Thành Viên</td>
-                                        <td>TP.HCM</td>
-                                        <td>21</td>
-                                        <td>Sinh Viên</td>
-                                        <td>696</td>
-                                        <td>nguyenhoangthanhtung1610@gmail.com</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>
-                                            <label class="switch">
-                                                <input type="checkbox">
-                                                <span class="slider round"></span>
-                                            </label>
-                                        </td>
-                                        <td><a href="/admin/user/edit"><i style="font-size: 40px;" class="fa fa-edit"></i></a></td>
-                                        <td><a onclick="return confirm('Bạn có chắc là muốn xóa không?')" href=""><i style="font-size: 40px;" class="fa fa-trash-o"></i></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>
-                                            <div class="intro">
-                                                <img src="admin_asset/k17.jpg" class="img-circle intro-img" width="80">
-                                                <p class="intro-name"><strong>Thanh Tùng</strong></p>
-                                                <p class="intro-about">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                                            </div>
-                                        </td>
-                                        <td>Quản Trị Viên</td>
-                                        <td>TP.HCM</td>
-                                        <td>21</td>
-                                        <td>Sinh Viên</td>
-                                        <td>696</td>
-                                        <td>nguyenhoangthanhtung1610@gmail.com</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>
-                                            <label class="switch">
-                                                <input type="checkbox" checked="">
-                                                <span class="slider round"></span>
-                                            </label>
-                                        </td>
-                                        <td><a href="/admin/user/edit"><i style="font-size: 40px;" class="fa fa-edit"></i></a></td>
-                                        <td><a onclick="return confirm('Bạn có chắc là muốn xóa không?')" href=""><i style="font-size: 40px;" class="fa fa-trash-o"></i></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>
-                                            <div class="intro">
-                                                <img src="admin_asset/k17.jpg" class="img-circle intro-img" width="80">
-                                                <p class="intro-name"><strong>Thanh Tùng</strong></p>
-                                                <p class="intro-about">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                                            </div>
-                                        </td>
-                                        <td>Thành Viên</td>
-                                        <td>TP.HCM</td>
-                                        <td>21</td>
-                                        <td>Sinh Viên</td>
-                                        <td>696</td>
-                                        <td>nguyenhoangthanhtung1610@gmail.com</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>
-                                            <label class="switch">
-                                                <input type="checkbox">
-                                                <span class="slider round"></span>
-                                            </label>
-                                        </td>
-                                        <td><a href="/admin/user/edit"><i style="font-size: 40px;" class="fa fa-edit"></i></a></td>
-                                        <td><a onclick="return confirm('Bạn có chắc là muốn xóa không?')" href=""><i style="font-size: 40px;" class="fa fa-trash-o"></i></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>
-                                            <div class="intro">
-                                                <img src="admin_asset/k17.jpg" class="img-circle intro-img" width="80">
-                                                <p class="intro-name"><strong>Thanh Tùng</strong></p>
-                                                <p class="intro-about">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                                            </div>
-                                        </td>
-                                        <td>Quản Trị Viên</td>
-                                        <td>TP.HCM</td>
-                                        <td>21</td>
-                                        <td>Sinh Viên</td>
-                                        <td>696</td>
-                                        <td>nguyenhoangthanhtung1610@gmail.com</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>
-                                            <label class="switch">
-                                                <input type="checkbox" checked="">
-                                                <span class="slider round"></span>
-                                            </label>
-                                        </td>
-                                        <td><a href="/admin/user/edit"><i style="font-size: 40px;" class="fa fa-edit"></i></a></td>
-                                        <td><a onclick="return confirm('Bạn có chắc là muốn xóa không?')" href=""><i style="font-size: 40px;" class="fa fa-trash-o"></i></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>
-                                            <div class="intro">
-                                                <img src="admin_asset/k17.jpg" class="img-circle intro-img" width="80">
-                                                <p class="intro-name"><strong>Thanh Tùng</strong></p>
-                                                <p class="intro-about">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                                            </div>
-                                        </td>
-                                        <td>Thành Viên</td>
-                                        <td>TP.HCM</td>
-                                        <td>21</td>
-                                        <td>Sinh Viên</td>
-                                        <td>696</td>
-                                        <td>nguyenhoangthanhtung1610@gmail.com</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>
-                                            <label class="switch">
-                                                <input type="checkbox">
-                                                <span class="slider round"></span>
-                                            </label>
-                                        </td>
-                                        <td><a href="/admin/user/edit"><i style="font-size: 40px;" class="fa fa-edit"></i></a></td>
-                                        <td><a onclick="return confirm('Bạn có chắc là muốn xóa không?')" href=""><i style="font-size: 40px;" class="fa fa-trash-o"></i></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>
-                                            <div class="intro">
-                                                <img src="admin_asset/k17.jpg" class="img-circle intro-img" width="80">
-                                                <p class="intro-name"><strong>Thanh Tùng</strong></p>
-                                                <p class="intro-about">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                                            </div>
-                                        </td>
-                                        <td>Quản Trị Viên</td>
-                                        <td>TP.HCM</td>
-                                        <td>21</td>
-                                        <td>Sinh Viên</td>
-                                        <td>696</td>
-                                        <td>nguyenhoangthanhtung1610@gmail.com</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>
-                                            <label class="switch">
-                                                <input type="checkbox" checked="">
-                                                <span class="slider round"></span>
-                                            </label>
-                                        </td>
-                                        <td><a href="/admin/user/edit"><i style="font-size: 40px;" class="fa fa-edit"></i></a></td>
-                                        <td><a onclick="return confirm('Bạn có chắc là muốn xóa không?')" href=""><i style="font-size: 40px;" class="fa fa-trash-o"></i></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>
-                                            <div class="intro">
-                                                <img src="admin_asset/k17.jpg" class="img-circle intro-img" width="80">
-                                                <p class="intro-name"><strong>Thanh Tùng</strong></p>
-                                                <p class="intro-about">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                                            </div>
-                                        </td>
-                                        <td>Thành Viên</td>
-                                        <td>TP.HCM</td>
-                                        <td>21</td>
-                                        <td>Sinh Viên</td>
-                                        <td>696</td>
-                                        <td>nguyenhoangthanhtung1610@gmail.com</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>
-                                            <label class="switch">
-                                                <input type="checkbox">
-                                                <span class="slider round"></span>
-                                            </label>
-                                        </td>
-                                        <td><a href="/admin/user/edit"><i style="font-size: 40px;" class="fa fa-edit"></i></a></td>
-                                        <td><a onclick="return confirm('Bạn có chắc là muốn xóa không?')" href=""><i style="font-size: 40px;" class="fa fa-trash-o"></i></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>
-                                            <div class="intro">
-                                                <img src="admin_asset/k17.jpg" class="img-circle intro-img" width="80">
-                                                <p class="intro-name"><strong>Thanh Tùng</strong></p>
-                                                <p class="intro-about">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                                            </div>
-                                        </td>
-                                        <td>Quản Trị Viên</td>
-                                        <td>TP.HCM</td>
-                                        <td>21</td>
-                                        <td>Sinh Viên</td>
-                                        <td>696</td>
-                                        <td>nguyenhoangthanhtung1610@gmail.com</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>30/09/2017 22:00:00</td>
-                                        <td>
-                                            <label class="switch">
-                                                <input type="checkbox" checked="">
-                                                <span class="slider round"></span>
-                                            </label>
-                                        </td>
-                                        <td><a href="/admin/user/edit"><i style="font-size: 40px;" class="fa fa-edit"></i></a></td>
-                                        <td><a onclick="return confirm('Bạn có chắc là muốn xóa không?')" href=""><i style="font-size: 40px;" class="fa fa-trash-o"></i></a></td>
-                                    </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                             <!-- /.table-responsive -->

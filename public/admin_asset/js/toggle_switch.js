@@ -1,10 +1,10 @@
 $(function() {
     $(document).on("change", '.switch > input[type="checkbox"]', function() {
-        if (this.checked) {
+       /* if (this.checked) {
             $(this).attr('checked', 'checked');
         } else {
             $(this).removeAttr('checked');
-        }
+        }*/
         var id = $(this).closest('tr').find('td').first().html();
         // alert(id);
         // alert($(this).closest('table').attr('id'));
@@ -37,8 +37,8 @@ $(function() {
                 break;
         }
         // alert(type);
-        var attr = $(this).attr('checked');
-        if (typeof attr !== typeof undefined && attr !== false) {
+        //var attr = $(this).attr('checked');
+        if (this.checked) {
             var value = 1;
         } else {
             var value = 0;

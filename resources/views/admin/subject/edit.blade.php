@@ -4,7 +4,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header"><small>Chỉnh sửa chủ đề</small> Lập Trình</h1>
+                    <h1 class="page-header"><small>Chỉnh sửa chủ đề</small> {{ $subject->name }}</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -15,17 +15,34 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
+                                    @if (count($errors) > 0)
+                                    <div class="alert alert-warning">
+                                    @foreach ($errors->all() as $err)
+                                        {{ $err }} <br>
+                                    @endforeach
+                                    </div>
+                                    @endif
+                                    @if (session('thongbao'))
+                                    <div class="alert alert-success">
+                                        {{ session('thongbao') }}
+                                    </div>
+                                    @endif
                                     <div class="tags-editor">
-                                        <form role="form">
+                                        <form action="admin/subject/edit/{{ $subject->id }}" method="POST" role="form">
+                                             {{ csrf_field() }}
                                             <div class="form-group">
                                                 <label>Tên</label>
-                                                <input type="text" class="form-control" placeholder="Nhập tên chủ đề" value="Lập Trình">
+                                                <input type="text" class="form-control" placeholder="Nhập tên chủ đề" name="name" value="{{ $subject->name }}">
                                             </div>
                                             <div class="form-group">
                                                 <label>Ẩn/Hiện</label>
                                                 <br>
                                                 <label class="switch">
-                                                    <input type="checkbox" checked>
+                                                    <input type="checkbox" name="active"
+                                                    @if($subject->active)
+                                                        {{ "checked" }}
+                                                    @endif
+                                                    >
                                                     <span class="slider round"></span>
                                                 </label>
                                             </div>
