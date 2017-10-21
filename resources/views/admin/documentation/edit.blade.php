@@ -33,9 +33,12 @@
                                             <div class="form-group">
                                                 <label>Chủ Đề</label>
                                                 <select class="form-control" name="subject">
-                                                    <option value="{{ $document->subject_id }}">{{ $document->subjects->name }}</option>
                                                     @foreach($subjects as $sbj)
-                                                    <option value="{{ $sbj->id }}">{{ $sbj->name }}</option>
+                                                    <option value="{{ $sbj->id }}"
+                                                        @if ($sbj->id == $document->subject_id)
+                                                            {{ "selected" }}
+                                                        @endif
+                                                    >{{ $sbj->name }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>

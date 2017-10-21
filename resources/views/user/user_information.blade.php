@@ -52,7 +52,7 @@
 							awesome!
 						</div>
 						<div class="about">
-							<!-- BY NIGHT: I write code and code rights for penalcoders.example.org, an awesome non-profit that will totally take your money at that link. My kids are cuter than yours. FOR FUN: C+ Jokes, Segway Roller Derby, NYT Sat. Crosswords (in Sharpie!), Ostrich Grooming. -->
+							BY NIGHT: I write code and code rights for penalcoders.example.org, an awesome non-profit that will totally take your money at that link. My kids are cuter than yours. FOR FUN: C+ Jokes, Segway Roller Derby, NYT Sat. Crosswords (in Sharpie!), Ostrich Grooming.
 							
 						</div>
 					</div>

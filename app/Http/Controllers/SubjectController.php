@@ -71,6 +71,10 @@ class SubjectController extends Controller
         return redirect()->back()->with('thongbao', 'Cập Nhật Thành Công');  
     }
 
+    public function getAdd() {
+        return view('admin.subject.add');
+    }
+
     public function postAdd(Request $request){
     	// Validate date input
         $validator = Validator::make($request->all(), 
@@ -103,5 +107,33 @@ class SubjectController extends Controller
         return redirect()->back()->with('thongbao', 'Thêm Thành Công');  
     }
 
+    public function getDelete($idSubject) {
+        $subject = Subject::find($idSubject);
+
+        $documentations = $subject->documentations;
+        foreach ($documentations as $document) {
+            $comments = $document->comments;
+            //
+            foreach($comments as $cmt){
+                $pingsOfComment = $cmt->pings;
+                foreach ($pingsOfComment as $ping) {
+                    $ping->delete();   
+                }
+                $cmt->delete();
+            }
+            //
+            foreach ($document->tags as $tag) {
+                Taggable::where([
+                    ['taggable_id', $tag->pivot->taggable_id], 
+                    ['tag_id', $tag->pivot->tag_id]
+                ])->delete();
+            }
+            $document->delete();
+        }
+
+        $subject->delete();
+        
+        return redirect()->back()->with('thongbao', 'Xóa Thành Công');
+    }
 
 }

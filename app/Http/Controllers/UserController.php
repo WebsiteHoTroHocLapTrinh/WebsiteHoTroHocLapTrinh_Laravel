@@ -157,7 +157,7 @@ class UserController extends Controller
 
     public function getEdit($idUser){
         $user = User::find($idUser);
-        $permission = Permission::where('id','!=',$user->permission_id)->get();
+        $permission = Permission::where('active', '1')->get();
         return view('admin.user.edit',['user'=>$user, 'permission'=>$permission]);
     }
 
@@ -181,6 +181,12 @@ class UserController extends Controller
         $user = User::find($idUser);
         $user->permission_id = $request->permission;
         $user->name = $request->name;
+        if ($request->has('active')) {
+            $user->active = true;
+        }
+        else {
+            $user->active = false;
+        }
         $user->save();
 
         return redirect()->back()->with('thongbao', 'Cập Nhật Thành Công');  

@@ -13,6 +13,11 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-body">
+                            @if (session('thongbao'))
+                                <div class="alert alert-success">
+                                    {{ session('thongbao') }}
+                                </div>
+                            @endif
                             <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-list-subject">
                                 <thead>
                                     <tr>
@@ -24,7 +29,7 @@
                                         <th>Thời gian chỉnh sửa</th>
                                         <th>Ẩn/Hiện</th>
                                         <th>Sửa</th>
-                                        <!-- <th>Xóa</th> -->
+                                        <th>Xóa</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -46,7 +51,7 @@
                                             </label>
                                         </td>
                                         <td><a href="/admin/subject/edit/{{ $sbj->id }}"><i style="font-size: 40px;" class="fa fa-edit"></i></a></td>
-                                       <!--  <td><a onclick="return confirm('Bạn có chắc là muốn xóa không?')" href=""><i style="font-size: 40px;" class="fa fa-trash-o"></i></a></td> -->
+                                        <td><a onclick="return confirm('Bạn có chắc là muốn xóa không?')" href="/admin/subject/delete/{{ $sbj->id }}"><i style="font-size: 40px;" class="fa fa-trash-o"></i></a></td>
                                     </tr>
                                     @endforeach
                                 </tbody>

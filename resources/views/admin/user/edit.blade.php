@@ -41,11 +41,27 @@
                                             <div class="form-group">
                                                 <label>Phân Quyền</label>
                                                 <select class="form-control" name="permission">
-                                                    <option value="{{ $user->permission_id }}">{{ $user->permission->name }}</option>
+                                                    {{-- <option value="{{ $user->permission_id }}">{{ $user->permission->name }}</option> --}}
                                                     @foreach($permission as $pr)
-                                                    <option value="{{ $pr->id }}">{{ $pr->name }}</option>
+                                                    <option value="{{ $pr->id }}" 
+                                                        @if ($pr->id == $user->permission_id)
+                                                            {{ "selected" }}
+                                                        @endif
+                                                    >{{ $pr->name }}</option>
                                                     @endforeach
                                                 </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Ẩn/Hiện</label>
+                                                <br>
+                                                <label class="switch">
+                                                    <input type="checkbox" name="active"
+                                                        @if ($user->active)
+                                                            {{ "checked" }}
+                                                        @endif
+                                                    >
+                                                    <span class="slider round"></span>
+                                                </label>
                                             </div>
 
                                             <!-- <div class="form-group">
@@ -55,7 +71,7 @@
                                             </div> -->
                                         
                                             <button type="submit" class="btn btn-primary">Cập nhật người dùng</button>
-                                            <a href="change_password.html">
+                                            <a href="#">
                                                 <button type="button" class="btn btn-success">Reset Password</button>
                                             </a>
                                         </div>
@@ -82,16 +98,16 @@
 	<!-- Toggle Switch Checkbox   -->
     <link rel="stylesheet" type="text/css" href="admin_asset/css/toggle_switch.css">
     <!-- Bootstrap Tags Input -->
-    <link rel="stylesheet" type="text/css" href="admin_asset/bootstrap-tagsinput/bootstrap-tagsinput.css">
+    {{-- <link rel="stylesheet" type="text/css" href="admin_asset/bootstrap-tagsinput/bootstrap-tagsinput.css"> --}}
 @endsection
 
 @section('script')
 	<!-- Toggle Switch Checkbox -->
     <script src="admin_asset/js/toggle_switch.js"></script>
     <!-- CKEditor -->
-    <script src="admin_asset/ckeditor/ckeditor.js"></script>
-        <!-- Bootstrap Tags Input -->
-    <script src="admin_asset/bootstrap-tagsinput/bootstrap-tagsinput.min.js"></script>
+    {{-- <script src="admin_asset/ckeditor/ckeditor.js"></script> --}}
+    <!-- Bootstrap Tags Input -->
+    {{-- <script src="admin_asset/bootstrap-tagsinput/bootstrap-tagsinput.min.js"></script>
     <script type="text/javascript" src="admin_asset/bootstrap-tagsinput/custom-bootstrap-tagsinput.js"></script>
     <script type="text/javascript" src="admin_asset/js/typeahead.bundle.js"></script>
     <script type="text/javascript">
@@ -135,5 +151,5 @@
     elt.tagsinput('add', { "id": 1 , "name": "PHP" });
     elt.tagsinput('add', { "id": 4 , "name": "Android" });
     elt.tagsinput('add', { "id": 7 , "name": "Python" });
-    </script>
+    </script> --}}
 @endsection

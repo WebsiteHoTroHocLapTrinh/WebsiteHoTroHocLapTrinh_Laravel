@@ -118,16 +118,16 @@
 	<!-- Toggle Switch Checkbox   -->
     <link rel="stylesheet" type="text/css" href="admin_asset/css/toggle_switch.css">
     <!-- Bootstrap Tags Input -->
-    <link rel="stylesheet" type="text/css" href="admin_asset/bootstrap-tagsinput/bootstrap-tagsinput.css">
+    {{-- <link rel="stylesheet" type="text/css" href="admin_asset/bootstrap-tagsinput/bootstrap-tagsinput.css"> --}}
 @endsection
 
 @section('script')
     <!-- Toggle Switch Checkbox -->
     <script src="admin_asset/js/toggle_switch.js"></script>
     <!-- CKEditor -->
-    <script src="admin_asset/ckeditor/ckeditor.js"></script>
+    {{-- <script src="admin_asset/ckeditor/ckeditor.js"></script> --}}
     <!-- Bootstrap Tags Input -->
-    <script src="admin_asset/bootstrap-tagsinput/bootstrap-tagsinput.min.js"></script>
+    {{-- <script src="admin_asset/bootstrap-tagsinput/bootstrap-tagsinput.min.js"></script>
     <script type="text/javascript" src="admin_asset/bootstrap-tagsinput/custom-bootstrap-tagsinput.js"></script>
     <script type="text/javascript" src="admin_asset/js/typeahead.bundle.js"></script>
     <script type="text/javascript">
@@ -168,5 +168,5 @@
             source: tags.ttAdapter()
         }
     });
-    </script>
+    </script> --}}
 @endsection

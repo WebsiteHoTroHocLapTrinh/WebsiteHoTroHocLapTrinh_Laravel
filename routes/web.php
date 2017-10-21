@@ -25,9 +25,6 @@ route::get('create-question',function(){
 route::get('note-create-question',function(){
 	return view('question.note_create_question');
 });
-route::get('congratulation',function(){
-	return view('congratulation');
-})->middleware('login');
 route::get('list-documentation',function(){
 	return view('documentation.list_documentation');
 });
@@ -85,7 +82,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function() {
         Route::get('list','DocumentationController@getList');
         Route::get('edit/{idDocument}', 'DocumentationController@getEdit');
         Route::post('edit/{idDocument}', 'DocumentationController@postEdit');
-        Route::get('delete/{idDocument}', 'DocumentationController@DeleteDocument');
+        Route::get('delete/{idDocument}', 'DocumentationController@getDelete');
         Route::get('add','DocumentationController@getAdd');
         Route::post('add','DocumentationController@postAdd');
         
@@ -97,9 +94,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function() {
         Route::get('edit/{idSubject}','SubjectController@getEdit');
         Route::post('edit/{idSubject}','SubjectController@postEdit');
         Route::post('add','SubjectController@postAdd');
-        Route::get('add', function() {
-            return view('admin.subject.add');
-        });
+        Route::get('add', 'SubjectController@getAdd');
+        Route::get('delete/{idSubject}', 'SubjectController@getDelete');
     });
 
 
@@ -155,6 +151,9 @@ Route::post('login', 'UserController@postLogin');
 Route::get('register', 'UserController@getRegister')->middleware('login');
 Route::post('register', 'UserController@postRegister');
 Route::get('logout', 'UserController@getLogout');
+route::get('Congratulation',function(){
+    return view('congratulation');
+});
 
 //Group Questions
 Route::group(['prefix' => 'question'], function() {

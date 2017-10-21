@@ -51,7 +51,7 @@ class DocumentationController extends Controller
         return view('admin.documentation.list',['list'=>$List]);
     }
 
-    public function DeleteDocument($idDocument){
+    public function getDelete($idDocument){
         $document = Documentation::find($idDocument);
         $comments = $document->comments;
         //
@@ -76,7 +76,7 @@ class DocumentationController extends Controller
     public function getEdit($idDocument){
         $document= Documentation::find($idDocument);
         $id = $document->subject_id;
-        $subjects = Subject::where('id','!=',$id)->get();
+        $subjects = Subject::where('active','1')->get();
         $tags = Tag::where('active',1)->get();
         return view('admin.documentation.edit',['document'=>$document,'subjects'=>$subjects, 'tags'=>$tags]);
     }
