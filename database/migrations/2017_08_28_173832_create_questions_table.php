@@ -21,8 +21,8 @@ class CreateQuestionsTable extends Migration
             $table->text('content');
             $table->integer('point_rating')->default('0');
             $table->integer('view')->default('0');
+            $table->boolean('is_new')->default(true);
             $table->boolean('active')->default(true);
-            $table->boolean('checked')->default(false);
             $table->timestamps();
 
         });

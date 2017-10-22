@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
+use Validator;
+use DateTime;
 use App\Permission;
 use App\User;
 use App\Tag;
@@ -12,24 +15,14 @@ use App\Taggable;
 use App\Documentation;
 use App\Comment;
 use App\Subject;
-use App\TagUser;
+use App\Activity;
+use App\Ping;
+use App\Vote;
 use App\PasswordReset;
-use Validator;
-use DateTime;
-use Auth;
 
 class SubjectController extends Controller
 {
-    /*public function documentations($subject_id) {
-    	$documentations = Subject::find($subject_id)->documentations;
-    	return $documentations;
-    }
-        public function user_created($subject_id) {
-    	$user_created = Subject::find($subject_id)->user_created;
-    	return $user_created;
-    }*/
-
-    //admin
+    // Admin
     public function getList(){
     	$subjects= Subject::all();
     	return view('admin.subject.list',['subjects'=>$subjects]);
@@ -68,6 +61,14 @@ class SubjectController extends Controller
         }
         $subject->updated_at = new DateTime();
         $subject->save();
+
+        //Create Activity
+        $activity = new Activity;
+        $activity->user_id = Auth::user()->id;
+        $activity->content = 'Cập nhật chủ đề <a href="/admin/subject/edit/'.$subject->id.'" target="_blank">'.$subject->name.'</a>';
+        $activity->type = 1;
+        $activity->save();
+
         return redirect()->back()->with('thongbao', 'Cập Nhật Thành Công');  
     }
 
@@ -104,6 +105,14 @@ class SubjectController extends Controller
         $subject->created_at = new DateTime();
         $subject->updated_at = new DateTime();
         $subject->save();
+
+        //Create Activity
+        $activity = new Activity;
+        $activity->user_id = Auth::user()->id;
+        $activity->content = 'Thêm chủ đề mới <a href="/admin/subject/edit/'.$subject->id.'" target="_blank">'.$subject->name.'</a>';
+        $activity->type = 1;
+        $activity->save();
+
         return redirect()->back()->with('thongbao', 'Thêm Thành Công');  
     }
 
@@ -132,6 +141,13 @@ class SubjectController extends Controller
         }
 
         $subject->delete();
+
+        //Create Activity
+        $activity = new Activity;
+        $activity->user_id = Auth::user()->id;
+        $activity->content = 'Xóa chủ đề <a href="/admin" target="_blank">'.$subject->name.'</a>';
+        $activity->type = 1;
+        $activity->save();
         
         return redirect()->back()->with('thongbao', 'Xóa Thành Công');
     }

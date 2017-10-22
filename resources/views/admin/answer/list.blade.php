@@ -40,7 +40,13 @@
                                 <tbody>
                                     @foreach ($answers as $ans)
                                         <tr>
-                                            <td>{{ $ans->id }}</td>
+                                            <td>
+                                                <div class="id">{{ $ans->id }}</div>
+                                                
+                                            @if ($ans->is_new)
+                                                {!! '<p style="padding-top: 10px;"><span style="padding: 5px;" class="label label-success">Mới</span></p>' !!}
+                                            @endif
+                                            </td>
                                             <td>{!! $ans->content !!}</td>
                                             <td>{{ $ans->point_rating }}</td>
                                             <td>
@@ -130,10 +136,11 @@
     <script src="admin_asset/datatables-responsive/dataTables.responsive.js"></script>
     <!-- Toggle Switch Checkbox   -->
     <script src="admin_asset/js/toggle_switch.js"></script>
-        <script>
+    <script>
         $(document).ready(function() {
             $('#dataTables-list-answer').DataTable({
                 responsive: true,
+                "order": [[ 6, "desc" ]],
                 "language": {
                     "decimal":        "",
                     "emptyTable":     "Không có dữ liệu",
@@ -163,11 +170,11 @@
     </script>
     <script type="text/javascript">
         $(document).ready(function() {
-            $('table#dataTables-list-answer > tbody > tr').click(function() {
+            $(document).on("click", "table#dataTables-list-answer > tbody > tr", function() {
                 $('table#dataTables-list-answer > tbody > tr').removeClass("info");
                 $(this).addClass("info");
-                var idAnswer = $(this).find('td').first().html();
-                // alert(titleQuestion);
+                $(this).children('td').first().children('p').fadeOut('slow');
+                var idAnswer = $(this).find('td').first().children('div.id').html();
                 $.get("ajax/commentsOfAnswer/"+idAnswer, function(data) {           
                     $("table#dataTables-list-comment > tbody").html(data);
                     $("div.panel").has("table#dataTables-list-comment").find("h3 > a").remove();
@@ -177,4 +184,15 @@
             // $('table#dataTables-list-question > tbody > tr').first().click();
         });
     </script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(document).on("click", "table#dataTables-list-comment > tbody > tr", function() {
+                $('table#dataTables-list-comment > tbody > tr').removeClass("info");
+                $(this).addClass("info");
+                $(this).children('td').first().children('p').fadeOut('slow');
+            });
+            // $('table#dataTables-list-question > tbody > tr').first().click();
+        });
+    </script>
+    <script type="text/javascript" src="admin_asset/js/dismiss_new.js"></script>
 @endsection

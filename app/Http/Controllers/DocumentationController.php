@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
+use Validator;
+use DateTime;
 use App\Permission;
 use App\User;
 use App\Tag;
@@ -11,44 +14,19 @@ use App\Answer;
 use App\Taggable;
 use App\Documentation;
 use App\Comment;
-use App\TagUser;
-use App\PasswordReset;
 use App\Subject;
-use Validator;
-use DateTime;
-use Auth;
+use App\Activity;
+use App\Ping;
+use App\Vote;
+use App\PasswordReset;
 
 
 class DocumentationController extends Controller
 {
-    public function user($documentation_id) {
-    	$user = Documentation::find($documentation_id)->user;
-    	return $user;
-    }
-    public function tags($documentation_id) {
-    	$tags = Documentation::find($documentation_id)->tags;
-    	return $tags;
-    }
-    public function comments($documentation_id) {
-    	$comments = Documentation::find($documentation_id)->comments;
-    	return $comments;
-    }
-    public function votes($documentation_id) {
-        $votes = Documentation::find($documentation_id)->votes;
-        return $votes;
-    }
-
-    public function countvotes($documentation_id) {
-        $countvotes_up = Documentation::find($documentation_id)->votes->where('vote_action', 'up')->count();
-        $countvotes_down = Documentation::find($documentation_id)->votes->where('vote_action', 'down')->count();
-        return $countvotes_up - $countvotes_down;
-    }
-
-
     //Admin
     public function getList(){
-        $List = Documentation::all();
-        return view('admin.documentation.list',['list'=>$List]);
+        $documents = Documentation::all();
+        return view('admin.documentation.list',['documents'=>$documents]);
     }
 
     public function getDelete($idDocument){
@@ -70,6 +48,14 @@ class DocumentationController extends Controller
             ])->delete();
         }
         $document->delete();
+
+        //Create Activity
+        $activity = new Activity;
+        $activity->user_id = Auth::user()->id;
+        $activity->content = 'Xóa tài liệu <a href="/admin" target="_blank">'.$document->title.'</a>';
+        $activity->type = 1;
+        $activity->save();
+
         return redirect()->back()->with('thongbao', 'Xóa Thành Công');
     }
 
@@ -136,6 +122,14 @@ class DocumentationController extends Controller
             $taggable->updated_at = new DateTime();
             $taggable->save();
         }
+
+        //Create Activity
+        $activity = new Activity;
+        $activity->user_id = Auth::user()->id;
+        $activity->content = 'Cập nhật tài liệu <a href="/admin/documentation/edit/'.$Document->id.'" target="_blank">'.$Document->title.'</a>';
+        $activity->type = 1;
+        $activity->save();
+
         return redirect()->back()->with('thongbao', 'Cập Nhật Thành Công');  
     }
 
@@ -198,6 +192,13 @@ class DocumentationController extends Controller
             $taggable->updated_at = new DateTime();
             $taggable->save();
         }
+
+        //Create Activity
+        $activity = new Activity;
+        $activity->user_id = Auth::user()->id;
+        $activity->content = 'Thêm tài liệu mới <a href="/admin/documentation/edit/'.$tbDocumentation->id.'" target="_blank">'.$tbDocumentation->title.'</a>';
+        $activity->type = 1;
+        $activity->save();
         
         return redirect()->back()->with('thongbao', 'Thêm Thành Công');
     }

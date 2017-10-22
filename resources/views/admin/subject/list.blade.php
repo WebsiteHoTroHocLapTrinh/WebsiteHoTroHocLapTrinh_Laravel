@@ -35,7 +35,12 @@
                                 <tbody>
                                     @foreach($subjects as $sbj)
                                     <tr>
-                                        <td>{{ $sbj->id }}</td>
+                                        <td>
+                                            <div class="id">{{ $sbj->id }}</div>
+                                            @if ($sbj->is_new)
+                                                {!! '<p style="padding-top: 10px;"><span style="padding: 5px;" class="label label-success">Mới</span></p>' !!}
+                                            @endif
+                                        </td>
                                         <td>{{ $sbj->name }}</td>
                                         <td>{{ $sbj->documentations->count() }}</td>
                                         <td>{{ $sbj->user_created->name }}</td>
@@ -89,6 +94,7 @@
         $(document).ready(function() {
             $('#dataTables-list-subject').DataTable({
                 responsive: true,
+                "order": [[ 5, "desc" ]],
                 "language": {
                     "decimal":        "",
                     "emptyTable":     "Không có dữ liệu",
@@ -116,4 +122,15 @@
             });
         });
     </script>
+        <script type="text/javascript">
+        $(document).ready(function() {
+            $(document).on("click", "table#dataTables-list-subject > tbody > tr", function() {
+                $('table#dataTables-list-subject > tbody > tr').removeClass("info");
+                $(this).addClass("info");
+                $(this).children('td').first().children('p').fadeOut("slow");
+            });
+            // $('table#dataTables-list-question > tbody > tr').first().click();
+        });
+    </script>
+    <script type="text/javascript" src="admin_asset/js/dismiss_new.js"></script>
 @endsection

@@ -14,20 +14,14 @@ use App\Answer;
 use App\Taggable;
 use App\Documentation;
 use App\Comment;
-use App\TagUser;
+use App\Subject;
+use App\Activity;
+use App\Ping;
+use App\Vote;
 use App\PasswordReset;
 
 class PermissionController extends Controller
 {
-    public function users($permission_id) {
-    	$users = Permission::find($permission_id)->users;
-    	return $users;
-    }
-    public function user_created($permission_id) {
-    	$user_created = Permission::find($permission_id)->user_created;
-    	return $user_created;
-    }
-
     // Admin
     public function getList() {
     	$permissions = Permission::all();
@@ -71,6 +65,13 @@ class PermissionController extends Controller
         $permission->updated_at = new DateTime();
         $permission->save();  // Save into database
 
+        //Create Activity
+        $activity = new Activity;
+        $activity->user_id = Auth::user()->id;
+        $activity->content = 'Thêm quyền mới <a href="/admin/permission/edit/'.$permission->id.'" target="_blank">'.$permission->name.'</a>';
+        $activity->type = 1;
+        $activity->save();
+
         return redirect()->back()->with('thongbao', 'Thêm Thành Công');
     }
 
@@ -110,12 +111,26 @@ class PermissionController extends Controller
         $permission->updated_at = new DateTime();
         $permission->save();  // Save into database
 
+        //Create Activity
+        $activity = new Activity;
+        $activity->user_id = Auth::user()->id;
+        $activity->content = 'Cập nhật quyền <a href="/admin/permission/edit/'.$permission->id.'" target="_blank">'.$permission->name.'</a>';
+        $activity->type = 1;
+        $activity->save();
+
         return redirect()->back()->with('thongbao', 'Thêm Thành Công');
     }
 
     public function getDelete($idPermission) {
     	$permission = Permission::find($idPermission);
     	$permission->delete();
+
+        //Create Activity
+        $activity = new Activity;
+        $activity->user_id = Auth::user()->id;
+        $activity->content = 'Xóa quyền <a href="/admin" target="_blank">'.$permission->name.'</a>';
+        $activity->type = 1;
+        $activity->save();
     	
     	return redirect()->back()->with('thongbao', 'Xóa Thành Công');
     }

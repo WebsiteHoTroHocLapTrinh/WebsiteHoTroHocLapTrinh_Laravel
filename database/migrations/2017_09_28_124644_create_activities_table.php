@@ -17,6 +17,8 @@ class CreateActivitiesTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->text('content');
+            $table->boolean('type')->default(0);    //0: user, 1:admin
+            $table->boolean('is_new')->default(true);
             $table->boolean('active')->default(true);
             $table->timestamps();
         });

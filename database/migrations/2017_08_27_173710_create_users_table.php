@@ -25,8 +25,8 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->integer('point_reputation')->default('0');
+            $table->boolean('is_new')->default(true);
             $table->boolean('active')->default(true);
-            $table->boolean('checked')->default(false);
             $table->rememberToken();
             $table->timestamp('last_online')->nullable();;
             $table->timestamps();

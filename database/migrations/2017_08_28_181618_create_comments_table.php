@@ -20,8 +20,8 @@ class CreateCommentsTable extends Migration
             $table->integer('commentable_id')->unsigned();
             $table->string('commentable_type');
             $table->text('content');
+            $table->boolean('is_new')->default(true);
             $table->boolean('active')->default(true);
-            $table->boolean('checked')->default(false);
             $table->timestamps();
         });
     }

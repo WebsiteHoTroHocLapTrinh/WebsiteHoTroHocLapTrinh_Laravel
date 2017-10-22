@@ -36,28 +36,33 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($list as $list)
+                                    @foreach($documents as $doc)
                                     <tr>
-                                        <td>{{ $list->id }}</td>
-                                        <td><a href="" target="_blank">{{ $list->title }}</a></td>
-                                        <td>{{ $list->subjects->name }}</td>
-                                        <td><a href="https://www.{{ $list->link }}/" target="_blank">{{ $list->link }}</a></td>
-                                        <td>{{ $list->point_rating }}</td>
-                                        <td>{{ $list->view }}</td>
-                                        <td>{{ $list->user->name }}</td>
-                                        <td>{{ $list->created_at }}</td>
-                                        <td>{{ $list->updated_at }}</td>
+                                        <td>
+                                            <div class="id">{{ $doc->id }}</div>
+                                            @if ($doc->is_new)
+                                                {!! '<p style="padding-top: 10px;"><span style="padding: 5px;" class="label label-success">Mới</span></p>' !!}
+                                            @endif
+                                        </td>
+                                        <td><a href="" target="_blank">{{ $doc->title }}</a></td>
+                                        <td>{{ $doc->subjects->name }}</td>
+                                        <td><a href="https://www.{{ $doc->link }}/" target="_blank">{{ $doc->link }}</a></td>
+                                        <td>{{ $doc->point_rating }}</td>
+                                        <td>{{ $doc->view }}</td>
+                                        <td>{{ $doc->user->name }}</td>
+                                        <td>{{ $doc->created_at }}</td>
+                                        <td>{{ $doc->updated_at }}</td>
                                         <td>
                                             <label class="switch">
                                                 <input type="checkbox" 
-                                                @if ($list->active)
+                                                @if ($doc->active)
                                                     {{ "checked" }}
                                                 @endif>
                                                 <span class="slider round"></span>
                                             </label>
                                         </td>
-                                        <td><a href="/admin/documentation/edit/{{ $list->id }}"><i style="font-size: 40px;" class="fa fa-edit"></i></a></td>
-                                        <td><a onclick="return confirm('Bạn có chắc là muốn xóa không?')" href="/admin/documentation/delete/{{ $list->id }}"><i style="font-size: 40px;" class="fa fa-trash-o"></i></a></td>
+                                        <td><a href="/admin/documentation/edit/{{ $doc->id }}"><i style="font-size: 40px;" class="fa fa-edit"></i></a></td>
+                                        <td><a onclick="return confirm('Bạn có chắc là muốn xóa không?')" href="/admin/documentation/delete/{{ $doc->id }}"><i style="font-size: 40px;" class="fa fa-trash-o"></i></a></td>
                                     </tr>
                                     @endforeach
                                 </tbody>
@@ -127,6 +132,7 @@
         $(document).ready(function() {
             $('#dataTables-list-documentation').DataTable({
                 responsive: true,
+                "order": [[ 8, "desc" ]],
                 "language": {
                     "decimal":        "",
                     "emptyTable":     "Không có dữ liệu",
@@ -156,10 +162,11 @@
     </script>
     <script type="text/javascript">
         $(document).ready(function() {
-            $('table#dataTables-list-documentation > tbody > tr').click(function() {
+            $(document).on("click", "table#dataTables-list-documentation > tbody > tr", function() {
                 $('table#dataTables-list-documentation > tbody > tr').removeClass("info");
                 $(this).addClass("info");
-                var idDocument = $(this).find('td').first().html();
+                $(this).children('td').first().children('p').fadeOut('slow');
+                var idDocument = $(this).find('td').first().children('div.id').html();
                 var titleDocument = $(this).find('td:nth-child(2)').html();
                 $.get("ajax/commentsOfDocument/"+idDocument, function(data) {           
                     $("table#dataTables-list-comment > tbody").html(data);
@@ -169,4 +176,15 @@
             });
         });
     </script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(document).on("click", "table#dataTables-list-comment > tbody > tr", function() {
+                $('table#dataTables-list-comment > tbody > tr').removeClass("info");
+                $(this).addClass("info");
+                $(this).children('td').first().children('p').fadeOut('slow');
+            });
+            // $('table#dataTables-list-question > tbody > tr').first().click();
+        });
+    </script>
+    <script type="text/javascript" src="admin_asset/js/dismiss_new.js"></script>
 @endsection

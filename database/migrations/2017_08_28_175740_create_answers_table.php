@@ -20,8 +20,8 @@ class CreateAnswersTable extends Migration
             $table->text('content');
             $table->integer('point_rating')->default('0');
             $table->boolean('best_answer')->default(false);
+            $table->boolean('is_new')->default(true);
             $table->boolean('active')->default(true);
-            $table->boolean('checked')->default(false);
             $table->timestamps();
         });
     }

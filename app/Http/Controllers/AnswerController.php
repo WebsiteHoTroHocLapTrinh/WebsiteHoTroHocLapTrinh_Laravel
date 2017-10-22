@@ -14,34 +14,14 @@ use App\Answer;
 use App\Taggable;
 use App\Documentation;
 use App\Comment;
-use App\TagUser;
+use App\Subject;
+use App\Activity;
+use App\Ping;
+use App\Vote;
 use App\PasswordReset;
 
 class AnswerController extends Controller
 {
-    public function user($answer_id) {
-    	$user = Answer::find($answer_id)->user;
-    	return $user;
-    }
-    public function question($answer_id) {
-        $question = Answer::find($answer_id)->question;
-        return $question;
-    }
-    public function comments($answer_id) {
-    	$comments = Answer::find($answer_id)->comments;
-    	return $comments;
-    }
-    public function votes($answer_id) {
-    	$votes = Answer::find($answer_id)->votes;
-    	return $votes;
-    }
-
-    public function countvotes($answer_id) {
-        $countvotes_up = Answer::find($answer_id)->votes->where('vote_action', 'up')->count();
-        $countvotes_down = Answer::find($answer_id)->votes->where('vote_action', 'down')->count();
-        return $countvotes_up - $countvotes_down;
-    }
-
     // Admin
     public function getList($idQuestion) {
         $question = Question::find($idQuestion);
@@ -85,6 +65,13 @@ class AnswerController extends Controller
         $answer->updated_at = new DateTime();
         $answer->save();  // Save into database
 
+        //Create Activity
+        $activity = new Activity;
+        $activity->user_id = Auth::user()->id;
+        $activity->content = 'Thêm câu trả lời <a href="/admin/question/edit/'.$answer->id.'" target="_blank">ID: '.$answer->id.'</a>';
+        $activity->type = 1;
+        $activity->save();
+
         return redirect()->back()->with('thongbao', 'Thêm Thành Công');
     }
 
@@ -121,6 +108,13 @@ class AnswerController extends Controller
         $answer->updated_at = new DateTime();
         $answer->save();  // Save into database
 
+        //Create Activity
+        $activity = new Activity;
+        $activity->user_id = Auth::user()->id;
+        $activity->content = 'Cập nhật câu trả lời <a href="/admin/question/edit/'.$answer->id.'" target="_blank">ID: '.$answer->id.'</a>';
+        $activity->type = 1;
+        $activity->save();
+
         return redirect()->back()->with('thongbao', 'Cập Nhật Thành Công');
     }
 
@@ -136,6 +130,13 @@ class AnswerController extends Controller
         }
 
         $answer->delete(); // Delete answer
+
+        //Create Activity
+        $activity = new Activity;
+        $activity->user_id = Auth::user()->id;
+        $activity->content = 'Xóa câu trả lời <a href="/admin" target="_blank">ID: '.$answer->id.'</a>';
+        $activity->type = 1;
+        $activity->save();
 
         return redirect()->back()->with('thongbao', 'Xóa Thành Công');
     }

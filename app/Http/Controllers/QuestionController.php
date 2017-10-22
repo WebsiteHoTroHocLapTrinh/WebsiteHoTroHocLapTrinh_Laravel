@@ -14,41 +14,14 @@ use App\Answer;
 use App\Taggable;
 use App\Documentation;
 use App\Comment;
-use App\UserFavoriteTag;
-use App\PasswordReset;
+use App\Subject;
 use App\Activity;
 use App\Ping;
-use App\Subject;
 use App\Vote;
+use App\PasswordReset;
 
 class QuestionController extends Controller
 {
-    public function user($user_id) {
-    	$user = User::find($user_id);
-    	return view('user.user_information',['user'=>$user]);
-    }
-    public function tags($question_id) {
-    	$tags = Question::find($question_id)->tags;
-    	return $tags;
-    }
-    public function answers($question_id) {
-        $answers = Question::find($question_id)->answers;
-        return $answers;
-    }
-    public function comments($question_id) {
-    	$comments = Question::find($question_id)->comments;
-    	return $comments;
-    }
-    public function votes($question_id) {
-        $votes = Question::find($question_id)->votes;
-        return $votes;
-    }
-    public function countvotes($question_id) {
-        $countvotes_up = Question::find($question_id)->votes->where('vote_action', 'up')->count();
-        $countvotes_down = Question::find($question_id)->votes->where('vote_action', 'down')->count();
-        return $countvotes_up - $countvotes_down;
-    }
-
     // Admin
     public function getList() {
         $questions = Question::all();
@@ -110,6 +83,13 @@ class QuestionController extends Controller
             $taggable->updated_at = new DateTime();
             $taggable->save();   // Save into database
         }
+
+        //Create Activity
+        $activity = new Activity;
+        $activity->user_id = Auth::user()->id;
+        $activity->content = 'Thêm câu hỏi mới <a href="/admin/question/edit/'.$question->id.'" target="_blank">'.$question->title.'</a>';
+        $activity->type = 1;
+        $activity->save();
 
         return redirect()->back()->with('thongbao', 'Thêm Thành Công');
     }
@@ -173,6 +153,13 @@ class QuestionController extends Controller
             $taggable->save();   // Save into database
         }
 
+        //Create Activity
+        $activity = new Activity;
+        $activity->user_id = Auth::user()->id;
+        $activity->content = 'Cập nhật câu hỏi <a href="/admin/question/edit/'.$question->id.'" target="_blank">'.$question->title.'</a>';
+        $activity->type = 1;
+        $activity->save();
+
         return redirect()->back()->with('thongbao', 'Cập Nhật Thành Công');
     }
 
@@ -211,9 +198,15 @@ class QuestionController extends Controller
 
         $question->delete(); // Delete question
 
+        //Create Activity
+        $activity = new Activity;
+        $activity->user_id = Auth::user()->id;
+        $activity->content = 'Xóa câu hỏi <a href="/admin" target="_blank">'.$question->title.'</a>';
+        $activity->type = 1;
+        $activity->save();
+
         return redirect()->back()->with('thongbao', 'Xóa Thành Công');
     }
-
 
 
     //List Question

@@ -18,8 +18,8 @@ class CreateTagsTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->string('name');
             $table->string('description');
+            $table->boolean('is_new')->default(true);
             $table->boolean('active')->default(true);
-            $table->boolean('checked')->default(false);
             $table->timestamps();
         });
     }

@@ -15,28 +15,13 @@ use App\Taggable;
 use App\Documentation;
 use App\Comment;
 use App\Subject;
-use App\TagUser;
+use App\Activity;
+use App\Ping;
+use App\Vote;
 use App\PasswordReset;
 
 class TagController extends Controller
 {
-    public function questions($tag_id) {
-    	$questions = Tag::find($tag_id)->questions;
-    	return $questions;
-    }
-    public function documentations($tag_id) {
-    	$documentations = Tag::find($tag_id)->documentations;
-    	return $documentations;
-    }
-    public function users($tag_id) {
-    	$users = Tag::find($tag_id)->users;
-    	return $users;
-    }
-    public function user_created($tag_id) {
-        $user_created = Tag::find($tag_id)->user_created;
-        return $user_created;
-    }
-
     // Admin
     public function getList() {
         $tags = Tag::all();
@@ -80,6 +65,13 @@ class TagController extends Controller
         $tag->updated_at = new DateTime();
         $tag->save();  // Save into database
 
+        //Create Activity
+        $activity = new Activity;
+        $activity->user_id = Auth::user()->id;
+        $activity->content = 'Thêm thẻ mới <a href="/admin/tag/edit/'.$tag->id.'" target="_blank">'.$tag->name.'</a>';
+        $activity->type = 1;
+        $activity->save();
+
         return redirect()->back()->with('thongbao', 'Thêm Thành Công');
     }
 
@@ -119,6 +111,13 @@ class TagController extends Controller
         $tag->updated_at = new DateTime();
         $tag->save();  // Save into database
 
+        //Create Activity
+        $activity = new Activity;
+        $activity->user_id = Auth::user()->id;
+        $activity->content = 'Cập nhật thẻ <a href="/admin/tag/edit/'.$tag->id.'" target="_blank">'.$tag->name.'</a>';
+        $activity->type = 1;
+        $activity->save();
+
         return redirect()->back()->with('thongbao', 'Cập Nhật Thành Công');
     }
 
@@ -148,6 +147,13 @@ class TagController extends Controller
         }
 
         $tag->delete(); // Delete tag
+
+        //Create Activity
+        $activity = new Activity;
+        $activity->user_id = Auth::user()->id;
+        $activity->content = 'Xóa thẻ <a href="/admin" target="_blank">'.$tag->name.'</a>';
+        $activity->type = 1;
+        $activity->save();
 
         return redirect()->back()->with('thongbao', 'Xóa Thành Công');
     }

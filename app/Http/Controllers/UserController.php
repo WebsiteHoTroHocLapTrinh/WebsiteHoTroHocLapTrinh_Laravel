@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
 use Validator;
 use DateTime;
-use Auth;
 use App\Permission;
 use App\User;
 use App\Tag;
@@ -14,52 +14,15 @@ use App\Answer;
 use App\Taggable;
 use App\Documentation;
 use App\Comment;
-use App\TagUser;
+use App\Subject;
+use App\Activity;
+use App\Ping;
+use App\Vote;
 use App\PasswordReset;
 
 class UserController extends Controller
 {
-    public function permission($user_id) {
-    	$permission = User::find($user_id)->permission;
-    	return $permission;
-    }
-    public function questions($user_id) {
-    	$questions = User::find($user_id)->questions;
-    	return $questions;
-    }
-    public function answers($user_id) {
-    	$answers = User::find($user_id)->answers;
-    	return $answers;
-    }
-    public function documentations($user_id) {
-    	$documentations = User::find($user_id)->documentations;
-    	return $documentations;
-    }
-    public function comments($user_id) {
-    	$comments = User::find($user_id)->comments;
-    	return $comments;
-    }
-    public function tags($user_id) {
-    	$tags = User::find($user_id)->tags;
-    	return $tags;
-    }
-    public function votes($user_id) {
-        $votes = User::find($user_id)->votes;
-        return $votes;
-    }
-    public function permission_created($user_id) {
-        $permission_created = User::find($user_id)->permission_created;
-        return $permission_created;
-    }
-    public function subject_created($user_id) {
-        $subject_created = User::find($user_id)->subject_created;
-        return $subject_created;
-    }
-    public function tag_created($user_id) {
-        $tag_created = User::find($user_id)->tag_created;
-        return $tag_created;
-    }
-
+    // Auth
     public function getLogin() {
         return view('user.login');
     }
@@ -83,7 +46,7 @@ class UserController extends Controller
                         ->withErrors($validator)
                         ->withInput();
         }
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password, 'active' => true])) {
              return redirect('congratulation')->with('thongbao', 
             '<h1>Đăng Nhập Thành Công !!!</h1>
             <br>
@@ -141,7 +104,7 @@ class UserController extends Controller
         $user->updated_at = new DateTime();
         $user->save();
 
-        Auth::attempt(['email' => $request->email, 'password' => $request->password]);
+        Auth::attempt(['email' => $request->email, 'password' => $request->password, 'active' => true]);
 
         return redirect('congratulation')->with('thongbao', 
             '<h1>Đăng Ký Thành Công !!!</h1>
@@ -150,6 +113,7 @@ class UserController extends Controller
             <br>');
     }
 
+    // Admin
     public function getList(){
         $Users = User::all();
         return view('admin.user.list',['users'=>$Users]);
@@ -188,6 +152,13 @@ class UserController extends Controller
             $user->active = false;
         }
         $user->save();
+
+        //Create Activity
+        $activity = new Activity;
+        $activity->user_id = Auth::user()->id;
+        $activity->content = 'Cập nhật người dùng <a href="/admin/user/edit/'.$user->id.'" target="_blank">'.$user->name.'</a>';
+        $activity->type = 1;
+        $activity->save();
 
         return redirect()->back()->with('thongbao', 'Cập Nhật Thành Công');  
     }
@@ -236,6 +207,13 @@ class UserController extends Controller
         else
             $user->active=false;
         $user->save();
+
+        //Create Activity
+        $activity = new Activity;
+        $activity->user_id = Auth::user()->id;
+        $activity->content = 'Thêm người dùng mới <a href="/admin/user/edit/'.$user->id.'" target="_blank">'.$user->name.'</a>';
+        $activity->type = 1;
+        $activity->save();
 
          return redirect()->back()->with('thongbao', 'Thêm user Thành Công');
     }

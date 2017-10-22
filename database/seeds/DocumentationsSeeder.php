@@ -21,6 +21,7 @@ class DocumentationsSeeder extends Seeder
 	        		'title_url' => 'Documentation-'.$i.'-la-gi',
 	        		'content' => 'Nội Dung Documentation '.$i.' là gì',
 	        		'link' => 'google.com',
+                    'active' => true,
 	            	'created_at' => new DateTime(),
                     'updated_at' => new DateTime()
 	        	]

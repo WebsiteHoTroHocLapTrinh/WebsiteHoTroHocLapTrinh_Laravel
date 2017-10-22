@@ -17,6 +17,7 @@ class CreatePingsTable extends Migration
             $table->increments('id');
             $table->integer('comment_id')->unsigned();
             $table->integer('user_id')->unsigned();
+            $table->boolean('active')->default(true);
             $table->timestamps();
         });
     }

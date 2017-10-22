@@ -1,5 +1,5 @@
 $(function() {
-    $(document).on("change", '.switch > input[type="checkbox"]', function() {
+    $(document).on("click", 'table > tbody > tr', function() {
        /* if (this.checked) {
             $(this).attr('checked', 'checked');
         } else {
@@ -34,17 +34,12 @@ $(function() {
                 var type = 8;
                 break;
             default:
+                var type = 9;
                 break;
         }
         // alert(type);
-        //var attr = $(this).attr('checked');
-        if (this.checked) {
-            var value = 1;
-        } else {
-            var value = 0;
-        }
 
-        $.get("ajax/changeActive/" + type + "/" + id + "/" + value, function() {
+        $.get("ajax/dismissNew/" + type + "/" + id, function() {
 
         });
     });

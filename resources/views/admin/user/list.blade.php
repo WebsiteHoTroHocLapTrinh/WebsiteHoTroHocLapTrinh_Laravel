@@ -34,10 +34,15 @@
                                 <tbody>
                                     @foreach($users as $user)
                                     <tr>
-                                        <td>{{ $user->id }}</td>
+                                        <td>
+                                            <div class="id">{{ $user->id }}</div>
+                                            @if ($user->is_new)
+                                                {!! '<p style="padding-top: 10px;"><span style="padding: 5px;" class="label label-success">Mới</span></p>' !!}
+                                            @endif
+                                        </td>
                                         <td>
                                             <div class="intro">
-                                                <img src="admin_asset/k17.jpg" class="img-circle intro-img" width="80">
+                                                <img src="image/{{ $user->avatar }}" class="img-circle intro-img" width="80">
                                                 <p class="intro-name"><strong>{{ $user->name }}</strong></p>
                                                 <p class="intro-about">{{ $user->about }}</p>
                                             </div>
@@ -99,6 +104,7 @@
         $(document).ready(function() {
             $('#dataTables-list-user').DataTable({
                 responsive: true,
+                "order": [[ 9, "desc" ]],
                 "language": {
                     "decimal":        "",
                     "emptyTable":     "Không có dữ liệu",
@@ -126,4 +132,15 @@
             });
         });
     </script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(document).on("click", "table#dataTables-list-user > tbody > tr", function() {
+                $('table#dataTables-list-user > tbody > tr').removeClass("info");
+                $(this).addClass("info");
+                $(this).children('td').first().children('p').fadeOut("slow");
+            });
+            // $('table#dataTables-list-question > tbody > tr').first().click();
+        });
+    </script>
+    <script type="text/javascript" src="admin_asset/js/dismiss_new.js"></script>
 @endsection

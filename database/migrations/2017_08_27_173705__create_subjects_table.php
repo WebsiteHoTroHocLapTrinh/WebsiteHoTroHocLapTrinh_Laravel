@@ -17,6 +17,7 @@ class CreateSubjectsTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->string('name');
+            $table->boolean('is_new')->default(true);
             $table->boolean('active')->default(true);
             $table->timestamps();
         });

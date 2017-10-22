@@ -23,8 +23,8 @@ class CreateDocumentationsTable extends Migration
             $table->string('link');
             $table->integer('point_rating')->default('0');
             $table->integer('view')->default('0');
+            $table->boolean('is_new')->default(true);
             $table->boolean('active')->default(false);
-            $table->boolean('checked')->default(false);
             $table->timestamps();
         });
     }
