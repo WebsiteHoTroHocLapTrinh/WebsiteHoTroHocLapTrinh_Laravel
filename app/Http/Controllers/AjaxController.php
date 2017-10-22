@@ -191,4 +191,86 @@ class AjaxController extends Controller
 		}
 		
 	}
+
+	public function getTabQuestion($tab_id){
+		//get data
+		$ListQuestion = Question::where('active',1)->get();
+		$SortByAnswer = Question::with('answers')->where('active',1)->get()->sortByDesc(function($SortByAnswer)
+        {
+            return $SortByAnswer->answers->where('active',1)->count();
+        });
+
+		//Sort
+		if($tab_id == 1)
+			$list = $ListQuestion->sortByDesc('id');
+		if($tab_id == 2)
+			$list = $ListQuestion->sortByDesc('view');
+		if($tab_id == 3)
+			$list = $SortByAnswer;
+		if($tab_id == 4)
+			$list = $ListQuestion->sortByDesc('point_rating');
+		
+		///
+		foreach($list as $lt){
+			//time
+			$date1 = $lt->created_at;
+	        $date2 = \Carbon\Carbon::now();
+	        $interval = $date1->diff($date2);
+	        if($interval->y!=0) 
+	            $time= $interval->y . " năm trước"; 
+	        elseif ($interval->m!=0)
+	            $time= $interval->m . " tháng trước";
+	        elseif ($interval->d!=0)
+	            $time= $interval->d . " ngày trước";
+	        elseif($interval->h!=0)
+	            $time= $interval->h . " giờ trước";
+	        elseif($interval->i!=0)
+	            $time= $interval->i . " phút trước";
+	        else
+	            $time=" just now";
+
+	        echo '
+			<div class="question-summary">
+                <div class="row">
+                    <div class="statistic col-lg-4">
+                        <div class="count-views">
+                            <span>'.$lt->view.'</span>
+                            <div>lượt xem</div>
+                        </div>
+                        <div class="count-answers answered">
+                            <span>'.count($lt->answers->where('active',1)).'</span>
+                            <div>câu trả lời</div>
+                        </div>
+                        <div class="count-votes">
+                            <span>'.$lt->point_rating.'</span>
+                            <div>bình chọn</div>
+                        </div>
+                    </div>
+                    <div class="summary col-lg-8">
+                        <div class="summary-title">
+                            <div class="summary-title">
+                                <h6><a href="question/detail/qs_'.$lt->id.'">'.$lt->title.'</a></h6>
+                            </div>
+                        </div>
+                        <div class="row">
+                         <div class="list-tag col-lg-8">';
+                            foreach($lt->tags as $tag_new){
+                            echo '<p class="tag">'.$tag_new->name.'</p>';
+                        	}
+                            
+                        echo'</div>
+                        <div class="started col-lg-4">
+                            <p class="user"><a href="user/info/user_'.$lt->user_id.'">'.$lt->user->name.'</a></p>
+                            <p class="action">đã hỏi</p>
+                            <p class="time">'.$time.'</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+		';
+		
+		}
+		
+	}
 }

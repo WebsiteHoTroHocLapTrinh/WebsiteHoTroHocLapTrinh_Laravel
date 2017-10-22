@@ -157,4 +157,11 @@ class TagController extends Controller
 
         return redirect()->back()->with('thongbao', 'Xóa Thành Công');
     }
+
+
+    //////
+    public function getList_tag(){
+        $tags = Tag::where('active',1)->get();
+        return view('tag.list_tag',['tags'=>$tags]);
+    }
 }

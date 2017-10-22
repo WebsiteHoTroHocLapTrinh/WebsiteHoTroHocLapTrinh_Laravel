@@ -8,31 +8,33 @@
 		<div class="row">
 			<div class="col-lg-3 avatar">
 				<div class="card">
-					<img class="card-img-top" src="image/avata.png" alt="Card image cap">
+					<img class="card-img-top" src="image/{{ $user->avatar }}" alt="Card image cap">
 					<div class="card-body">
-						<h4 class="card-title">Dinh Sa</h4>
+						<h4 class="card-title">{{ $user->name }}</h4>
 						<div class="point">
 							<span class="oi oi-star"></span>
-							<span class="card-text">Point: 3012</span>
+							<span class="card-text">Point: {{ $user->point_reputation }}</span>
 						</div>
 					</div>
 					<ul class="list-group list-group-flush">
 						<li class="list-group-item">
 							<span class="oi oi-map-marker mr-2"></span>
-							<span>HCM</span>
+							<span>{{ $user->location }}</span>
 						</li>
 						<li class="list-group-item">
 							<span class="oi oi-briefcase mr-2"></span>
-							<span>Sinh viên</span>
+							<span>{{ $user->job }}</span>
 						</li>
 						<li class="list-group-item">
 							<span class="oi oi-timer mr-2"></span>
-							<span>1m</span>
+							<span>{{ $last_online }}</span>
 						</li>
 					</ul>
+					@if(Auth::id()== $user->id)
 					<div class="card-body">
 						<a href="#" class="card-link">Edit Profile</a>
 					</div>
+					@endif
 				</div>
 			</div>
 			<div class="col-lg-9">
@@ -40,19 +42,19 @@
 					<div class="heder-about">
 						<div class="name">
 							<span>Hey, I'm</span>
-							<span>Đinh Sa</span>
+							<span>{{ $user->name }}</span>
 						</div>
 						<div class="join float-right">
 							<span>Tham gia vào</span>
-							<span>2016</span>
+							<span>{{ date('d-m-Y', strtotime($user->created_at)) }}</span>
 						</div>
 					</div>
 					<div class="body-about">
 						<div class="title-about">
-							awesome!
+							{{ $user->status }}
 						</div>
 						<div class="about">
-							BY NIGHT: I write code and code rights for penalcoders.example.org, an awesome non-profit that will totally take your money at that link. My kids are cuter than yours. FOR FUN: C+ Jokes, Segway Roller Derby, NYT Sat. Crosswords (in Sharpie!), Ostrich Grooming.
+							{{$user->about}}
 							
 						</div>
 					</div>
@@ -88,47 +90,32 @@
 				<div>
 					<div class="border_active">
 						<a href=""><strong>Câu hỏi</strong></a>
-						<span>(3)</span>
+						<span>({{ count($user->questions) }})</span>
 						<div class="float-right">
 							<a href="" style="font-size: 13px;">View</a>
 						</div>
 					</div>
+					@foreach($user->questions->take(3) as $qs)
 					<div class="user_active">
-						<p class="point">100</p>
-						<p><a href="">How do I remove a Git submodule?</a></p>
+						<p class="point">{{ $qs->point_rating }}</p>
+						<p><a href="">{{ $qs->title }}</a></p>
 					</div>
-					<div class="user_active">
-						<p class="point">100</p>
-						<p><a href="">How do I remove a Git submodule?</a></p>
-					</div>
-					<div class="user_active">
-						<p class="point">100</p>
-						<p><a href="">How do I remove a Git submodule?</a></p>
-					</div>
-					<div class="view_more_user">
-						<a href="">View more →</a>
-					</div>
+					@endforeach
 				</div>
 				<div>
 					<div class="border_active">
 						<a href=""><strong>Trả lời</strong></a>
-						<span>(3)</span>
+						<span>({{ count($user->answers) }})</span>
 						<div class="float-right">
 							<a href="" style="font-size: 13px;">View</a>
 						</div>
 					</div>
+					@foreach($user->answers as $answer)
 					<div class="user_active">
-						<p class="point">100</p>
-						<p><a href="">How do I remove a Git submodule?</a></p>
+						<p class="point">{{ $answer->question->point_rating }}</p>
+						<p><a href="">{{ $answer->question->title }}</a></p>
 					</div>
-					<div class="user_active">
-						<p class="point">100</p>
-						<p><a href="">How do I remove a Git submodule?</a></p>
-					</div>
-					<div class="user_active">
-						<p class="point">100</p>
-						<p><a href="">How do I remove a Git submodule?</a></p>
-					</div>
+					@endforeach
 					<div class="view_more_user">
 						<a href="">View more →</a>
 					</div>
@@ -138,7 +125,7 @@
 				<div>
 					<div class="border_active">
 						<a href=""><strong>Reputation</strong></a>
-						<span>(3012)</span>
+						<span>({{ $user->point_reputation }})</span>
 						<div class="float-right">
 							<a href="" style="font-size: 13px;">View</a>
 						</div>
@@ -183,19 +170,19 @@
 					</div>
 				</div>
 			</div>
-        </div>
-    </div>
-    <!--end active-->
+		</div>
+	</div>
+	<!--end active-->
 </div>
 <!--end body-->
 @endsection
 
 @section('title')
-	{{ "Thông Tin Người Dùng" }}
+{{ "Thông Tin Người Dùng" }}
 @endsection
 
 @section('css')
-	{{-- expr --}}
+{{-- expr --}}
 @endsection
 
 @section('script')

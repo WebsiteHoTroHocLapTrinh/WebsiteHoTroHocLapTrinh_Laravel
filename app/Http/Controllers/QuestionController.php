@@ -19,6 +19,7 @@ use App\Activity;
 use App\Ping;
 use App\Vote;
 use App\PasswordReset;
+use Illuminate\Support\Facades\DB;
 
 class QuestionController extends Controller
 {
@@ -210,17 +211,26 @@ class QuestionController extends Controller
 
 
     //List Question
-    public function ListQuestion()
-    {
+    public function ListQuestion(){
+        
         $ListQuestion = Question::where('active',1)->get();
-        //$AllAnswer= Answer::where('active',1)->get();
-        $user_rank = User::where('active',1)->get();
-        $SortByAnswer = Question::with('answers')->where('active',1)->get()->sortByDesc(function($SortByAnswer)
-        {
-            return $SortByAnswer->answers->where('active',1)->count();
-        });
-        return view('question.list_question',['list'=>$ListQuestion,'user_rank'=>$user_rank,'SortByAnswer'=>$SortByAnswer]);
+        $top_user = User::where('active',1)->orderBy('point_reputation','desc')->get()->take(10);
+        $top_tag = DB::table('taggables')->join('tags','taggables.tag_id','=','tags.id')->select(DB::raw('count(*) as kount, tags.name'))->groupBy('tags.id')->orderBy('kount', 'desc')->get();
+        
+        return view('question.list_question',['list'=>$ListQuestion,'top_user'=>$top_user,'top_tag'=>$top_tag]);
     }
 
+    public function getDetail($question_id){
+        $question = Question::find($question_id);
+        return view('question.detail_question',['question'=>$question]);
+    }
+
+    public function getCreate(){
+        if(Auth::check()){
+            return view('question.create_question');
+        }
+        return redirect('login');
+
+    }
    
 }

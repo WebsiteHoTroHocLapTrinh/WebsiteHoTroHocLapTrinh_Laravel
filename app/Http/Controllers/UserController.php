@@ -19,6 +19,7 @@ use App\Activity;
 use App\Ping;
 use App\Vote;
 use App\PasswordReset;
+use Carbon\Carbon;
 
 class UserController extends Controller
 {
@@ -216,5 +217,35 @@ class UserController extends Controller
         $activity->save();
 
          return redirect()->back()->with('thongbao', 'Thêm user Thành Công');
+    }
+
+
+    public function getInfo($user_id){
+        $user = User::find($user_id);
+
+
+        if($user->isOnline())
+            $time="Online";
+        else
+        {
+            $date1 = DateTime::createFromFormat('Y-m-d H:i:s', $user->last_online);
+            $date2 = Carbon::now();
+            $interval = $date1->diff($date2);
+            if($interval->y!=0) 
+                $time= $interval->y . " năm trước"; 
+            elseif ($interval->m!=0)
+                $time= $interval->m . " tháng trước";
+            elseif ($interval->d!=0)
+                $time= $interval->d . " ngày trước";
+            elseif($interval->h!=0)
+                $time= $interval->h . " giờ trước";
+            elseif($interval->i!=0)
+                $time= $interval->i . " phút trước";
+            else
+                $time=" mới đăng xuất";
+
+        }
+
+        return view('user.user_information',['user'=>$user, 'last_online'=>$time]);
     }
 }
