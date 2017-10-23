@@ -1130,3 +1130,7 @@ button {
     padding-right: 12px;
     padding-top: 12px; 
 }   
+.dropdown-menu-left{
+    left: auto;
+    right: 0;
+}

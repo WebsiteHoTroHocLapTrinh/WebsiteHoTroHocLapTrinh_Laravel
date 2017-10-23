@@ -14,7 +14,7 @@
 
       <!--cột phải-->
       <div class="col background-center-item">
-       <form action="index_submit" method="get" accept-charset="utf-8">
+       <form action="index_submit" method="get" accept-charset="utf-8" @if(Auth::check()) style="visibility: hidden;" @endif>
         <div class="input-group form-group stylish-input-group1">
           <span class="input-group-addon col-sm-3">Display name</span>
           <input type="text" class="form-control" placeholder="Jonh">
