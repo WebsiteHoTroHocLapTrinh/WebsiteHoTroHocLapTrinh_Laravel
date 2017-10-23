@@ -4,7 +4,10 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Danh sách câu trả lời <a href="admin/question/answer/add/{{ $question->id }}"><button style="margin-left: 20px;" class="btn btn-success "><i class="fa fa-plus fa-fw"></i>    Thêm câu trả lời</button></a></h1>
+                    <h1 class="page-header">Danh sách câu trả lời 
+                        <a href="admin/question/answer/add/{{ $question->id }}"><button style="margin-left: 20px;" class="btn btn-success "><i class="fa fa-plus fa-fw"></i>    Thêm câu trả lời</button></a>
+                        <a href="admin/question/list"><button style="margin-left: 20px;" class="btn btn-primary "><i class="fa fa-list fa-fw"></i>    Về danh sách câu hỏi</button></a>
+                    </h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>

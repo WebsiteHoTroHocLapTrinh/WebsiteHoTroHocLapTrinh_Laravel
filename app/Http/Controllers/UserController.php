@@ -7,6 +7,7 @@ use Auth;
 use Validator;
 use DateTime;
 use Session;
+use Carbon\Carbon;
 use App\Permission;
 use App\User;
 use App\Tag;
@@ -20,14 +21,13 @@ use App\Activity;
 use App\Ping;
 use App\Vote;
 use App\PasswordReset;
-use Carbon\Carbon;
 
 class UserController extends Controller
 {
     // Auth
     public function getLogin() {
-        $previousURL = Session::previousUrl();
-        return view('user.login', ['previousURL' => $previousURL]);
+        Session::put('previousURL', Session::previousUrl());    
+        return view('user.login');
     }
 
     public function postLogin(Request $request) {
@@ -50,13 +50,13 @@ class UserController extends Controller
                         ->withInput();
         }
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password, 'active' => true])) {
-            Auth::user()->last_online = new DateTime();
-            Auth::user()->save();
+            $previousURL = Session::get('previousURL');
+            Session::forget('previousURL');
             return redirect('congratulation')->with('thongbao', 
             '<h1>Đăng Nhập Thành Công !!!</h1>
             <br>
             <h3>Hãy cùng giúp nhau để phát triễn nhé. Thân !!!</h3>
-            <br>')->with('previousURL', $request->previousURL);
+            <br>')->with('previousURL', $previousURL);
         }
         else {
             return redirect()->back()->with('thongbao','Sai tên đăng nhập hoặc mật khẩu');
@@ -71,8 +71,8 @@ class UserController extends Controller
     }
 
     public function getRegister() {
-        $previousURL = Session::previousUrl();
-        return view('user.register', ['previousURL' => $previousURL]);
+        Session::put('previousURL', Session::previousUrl());  
+        return view('user.register');
     }
 
     public function postRegister(Request $request) {
@@ -105,18 +105,24 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
-        $user->last_online = new DateTime();
+        $user->last_activity_time = new DateTime();
         $user->created_at = new DateTime();
         $user->updated_at = new DateTime();
         $user->save();
 
-        Auth::attempt(['email' => $request->email, 'password' => $request->password, 'active' => true]);
-
-        return redirect('congratulation')->with('thongbao', 
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password, 'active' => true])) {
+            $previousURL = Session::get('previousURL');
+            Session::forget('previousURL');
+            return redirect('congratulation')->with('thongbao', 
             '<h1>Đăng Ký Thành Công !!!</h1>
             <br>
             <h3>Hãy cùng giúp nhau để phát triễn nhé. Thân !!!</h3>
-            <br>')->with('previousURL', $request->previousURL);
+            <br>')->with('previousURL', $previousURL);
+        }
+        else {
+            return redirect()->back()->with('thongbao','Đăng ký không thành công');
+        }
+        
     }
 
     // Admin

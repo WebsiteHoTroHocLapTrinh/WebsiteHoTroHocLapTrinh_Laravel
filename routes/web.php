@@ -171,7 +171,7 @@ Route::group(['prefix'=>'user'], function() {
 
 });
 
-
+//Group Authencation
 Route::get('login', 'UserController@getLogin')->middleware('login');
 Route::post('login', 'UserController@postLogin');
 Route::get('register', 'UserController@getRegister')->middleware('login');

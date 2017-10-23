@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 use Validator;
 use DateTime;
+use Carbon\Carbon;
 use App\Permission;
 use App\User;
 use App\Tag;
@@ -25,7 +26,7 @@ class AjaxController extends Controller
 	public function getCommentsOfQuestion($idQuestion) {
 		$question = Question::find($idQuestion);
 		if ($question != null) {
-			$comments = $question->comments;
+			$comments = $question->comments->sortByDesc('created_at');
 			foreach ($comments as $cmt) {
 				echo '
 				<tr>
@@ -51,11 +52,10 @@ class AjaxController extends Controller
 		}
 	}
 
-	public function getCommentsOfDocument($idDocument)
-	{
+	public function getCommentsOfDocument($idDocument) {
 		$document = Documentation::find($idDocument);
 		if ($document != null) {
-			$comments = $document->comments;
+			$comments = $document->comments->sortByDesc('created_at');
 			foreach($comments as $cmt){
 				echo '
 					<tr>
@@ -85,7 +85,7 @@ class AjaxController extends Controller
 	public function getCommentsOfAnswer($idAnswer) {
 		$answer = Answer::find($idAnswer);
 		if ($answer != null) {
-			$comments = $answer->comments;
+			$comments = $answer->comments->sortByDesc('created_at');
 			foreach ($comments as $cmt) {
 				echo '
 				<tr>
@@ -216,7 +216,7 @@ class AjaxController extends Controller
 		foreach($list as $lt){
 			//time
 			$date1 = $lt->created_at;
-	        $date2 = \Carbon\Carbon::now();
+	        $date2 = Carbon::now();
 	        $interval = $date1->diff($date2);
 	        if($interval->y!=0) 
 	            $time= $interval->y . " năm trước"; 

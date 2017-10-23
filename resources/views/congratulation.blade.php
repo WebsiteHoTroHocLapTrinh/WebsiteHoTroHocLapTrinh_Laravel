@@ -4,7 +4,6 @@
 <!-- Content -->
 <div class="content" style="height:100vh;">
 	<div class="container">
-<<<<<<< HEAD
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="main-content">
@@ -13,24 +12,13 @@
 							@if (session('thongbao'))
 				                {!! session('thongbao') !!}
 				            @endif
-				            <p id="count-down" style="text-align: center; font-size: 50px;">5</p>
+				            <p id="count-down" style="text-align: center; font-size: 50px;">3</p>
 				            <div style="text-align: center; font-size: 25px;">
 				            	<a style="margin-right: 20px;" href="{{ session('previousURL') }}">Chuyển tới trang trước</a><a style="margin-left: 20px;" href="/">Chuyển tới trang chủ</a>
 				            </div>
 						</div>	
 					</div>
 				</div>
-=======
-		<div class="main-content">
-			<div class="content-card">
-				<div class="congratulation-content">
-					@if (session('thongbao'))
-		                {!! session('thongbao') !!}
-		            @endif
-		            <p id="count-down" style="text-align: center; font-size: 50px;">3</p>
-					<a href="/"><p>Chuyển tới trang chủ</p></a>
-				</div>	
->>>>>>> origin/master
 			</div>
 		</div>
 	</div>
