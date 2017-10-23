@@ -61,7 +61,7 @@ class UserController extends Controller
     }
 
     public function getLogout() {
-        Auth::user()->last_online = new DateTime();
+        Auth::user()->last_activity_time = new DateTime();
         Auth::logout();
         return redirect('/');
     }
@@ -223,12 +223,11 @@ class UserController extends Controller
     public function getInfo($user_id){
         $user = User::find($user_id);
 
-
         if($user->isOnline())
             $time="Online";
         else
         {
-            $date1 = DateTime::createFromFormat('Y-m-d H:i:s', $user->last_online);
+            $date1 = DateTime::createFromFormat('Y-m-d H:i:s', $user->last_activity_time);
             $date2 = Carbon::now();
             $interval = $date1->diff($date2);
             if($interval->y!=0) 

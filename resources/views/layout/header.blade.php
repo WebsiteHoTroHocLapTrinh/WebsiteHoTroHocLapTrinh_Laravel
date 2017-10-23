@@ -50,13 +50,13 @@
         @else
             <div class="dropdown">
                 <div class="" id="dropdownMenuButton" data-toggle="dropdown" >
-                    <img src="image/k17.jpg" width="40">
+                    <img src="image/{{ Auth::user()->avatar }}" width="40">
                 </div>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <div class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenuButton">
                     @if (Auth::user()->permission_id == 2)
                         <a class="dropdown-item" href="admin/">Về Trang Admin</a>
                     @endif
-                    <a class="dropdown-item" href="user-information">Thông Tin Cá Nhân</a>
+                    <a class="dropdown-item" href="user/info/user_{{ Auth::id() }}">Thông Tin Cá Nhân</a>
                     <a class="dropdown-item" href="#">Cài Đặt</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="logout">Đăng Xuất</a>
