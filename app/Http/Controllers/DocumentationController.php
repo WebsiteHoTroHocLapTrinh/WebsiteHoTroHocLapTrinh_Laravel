@@ -103,6 +103,7 @@ class DocumentationController extends Controller
         else {
             $Document->active = false;
         }
+        $Document->is_new = true;
         $Document->updated_at = new DateTime();
         $Document->save();
 

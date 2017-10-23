@@ -105,6 +105,7 @@ class AnswerController extends Controller
         else {
             $answer->active = false;
         }
+        $answer->is_new = true;
         $answer->updated_at = new DateTime();
         $answer->save();  // Save into database
 

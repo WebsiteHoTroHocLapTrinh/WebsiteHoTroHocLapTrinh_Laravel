@@ -44,7 +44,7 @@
                                             </div>
                                            <!--  <div class="form-group">
                                                <label>Giới Thiệu</label>
-                                               <textarea class="form-control ckeditor" name="content" rows="10"></textarea>
+                                               <textarea class="form-control tinymce" name="content" rows="10"></textarea>
                                            </div>
                                            <div class="form-group">
                                                <label>Địa Chỉ</label>

@@ -185,7 +185,7 @@
 								<br>
 								<h5>Bạn có thể trả lời câu hỏi này? Hãy chia sẻ nó cho mọi người.</h5>
 								<div class="form-group">
-									<textarea class="form-control ckeditor" name="content" rows="10"></textarea>
+									<textarea class="form-control tinymce" name="content" rows="10"></textarea>
 								</div>
 								<button type="submit" class="btn btn-primary" style="padding: 10px 50px;">Trả lời</button>
 							</form>
@@ -367,7 +367,9 @@
 @endsection
 
 @section('script')
-<script type="text/javascript" src="ckeditor/ckeditor.js"></script>
+<!-- TinyMCE -->
+<script type="text/javascript" src="admin_asset/tinymce/tinymce.min.js"></script>
+<script type="text/javascript" src="admin_asset/tinymce/init_tinymce.js"></script> 
 <script type="text/javascript" src="js/jquery-comments.js"></script>
 <script type="text/javascript" src="js/jquery.textcomplete.js"></script>
 <script type="text/javascript ">

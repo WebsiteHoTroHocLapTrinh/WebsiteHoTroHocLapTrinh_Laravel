@@ -59,6 +59,7 @@ class SubjectController extends Controller
         else {
             $subject->active = false;
         }
+        $subject->is_new = true;
         $subject->updated_at = new DateTime();
         $subject->save();
 

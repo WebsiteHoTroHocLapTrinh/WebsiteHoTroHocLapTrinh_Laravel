@@ -50,7 +50,7 @@
         @else
             <div class="dropdown">
                 <div class="" id="dropdownMenuButton" data-toggle="dropdown" >
-                    <img src="image/k17.jpg" width="40">
+                    <img src="image/{{ Auth::user()->avatar }}" width="40">
                 </div>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     @if (Auth::user()->permission_id == 2)

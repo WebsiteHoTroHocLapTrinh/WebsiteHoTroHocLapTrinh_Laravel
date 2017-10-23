@@ -39,6 +39,7 @@
 					<label class="form-login">Confirm Password</label>
 					<input class="form-login form-control" type="password" name="confirm_password" placeholder="*****">
 				</div>
+				<input style="display: none;" type="text" name="previousURL" value="{{ $previousURL }}">
 				<div id="btn-Signup">
 					<button class="btn colr policy" type="submit">Sign Up</button>
 					<span class="policy">By registering, you agree to the privacy policy and terms of service.</span>

@@ -108,6 +108,7 @@ class PermissionController extends Controller
         else {
             $permission->active = false;
         }
+        $permission->is_new = true;
         $permission->updated_at = new DateTime();
         $permission->save();  // Save into database
 

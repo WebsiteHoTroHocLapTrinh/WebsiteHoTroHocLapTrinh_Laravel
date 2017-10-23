@@ -19,7 +19,7 @@
 								</div>
 								<div class="form-group">
 									<label>Nội Dung</label>
-									<textarea class="form-control ckeditor" name="content" rows="10"></textarea>
+									<textarea class="form-control tinymce" name="content" rows="10"></textarea>
 								</div>
 								<div class="form-group">
 									<label>Thẻ</label>
@@ -83,7 +83,9 @@
 @endsection
 
 @section('script')
-<script type="text/javascript" src="ckeditor/ckeditor.js"></script>
+<!-- TinyMCE -->
+<script type="text/javascript" src="admin_asset/tinymce/tinymce.min.js"></script>
+<script type="text/javascript" src="admin_asset/tinymce/init_tinymce.js"></script> 
 <script type="text/javascript" src="bootstrap-tagsinput/bootstrap-tagsinput.min.js"></script>
 <script type="text/javascript" src="bootstrap-tagsinput/custom-bootstrap-tagsinput.js"></script>
 <script type="text/javascript" src="js/typeahead.bundle.js"></script>

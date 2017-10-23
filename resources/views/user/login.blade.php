@@ -36,6 +36,7 @@
 					<label class="form-login">Password</label>
 					<input class="form-login form-control" type="password" name="password" placeholder="*****">
 				</div>
+				<input style="display: none;" type="text" name="previousURL" value="{{ $previousURL }}">
 				<div id="btnlogin">
 					<button class="btn colr" type="submit">Log in</button>
 					<a href="#">forgot password?</a>

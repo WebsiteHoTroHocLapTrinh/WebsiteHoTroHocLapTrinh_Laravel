@@ -143,11 +143,13 @@ class AjaxController extends Controller
 				$object = Activity::find($id);
 				break;
 		}
-		if ($value) {
-			$object->active = true;
-		}
-		else {
-			$object->active = false;
+		if ($object != null) {
+			if ($value) {
+				$object->active = true;
+			}
+			else {
+				$object->active = false;
+			}
 		}
 		
 		$object->save();

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 use Validator;
 use DateTime;
+use Session;
 use App\Permission;
 use App\User;
 use App\Tag;
@@ -24,7 +25,8 @@ class UserController extends Controller
 {
     // Auth
     public function getLogin() {
-        return view('user.login');
+        $previousURL = Session::previousUrl();
+        return view('user.login', ['previousURL' => $previousURL]);
     }
 
     public function postLogin(Request $request) {
@@ -47,11 +49,13 @@ class UserController extends Controller
                         ->withInput();
         }
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password, 'active' => true])) {
-             return redirect('congratulation')->with('thongbao', 
+            Auth::user()->last_online = new DateTime();
+            Auth::user()->save();
+            return redirect('congratulation')->with('thongbao', 
             '<h1>Đăng Nhập Thành Công !!!</h1>
             <br>
             <h3>Hãy cùng giúp nhau để phát triễn nhé. Thân !!!</h3>
-            <br>');
+            <br>')->with('previousURL', $request->previousURL);
         }
         else {
             return redirect()->back()->with('thongbao','Sai tên đăng nhập hoặc mật khẩu');
@@ -62,11 +66,12 @@ class UserController extends Controller
     public function getLogout() {
         Auth::user()->last_online = new DateTime();
         Auth::logout();
-        return redirect('/');
+        return redirect(Session::previousUrl());
     }
 
     public function getRegister() {
-        return view('user.register');
+        $previousURL = Session::previousUrl();
+        return view('user.register', ['previousURL' => $previousURL]);
     }
 
     public function postRegister(Request $request) {
@@ -110,7 +115,7 @@ class UserController extends Controller
             '<h1>Đăng Ký Thành Công !!!</h1>
             <br>
             <h3>Hãy cùng giúp nhau để phát triễn nhé. Thân !!!</h3>
-            <br>');
+            <br>')->with('previousURL', $request->previousURL);
     }
 
     // Admin
@@ -151,6 +156,7 @@ class UserController extends Controller
         else {
             $user->active = false;
         }
+        $user->is_new = true;
         $user->save();
 
         //Create Activity

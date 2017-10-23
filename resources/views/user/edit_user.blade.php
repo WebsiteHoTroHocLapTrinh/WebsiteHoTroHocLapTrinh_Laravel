@@ -54,7 +54,7 @@
 						</div>
 						<div class="form-group">
 							<label for="about">About:</label>
-							<textarea id="about" class="form-control ckeditor"></textarea>
+							<textarea id="about" class="form-control tinymce"></textarea>
 						</div>
 						<div class="btn-save-info">
 							<button class="btn btn-primary" type="">save</button>
@@ -100,5 +100,7 @@
 @endsection
 
 @section('script')
-<script type="text/javascript" src="ckeditor/ckeditor.js"></script>
+<!-- TinyMCE -->
+<script type="text/javascript" src="admin_asset/tinymce/tinymce.min.js"></script>
+<script type="text/javascript" src="admin_asset/tinymce/init_tinymce.js"></script> 
 @endsection

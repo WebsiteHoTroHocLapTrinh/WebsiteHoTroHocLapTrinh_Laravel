@@ -13,7 +13,9 @@
 				                {!! session('thongbao') !!}
 				            @endif
 				            <p id="count-down" style="text-align: center; font-size: 50px;">5</p>
-							<a href="/"><p>Chuyển tới trang chủ</p></a>
+				            <div style="text-align: center; font-size: 25px;">
+				            	<a style="margin-right: 20px;" href="{{ session('previousURL') }}">Chuyển tới trang trước</a><a style="margin-left: 20px;" href="/">Chuyển tới trang chủ</a>
+				            </div>
 						</div>	
 					</div>
 				</div>
@@ -41,7 +43,7 @@
 			document.getElementById("count-down").innerHTML = distance;
 			if (distance === 0) {
 			    clearInterval(x);
-			    window.location.href = "/";
+			    window.location.href = "{{ session('previousURL') }}";
 			}
 		}, 1000);
 	</script>
