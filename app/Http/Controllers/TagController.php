@@ -108,6 +108,7 @@ class TagController extends Controller
         else {
             $tag->active = false;
         }
+        $tag->is_new = true;
         $tag->updated_at = new DateTime();
         $tag->save();  // Save into database
 

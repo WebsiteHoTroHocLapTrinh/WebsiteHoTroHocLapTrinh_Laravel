@@ -1,5 +1,5 @@
 $(function() {
-    $(document).on("change", '.switch > input[type="checkbox"]', function() {
+    $(document).on("change", 'table .switch > input[type="checkbox"]', function() {
        /* if (this.checked) {
             $(this).attr('checked', 'checked');
         } else {

@@ -132,6 +132,7 @@ class QuestionController extends Controller
         else {
             $question->active = false;
         }
+        $question->is_new = true;
         $question->updated_at = new DateTime();
         $question->save();  // Save into database
 

@@ -20,6 +20,11 @@
 	                @endforeach
 	            </div>
 	       	@endif
+	       	@if (session('thongbao'))
+	            <div class="alert alert-danger">
+	                {{ session('thongbao') }}
+	            </div>
+	      	@endif
 			<!--sign up main-->
 			<form action="register" method="POST" accept-charset="utf-8">
 				{{ csrf_field() }}

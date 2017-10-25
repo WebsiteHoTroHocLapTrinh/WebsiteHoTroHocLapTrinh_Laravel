@@ -36,7 +36,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label>Nội Dung</label>
-                                                <textarea class="form-control ckeditor" name="content" rows="10" name="content">{!! $question->content !!}</textarea>
+                                                <textarea class="form-control tinymce" name="content" rows="10" name="content">{!! $question->content !!}</textarea>
                                             </div>
                                             <div class="form-group">
                                                 <label>Thẻ</label>
@@ -84,8 +84,9 @@
 @section('script')
 	<!-- Toggle Switch Checkbox -->
     <script src="admin_asset/js/toggle_switch.js"></script>
-    <!-- CKEditor -->
-    <script src="admin_asset/ckeditor/ckeditor.js"></script>
+    <!-- TinyMCE -->
+    <script type="text/javascript" src="admin_asset/tinymce/tinymce.min.js"></script>
+    <script type="text/javascript" src="admin_asset/tinymce/init_tinymce.js"></script>  
     <!-- Bootstrap Tags Input -->
     <script src="admin_asset/bootstrap-tagsinput/bootstrap-tagsinput.min.js"></script>
     <script type="text/javascript" src="admin_asset/bootstrap-tagsinput/custom-bootstrap-tagsinput.js"></script>
