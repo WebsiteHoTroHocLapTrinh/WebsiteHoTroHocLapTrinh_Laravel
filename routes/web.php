@@ -150,7 +150,7 @@ Route::group(['prefix' => 'ajax'], function() {
 
 //Group Questions
 Route::group(['prefix' => 'question'], function() {
-    route::get('list-question','QuestionController@ListQuestion');
+    route::get('list-question/{tab}','QuestionController@ListQuestion');
     Route::get('detail/qs_{question_id}', 'QuestionController@getDetail');
     Route::get('create-question', 'QuestionController@getCreate');
 });
@@ -179,6 +179,9 @@ Route::post('register', 'UserController@postRegister');
 Route::get('logout', 'UserController@getLogout');
 route::get('congratulation',function(){
     return view('congratulation');
+});
+Route::get('error_404', function(){
+    return view('404_page');
 });
 
 

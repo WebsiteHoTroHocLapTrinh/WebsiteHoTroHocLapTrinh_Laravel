@@ -16,7 +16,7 @@
             <!--danh mục-->
             <ul class="navbar-nav">
                 <li class="nav-item mr-sm-3">
-                    <a class="nav-link" href="question/list-question"><strong>Questions</strong> <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="question/list-question/new"><strong>Questions</strong> <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item mr-sm-3">
                     <a class="nav-link" href="list-documentation"><strong>Documentations</strong></a>
@@ -54,12 +54,24 @@
                 </div>
                 <div class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenuButton">
                     @if (Auth::user()->permission_id == 2)
-                        <a class="dropdown-item" href="admin/">Về Trang Admin</a>
+                        <a class="dropdown-item" href="admin/">
+                            <span class="oi oi-lock-locked"></span>
+                            <span>Về Trang Admin</span>
+                        </a>
                     @endif
-                    <a class="dropdown-item" href="user/info/user_{{ Auth::id() }}">Thông Tin Cá Nhân</a>
-                    <a class="dropdown-item" href="#">Cài Đặt</a>
+                    <a class="dropdown-item" href="user/info/user_{{ Auth::id() }}">
+                        <span class="oi oi-person"></span>
+                        <span>Thông Tin Cá Nhân</span>
+                    </a>
+                    <a class="dropdown-item" href="#">
+                        <span class="oi oi-cog"></span>
+                        <span>Cài Đặt</span>
+                    </a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="logout">Đăng Xuất</a>
+                    <a class="dropdown-item" href="logout">
+                        <span class="oi oi-power-standby"></span>
+                        <span>Đăng Xuất</span>
+                    </a>
                 </div>
             </div>
         @endif

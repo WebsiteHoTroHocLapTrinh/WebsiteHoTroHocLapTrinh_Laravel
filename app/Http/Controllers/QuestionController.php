@@ -19,7 +19,6 @@ use App\Activity;
 use App\Ping;
 use App\Vote;
 use App\PasswordReset;
-use Illuminate\Support\Facades\DB;
 
 class QuestionController extends Controller
 {
@@ -211,13 +210,39 @@ class QuestionController extends Controller
 
 
     //List Question
-    public function ListQuestion(){
-        
-        $ListQuestion = Question::where('active',1)->get();
+    public function ListQuestion($tab){
+
+        $list = Question::where('active',1)->get();
+        switch ($tab) {
+            case 'new':
+                $list_paginate = Question::where('active',1)->orderBy('id', 'desc')->paginate(5);
+                break;
+            case 'view':
+                $list_paginate = Question::where('active',1)->orderBy('view', 'desc')->paginate(5);
+                break;
+            case 'rep':
+                $list_paginate = Question::leftJoin('answers','questions.id','=','answers.question_id')->
+                selectRaw('questions.*, count(answers.question_id) AS `count`')->
+                groupBy('questions.id')->
+                orderBy('count','desc')->
+                paginate(5);
+                break;
+            case 'rate':
+                $list_paginate = Question::where('active',1)->orderBy('point_rating', 'desc')->paginate(5);
+                break;
+            default:
+                //$list_paginate = Question::where('active',1)->orderBy('id', 'desc')->paginate(5);
+                break;
+        }
+
         $top_user = User::where('active',1)->orderBy('point_reputation','desc')->get()->take(10);
-        $top_tag = DB::table('taggables')->join('tags','taggables.tag_id','=','tags.id')->select(DB::raw('count(*) as kount, tags.name'))->groupBy('tags.id')->orderBy('kount', 'desc')->get();
+        $top_tag = Tag::join('taggables','taggables.tag_id','=','tags.id')->
+        selectRaw('count(taggables.tag_id) AS `kount`, tags.name')->
+        groupBy('tags.id')->
+        orderBy('kount', 'desc')->
+        get();
         
-        return view('question.list_question',['list'=>$ListQuestion,'top_user'=>$top_user,'top_tag'=>$top_tag]);
+        return view('question.list_question',['name_tab'=>$tab,'list'=>$list, 'list_paginate'=>$list_paginate,'top_user'=>$top_user,'top_tag'=>$top_tag]);
     }
 
     public function getDetail($question_id){
