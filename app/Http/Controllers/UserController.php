@@ -280,12 +280,9 @@ class UserController extends Controller
         return view('user.user_information',['user'=>$user, 'answers'=>$answers, 'last_online'=>$time,'rs_all'=>$result_all, 'rs_gr'=>$result_group]);
     }
 
-    public function getEdit($user_id){
+    public function getEdit(){
         
-        if (Auth::id()==$user_id) {
-            return view('user.edit_user',['user'=>Auth::user()]);
-        }
-        return view('index');
+        return view('user.edit_user',['user'=>Auth::user()]);
     }
 
     public function postEditInfo(Request $request){

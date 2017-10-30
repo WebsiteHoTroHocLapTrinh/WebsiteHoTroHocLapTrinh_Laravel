@@ -32,7 +32,7 @@
 					</ul>
 					@if(Auth::id()== $user->id)
 					<div class="card-body">
-						<a href="user/edit/user_{{ Auth::id() }}" class="card-link">Edit Profile</a>
+						<a href="user/edit-user" class="card-link">Edit Profile</a>
 					</div>
 					@endif
 				</div>
