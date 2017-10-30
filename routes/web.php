@@ -101,8 +101,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function() {
     //User
    Route::group(['prefix' => 'user'], function() {
         Route::get('list','UserController@getList');
-        Route::get('edit/{idUser}','UserController@getEdit');
-        Route::post('edit/{idUser}','UserController@postEdit');
+        Route::get('edit/{idUser}','UserController@getEditAdmin');
+        Route::post('edit/{idUser}','UserController@postEditAdmin');
         Route::get('editpass/{idUser}','UserController@getResetPassword');
         Route::get('add','UserController@getAdd');
         Route::post('add','UserController@postAdd');
@@ -144,7 +144,9 @@ Route::group(['prefix' => 'ajax'], function() {
     Route::get('commentsOfAnswer/{idAnswer}', 'AjaxController@getCommentsOfAnswer');
     Route::get('changeActive/{type}/{id}/{value}', 'AjaxController@changeActive');
     Route::get('dismissNew/{type}/{id}', 'AjaxController@dismissNew');
-    Route::get('changeTabQuestion/{tab_id}', 'AjaxController@getTabQuestion');
+    // Route::get('changeTabQuestion/{tab_id}', 'AjaxController@getTabQuestion');
+    Route::get('getMoreActive/{type}/{id}', 'AjaxController@getMore');
+
 
 });
 
@@ -168,6 +170,10 @@ Route:: group(['prefix'=>'tags'], function(){
 //Group User
 Route::group(['prefix'=>'user'], function() {
     Route::get('info/user_{user_id}', 'UserController@getInfo');
+    Route::get('edit/user_{user_id}', 'UserController@getEdit');
+    Route::post('edit-info', 'UserController@postEditInfo');
+    Route::post('edit-avatar', 'UserController@postEditAvatar');
+    Route::post('edit-changepass', 'UserController@postChangePass');
 
 });
 
@@ -179,9 +185,6 @@ Route::post('register', 'UserController@postRegister');
 Route::get('logout', 'UserController@getLogout');
 route::get('congratulation',function(){
     return view('congratulation');
-});
-Route::get('error_404', function(){
-    return view('404_page');
 });
 
 

@@ -276,4 +276,80 @@ class AjaxController extends Controller
 	// 	}
 	// 	echo $list->links('pagination.custom');
 	// }
+	public function getMore($type, $id){
+		switch ($type) {
+			case 'question':{
+				$questions = Question::where('user_id', $id);
+				$count = count($questions->get());
+				if(($count-3)>0){
+					$questions_skip = $questions->get()->splice(3);
+					foreach ($questions_skip as $qs) {
+						echo '<div class="user_active ">
+						<p class="point">'.$qs->point_rating.'</p>
+						<p><a href="question/detail/qs_'.$qs->id.'">'.$qs->title.'</a></p>
+						<p class=" date float-right text-muted">'.date('d-m-Y h:i:s', strtotime($qs->created_at)).'</p>
+						</div>';
+					}
+				}
+			}break;
+			case 'answers':{
+				$answers = Answer::where('user_id', $id)->groupBy('question_id');
+				$count = count($answers->get());
+				if(($count-3)>0){
+					$answers_skip = $answers->orderBy('id', 'desc')->get()->splice(3);
+					foreach ($answers_skip as $qs) {
+						$count_ans = count(Answer::where([['user_id', $id],['question_id', $qs->question_id]])->get());
+						echo '<div class="user_active ">
+						<p class="point">'.$qs->question->point_rating.'</p>
+						<p><a href="question/detail/qs_'.$qs->question->id.'">'.$qs->question->title.'</a></p>
+						<p class=" date float-right text-muted">'.$count_ans.'</p>
+						</div>';
+					}
+				}
+			}break;
+			case 'documentations':{
+				$documentations = Documentation::where('user_id', $id);
+				$count = count($documentations->get());
+				if(($count-3)>0){
+					$documentations_skip = $documentations->orderBy('id', 'desc')->get()->splice(3);
+					foreach($documentations_skip as $documentation){
+						echo '<div class="user_active">
+						<p class="point">'.$documentation->point_rating.'</p>
+						<p><a href="">'.$documentation->title.'</a></p>
+						<p class=" date float-right text-muted">'.date('d-m-Y h:i:s',strtotime($documentation->created_at)).'</p>
+						</div>';
+					}
+				}
+			}break;
+			
+			default:{
+				//tag
+				$tagQuestions =  Question::join('taggables','questions.id','=','taggables.taggable_id')->
+				where([['questions.user_id', $id],['taggable_type','App\Question']])->
+				join('tags', 'taggables.tag_id','=','tags.id')->
+				selectRaw('tags.id, tags.name, taggables.id AS taggable_id');
+
+				$tagDocuments = Documentation::join('taggables','documentations.id','=','taggables.taggable_id')->
+				where([['documentations.user_id', $id],['taggable_type','App\Documentation']])->
+				join('tags', 'taggables.tag_id','=','tags.id')->
+				selectRaw('tags.id, tags.name, taggables.id AS taggable_id');
+
+				$result_group = $tagQuestions->get()->merge($tagDocuments->get())->sortByDesc('id');
+				$result_all = $tagDocuments->union($tagQuestions)->get();
+
+				if((count($result_group)-3)>0){
+					$result_skip = $result_group->splice(3);
+					foreach($result_skip as $rs_skip){
+						$count_tag = count($result_all->where('id',$rs_skip->id));
+						echo '<div class="user_active">
+						<p class="tags">'.$rs_skip->name.'</p>
+						<p class="count_tag">x'.$count_tag.'</p>
+					</div>';
+					}
+				}
+
+			}break;
+		}
+		
+	}
 }

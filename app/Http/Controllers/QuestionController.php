@@ -255,7 +255,7 @@ class QuestionController extends Controller
         if(Auth::check()){
             return view('question.create_question');
         }
-        return redirect('login');
+        return redirect('login')->withErrors('Bạn phải đăng nhập trước khi tạo câu hỏi!');
 
     }
    

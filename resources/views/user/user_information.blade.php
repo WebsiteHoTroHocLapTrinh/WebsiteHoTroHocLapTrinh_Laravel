@@ -8,7 +8,7 @@
 		<div class="row">
 			<div class="col-lg-3 avatar">
 				<div class="card">
-					<img class="card-img-top" src="image/{{ $user->avatar }}" alt="Card image cap">
+					<img class="rounded-circle" src="image/avatar_users/{{ $user->avatar }}" alt="Card image cap">
 					<div class="card-body">
 						<h4 class="card-title">{{ $user->name }}</h4>
 						<div class="point">
@@ -32,7 +32,7 @@
 					</ul>
 					@if(Auth::id()== $user->id)
 					<div class="card-body">
-						<a href="#" class="card-link">Edit Profile</a>
+						<a href="user/edit/user_{{ Auth::id() }}" class="card-link">Edit Profile</a>
 					</div>
 					@endif
 				</div>
@@ -51,10 +51,10 @@
 					</div>
 					<div class="body-about">
 						<div class="title-about">
-							{{ $user->status }}
+							{!! $user->status !!}
 						</div>
 						<div class="about">
-							{{$user->about}}
+							{!!$user->about!!}
 							
 						</div>
 					</div>
@@ -86,90 +86,118 @@
 			<canvas id="buyers" width="800" height="200"></canvas>
 		</div>
 		<div class="row margin-top-hoat-dong">
-			<div class="col">
-				<div>
+			<!--col 1-->
+			<div class="col" style="margin-right: 20px;">
+				<!--question-->
+				<div calss="a">
 					<div class="border_active">
 						<a href=""><strong>Câu hỏi</strong></a>
 						<span>({{ count($user->questions) }})</span>
 						<div class="float-right">
-							<a href="" style="font-size: 13px;">View</a>
+							<a href="#">Thời gian tạo</a>
 						</div>
 					</div>
 					@foreach($user->questions->take(3) as $qs)
 					<div class="user_active">
 						<p class="point">{{ $qs->point_rating }}</p>
-						<p><a href="">{{ $qs->title }}</a></p>
+						<p><a href="question/detail/qs_{{ $qs->id }}">{{ $qs->title }}</a></p>
+						<p class=" date float-right text-muted">{{ date('d-m-Y h:i:s', strtotime($qs->created_at ))}}</p>
 					</div>
 					@endforeach
+					<div id="question" class="hidden">
+						{{-- #code --}}
+					</div>
+					<div class="view_more_user">
+						<a id="more_qs" href="javascript:unhide('question','more_qs');" >@if(count($user->questions)>3){{ 'View more →' }}@endif</a>
+					</div>
 				</div>
+				<!--end queston-->
+				
+				<!--answers-->
 				<div>
 					<div class="border_active">
 						<a href=""><strong>Trả lời</strong></a>
 						<span>({{ count($user->answers) }})</span>
 						<div class="float-right">
-							<a href="" style="font-size: 13px;">View</a>
+							<a href="#">Số answer(s)</a>
 						</div>
 					</div>
-					@foreach($user->answers as $answer)
+					@foreach($answers->take(3) as $answer)
+					@php
+						$count = count($user->answers->where('question_id', $answer->question_id));
+					@endphp
 					<div class="user_active">
 						<p class="point">{{ $answer->question->point_rating }}</p>
-						<p><a href="">{{ $answer->question->title }}</a></p>
+						<p><a href="question/detail/qs_{{ $answer->question->id }}">{{ $answer->question->title }}</a></p>
+						<p class=" date float-right text-muted">{{ $count }}</p>
 					</div>
 					@endforeach
+					<div id="answers" class="hidden">
+						{{-- #code --}}
+					</div>
 					<div class="view_more_user">
-						<a href="">View more →</a>
+						<a id="more_ans" href="javascript:unhide('answers','more_ans');">@if(count($user->answers->groupBy('question_id'))>3){{ 'View more →' }}@endif</a>
 					</div>
 				</div>
+				<!--end answers-->
 			</div>
-			<div class="col">
+			<!--end col 1-->
+
+			<!--col 2-->
+			<div class="col" style="margin-left: 20px;">
+				<!--documentation-->
 				<div>
 					<div class="border_active">
-						<a href=""><strong>Reputation</strong></a>
-						<span>({{ $user->point_reputation }})</span>
+						<a href=""><strong>Tài liệu</strong></a>
+						<span>({{ count($user->documentations) }})</span>
 						<div class="float-right">
-							<a href="" style="font-size: 13px;">View</a>
+							<a href="">Thời gian đăng</a>
 						</div>
 					</div>
+					@foreach($user->documentations->sortByDesc('id')->take(3) as $documentation )
 					<div class="user_active">
-						<p class="point">1150</p>
-						<p><a href="">How do I remove a Git submodule?</a></p>
+						<p class="point">{{ $documentation->point_rating }}</p>
+						<p><a href="">{{ $documentation->title }}</a></p>
+						<p class=" date float-right text-muted">{{ date('d-m-Y h:i:s',strtotime($documentation->created_at)) }}</p>
 					</div>
-					<div class="user_active">
-						<p class="point">100</p>
-						<p><a href="">How do I remove a Git submodule?</a></p>
-					</div>
-					<div class="user_active">
-						<p class="point">100</p>
-						<p><a href="">How do I remove a Git submodule?</a></p>
+					@endforeach
+					<div id="documentations" class="hidden">
+						{{-- #code --}}
 					</div>
 					<div class="view_more_user">
-						<a href="">View more →</a>
+						<a id="more_documents" href="javascript:unhide('documentations','more_documents');">@if(count($user->documentations)>3){{ 'View more' }} →@endif</a>
 					</div>
 				</div>
+				<!--end documentation-->
+
+				<!--tags-->
 				<div>
 					<div class="border_active">
 						<a href=""><strong>Tags</strong></a>
-						<span>(3)</span>
+						<span>({{ count($rs_gr) }})</span>
 						<div class="float-right">
-							<a href="" style="font-size: 13px;">View</a>
+							<a href="" style="font-size: 13px;"></a>
 						</div>
 					</div>
+					@foreach($rs_gr->take(3) as $rs)
+					@php
+						$count_tag = count($rs_all->where('id', $rs->id));
+					@endphp
 					<div class="user_active">
-						<p class="tags">C#</p>
+						<p class="tags">{{ $rs->name }}</p>
+						<p class="count_tag">x{{ $count_tag }}</p>
 					</div>
-					<div class="user_active">
-						<p class="tags">Java</p>
-					</div>
-					<div class="user_active">
-						<a href="">
-							<p class="tags">Javascript</p>
-						</a>
+					@endforeach
+					<div id="tag_user" class="hidden">
+						{{-- #code --}}
 					</div>
 					<div class="view_more_user">
-						<a href="">View more →</a>
+						<a id="more_tags" href="javascript:unhide('tag_user','more_tags');">@if(count($rs_gr)>3){{ 'View more' }} →@endif</a>
 					</div>
 				</div>
+				<!--end tags-->
 			</div>
+			<!--end col 2-->
 		</div>
 	</div>
 	<!--end active-->
@@ -207,4 +235,17 @@
     new Chart(buyers).Line(buyerData);
 </script>
 <!--end script biểu đồ-->
+
+<script type="text/javascript">
+	
+	function unhide(type, id){
+		$.get("ajax/getMoreActive/"+type+"/"+{!! $user->id !!}, function(data) {           
+             $("#"+type).html(data).toggle("slide");
+         });
+		var item = document.getElementById(id);
+		item.innerHTML = item.innerHTML === 'View more →' ? 'View less →' : 'View more →';
+	}
+
+</script>
+
 @endsection

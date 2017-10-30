@@ -21,6 +21,8 @@ use App\Activity;
 use App\Ping;
 use App\Vote;
 use App\PasswordReset;
+use File;
+use Hash;
 
 class UserController extends Controller
 {
@@ -103,6 +105,7 @@ class UserController extends Controller
 
         $user = new User;
         $user->name = $request->name;
+        $user->avatar = 'default_avatar.png';
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
         $user->last_activity_time = new DateTime();
@@ -131,13 +134,13 @@ class UserController extends Controller
         return view('admin.user.list',['users'=>$Users]);
     }
 
-    public function getEdit($idUser){
+    public function getEditAdmin($idUser){
         $user = User::find($idUser);
         $permission = Permission::where('active', '1')->get();
         return view('admin.user.edit',['user'=>$user, 'permission'=>$permission]);
     }
 
-    public function postEdit(Request $request, $idUser){
+    public function postEditAdmin(Request $request, $idUser){
         // Validate date input
         $validator = Validator::make($request->all(), 
             [
@@ -214,6 +217,7 @@ class UserController extends Controller
         $user->permission_id = $request->permission;
         $user->name = $request->name;
         $user->email = $request->email;
+        $user->avatar = 'default_avatar.png';
         $user->password = bcrypt('123456');
         if($request->has('active'))
             $user->active = true;
@@ -231,9 +235,11 @@ class UserController extends Controller
          return redirect()->back()->with('thongbao', 'Thêm user Thành Công');
     }
 
-
+    //////////////////////////////////////////////////////////
     public function getInfo($user_id){
         $user = User::find($user_id);
+        //answer group by question_id
+        $answers = $user->answers()->groupBy('question_id')->get()->sortByDesc('id');
 
         if($user->isOnline())
             $time="Online";
@@ -257,6 +263,139 @@ class UserController extends Controller
 
         }
 
-        return view('user.user_information',['user'=>$user, 'last_online'=>$time]);
+        //tag
+        $tagQuestions =  Question::join('taggables','questions.id','=','taggables.taggable_id')->
+        where([['questions.user_id', $user_id],['taggable_type','App\Question']])->
+        join('tags', 'taggables.tag_id','=','tags.id')->
+        selectRaw('tags.id, tags.name, taggables.id AS taggable_id');
+
+        $tagDocuments = Documentation::join('taggables','documentations.id','=','taggables.taggable_id')->
+        where([['documentations.user_id', $user_id],['taggable_type','App\Documentation']])->
+        join('tags', 'taggables.tag_id','=','tags.id')->
+        selectRaw('tags.id, tags.name, taggables.id AS taggable_id');
+       
+        $result_group = $tagQuestions->get()->merge($tagDocuments->get())->sortByDesc('id');
+        $result_all = $tagDocuments->union($tagQuestions)->get();
+
+        return view('user.user_information',['user'=>$user, 'answers'=>$answers, 'last_online'=>$time,'rs_all'=>$result_all, 'rs_gr'=>$result_group]);
     }
+
+    public function getEdit($user_id){
+        
+        if (Auth::id()==$user_id) {
+            return view('user.edit_user',['user'=>Auth::user()]);
+        }
+        return view('index');
+    }
+
+    public function postEditInfo(Request $request){
+        $user = User::find(Auth::id());
+         // Validate date input
+        $validator = Validator::make($request->all(), 
+            [
+                'name' => 'required',
+                'status' => 'required',
+                'location' => 'required',
+                'job' => 'required',
+                'about' => 'required',
+                
+            ],
+            [
+                'name.required' => 'Bạn chưa nhập tên',
+                'status.required' => 'Bạn chưa nhập status',
+                'location.required' => 'Bạn chưa nhập location',
+                'job.required' => 'Bạn chưa nhập job',
+                'about.required' => 'Bạn chưa nhập about',
+            ] 
+        );
+        if ($validator->fails()) {
+            return redirect()->back()
+            ->withErrors($validator)
+            ->withInput();
+        }
+
+        //update info
+        $user->name = $request->name;
+        $user->status = $request->status;
+        $user->location = $request->location;
+        $user->job = $request->job;
+        $user->about = $request->about;
+        $user->updated_at = new DateTime();
+        $user->save();
+        return redirect()->back()->with('thongbao', 'Update thành công!');
+    }
+
+    public function postEditAvatar(Request $request){
+        $user = User::find(Auth::id());
+        $oldAvatarName = $user->avatar;
+
+        $validator = Validator::make($request->all(), 
+            [
+                'avatar' => 'required|image',
+                
+            ],
+            [
+                'avatar.required' => 'Bạn chưa chọn ảnh',
+                'avatar.image' => 'Định dạng không hỗ trợ',
+            ] 
+        );
+        if ($validator->fails()) {
+            return redirect()->back()
+            ->withErrors($validator)
+            ->withInput();
+        }
+
+        $file = $request->file('avatar');
+        $fileExtension = $file->getClientOriginalExtension();
+        $fileName = time() . "_" . rand(0,9999999) . "." . $fileExtension;
+        $file->move('image/avatar_users', $fileName);
+
+        //delete old file
+        if(File::exists(public_path('image/avatar_users/'. $oldAvatarName))){
+            File::delete(public_path('image/avatar_users/' . $oldAvatarName));
+        }
+        
+        //update database
+        $user->avatar = $fileName;
+        $user->save();
+
+        return redirect()->back()->with('thongbao', 'Update thành công!');
+    }
+
+    public function postChangePass(Request $request){
+        $hashedPassword = Auth::user()->password;
+         $validator = Validator::make($request->all(), 
+            [
+                'oldpass' => 'required|min:6|max:32',
+                'newpass' => 'required|min:6|max:32',
+                'confirm' => 'required|min:6|max:32|same:newpass',
+                
+            ],
+            [
+                'oldpass.required' => 'Bạn chưa nhập Old Password',
+                'oldpass.min' => 'Old Password phải có độ dài từ 6 đến 32 ký tự',
+                'oldpass.max' => 'Old Password có độ dài từ 6 đến 32 ký tự',
+                'newpass.required' => 'Bạn chưa nhập New Password',
+                'newpass.min' => 'New Password phải có độ dài từ 6 đến 32 ký tự',
+                'newpass.max' => 'New Password có độ dài từ 6 đến 32 ký tự',
+                'confirm.required' => 'Bạn chưa nhập Confirm Password',
+                'confirm.min' => 'Confirm Password phải có độ dài từ 6 đến 32 ký tự',
+                'confirm.max' => 'Confirm Password phải có độ dài từ 6 đến 32 ký tự',
+                'confirm.same' => 'Password không trùng khớp',
+            ] 
+        );
+        if ($validator->fails()) {
+            return redirect()->back()
+            ->withErrors($validator)
+            ->withInput();
+        }
+
+        if(Hash::check($request->oldpass, $hashedPassword)){
+            Auth::user()->fill(['password' => Hash::make($request->newpass)])->save();
+
+            return redirect()->back()->with('thongbao', 'Update thành công!');
+        }
+        return redirect()->back()->with('thongbao', 'Password không trùng khớp!');
+    }   
 }
+    

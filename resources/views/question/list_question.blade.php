@@ -52,12 +52,12 @@
                                                     </div>
                                                 </div>
                                                 <div class="row">
-                                                 <div class="list-tag col-lg-8">
+                                                 <div class="list-tag col-lg-7">
                                                     @foreach($lt->tags as $tag)
                                                     <p class="tag">{{ $tag->name }}</p>
                                                     @endforeach
                                                 </div>
-                                                <div class="started col-lg-4">
+                                                <div class="started col-lg-5">
                                                     @php
                                                     $date1 = $lt->created_at;
                                                     $date2 = Carbon\Carbon::now();
@@ -143,7 +143,7 @@
                                         #{{ $i }}
                                     </div>
                                     <div class="d-inline">
-                                        <img src="image/k17.jpg" class="rounded-circle" width="30" height="30">
+                                        <img src="image/avatar_users/{{ $top_user->avatar }}" class="rounded-circle" width="30" height="30">
                                     </div>
                                     <div class="d-inline">
                                         {{ $top_user->name }}
