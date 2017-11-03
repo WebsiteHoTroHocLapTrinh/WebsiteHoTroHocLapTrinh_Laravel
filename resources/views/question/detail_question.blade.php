@@ -13,7 +13,7 @@
 							<div class="col-lg-1">
 								<div class="detail-left">
 									<div class="avatar-circle d-flex justify-content-center">
-										<img src="image/k17.jpg" class="rounded-circle" width="40" height="40">
+										<img src="image/avatar_users/{{ $question->user->avatar }}" class="rounded-circle" width="40" height="40">
 									</div>
 									<div class="vote-widget">
 										<div class="vote-up d-flex justify-content-center">
@@ -31,24 +31,20 @@
 							<div class="col-lg-11">
 								<div class="detail-right">
 									<div class="avatar-name">
-										<a href="">Nguyễn Hoàng Thanh Tùng</a>
+										<a href="user/info/user_{{ $question->user->id }}">{{ $question->user->name }}</a>
 									</div>
 									<div class="question-detail-title">
-										Làm sao để hết đẹp trai ???? Làm sao để hết đẹp trai ???? Làm sao để hết đẹp trai ???? Làm sao để hết đẹp trai ????
+										{{ $question->title }}
 									</div>
 									<div class="question-detail-content">
-										Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+										{!! $question->content !!}
 									</div>
 									<div class="list-tag">
+										@foreach($question->tags as $tag)
 										<div class="tag">
-											C#
+											{{ $tag->name }}
 										</div>
-										<div class="tag">
-											PHP
-										</div>
-										<div class="tag">
-											Android
-										</div>
+										@endforeach
 									</div>
 									<br>
 									<br>
@@ -56,7 +52,17 @@
 									<a href="" style=" padding-left: 5px" onclick="return confirm('Bạn có chắc là muốn xóa không?')">Xóa</a>
 									<br>
 									<br>
-									<div class="comments-container"></div>
+									<div class="comments-container">
+										@foreach($question->comments as $cmt)
+										<div id="{{ $cmt->id }}">
+											{!! $cmt->content !!}
+											 <a href="javascript:edit({{ $cmt->id }},'{{ $cmt->content }}');"><button type="">edit</button></a>
+										</div>
+										
+										<br>
+										<br>
+										@endforeach
+									</div>
 								</div>
 							</div>
 						</div>
@@ -447,67 +453,73 @@
 
             return data;
         }
-        $('.comments-container').comments({
-        	profilePictureURL: 'image/k17.jpg',
-        	textareaPlaceholderText: 'Viết bình luận',
-        	newestText: 'Mới nhất',
-        	oldestText: 'Cũ nhất',
-        	popularText: 'Phổ biến',
-        	attachmentsText: 'Đính kèm',
-        	sendText: 'Bình luận',
-        	replyText: 'Trả lời',
-        	editText: 'Chỉnh sửa',
-        	editedText: 'Đã chỉnh sửa',
-        	youText: 'Thanh Tùng',
-        	profile_url: "https://www.facebook.com/ ",
-        	saveText: 'Lưu',
-        	deleteText: 'Xóa',
-        	viewAllRepliesText: 'Xem thêm __replyCount__ bình luận',
-        	hideRepliesText: 'Ẩn bớt bình luận',
-        	noCommentsText: 'Không có bình luận nào',
-        	noAttachmentsText: 'Không có tệp nào',
-        	attachmentDropText: 'Kéo và thả tệp vào đây',
-            enableDeletingCommentWithReplies: true,//   
-            postCommentOnEnter: true,
-            // readOnly: true, //chưa đăng nhập
-            enableReplying: false,
-            enableUpvoting: false,
-            enableNavigation: false,
-            currentUserId: 1,
-            roundProfilePictures: true,
-            textareaRows: 3,
-            textareaMaxRows: false,
-            textareaRowsOnFocus: 3,
-            enableAttachments: false,
-            enableHashtags: true,
-            enablePinging: true,
-            getUsers: function(success, error) {
-            	success(usersArray);
-            },
-            getComments: function(success, error) {
+        // $('.comments-container').comments({
+        // 	profilePictureURL: 'image/k17.jpg',
+        // 	textareaPlaceholderText: 'Viết bình luận',
+        // 	newestText: 'Mới nhất',
+        // 	oldestText: 'Cũ nhất',
+        // 	popularText: 'Phổ biến',
+        // 	attachmentsText: 'Đính kèm',
+        // 	sendText: 'Bình luận',
+        // 	replyText: 'Trả lời',
+        // 	editText: 'Chỉnh sửa',
+        // 	editedText: 'Đã chỉnh sửa',
+        // 	youText: 'Thanh Tùng',
+        // 	profile_url: "https://www.facebook.com/ ",
+        // 	saveText: 'Lưu',
+        // 	deleteText: 'Xóa',
+        // 	viewAllRepliesText: 'Xem thêm __replyCount__ bình luận',
+        // 	hideRepliesText: 'Ẩn bớt bình luận',
+        // 	noCommentsText: 'Không có bình luận nào',
+        // 	noAttachmentsText: 'Không có tệp nào',
+        // 	attachmentDropText: 'Kéo và thả tệp vào đây',
+        //     enableDeletingCommentWithReplies: true,//   
+        //     postCommentOnEnter: true,
+        //     // readOnly: true, //chưa đăng nhập
+        //     enableReplying: false,
+        //     enableUpvoting: false,
+        //     enableNavigation: false,
+        //     currentUserId: 1,
+        //     roundProfilePictures: true,
+        //     textareaRows: 3,
+        //     textareaMaxRows: false,
+        //     textareaRowsOnFocus: 3,
+        //     enableAttachments: false,
+        //     enableHashtags: true,
+        //     enablePinging: true,
+        //     getUsers: function(success, error) {
+        //     	success(usersArray);
+        //     },
+        //     getComments: function(success, error) {
 
-            	success(commentsArray);
-            },
-            postComment: function(data, success, error) {
+        //     	success(commentsArray);
+        //     },
+        //     postComment: function(data, success, error) {
 
-            	success(saveComment(data));
-            },
-            putComment: function(data, success, error) {
-            	success(saveComment(data));
-            },
-            deleteComment: function(data, success, error) {
+        //     	success(saveComment(data));
+        //     },
+        //     putComment: function(data, success, error) {
+        //     	success(saveComment(data));
+        //     },
+        //     deleteComment: function(data, success, error) {
 
-            	success();
-            },
-            upvoteComment: function(data, success, error) {
+        //     	success();
+        //     },
+        //     upvoteComment: function(data, success, error) {
 
-            	success(data);
-            },
-            uploadAttachments: function(dataArray, success, error) {
+        //     	success(data);
+        //     },
+        //     uploadAttachments: function(dataArray, success, error) {
 
-            	success(dataArray);
-            },
-        });
+        //     	success(dataArray);
+        //     },
+        // });
     });
+
+    function edit(id_cmt, content){
+    	$('#'+id_cmt).html('<div class="input-group form-group">'+
+          '<input type="text" class="form-control" value="'+ content+'">'+
+        '</div>');
+    }
 </script>
 @endsection

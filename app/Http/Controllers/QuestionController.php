@@ -211,7 +211,7 @@ class QuestionController extends Controller
 
 
     //List Question
-    public function ListQuestion($tab){
+    public function ListQuestion(Request $request, $tab){
 
         $list = Question::where('active',1)->get();
         switch ($tab) {
@@ -241,14 +241,20 @@ class QuestionController extends Controller
         selectRaw('count(taggables.tag_id) AS `kount`, tags.name')->
         groupBy('tags.id')->
         orderBy('kount', 'desc')->
-        get();
+        get()->take(10);
         
-        return view('question.list_question',['name_tab'=>$tab,'list'=>$list, 'list_paginate'=>$list_paginate,'top_user'=>$top_user,'top_tag'=>$top_tag]);
+        if($request->ajax()){
+            return view('pagination.list_question',['tab'=>$tab,'list'=>$list, 'list_paginate'=>$list_paginate,'top_user'=>$top_user,'top_tag'=>$top_tag]);
+        }
+        return view('question.list_question',['tab'=>$tab,'list'=>$list, 'list_paginate'=>$list_paginate,'top_user'=>$top_user,'top_tag'=>$top_tag]);
     }
 
     public function getDetail($question_id){
         $question = Question::find($question_id);
-        return view('question.detail_question',['question'=>$question]);
+        // $tags = $question->tags->get();
+        // $comments_question = $question->comments->get();
+        $answers = $question->answers;
+        return view('question.detail_question',['question'=>$question, 'answers'=>$answers]);
     }
 
     public function getCreate(){

@@ -1168,3 +1168,7 @@ button {
     background-position: center center;
     background-repeat: no-repeat;
 }
+.btn-question a{
+    color: #FFFFFF;
+    text-decoration: none;
+}

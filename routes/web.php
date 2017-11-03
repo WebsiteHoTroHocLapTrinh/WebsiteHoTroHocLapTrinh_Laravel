@@ -170,7 +170,7 @@ Route:: group(['prefix'=>'tags'], function(){
 //Group User
 Route::group(['prefix'=>'user'], function() {
     Route::get('info/user_{user_id}', 'UserController@getInfo');
-    Route::get('edit-user', 'UserController@getEdit')->middleware('edituser');
+    Route::get('edit-user', 'UserController@getEdit')->middleware('checklogin');
     Route::post('edit-info', 'UserController@postEditInfo');
     Route::post('edit-avatar', 'UserController@postEditAvatar');
     Route::post('edit-changepass', 'UserController@postChangePass');
