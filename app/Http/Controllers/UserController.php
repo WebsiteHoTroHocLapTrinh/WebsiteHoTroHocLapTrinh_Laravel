@@ -348,9 +348,12 @@ class UserController extends Controller
         $file->move('image/avatar_users', $fileName);
 
         //delete old file
-        if(File::exists(public_path('image/avatar_users/'. $oldAvatarName))){
+        if($oldAvatarName!='default_avatar.png'){
+           if(File::exists(public_path('image/avatar_users/'. $oldAvatarName))){
             File::delete(public_path('image/avatar_users/' . $oldAvatarName));
+            }
         }
+       
         
         //update database
         $user->avatar = $fileName;

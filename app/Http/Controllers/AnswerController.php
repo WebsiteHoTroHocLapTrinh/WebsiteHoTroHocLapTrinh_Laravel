@@ -141,4 +141,107 @@ class AnswerController extends Controller
 
         return redirect()->back()->with('thongbao', 'Xóa Thành Công');
     }
+
+    ////
+    public function postVote(Request $request, $answer_id){
+        if(Auth::check()){
+            $answer = Answer::find($answer_id);
+            $user = $answer->user;
+            $vote_record = $answer->votes->where('user_id', Auth::id())->first(); 
+            
+            if(!is_null($vote_record)){//exist user (up or down)
+                if($vote_record->vote_action != $request->up_down){
+                    if($request->up_down=='up'){
+                        $answer->point_rating = $answer->point_rating + 1;
+                        $user->point_reputation = $user->point_reputation + 1;
+                        $vote_record->vote_action = 'up';
+                        $answer->save();
+                        $user->save();
+                        $vote_record->save();
+                    }
+                    else{
+                        $answer->point_rating = $answer->point_rating - 1;
+                        $user->point_reputation = $user->point_reputation - 1;
+                        $vote_record->vote_action = 'down';
+                        $answer->save();
+                        $user->save();
+                        $vote_record->save();
+                    }
+
+                    return Response()->json(['success' => true]); 
+                }
+                else{
+                    return Response()->json(['success' => false, 'message' => 'Bạn chỉ được vote (up/down) một lần!']);
+                }
+            }
+            else{
+
+                if($request->up_down=='up'){
+                    $answer->point_rating = $answer->point_rating + 1;
+                    $user->point_reputation = $user->point_reputation + 1;
+                    $answer->save();
+                    $user->save();
+                        //add vote table
+                    $vote = new Vote;
+                    $vote->user_id = Auth::id();
+                    $vote->vote_action = 'up';
+                    $vote->votable_id = $answer_id;
+                    $vote->votable_type = 'App\Answer';
+                    $vote->save();
+                }
+                else{
+                    $answer->point_rating = $answer->point_rating - 1;
+                    $user->point_reputation = $user->point_reputation - 1;
+                    $answer->save();
+                    $user->save();
+                         //add vote table
+                    $vote = new Vote;
+                    $vote->user_id = Auth::id();
+                    $vote->vote_action = 'down';
+                    $vote->votable_id = $question_id;
+                    $vote->votable_type = 'App\Answer';
+                    $vote->save();
+                }
+                return Response()->json(['success' => true]); 
+            }
+
+        }
+        //don't login yet
+        return Response()->json(['success' => false, 'message' => 'Bạn cần phải đăng nhập để được vote cho câu hỏi này']); 
+        
+    }
+
+    public function postBestAnswer(Request $request, $answer_id){
+        $best_answer_old = Answer::where([['question_id',$request->question_id], ['best_answer', 1]])->first();
+        if(!is_null($best_answer_old)){
+            $best_answer_old->best_answer =false;
+            $user_old = $best_answer_old->user;
+            $user_old->point_reputation = $user_old->point_reputation -10;
+            $user_old->save();
+            $best_answer_old->save();
+
+            if($best_answer_old->id==$answer_id){
+                return Response()->json(['exist'=>true,'trung' =>true]);
+            }
+            
+
+            $best_answer = Answer::find($answer_id);
+            $user_new = $best_answer->user;
+            $best_answer->best_answer = true;
+            $user_new->point_reputation =$user_new->point_reputation +10;
+            $best_answer->save();
+            $user_new->save();
+            return Response()->json(['exist'=>true, 'trung'=>false, 'best_answer_old'=>$best_answer_old->id]);
+        }
+        else{
+
+            $best_answer = Answer::find($answer_id);
+            $user_new = $best_answer->user;
+            $user_new->point_reputation =$user_new->point_reputation +10;
+            $best_answer->best_answer = true;
+            $user_new->save();
+            $best_answer->save();
+            return Response()->json(['exist'=> false]);
+        }  
+    }
 }

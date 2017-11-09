@@ -393,6 +393,7 @@ button {
 
 .vote-widget .oi:hover {
     color: #548BFB;
+    cursor: pointer;
 }
 
 .vote-widget .vote-up,
@@ -1171,4 +1172,114 @@ button {
 .btn-question a{
     color: #FFFFFF;
     text-decoration: none;
+}
+.input-size{
+    width: 100%;
+    /*height: auto;*/
+    /*height: 30px;*/
+}
+.dropdown-cmt{
+    float: right;
+}
+.break-word{
+   word-break: break-all;
+}
+#dropdownMenuLink,#dropdownMenuButton{
+    cursor: pointer;
+}
+
+.vote-widget .active_vote{
+    color: #0EB4EB;
+}
+.best-answer{
+    color: #B4B4B4;
+    cursor: pointer;
+}
+ .active-best{
+    color: #43CE60;
+}
+.best-answer-normal{
+    color: #43CE60;
+    cursor:text;
+}
+.date-time-qs  div{
+    display: inline;
+}
+.count-view-question {
+    position: relative;
+    display: inline-block;
+}
+
+.count-view-question .tooltiptext-view {
+    visibility: hidden;
+    width: 50px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -35px;
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+.count-view-question .tooltiptext-view::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+.count-view-question:hover .tooltiptext-view {
+    visibility: visible;
+    opacity: 1;
+}
+
+.count-answer-question {
+    position: relative;
+    display: inline-block;
+}
+
+.count-answer-question .tooltiptext-answer {
+    visibility: hidden;
+    width: 60px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -35px;
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+.count-answer-question .tooltiptext-answer::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+.count-answer-question:hover .tooltiptext-answer {
+    visibility: visible;
+    opacity: 1;
+}
+.info-content-asked, .info-content-viewed, .info-content-activity, .info-content-bestanswer{
+    font-size: 14px;
 }

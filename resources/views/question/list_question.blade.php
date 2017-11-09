@@ -197,5 +197,12 @@
     //         });
     //     }
     // });
+    // 
+    $(document).ready(function(){
+        var confirm = '{{ session('daxoa') }}';
+        if(confirm){
+            alert('{!! session('daxoa') !!}');
+        }
+    });
 </script>
 @endsection

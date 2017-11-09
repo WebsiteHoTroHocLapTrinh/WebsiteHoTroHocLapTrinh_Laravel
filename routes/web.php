@@ -144,7 +144,6 @@ Route::group(['prefix' => 'ajax'], function() {
     Route::get('commentsOfAnswer/{idAnswer}', 'AjaxController@getCommentsOfAnswer');
     Route::get('changeActive/{type}/{id}/{value}', 'AjaxController@changeActive');
     Route::get('dismissNew/{type}/{id}', 'AjaxController@dismissNew');
-    // Route::get('changeTabQuestion/{tab_id}', 'AjaxController@getTabQuestion');
     Route::get('getMoreActive/{type}/{id}', 'AjaxController@getMore');
 
 
@@ -152,9 +151,18 @@ Route::group(['prefix' => 'ajax'], function() {
 
 //Group Questions
 Route::group(['prefix' => 'question'], function() {
-    route::get('list-question/{tab}','QuestionController@ListQuestion');
+    Route::get('list-question/{tab}','QuestionController@ListQuestion');
     Route::get('detail/qs_{question_id}', 'QuestionController@getDetail');
     Route::get('create-question', 'QuestionController@getCreate');
+    Route::get('delete/{question_id}', 'QuestionController@getDeleteQuestion');
+    Route::post('vote/{question_id}', 'QuestionController@postVote');
+});
+
+//Group Answer
+Route::group(['prefix'=>'answer'], function(){
+    Route::post('vote/{answer_id}', 'AnswerController@postVote');
+    Route::get('delete/{answer_id}', 'AnswerController@getDelete');
+    Route::post('bestanswer/{answer_id}', 'AnswerController@postBestAnswer');
 });
 
 //Group Documentation
@@ -162,6 +170,12 @@ Route::group(['prefix'=>'documentation'], function(){
 
 });
 
+//Group Comment
+Route::group(['prefix'=>'comment'], function(){
+    Route::post('edit/{cmt_id}', 'CommentController@postEdit');
+    Route::post('add', 'CommentController@postAdd');
+    Route::get('delete/{cmt_id}', 'CommentController@getDeleteCmt');
+});
 //Group Tags
 Route:: group(['prefix'=>'tags'], function(){
     Route::get('list', 'TagController@getList_tag');
