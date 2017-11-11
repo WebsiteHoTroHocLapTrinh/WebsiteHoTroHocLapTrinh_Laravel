@@ -49,8 +49,8 @@
              <!--/login signup-->
         @else
             <div class="dropdown">
-                <div class="" id="dropdownMenuButton" data-toggle="dropdown" >
-                    <img src="image/{{ Auth::user()->avatar }}" width="40">
+                <div class="avatar_login" id="dropdownMenuButton" data-toggle="dropdown">
+                    <img src="image/avatar_users/{{ Auth::user()->avatar }}" class="rounded-circle" >
                 </div>
                 <div class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenuButton">
                     @if (Auth::user()->permission_id == 2)

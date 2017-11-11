@@ -101,8 +101,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function() {
     //User
    Route::group(['prefix' => 'user'], function() {
         Route::get('list','UserController@getList');
-        Route::get('edit/{idUser}','UserController@getEdit');
-        Route::post('edit/{idUser}','UserController@postEdit');
+        Route::get('edit/{idUser}','UserController@getEditAdmin');
+        Route::post('edit/{idUser}','UserController@postEditAdmin');
         Route::get('editpass/{idUser}','UserController@getResetPassword');
         Route::get('add','UserController@getAdd');
         Route::post('add','UserController@postAdd');
@@ -144,15 +144,25 @@ Route::group(['prefix' => 'ajax'], function() {
     Route::get('commentsOfAnswer/{idAnswer}', 'AjaxController@getCommentsOfAnswer');
     Route::get('changeActive/{type}/{id}/{value}', 'AjaxController@changeActive');
     Route::get('dismissNew/{type}/{id}', 'AjaxController@dismissNew');
-    Route::get('changeTabQuestion/{tab_id}', 'AjaxController@getTabQuestion');
+    Route::get('getMoreActive/{type}/{id}', 'AjaxController@getMore');
+
 
 });
 
 //Group Questions
 Route::group(['prefix' => 'question'], function() {
-    route::get('list-question/{tab}','QuestionController@ListQuestion');
+    Route::get('list-question/{tab}','QuestionController@ListQuestion');
     Route::get('detail/qs_{question_id}', 'QuestionController@getDetail');
     Route::get('create-question', 'QuestionController@getCreate');
+    Route::get('delete/{question_id}', 'QuestionController@getDeleteQuestion');
+    Route::post('vote/{question_id}', 'QuestionController@postVote');
+});
+
+//Group Answer
+Route::group(['prefix'=>'answer'], function(){
+    Route::post('vote/{answer_id}', 'AnswerController@postVote');
+    Route::get('delete/{answer_id}', 'AnswerController@getDelete');
+    Route::post('bestanswer/{answer_id}', 'AnswerController@postBestAnswer');
 });
 
 //Group Documentation
@@ -162,7 +172,16 @@ Route::group(['prefix'=>'documentation'], function(){
     Route::post('create-documentation', 'DocumentationController@postCreateDocumentation')->name('create-documentation')->middleware('login');
 });
 
+<<<<<<< HEAD
 
+=======
+//Group Comment
+Route::group(['prefix'=>'comment'], function(){
+    Route::post('edit/{cmt_id}', 'CommentController@postEdit');
+    Route::post('add', 'CommentController@postAdd');
+    Route::get('delete/{cmt_id}', 'CommentController@getDeleteCmt');
+});
+>>>>>>> f7e4473a0e13c35a4d7f86238fd032ad463d8f7b
 //Group Tags
 Route:: group(['prefix'=>'tag'], function(){
     Route::get('/', 'TagController@getList_tag')->name('tag');
@@ -172,6 +191,10 @@ Route:: group(['prefix'=>'tag'], function(){
 //Group User
 Route::group(['prefix'=>'user'], function() {
     Route::get('info/user_{user_id}', 'UserController@getInfo');
+    Route::get('edit-user', 'UserController@getEdit')->middleware('checklogin');
+    Route::post('edit-info', 'UserController@postEditInfo');
+    Route::post('edit-avatar', 'UserController@postEditAvatar');
+    Route::post('edit-changepass', 'UserController@postChangePass');
 
 });
 
@@ -183,9 +206,13 @@ Route::post('register', 'UserController@postRegister');
 Route::get('logout', 'UserController@getLogout')->name('logout');
 Route::get('congratulation',function(){
     return view('congratulation');
+<<<<<<< HEAD
 })->name('congratulation');
 Route::get('error_404', function(){
     return view('404_page');
 })->name('404');
+=======
+});
+>>>>>>> f7e4473a0e13c35a4d7f86238fd032ad463d8f7b
 
 

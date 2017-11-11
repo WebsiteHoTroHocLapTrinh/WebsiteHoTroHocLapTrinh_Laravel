@@ -42,7 +42,7 @@
                                         </td>
                                         <td>
                                             <div class="intro">
-                                                <img src="image/{{ $user->avatar }}" class="img-circle intro-img" width="80">
+                                                <img src="image/avatar_users/{{ $user->avatar }}" class="img-circle intro-img" width="80">
                                                 <p class="intro-name"><strong>{{ $user->name }}</strong></p>
                                                 <p class="intro-about">{{ $user->about }}</p>
                                             </div>
