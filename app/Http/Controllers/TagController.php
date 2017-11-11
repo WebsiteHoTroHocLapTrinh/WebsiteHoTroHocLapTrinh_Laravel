@@ -54,6 +54,7 @@ class TagController extends Controller
         $tag = new Tag;
         $tag->user_id = Auth::user()->id;
         $tag->name = $request->name;
+        $tag->name_url = changeTitle($request->name);
         $tag->description = $request->description;
         if ($request->has('active')) {
             $tag->active = true;
@@ -101,6 +102,7 @@ class TagController extends Controller
         // Create Model Tag and set properties
         $tag = Tag::find($idTag);
         $tag->name = $request->name;
+        $tag->name_url = changeTitle($request->name);
         $tag->description = $request->description;
         if ($request->has('active')) {
             $tag->active = true;
@@ -164,5 +166,36 @@ class TagController extends Controller
     public function getList_tag(){
         $tags = Tag::where('active',1)->get();
         return view('tag.list_tag',['tags'=>$tags]);
+    }
+
+    public function postCreateTag(Request $request) {
+        // Validate date input
+        $validator = Validator::make($request->all(), 
+            [
+                'name' => 'required',
+                'description' => 'required',
+            ],
+            [
+                'name.required' => 'Bạn chưa nhập tên thẻ',
+                'description.required' => 'Bạn chưa nhập mô tả cho thẻ',
+            ] 
+        );
+        if ($validator->fails()) {
+            return redirect()->back()
+            ->withErrors($validator)
+            ->withInput();
+        }
+
+        // Create Model Tag and set properties
+        $tag = new Tag;
+        $tag->user_id = Auth::user()->id;
+        $tag->name = $request->name;
+        $tag->name_url = changeTitle($request->name);
+        $tag->description = $request->description;
+        $tag->created_at = new DateTime();
+        $tag->updated_at = new DateTime();
+        $tag->save();  // Save into database
+
+        return redirect()->back()->with('thongbao', 'Đã Thêm thẻ '.$tag->name);
     }
 }

@@ -171,7 +171,7 @@
                            </div>
                            @endforeach
                        </div>
-                       <a href="tags/list">Xem thêm ...</a>
+                       <a href="{{ route('tag') }}">Xem thêm ...</a>
                    </div>
                    <!--endrank-tag-->
                </div>

@@ -53,6 +53,7 @@ class SubjectController extends Controller
         //Edit Subject
         $subject = Subject::find($idSubject);
         $subject->name = $request->name;
+        $subject->name_url = changeTitle($request->name);
         if ($request->has('active')) {
             $subject->active = true;
         }
@@ -97,6 +98,7 @@ class SubjectController extends Controller
         $subject = new Subject;
         $subject->user_id = Auth::user()->id;
         $subject->name = $request->name;
+        $subject->name_url = changeTitle($request->name);
         if ($request->has('active')) {
             $subject->active = true;
         }

@@ -19,6 +19,8 @@ class QuestionsSeeder extends Seeder
 	        		'title' => 'Question '.$i.' là gì',
 	        		'title_url' => 'Question-'.$i.'-la-gi',
 	        		'content' => 'Nội Dung Question '.$i.' là gì',
+                    'point_rating' => rand(100,500),
+                    'view' => rand(100,1000),
 	            	'created_at' => new DateTime(),
                     'updated_at' => new DateTime()
 	        	]

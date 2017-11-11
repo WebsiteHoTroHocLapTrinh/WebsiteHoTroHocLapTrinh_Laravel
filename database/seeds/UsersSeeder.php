@@ -24,6 +24,7 @@ class UsersSeeder extends Seeder
               [
                  'permission_id' => 1,
                  'name' => 'User_'.$i,
+                 'name_url'=>changeTitle('User_'.$i),
                  'status' => 'Common Baby!',
                  'about' => 'Hi, I am User_'.$i,
                  'location' => 'TP.HCM',
@@ -31,6 +32,7 @@ class UsersSeeder extends Seeder
                  'avatar' => 'default_avatar.png',
                  'email' => 'user_'.$i.'@gmail.com',
                  'password' => bcrypt('123456'),
+                 'point_reputation' => rand(100,1000),
                  'last_activity_time' => new DateTime(),
                  'created_at' => new DateTime(),
                  'updated_at' => new DateTime()
@@ -42,6 +44,7 @@ class UsersSeeder extends Seeder
             [
                 'permission_id' => 2,
                 'name' => 'Thanh Tùng',
+                'name_url'=>changeTitle('Thanh Tùng'),
                 'status' => 'Common Baby!',
                 'about' => 'Hi, I am Admin',
                 'location' => 'TP.HCM',
@@ -49,6 +52,7 @@ class UsersSeeder extends Seeder
                 'avatar' => 'k17.jpg',
                 'email' => 'nguyenhoangthanhtung1610@gmail.com',
                 'password' => bcrypt('123456'),
+                'point_reputation' => rand(100,1000),
                 'last_activity_time' => new DateTime(),
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime()
@@ -58,6 +62,7 @@ class UsersSeeder extends Seeder
             [
                 'permission_id' => 2,
                 'name' => 'Đinh Sa',
+                'name_url'=>changeTitle('Đinh Sa'),
                 'status' => 'Common Baby!',
                 'about' => 'Hi, I am Admin',
                 'location' => 'TP.HCM',
@@ -65,6 +70,7 @@ class UsersSeeder extends Seeder
                 'avatar' => 'avata.png',
                 'email' => 'dinhsa@gmail.com',
                 'password' => bcrypt('123456'),
+                'point_reputation' => rand(100,1000),
                 'last_activity_time' => new DateTime(),
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime()

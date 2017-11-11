@@ -54,6 +54,7 @@ class PermissionController extends Controller
         $permission = new Permission;
         $permission->user_id = Auth::user()->id;
         $permission->name = $request->name;
+        $permission->name_url = changeTitle($request->name);
         $permission->key = $request->key;
         if ($request->has('active')) {
             $permission->active = true;
@@ -101,6 +102,7 @@ class PermissionController extends Controller
         // Create Model Permisson and set properties
         $permission =  Permission::find($idPermission);
         $permission->name = $request->name;
+        $permission->name_url = changeTitle($request->name);
         $permission->key = $request->key;
         if ($request->has('active')) {
             $permission->active = true;

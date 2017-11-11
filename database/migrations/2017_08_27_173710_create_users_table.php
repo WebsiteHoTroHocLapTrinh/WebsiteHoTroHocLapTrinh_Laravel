@@ -17,6 +17,7 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->integer('permission_id')->unsigned()->default('1');
             $table->string('name');
+            $table->string('name_url');
             $table->string('status')->nullable();
             $table->string('about')->nullable();
             $table->string('location')->nullable();

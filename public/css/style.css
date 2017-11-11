@@ -154,7 +154,12 @@ button {
 
 .summary .summary-title {}
 
-.summary .summary-description {}
+.summary .summary-description {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
 
 .list-tag {}
 

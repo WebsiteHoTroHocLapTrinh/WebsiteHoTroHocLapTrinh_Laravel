@@ -157,12 +157,16 @@ Route::group(['prefix' => 'question'], function() {
 
 //Group Documentation
 Route::group(['prefix'=>'documentation'], function(){
-
+    Route::get('list-documentation/{subject?}/{list_tag?}/{sort?}', 'DocumentationController@getListDocumentation')->name('documentation');
+    Route::get('create-documentation', 'DocumentationController@getCreateDocumentation')->name('create-documentation')->middleware('login');
+    Route::post('create-documentation', 'DocumentationController@postCreateDocumentation')->name('create-documentation')->middleware('login');
 });
 
+
 //Group Tags
-Route:: group(['prefix'=>'tags'], function(){
-    Route::get('list', 'TagController@getList_tag');
+Route:: group(['prefix'=>'tag'], function(){
+    Route::get('/', 'TagController@getList_tag')->name('tag');
+    Route::post('create-tag', 'TagController@postCreateTag')->name('create-tag')->middleware('login');
 });
 
 //Group User
@@ -172,16 +176,16 @@ Route::group(['prefix'=>'user'], function() {
 });
 
 //Group Authencation
-Route::get('login', 'UserController@getLogin')->middleware('login');
+Route::get('login', 'UserController@getLogin')->name('login')->middleware('preventLogin');
 Route::post('login', 'UserController@postLogin');
-Route::get('register', 'UserController@getRegister')->middleware('login');
+Route::get('register', 'UserController@getRegister')->name('register')->middleware('preventLogin');
 Route::post('register', 'UserController@postRegister');
-Route::get('logout', 'UserController@getLogout');
-route::get('congratulation',function(){
+Route::get('logout', 'UserController@getLogout')->name('logout');
+Route::get('congratulation',function(){
     return view('congratulation');
-});
+})->name('congratulation');
 Route::get('error_404', function(){
     return view('404_page');
-});
+})->name('404');
 
 

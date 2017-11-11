@@ -17,6 +17,7 @@ class CreatePermissionsTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->string('name');
+            $table->string('name_url');
             $table->integer('key');
             $table->boolean('is_new')->default(true);
             $table->boolean('active')->default(true);

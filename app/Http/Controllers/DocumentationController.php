@@ -203,4 +203,130 @@ class DocumentationController extends Controller
         
         return redirect()->back()->with('thongbao', 'Thêm Thành Công');
     }
+
+    //User
+    public function getListDocumentation($subject = 0, $list_tag = 0, $sort = 0) {
+        $subjects = Subject::where('active', true)->get();
+        $tags = Tag::where('active', true)->get();
+        
+        $documentations = $this->collectDocumentation($subject, $list_tag);
+        switch ($sort) {
+            case 1:
+                $documentations = $documentations->orderBy('point_rating', 'desc')->paginate(5);
+                break;
+            case 2:
+                $documentations = $documentations->orderBy('view', 'desc')->paginate(5);
+                break;
+            case 3:
+                $documentations = $documentations->orderBy('created_at', 'desc')->paginate(5);
+                break;
+            default:
+                $documentations = $documentations->paginate(5);
+                break;
+        }
+        
+
+        $top_user = User::where('active',1)->orderBy('point_reputation','desc')->get()->take(10);
+        $top_tag = Tag::join('taggables','taggables.tag_id','=','tags.id')->
+        selectRaw('count(taggables.tag_id) AS `kount`, tags.name')->
+        groupBy('tags.id')->
+        orderBy('kount', 'desc')->
+        get();
+
+        $tags_filter = $tags->whereIn('id', explode(',', $list_tag))->values();
+        return view('documentation.list_documentation', ['subjects' => $subjects, 'tags' => $tags, 'documentations' => $documentations,'top_user'=>$top_user,'top_tag'=>$top_tag, 'subject_filter' => $subject, 'tags_filter' => $tags_filter, 'sort_filter' => $sort]);
+    }
+
+    public function collectDocumentation($subject, $list_tag) {
+        if ($subject == 0 && $list_tag == 0) {
+            return $documentations = Documentation::where('active', true);
+        }
+        if ($list_tag == 0) {
+            return $documentations = Documentation::where('active', true)->where('subject_id', $subject);
+        }
+        if ($subject == 0) {
+            return $documentations = Documentation::join('taggables', function($join) {
+                    $join->on('documentations.id', '=', 'taggables.taggable_id')
+                    ->where('taggables.taggable_type', '=', 'App\Documentation');
+                })->join('tags', function($join) use ($list_tag) {
+                    $join->on('taggables.tag_id', '=', 'tags.id')
+                    ->whereIn('tags.id', explode(',', $list_tag));
+                })
+            ->select('documentations.*')->distinct()->where('documentations.active', true);
+        }
+        return $documentations = Documentation::join('taggables', function($join) {
+                    $join->on('documentations.id', '=', 'taggables.taggable_id')
+                    ->where('taggables.taggable_type', '=', 'App\Documentation');
+                })->join('tags', function($join) use ($list_tag) {
+                    $join->on('taggables.tag_id', '=', 'tags.id')
+                    ->whereIn('tags.id', explode(',', $list_tag));
+                })
+            ->select('documentations.*')->distinct()->where('documentations.active', true)->where('documentations.subject_id', $subject);
+    }
+
+    public function getCreateDocumentation() {
+        $subjects = Subject::where('active', true)->get();
+        $tags = Tag::where('active', true)->get();
+        return view('documentation.create_documentation', ['subjects' => $subjects, 'tags' => $tags]);
+    }
+
+    public function postCreateDocumentation(Request $request) {
+        // Validate date input
+        $validator = Validator::make($request->all(), 
+            [
+                'title' => 'required|min:6',
+                'content' => 'required',
+                'link' =>'required',
+                'list_tag' => 'required',
+            ],
+            [
+                'title.required' => 'Bạn chưa nhập tiêu đề',
+                'title.min' => 'Tiêu đề phải có ít nhất 6 ký tự',
+                'content.required' => 'Bạn chưa nhập nội dung',
+                'link.required' => 'Bạn chưa nhập link',
+                'list_tag.required' => 'Bạn chưa nhập các thẻ liên quan',
+            ] 
+        );
+        if ($validator->fails()) {
+            return redirect()->back()
+            ->withErrors($validator)
+            ->withInput();
+        }
+
+        //create Docunmentation
+        $tbDocumentation = new Documentation;
+        $tbDocumentation->user_id = Auth::user()->id;
+        $tbDocumentation->subject_id = $request->subject;
+        $tbDocumentation->title = $request->title;
+        $tbDocumentation->title_url = changeTitle($request->title);
+        $tbDocumentation->content = $request->content;
+        $tbDocumentation->link = $request->link;
+        $tbDocumentation->created_at = new DateTime();
+        $tbDocumentation->updated_at = new DateTime();
+        $tbDocumentation->save();
+
+        //create Taggable
+         $arrayTags = explode(',', $request->list_tag);  // Split data Ex: 1,2,3 => ["1", "2", "3"]
+         foreach ($arrayTags as $tag) {
+            $taggable = new Taggable;
+            $taggable->tag_id = $tag;
+            $taggable->taggable_id = $tbDocumentation->id;
+            $taggable->taggable_type = "App\Documentation";
+            $taggable->active = true;
+            $taggable->created_at = new DateTime();
+            $taggable->updated_at = new DateTime();
+            $taggable->save();
+        }
+
+        // Increase User point reputation
+        Auth::user()->point_reputation += 100;
+        Auth::user()->save();
+
+        $previousURL = route('documentation');  //Chuyển lại về chi tiết khi làm xong
+        return redirect('congratulation')->with('thongbao', 
+            '<h1>Chia Sẽ Tài Liệu Thành Công !!!</h1>
+            <br>
+            <h3>Bạn nhận được 100 điểm uy tín !!!</h3>
+            <br>')->with('previousURL', $previousURL);
+    }
 }

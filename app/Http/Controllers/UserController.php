@@ -103,6 +103,7 @@ class UserController extends Controller
 
         $user = new User;
         $user->name = $request->name;
+        $user->name_url = changeTitle($request->name);
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
         $user->last_activity_time = new DateTime();
@@ -157,6 +158,7 @@ class UserController extends Controller
         $user = User::find($idUser);
         $user->permission_id = $request->permission;
         $user->name = $request->name;
+        $user->name_url = changeTitle($request->name);
         if ($request->has('active')) {
             $user->active = true;
         }
@@ -213,6 +215,7 @@ class UserController extends Controller
         $user = new User;
         $user->permission_id = $request->permission;
         $user->name = $request->name;
+        $user->name_url = changeTitle($request->name);
         $user->email = $request->email;
         $user->password = bcrypt('123456');
         if($request->has('active'))
