@@ -19,6 +19,7 @@ use App\Activity;
 use App\Ping;
 use App\Vote;
 use App\PasswordReset;
+use Session;
 
 class AnswerController extends Controller
 {
@@ -243,5 +244,59 @@ class AnswerController extends Controller
             $best_answer->save();
             return Response()->json(['exist'=> false]);
         }  
+    }
+
+    public function postAddAnswer(Request $request, $question_id){
+        $validator = Validator::make($request->all(), 
+            [
+                'content_new_answer' => 'required',
+            ],
+            [
+                'content_new_answer' => 'Bạn chưa nhập nội dung',
+            ] 
+        );
+        if ($validator->fails()) {
+            return redirect()->back()
+            ->withErrors($validator)
+            ->withInput();
+        }
+
+        $answer = new Answer;
+        $answer->user_id = Auth::id();
+        $answer->question_id = $question_id;
+        $answer->content = $request->content_new_answer;
+        $answer->save();
+
+         //Create Activity
+        $question = Question::find($question_id);
+        $activity = new Activity;
+        $activity->user_id = Auth::id();
+        $activity->content = 'trả lời câu hỏi <a href="/admin/question/list" target="_blank">'.$question->title.'</a>';
+        $activity->type = 1;
+        $activity->save();
+        
+        return redirect()->back()->with('AnswerSuccess', 'Câu trả lời đã được đăng!');
+    }
+
+    public function getEditAnswer($answer_id){
+        $answer = Answer::find($answer_id);
+        $question = $answer->question;
+        Session::put('previousURLEditAnswer', Session::previousUrl());    
+        return view('question.edit_answer',['answer'=> $answer, 'question' => $question]);
+    }
+
+    public function postEditAnswer(Request $request, $answer_id){
+        $answer = Answer::find($answer_id);
+        $answer->content = $request->content_edit_answer;
+        $answer->save();
+        //Create Activity
+        $question = $answer->question;
+        $activity = new Activity;
+        $activity->user_id = Auth::id();
+        $activity->content = 'cập nhật câu trả lời ID:'.$answer_id.' cho câu hỏi <a href="/admin/question/list" target="_blank">'.$question->title.'</a>';
+        $activity->type = 1;
+        $activity->save();
+        return redirect(session('previousURLEditAnswer'))->with('successEditAnswer', true);
+
     }
 }

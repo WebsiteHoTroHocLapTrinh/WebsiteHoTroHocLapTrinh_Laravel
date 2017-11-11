@@ -11,9 +11,9 @@
 				<a href="user/info/user_{{ $cmt->user_id }}">{{ $cmt->user->name }}</a>
 				<span class="text-muted">
 					@if($cmt->created_at==$cmt->updated_at)
-					đã bình luận vào {{ date('d-m-Y', strtotime($cmt->created_at)) }}
+					đã bình luận vào {{ date('d-m-Y, h:i A', strtotime($cmt->created_at)) }}
 					@else
-					đã chỉnh sửa vào {{ date('d-m-Y', strtotime($cmt->updated_at)) }}
+					đã chỉnh sửa vào {{ date('d-m-Y, h:i A', strtotime($cmt->updated_at)) }}
 					@endif
 				</span>
 			</div>
@@ -32,7 +32,7 @@
 						</div>
 
 						<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-							<a class="dropdown-item" href="javascript:Edit({{ $cmt->id }},'{{ $cmt->content }}');">sửa</a>
+							<a class="dropdown-item" href="javascript:Edit({{ $cmt->id }},`{{ $cmt->content }}`);">sửa</a>
 							<a class="dropdown-item" href="javascript:DeleteComment({{ $cmt->id }});">xóa</a>
 						</div>
 					</div>

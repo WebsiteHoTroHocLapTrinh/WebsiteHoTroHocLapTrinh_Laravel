@@ -381,7 +381,7 @@ class QuestionController extends Controller
         //Create Activity
         $activity = new Activity;
         $activity->user_id = Auth::user()->id;
-        $activity->content = 'Xóa câu hỏi <a href="/admin" target="_blank">'.$question->title.'</a>';
+        $activity->content = 'Xóa câu hỏi <a href="/admin/question/list" target="_blank">'.$question->title.'</a>';
         $activity->type = 1;
         $activity->save();
 

@@ -131,10 +131,11 @@
 @endsection
 
 @section('css')
-{{-- expr --}}
+<link rel="stylesheet" href="css/jquery.sweet-modal.min.css" />
 @endsection
 
 @section('script')
+<script src="js/jquery.sweet-modal.min.js"></script>
 <script>    
     function changeTab(id_tab) {
         document.getElementById("new").className = "nav-link";
@@ -156,7 +157,18 @@
         }).done(function (data) {
             $('#load_list').html(data);
         }).fail(function () {
-            alert('Tab could not be loaded.');
+            $.sweetModal({
+                content: 'Tab could not be loaded.',
+                title: 'Oh noes…',
+                icon: $.sweetModal.ICON_ERROR,
+
+                buttons: [
+                {
+                    label: 'OK',
+                    classes: 'redB'
+                }
+                ]
+            });
         });
     };
 
@@ -201,7 +213,10 @@
     $(document).ready(function(){
         var confirm = '{{ session('daxoa') }}';
         if(confirm){
-            alert('{!! session('daxoa') !!}');
+            $.sweetModal({
+                content: '{!! session('daxoa') !!}',
+                icon: $.sweetModal.ICON_SUCCESS
+            });
         }
     });
 </script>
