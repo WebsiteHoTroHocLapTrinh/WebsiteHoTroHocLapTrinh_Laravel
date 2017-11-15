@@ -19,6 +19,7 @@ use App\Activity;
 use App\Ping;
 use App\Vote;
 use App\PasswordReset;
+use Event;
 
 class QuestionController extends Controller
 {
@@ -252,6 +253,7 @@ class QuestionController extends Controller
     public function getDetail(Request $request, $question_id){
         $question = Question::find($question_id);
         $answers = $question->answers;
+        Event::fire('question.view', $question);//increase view
         if($request->ajax()){
             switch ($request->type) {
                 case 'comments-question':

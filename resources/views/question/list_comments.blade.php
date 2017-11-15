@@ -19,7 +19,7 @@
 			</div>
 			<div id="{{ $cmt->id }}" class="row">
 				<div class="col-lg-11">
-					<div class="break-word">
+					<div class="">
 						{!! $cmt->content !!}
 					</div>
 				</div>

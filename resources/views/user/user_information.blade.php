@@ -87,7 +87,7 @@
 		</div>
 		<div class="row margin-top-hoat-dong">
 			<!--col 1-->
-			<div class="col" style="margin-right: 20px;">
+			<div class="col-lg-5 break-word" style="margin-right: 20px;">
 				<!--question-->
 				<div calss="a">
 					<div class="border_active">
@@ -144,7 +144,7 @@
 			<!--end col 1-->
 
 			<!--col 2-->
-			<div class="col" style="margin-left: 20px;">
+			<div class="col-lg-6 break-word" style="margin-left: 20px;">
 				<!--documentation-->
 				<div>
 					<div class="border_active">

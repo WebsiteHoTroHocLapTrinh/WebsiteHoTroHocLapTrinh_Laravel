@@ -12,8 +12,7 @@
 */
 
 // // Test giao diện
-
-
+// 
 // route::get('detail-question', function(){
 // 	return view('question.detail_question');
 // });

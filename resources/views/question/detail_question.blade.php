@@ -40,7 +40,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="col-lg-11">
+							<div class="col-lg-11 break-word">
 								<div class="detail-right">
 									<div class="avatar-name">
 										<a href="user/info/user_{{ $question->user_id }}">{{ $question->user->name }}</a> 
@@ -124,7 +124,7 @@
 														<div id="{{ $cmt->id }}" class="row">
 															<div class="col-lg-11">
 																<div class="break-word">
-																	<div class="break-word">{{ $cmt->content }}</div>
+																	{{ $cmt->content }}
 																</div>
 															</div>
 															<!--col edit-->
@@ -206,7 +206,7 @@
 											</div>
 										</div>
 									</div>
-									<div class="col-lg-11">
+									<div class="col-lg-11 break-word">
 										<div class="detail-right">
 											<div class="avatar-name">
 												<a href="user/info/user_{{ $answer->user_id }}">{{ $answer->user->name }}</a> <span class="text-muted mr-3">
@@ -226,7 +226,7 @@
 													<span class="oi oi-check best-answer-normal"></span>
 												@endif
 											</div>
-											<div id="answer-{{ $answer->id }}" class="answer-detail-content break-word">
+											<div id="answer-{{ $answer->id }}" class="answer-detail-content">
 												<div>
 													{!! $answer->content !!}
 												</div>
@@ -278,7 +278,7 @@
 																</div>
 																<div id="{{ $cmt->id }}" class="row">
 																	<div class="col-lg-11">
-																		<div class="break-word">
+																		<div class="">
 																			{{ $cmt->content }}
 																		</div>
 																	</div>
@@ -539,7 +539,7 @@
     		var id_cmt_storage = localStorage.getItem('id_cmt');
     		var content_storage = localStorage.getItem('content');
     		$('#'+id_cmt_storage).html('<div class="col-lg-11">'+
-											'<div class="break-word">'+
+											'<div class="">'+
 												content_storage+
 											'</div>'+
 										'</div>'+
@@ -576,7 +576,7 @@
     	var id_cmt_storage = localStorage.getItem('id_cmt');
 		var content_storage = localStorage.getItem('content');
 		$('#'+id_cmt_storage).html('<div class="col-lg-11">'+
-										'<div class="break-word">'+
+										'<div class="">'+
 											content_storage+
 										'</div>'+
 									'</div>'+
@@ -659,7 +659,7 @@
 			}).done(function (data) {
 				if(data['success']){
 					$("#"+id_cmt).html('<div class="col-lg-11">'+
-						'<div class="break-word">'+
+						'<div class="">'+
 						content_new+
 						'</div>'+
 						'</div>'+
