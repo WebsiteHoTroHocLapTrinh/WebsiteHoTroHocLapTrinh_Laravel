@@ -137,7 +137,7 @@ class PermissionController extends Controller
         $activity = new Activity;
         $activity->user_id = Auth::id();
         $activity->user_related_id = $permission->user_created->id;
-        $activity->content = 'đã xóa quyền <strong>'.$permission->name.'</strong>';
+        $activity->content = 'đã xóa vĩnh viễn quyền <strong>'.$permission->name.'</strong>';
         // $activity->link = route('detail-question', ['question_id' => $idQuestion]);
         $activity->type = Auth::user()->permission->key;
         $activity->save();

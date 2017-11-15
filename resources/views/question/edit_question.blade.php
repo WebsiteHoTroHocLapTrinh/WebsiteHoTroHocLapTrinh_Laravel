@@ -9,7 +9,7 @@
 				<div class="main-content">
 					<div class="content-card">
 						<div class="note-content">
-							<h1 style="text-align: center;">Chia sẻ tài liệu</h1>
+							<h1 style="text-align: center;">Chỉnh sửa câu hỏi: <small>{{ $question->title }}</small></h1>
 							<br>
 							@if (count($errors) > 0)
                                 <div class="alert alert-warning">
@@ -23,27 +23,16 @@
                           			{{ session('thongbao') }}
                                	</div>
                       		@endif
-							<form action="{{ route('create-documentation') }}" method="POST">
+							<form action="{{ route('edit-question' ,['question_id' => $question->id]) }}" method="POST">
 								{{ csrf_field() }}
 								<div class="form-group">
-									<label>Chủ Đề</label>
-									<select class="form-control" name="subject">
-										@foreach ($subjects as $sj)
-											<option value="{{ $sj->id }}">{{ $sj->name }}</option>
-										@endforeach
-									</select>
-								</div>
-								<div class="form-group">
 									<label>Tiêu Đề</label>
-									<input type="text" class="form-control" placeholder="Nhập tiêu đề câu hỏi" name="title">
+									<input type="text" class="form-control" placeholder="Nhập tiêu đề câu hỏi" name="title" value="{{ $question->title }}">
+									<small class="form-text text-muted">Tiêu đề phải dễ hình dung về vấn đề cần giải quết</small>
 								</div>
 								<div class="form-group">
 									<label>Nội Dung</label>
-									<textarea class="form-control tinymce" rows="10" name="content"></textarea>
-								</div>
-								<div class="form-group">
-									<label>Link</label>
-									<input type="url" class="form-control" placeholder="Dán đường link để tải tài liệu" name="link">
+									<textarea class="form-control tinymce" rows="10" name="content">{{ $question->content }}</textarea>
 								</div>
 								<div class="form-group">
 									<label>Thẻ</label>
@@ -54,9 +43,9 @@
 										<i class="fa fa-plus fa-fw"></i>
 									</button>
 									<small class="form-text text-muted">Nếu không thấy thẻ thích hợp, hãy giúp chúng tôi thêm chúng</small>
-									<input type="text" id="list-tag" hidden="" name="list_tag">
+									<input type="text" id="list-tag" hidden=""  name="list_tag">
 								</div>
-								<button type="submit" class="btn btn-primary btn-lg"> <span class="oi oi-task"></span> Tạo tài liệu mới</button>
+								<button type="submit" class="btn btn-primary btn-lg">Tạo câu hỏi mới</button>
 							</form>
 							<!-- Modal -->
 							<form action="{{ route('create-tag') }}" method="POST">
@@ -77,6 +66,7 @@
 													<label>Mô Tả</label>
 													<textarea class="form-control" rows="5" placeholder="Nhập mô tả cho thẻ" name="description"></textarea>
 												</div>
+
 											</div>
 											<div class="modal-footer">
 												<button type="reset" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
@@ -94,11 +84,12 @@
 		</div>
 	</div>
 </div>
+</div>
 <!-- end Content -->
 @endsection
 
 @section('title')
-	{{ "Tạo Tài Liệu" }}
+	{{ $question->title }}
 @endsection
 
 @section('css')
@@ -121,14 +112,19 @@
 	tags.initialize();
 
 	var elt = $('input[data-role="tagsinput"]');
-    elt.tagsinput({
-        itemValue: 'id',
-        itemText: 'name',
-        typeaheadjs: {
-            name: 'tags',
-            displayKey: 'name',
-            source: tags.ttAdapter()
-        }
+	elt.tagsinput({
+		itemValue: 'id',
+		itemText: 'name',
+		typeaheadjs: {
+			name: 'tags',
+			displayKey: 'name',
+			source: tags.ttAdapter()
+		}
+	});
+
+	var stringTags = {!! $question->tags !!}
+    stringTags.forEach(function(item) {
+        elt.tagsinput('add', item);
     });
 </script>
 @endsection

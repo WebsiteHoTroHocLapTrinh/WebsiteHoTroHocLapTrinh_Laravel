@@ -152,21 +152,24 @@ Route::group(['prefix' => 'ajax'], function() {
 //Group Questions
 Route::group(['prefix' => 'question'], function() {
     Route::get('list-question/{tab?}','QuestionController@getListQuestion')->name('list-question');
-    Route::get('detail-question/{question_id}', 'QuestionController@getDetailQuestion')->name('detail-question');
-    Route::get('create-question', 'QuestionController@getCreateQuestion')->name('create-question')->middleware('login');
-    Route::get('delete-question/{question_id}', 'QuestionController@getDeleteQuestion')->name('delete-question');
-    Route::get('restore-question/{question_id}', 'QuestionController@getRestoreQuestion')->name('restore-question');
     Route::post('vote-question/{question_id}', 'QuestionController@postVoteQuestion')->name('vote-question');
+    Route::get('detail-question/{question_id}', 'QuestionController@getDetailQuestion')->name('detail-question')->middleware('active');
+    Route::get('create-question', 'QuestionController@getCreateQuestion')->name('create-question')->middleware('login');
+    Route::post('create-question', 'QuestionController@postCreateQuestion')->name('create-question')->middleware('login');
+    Route::get('edit-question/{question_id}', 'QuestionController@getEditQuestion')->name('edit-question')->middleware('own');
+    Route::post('edit-question/{question_id}', 'QuestionController@postEditQuestion')->name('edit-question')->middleware('own');
+    Route::get('delete-question/{question_id}', 'QuestionController@getDeleteQuestion')->name('delete-question')->middleware('own');
+    Route::get('restore-question/{question_id}', 'QuestionController@getRestoreQuestion')->name('restore-question')->middleware('own');
 });
 
 //Group Answer
 Route::group(['prefix'=>'answer'], function(){
     Route::post('vote-answer/{answer_id?}', 'AnswerController@postVoteAnswer')->name('vote-answer');
     Route::post('vote-best-answer/{answer_id?}', 'AnswerController@postVoteBestAnswer')->name('vote-best-answer');
-    Route::post('add/{question_id}', 'AnswerController@postAddAnswer')->middleware('loginanswer');
-    Route::get('edit/{answer_id}', 'AnswerController@getEditAnswer')->middleware('logineditnanswer');
-    Route::post('edit/{answer_id}', 'AnswerController@postEditAnswer');
-    Route::get('delete/{answer_id}', 'AnswerController@getDelete');
+    Route::post('add-answer/{question_id}', 'AnswerController@postAddAnswer')->name('add-answer')->middleware('login');
+    Route::get('edit-answer/{answer_id}', 'AnswerController@getEditAnswer')->name('edit-answer')->middleware('own');
+    Route::post('edit-answer/{answer_id}', 'AnswerController@postEditAnswer')->name('edit-answer')->middleware('own');
+    Route::get('delete-answer/{answer_id}', 'AnswerController@getDeleteAnswer')->name('delete-answer')->middleware('own');
 
 });
 
@@ -193,10 +196,8 @@ Route:: group(['prefix'=>'tag'], function(){
 //Group User
 Route::group(['prefix'=>'user'], function() {
     Route::get('user-information/{user_id}', 'UserController@getUserInformation')->name('user-information');
-
-    Route::get('info/user_{user_id}', 'UserController@getInfo');
-    Route::get('edit-user', 'UserController@getEdit')->middleware('loginedituser');
-
+    Route::get('info/user_{user_id}', 'UserController@getUserInformation');
+    Route::get('edit-user', 'UserController@getEdit')->middleware('login');
     Route::post('edit-info', 'UserController@postEditInfo');
     Route::post('edit-avatar', 'UserController@postEditAvatar');
     Route::post('edit-changepass', 'UserController@postChangePass');
@@ -208,13 +209,16 @@ Route::get('login', 'UserController@getLogin')->name('login')->middleware('preve
 Route::post('login', 'UserController@postLogin')->name('login')->middleware('preventLogin');
 Route::get('register', 'UserController@getRegister')->name('register')->middleware('preventLogin');
 Route::post('register', 'UserController@postRegister')->name('register')->middleware('preventLogin');
-Route::get('logout', 'UserController@getLogout')->name('logout');
+Route::get('logout', 'UserController@getLogout')->name('logout')->middleware('logout');
 Route::get('congratulation',function() {
     return view('congratulation');
 })->name('congratulation');
 Route::get('error_404', function() {
     return view('404_page');
 })->name('404');
+Route::get('error_500', function() {
+    return view('500_page');
+})->name('500');
 
 
 

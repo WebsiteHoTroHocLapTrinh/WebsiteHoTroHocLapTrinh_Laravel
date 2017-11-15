@@ -206,7 +206,7 @@ class TagController extends Controller
         $activity = new Activity;
         $activity->user_id = Auth::id();
         $activity->user_related_id = $tag->user_created->id;
-        $activity->content = 'đã thêm thẻ mới <strong>'.$tag->name.'</strong>';
+        $activity->content = 'đã tạo thẻ mới <strong>'.$tag->name.'</strong>';
         // $activity->link = route('detail-question', ['question_id' => $idQuestion]);
         $activity->type = Auth::user()->permission->key;
         $activity->save();

@@ -27,7 +27,7 @@
                             <div class="tab-content" id="">
                                 <div id="load_list" class="tab-pane fade show active" role="tabpanel" aria-labelledby="">
                                     {{-- // --}}
-                                    @include('pagination.list_question')
+                                    @include('question.items_question')
                                 </div>
                             </div>
                         </div>
@@ -145,7 +145,7 @@
         document.getElementById(id_tab).className = "nav-link active";
         $('#load a').css('color', '#dfecf6');
         $('#img_loading').append('<img style="position: absolute; z-index: 100000; width: 100%; height:2px;" src="/image/loading.gif"/>');
-        var url = 'question/list-question/'+id_tab;
+        var url = '{{ route('list-question') }}'+ '/' + id_tab;
         getListQuestion(url);
         window.history.pushState("", "", url);
     };

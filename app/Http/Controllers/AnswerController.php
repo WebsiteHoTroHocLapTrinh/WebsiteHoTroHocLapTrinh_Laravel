@@ -70,8 +70,8 @@ class AnswerController extends Controller
         $activity = new Activity;
         $activity->user_id = Auth::id();
         $activity->user_related_id = $answer->user->id;
-        $activity->content = 'đã thêm câu trả lời';
-        $activity->link = route('detail-question', ['question_id' => $idQuestion]);
+        $activity->content = 'đã thêm câu trả lời mới trong câu hỏi <strong>'.$answer->question->title.'</strong>';
+        $activity->link = route('detail-question', ['question_id' => $answer->question->id]);
         $activity->type = Auth::user()->permission->key;
         $activity->save();
 
@@ -116,8 +116,8 @@ class AnswerController extends Controller
         $activity = new Activity;
         $activity->user_id = Auth::id();
         $activity->user_related_id = $answer->user->id;
-        $activity->content = 'đã chỉnh sửa câu trả lời';
-        $activity->link = route('detail-question', ['question_id' => $idQuestion]);
+        $activity->content = 'đã chỉnh sửa câu trả lời trong câu hỏi <strong>'.$answer->question->title.'</strong>';
+        $activity->link = route('detail-question', ['question_id' => $answer->question->id]);
         $activity->type = Auth::user()->permission->key;
         $activity->save();
 
@@ -137,8 +137,8 @@ class AnswerController extends Controller
         $activity = new Activity;
         $activity->user_id = Auth::id();
         $activity->user_related_id = $answer->user->id;
-        $activity->content = 'đã xóa câu trả lời';
-        $activity->link = route('detail-question', ['question_id' => $idQuestion]);
+        $activity->content = 'đã xóa câu trả lời trong câu hỏi <strong>'.$answer->question->title.'</strong>';
+        $activity->link = route('detail-question', ['question_id' => $answer->question->id]);
         $activity->type = Auth::user()->permission->key;
         $activity->save();
 
@@ -299,9 +299,9 @@ class AnswerController extends Controller
         //Create Activity
         $activity = new Activity;
         $activity->user_id = Auth::id();
-        $activity->user_related_id = $answer->user->id;
-        $activity->content = 'đã thêm câu trả lời';
-        $activity->link = route('detail-question', ['question_id' => $question_id]);
+        $activity->user_related_id = $answer->question->id;
+        $activity->content = 'đã trả lời cho câu hỏi <strong>'.$answer->question->title.'</strong>';
+        $activity->link = route('detail-question', ['question_id' => $answer->question->id]);
         $activity->type = Auth::user()->permission->key;
         $activity->save();
         
@@ -312,7 +312,7 @@ class AnswerController extends Controller
         $answer = Answer::find($answer_id);
         $question = $answer->question;
         Session::put('previousURLEditAnswer', Session::previousUrl());    
-        return view('question.edit_answer',['answer'=> $answer, 'question' => $question]);
+        return view('answer.edit_answer',['answer'=> $answer, 'question' => $question]);
     }
 
     public function postEditAnswer(Request $request, $answer_id){
@@ -320,35 +320,15 @@ class AnswerController extends Controller
         $answer->content = $request->content_edit_answer;
         $answer->save();
 
-        //Create Activity
-        $activity = new Activity;
-        $activity->user_id = Auth::id();
-        $activity->user_related_id = $answer->user->id;
-        $activity->content = 'đã chỉnh sửa câu trả lời';
-        $activity->link = route('detail-question', ['question_id' => $answer->question->id]);
-        $activity->type = Auth::user()->permission->key;
-        $activity->save();
-
         return redirect(session('previousURLEditAnswer'))->with('successEditAnswer', true);
 
     }
 
     public function getDeleteAnswer($answer_id) {
         $answer = Answer::find($answer_id);
-        if ($answer->user_id == Auth::id()) {
-            $answer->active = false;
-            $answer->save();
-            //Create Activity
-            $activity = new Activity;
-            $activity->user_id = Auth::id();
-            $activity->user_related_id = $answer->user->id;
-            $activity->content = 'đã xóa câu trả lời';
-            $activity->link = route('detail-question', ['question_id' => $answer->question->id]);
-            $activity->type = Auth::user()->permission->key;
-            $activity->save();
+        $answer->active = false;
+        $answer->save();
 
-            return redirect(route('detail-question', ['question_id' => $question->id]))->with('action', 'Câu trả lời đã được xóa !');
-        }
-        return view('404_page');
+        return redirect(route('detail-question', ['question_id' => $answer->question->id]))->with('action', 'Câu trả lời đã được xóa !');
     }
 }

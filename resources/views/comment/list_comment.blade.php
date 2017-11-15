@@ -10,8 +10,6 @@
 			<div class="name-user-cmt">
 				<a href="user/info/user_{{ $cmt->user_id }}">{{ $cmt->user->name }}</a>
 				<span class="text-muted">
-					@if($cmt->created_at == $cmt->updated_at)
-					đã bình luận vào {{ date('d-m-Y', strtotime($cmt->created_at)) }}
 					@if($cmt->created_at==$cmt->updated_at)
 					đã bình luận vào {{ date('d-m-Y, h:i A', strtotime($cmt->created_at)) }}
 					@else

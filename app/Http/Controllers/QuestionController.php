@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 use Validator;
 use DateTime;
+use Session;
 use App\Permission;
 use App\User;
 use App\Tag;
@@ -199,7 +200,7 @@ class QuestionController extends Controller
         $activity = new Activity;
         $activity->user_id = Auth::id();
         $activity->user_related_id = $question->user->id;
-        $activity->content = 'đã xóa câu hỏi <strong>'.$question->title.'</strong>';
+        $activity->content = 'đã xóa vĩnh viễn câu hỏi <strong>'.$question->title.'</strong>';
         $activity->link = route('detail-question', ['question_id' => $question->id]);
         $activity->type = Auth::user()->permission->key;
         $activity->save();
@@ -241,7 +242,7 @@ class QuestionController extends Controller
         get()->take(10);
         
         if($request->ajax()){
-            return view('pagination.list_question',['tab'=>$tab,'list'=>$list, 'list_paginate'=>$list_paginate,'top_user'=>$top_user,'top_tag'=>$top_tag]);
+            return view('question.items_question',['tab'=>$tab,'list'=>$list, 'list_paginate'=>$list_paginate,'top_user'=>$top_user,'top_tag'=>$top_tag]);
         }
         return view('question.list_question',['tab'=>$tab,'list'=>$list, 'list_paginate'=>$list_paginate,'top_user'=>$top_user,'top_tag'=>$top_tag]);
     }
@@ -249,7 +250,7 @@ class QuestionController extends Controller
     public function getDetailQuestion(Request $request, $question_id){
         $question = Question::find($question_id);
         if ($question->active || Auth::id() == $question->user_id) {
-            $answers = $question->answers;
+            $answers = $question->answers->where('active', true);
             if($request->ajax()){
                 switch ($request->type) {
                     case 'comments-question':
@@ -261,7 +262,7 @@ class QuestionController extends Controller
                     case 'comments-answer-'.$request->id_target:{
                         $answer = Answer::find($request->id_target);
                         if(count($answer->comments)>3){
-                            $comments_skip = $answer->comments()->orderBy('created_at','asc')->get()->slice(3);
+                            $comments_skip = $answer->comments()->where('active', true)->orderBy('created_at','asc')->get()->slice(3);
                             return view('comment.list_comment', ['comments'=>$comments_skip]);
                         }
                     }
@@ -367,15 +368,7 @@ class QuestionController extends Controller
         $question = Question::find($question_id);
         if ($question->user_id == Auth::id()) {
             $question->active = false;
-            $question->save();;
-            //Create Activity
-            $activity = new Activity;
-            $activity->user_id = Auth::id();
-            $activity->user_related_id = $question->user->id;
-            $activity->content = 'đã xóa câu hỏi '.$question->title;
-            $activity->link = route('detail-question', ['question_id' => $question->id]);
-            $activity->type = Auth::user()->permission->key;
-            $activity->save();
+            $question->save();
 
             return redirect(route('detail-question', ['question_id' => $question->id]))->with('action', 'Câu hỏi đã được xóa !');
         }
@@ -386,15 +379,7 @@ class QuestionController extends Controller
         $question = Question::find($question_id);
         if ($question->user_id == Auth::id()) {
             $question->active = true;
-            $question->save();;
-            //Create Activity
-            $activity = new Activity;
-            $activity->user_id = Auth::id();
-            $activity->user_related_id = $question->user->id;
-            $activity->content = 'đã khôi phục câu hỏi '.$question->title;
-            $activity->link = route('detail-question', ['question_id' => $question->id]);
-            $activity->type = Auth::user()->permission->key;
-            $activity->save();
+            $question->save();
 
             return redirect(route('detail-question', ['question_id' => $question->id]))->with('action', 'Câu hỏi đã được khôi phục !');
         }
@@ -405,6 +390,128 @@ class QuestionController extends Controller
         $tags = Tag::where('active', true)->get();
         return view('question.create_question', ['tags' => $tags]);
 
+    }
+
+    public function postCreateQuestion(Request $request) {
+        // Validate date input
+        $validator = Validator::make($request->all(), 
+            [
+                'title' => 'required|min:6',
+                'content' => 'required',
+                'list_tag' => 'required',
+            ],
+            [
+                'title.required' => 'Bạn chưa nhập tiêu đề',
+                'title.min' => 'Tiêu đề phải có ít nhất 6 ký tự',
+                'content.required' => 'Bạn chưa nhập nội dung',
+                'list_tag.required' => 'Bạn chưa nhập các thẻ liên quan',
+            ] 
+        );
+        if ($validator->fails()) {
+            return redirect()->back()
+            ->withErrors($validator)
+            ->withInput();
+        }
+
+        // Create Model Question and set properties
+        $question = new Question;
+        $question->user_id = Auth::user()->id;
+        $question->title = $request->title;
+        $question->title_url = changeTitle($request->title);
+        $question->content = $request->content;
+        $question->created_at = new DateTime();
+        $question->updated_at = new DateTime();
+        $question->save();  // Save into database
+
+        //Process list tag
+        $arrayTags = explode(',', $request->list_tag);  // Split data Ex: 1,2,3 => ["1", "2", "3"]
+        foreach ($arrayTags as $tag) {
+            // Create Model Taggable and set properties
+            $taggable = new Taggable;
+            $taggable->tag_id = $tag;
+            $taggable->taggable_id = $question->id;
+            $taggable->taggable_type = "App\Question";
+            $taggable->active = true;
+            $taggable->created_at = new DateTime();
+            $taggable->updated_at = new DateTime();
+            $taggable->save();   // Save into database
+        }
+
+        // Increase User point reputation
+        Auth::user()->point_reputation += 10;
+        Auth::user()->save();
+
+        //Create Activity
+        $activity = new Activity;
+        $activity->user_id = Auth::id();
+        $activity->user_related_id = $question->user->id;
+        $activity->content = 'đã đăng câu hỏi mới <strong>'.$question->title.'</strong>';
+        $activity->link = route('detail-question', ['question_id' => $question->id]);
+        $activity->type = Auth::user()->permission->key;
+        $activity->save();
+
+        $previousURL = route('list-question');  //Chuyển lại về chi tiết khi làm xong
+        return redirect('congratulation')->with('thongbao', 
+            '<h1>Đặt Câu Hỏi Thành Công !!!</h1>
+            <br>
+            <h3>Bạn nhận được 10 điểm uy tín !!!</h3>
+            <br>')->with('previousURL', $previousURL);
+    }
+
+    public function getEditQuestion($question_id) {
+        $tags = Tag::where('active', true)->get();
+        $question = Question::find($question_id);
+        Session::put('previousURLEditQuestion', Session::previousUrl());   
+        return view('question.edit_question', ['question' => $question, 'tags' => $tags]);
+    }
+
+    public function postEditQuestion(Request $request, $question_id) {
+        // Validate date input
+        $validator = Validator::make($request->all(), 
+            [
+                'title' => 'required|min:6',
+                'content' => 'required',
+                'list_tag' => 'required',
+            ],
+            [
+                'title.required' => 'Bạn chưa nhập tiêu đề',
+                'title.min' => 'Tiêu đề phải có ít nhất 6 ký tự',
+                'content.required' => 'Bạn chưa nhập nội dung',
+                'list_tag.required' => 'Bạn chưa nhập các thẻ liên quan',
+            ] 
+        );
+        if ($validator->fails()) {
+            return redirect()->back()
+            ->withErrors($validator)
+            ->withInput();
+        }
+
+        // Create Model Question and set properties
+        $question = Question::find($question_id);
+        $question->title = $request->title;
+        $question->title_url = changeTitle($request->title);
+        $question->content = $request->content;
+        $question->save();  // Save into database
+
+        //Process list tag
+        foreach ($question->tags as $taggable) {
+            $taggable->pivot->delete();    // Delete old taggables
+        }
+
+        $arrayTags = explode(',', $request->list_tag);  // Split data Ex: 1,2,3 => ["1", "2", "3"]
+        foreach ($arrayTags as $tag) {
+            // Create Model Taggable and set properties
+            $taggable = new Taggable;
+            $taggable->tag_id = $tag;
+            $taggable->taggable_id = $question->id;
+            $taggable->taggable_type = "App\Question";
+            $taggable->active = true;
+            $taggable->created_at = new DateTime();
+            $taggable->updated_at = new DateTime();
+            $taggable->save();   // Save into database
+        }
+
+        return redirect(session('previousURLEditQuestion'));
     }
    
 }

@@ -49,7 +49,7 @@ class DocumentationController extends Controller
         $activity = new Activity;
         $activity->user_id = Auth::id();
         $activity->user_related_id = $document->user->id;
-        $activity->content = 'đã xóa tài liệu <strong>'.$document->title.'</strong>';
+        $activity->content = 'đã xóa vĩnh viễn tài liệu <strong>'.$document->title.'</strong>';
         // $activity->link = route('detail-question', ['question_id' => $idQuestion]);
         $activity->type = Auth::user()->permission->key;
         $activity->save();
@@ -328,12 +328,12 @@ class DocumentationController extends Controller
         $activity = new Activity;
         $activity->user_id = Auth::id();
         $activity->user_related_id = $tbDocumentation->user->id;
-        $activity->content = 'đã thêm tài liệu mới <strong>'.$tbDocumentation->title.'</strong>';
+        $activity->content = 'đã đăng tài liệu mới <strong>'.$tbDocumentation->title.'</strong>';
         // $activity->link = route('detail-question', ['question_id' => $idQuestion]);
         $activity->type = Auth::user()->permission->key;
         $activity->save();
 
-        $previousURL = route('documentation');  //Chuyển lại về chi tiết khi làm xong
+        $previousURL = route('list-documentation');  //Chuyển lại về chi tiết khi làm xong
         return redirect('congratulation')->with('thongbao', 
             '<h1>Chia Sẽ Tài Liệu Thành Công !!!</h1>
             <br>

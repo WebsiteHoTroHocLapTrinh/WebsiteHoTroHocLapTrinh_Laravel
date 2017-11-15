@@ -11,15 +11,28 @@
 						<div class="note-content">
 							<h1 style="text-align: center;">Tạo câu hỏi mới</h1>
 							<br>
-							<form>
+							@if (count($errors) > 0)
+                                <div class="alert alert-warning">
+                                	@foreach ($errors->all() as $err)
+                                        {{ $err }} <br>
+                                    @endforeach
+                               	</div>
+                            @endif
+                			@if (session('thongbao'))
+             					<div class="alert alert-success">
+                          			{{ session('thongbao') }}
+                               	</div>
+                      		@endif
+							<form action="{{ route('create-question') }}" method="POST">
+								{{ csrf_field() }}
 								<div class="form-group">
 									<label>Tiêu Đề</label>
-									<input type="text" class="form-control" placeholder="Nhập tiêu đề câu hỏi">
+									<input type="text" class="form-control" placeholder="Nhập tiêu đề câu hỏi" name="title">
 									<small class="form-text text-muted">Tiêu đề phải dễ hình dung về vấn đề cần giải quết</small>
 								</div>
 								<div class="form-group">
 									<label>Nội Dung</label>
-									<textarea class="form-control tinymce" name="content" rows="10"></textarea>
+									<textarea class="form-control tinymce" rows="10" name="content"></textarea>
 								</div>
 								<div class="form-group">
 									<label>Thẻ</label>
@@ -30,38 +43,39 @@
 										<i class="fa fa-plus fa-fw"></i>
 									</button>
 									<small class="form-text text-muted">Nếu không thấy thẻ thích hợp, hãy giúp chúng tôi thêm chúng</small>
-									<input type="text" name="" id="list-tag" hidden="">
+									<input type="text" id="list-tag" hidden=""  name="list_tag">
 								</div>
 								<button type="submit" class="btn btn-primary btn-lg">Tạo câu hỏi mới</button>
 							</form>
 							<!-- Modal -->
-							<div class="modal fade" id="addTagModal" tabindex="-1" role="dialog" aria-labelledby="addTagModalLabel" aria-hidden="true">
-								<div class="modal-dialog" role="document">
-									<div class="modal-content">
-										<form>
+							<form action="{{ route('create-tag') }}" method="POST">
+								{{ csrf_field() }}
+								<div class="modal fade" id="addTagModal" tabindex="-1" role="dialog" aria-labelledby="addTagModalLabel" aria-hidden="true">
+									<div class="modal-dialog" role="document">
+										<div class="modal-content">
 											<div class="modal-header">
 												<h1 class="modal-title">Thêm Thẻ Mới</h1>
 											</div>
 											<div class="modal-body">
 												<div class="form-group">
 													<label>Tên Thẻ</label>
-													<input type="text" class="form-control" placeholder="Nhập tên thẻ">
+													<input type="text" class="form-control" placeholder="Nhập tên thẻ" name="name">
 													<small class="form-text text-muted">Hãy nhập tên thẻ ngắn gọn, xúc tích</small>
 												</div>
 												<div class="form-group">
 													<label>Mô Tả</label>
-													<textarea class="form-control" rows="5" placeholder="Nhập mô tả cho thẻ"></textarea>
+													<textarea class="form-control" rows="5" placeholder="Nhập mô tả cho thẻ" name="description"></textarea>
 												</div>
 
 											</div>
 											<div class="modal-footer">
-												<button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
-												<button type="button" class="btn btn-primary">Lưu</button>
+												<button type="reset" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+												<button type="submit" class="btn btn-primary">Lưu</button>
 											</div>
-										</form>
+										</div>
 									</div>
 								</div>
-							</div>
+							</form>
 							<br>
 						</div>
 					</div>

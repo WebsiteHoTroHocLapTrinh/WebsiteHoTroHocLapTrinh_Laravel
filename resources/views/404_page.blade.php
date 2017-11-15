@@ -9,13 +9,6 @@
 <title>404 Error</title>
 <base href="{{ asset('') }}">
 <link rel="shortcut icon" href="image/tab-icon.png">
-<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="css/error_404.css">
-<link rel="stylesheet" type="text/css" href="fonts/font-iconic/css/open-iconic-bootstrap.css">
-
-<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
-<script type="text/javascript" src="js/popper.min.js"></script>
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
 </head>
 
 <body>

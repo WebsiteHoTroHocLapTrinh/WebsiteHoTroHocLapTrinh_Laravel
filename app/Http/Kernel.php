@@ -59,10 +59,10 @@ class Kernel extends HttpKernel
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'admin' => \App\Http\Middleware\Admin::class,
+        'active' => \App\Http\Middleware\Active::class,
         'login' => \App\Http\Middleware\Login::class,
+        'logout' => \App\Http\Middleware\Logout::class,
         'preventLogin' => \App\Http\Middleware\PreventLogin::class,
-        'loginedituser' => \App\Http\Middleware\LoginEditUser::class,
-        'loginanswer' => \App\Http\Middleware\LoginAnswer::class,
-        'logineditnanswer' => \App\Http\Middleware\LoginEditAnswer::class,
+        'own' => \App\Http\Middleware\Own::class,
     ];
 }

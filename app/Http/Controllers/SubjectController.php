@@ -68,7 +68,7 @@ class SubjectController extends Controller
         $activity = new Activity;
         $activity->user_id = Auth::id();
         $activity->user_related_id = $subject->user_created->id;
-        $activity->content = 'đã thêm chủ đề mới <strong>'.$subject->name.'</strong>';
+        $activity->content = 'đã chỉnh sửa chủ đề <strong>'.$subject->name.'</strong>';
         // $activity->link = route('detail-question', ['question_id' => $idQuestion]);
         $activity->type = Auth::user()->permission->key;
         $activity->save();
@@ -115,7 +115,7 @@ class SubjectController extends Controller
         $activity = new Activity;
         $activity->user_id = Auth::id();
         $activity->user_related_id = $subject->user_created->id;
-        $activity->content = 'đã chỉnh sửa chủ đề <strong>'.$subject->name.'</strong>';
+        $activity->content = 'đã thêm chủ đề mới <strong>'.$subject->name.'</strong>';
         // $activity->link = route('detail-question', ['question_id' => $idQuestion]);
         $activity->type = Auth::user()->permission->key;
         $activity->save();
@@ -149,7 +149,7 @@ class SubjectController extends Controller
         $activity = new Activity;
         $activity->user_id = Auth::id();
         $activity->user_related_id = $subject->user_created->id;
-        $activity->content = 'đã xóa chủ đề <strong>'.$subject->name.'</strong>';
+        $activity->content = 'đã xóa vĩnh viễn chủ đề <strong>'.$subject->name.'</strong>';
         // $activity->link = route('detail-question', ['question_id' => $idQuestion]);
         $activity->type = Auth::user()->permission->key;
         $activity->save();

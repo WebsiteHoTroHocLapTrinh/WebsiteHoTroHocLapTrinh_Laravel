@@ -81,7 +81,7 @@
 										</div>
 									</div> --}}
 									@if(Auth::id() == $question->user_id)
-									<a href="" style="border-left: solid 1px black; padding-left: 10px; border-right: solid 1px black; padding-right: 10px;">Chỉnh sửa</a>
+									<a href="{{ route('edit-question', ['question_id' => $question->id]) }}" style="border-left: solid 1px black; padding-left: 10px; border-right: solid 1px black; padding-right: 10px;">Chỉnh sửa</a>
 									<a href="{{ route('delete-question', ['question_id' => $question->id]) }}" style=" padding-left: 5px; border-right: solid 1px black; padding-right: 10px;" onclick="return confirm('Bạn có chắc là muốn xóa không?')">Xóa</a>
 										@if (!$question->active)
 											<a href="{{ route('restore-question', ['question_id' => $question->id]) }}" style=" padding-left: 5px; border-right: solid 1px black; padding-right: 10px;" onclick="return confirm('Bạn có chắc là muốn khôi phục không?')">Khôi phục</a>
@@ -105,7 +105,7 @@
 										</div>
 										<!--list comments-->
 										<div id="list-comments-qs">
-											@foreach($question->comments->sortBy('created_at')->take(3) as $cmt)
+											@foreach($question->comments->where('active', 1)->sortBy('created_at')->take(3) as $cmt)
 											<div id="delete-cmt-{{ $cmt->id }}">
 												<div class="media">
 													<!--img media-->
@@ -236,8 +236,8 @@
 												</div>
 												@if(Auth::id()==$answer->user_id)
 												<div>
-													<a href="answer/edit/{{ $answer->id }}" style="border-right: solid 1px black; padding-right: 10px;">Chỉnh sửa...</a>
-													<a href="answer/delete/{{ $answer->id }}" style=" padding-left: 5px" onclick="return confirm('Bạn có chắc là muốn xóa không?')">Xóa...</a>
+													<a href="{{ route('edit-answer', ['answer_id' => $answer->id]) }}" style="border-right: solid 1px black; padding-right: 10px;">Chỉnh sửa</a>
+													<a href="{{ route('delete-answer', ['answer_id' => $answer->id]) }}" style=" padding-left: 5px" onclick="return confirm('Bạn có chắc là muốn xóa không?')">Xóa</a>
 												</div>
 												@endif
 											
@@ -260,7 +260,7 @@
 												</div>
 												<!--list comments-->
 												<div id="list-comments-as-{{ $answer->id }}">
-													@foreach($answer->comments->sortByDesc('id')->take(3) as $cmt)
+													@foreach($answer->comments->sortBy('created_at')->take(3) as $cmt)
 													<div id="delete-cmt-{{ $cmt->id }}">
 														<div class="media">
 															<!--img media-->
@@ -329,7 +329,7 @@
 							@endforeach
 						</div>
 						<div class="add-answer">
-							<form id="form-new-answer" action="answer/add/{{ $question->id }}" method="POST" enctype="multipart/form-data">
+							<form id="form-new-answer" action="{{ route('add-answer', ['question_id' => $question->id]) }}" method="POST" enctype="multipart/form-data">
 								{{ csrf_field() }}
 								<h2>Câu trả lời của bạn</h2>
 								<br>
@@ -615,7 +615,7 @@
 
     		$.ajax({
     			url : url,
-    			data: {id_target:id_target, type:type},
+    			data: {id_target: id_target, type: type},
     			cache: false
     		}).done(function (data) {
     			$("#"+type).html(data).toggle("slide");
@@ -1049,15 +1049,15 @@
 
         }
 
-        //đăng nhập để trả lời câu hỏi
-        var confirm_answer_unsuccess='{{ session('AnswerUnsuccess') }}';
-        if(confirm_answer_unsuccess){
-            $.sweetModal({
-            	content: '{!! session('AnswerUnsuccess') !!}',
-            	icon: $.sweetModal.ICON_WARNING
-            });
+        // //đăng nhập để trả lời câu hỏi
+        // var confirm_answer_unsuccess='{{ session('AnswerUnsuccess') }}';
+        // if(confirm_answer_unsuccess){
+        //     $.sweetModal({
+        //     	content: '{!! session('AnswerUnsuccess') !!}',
+        //     	icon: $.sweetModal.ICON_WARNING
+        //     });
 
-        }
+        // }
 
         //edit Answer
         var confirm_Edit_Answer = '{{ session('successEditAnswer') }}';
@@ -1068,7 +1068,7 @@
             });
         }
 
-       //check add answer
+       //check add answer - content not empty
        	$('#btn-submit-new-answer').click(function(){
        		var content = tinymce.get('new-answer').getContent();
        		// $('#' + 'your_editor_id').html( tinymce.get('your_editor_id').getContent() );

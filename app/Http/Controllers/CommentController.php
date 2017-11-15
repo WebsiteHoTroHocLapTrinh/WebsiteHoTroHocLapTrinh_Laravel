@@ -32,22 +32,24 @@ class CommentController extends Controller
         $object = $comment->commentable;
         $activity = new Activity;
         $activity->user_id = Auth::id();
-        $activity->user_related_id = $object->user->id;
+        $activity->user_related_id = $comment->user->id;
         switch (get_class($object)) {
             case 'App\Question':
-                $activity->content = 'đã xóa bình luận cho câu hỏi <strong>'.$object->title.'</strong>';
+                $activity->content = 'đã xóa vĩnh viễn bình luận về câu hỏi <strong>'.$object->title.'</strong>';
+                $activity->link = route('detail-question', ['question_id' => $object->id]);
                 break;
             case 'App\Answer':
-                $activity->content = 'đã xóa bình luận cho câu trả lời';
+                $activity->content = 'đã xóa vĩnh viễn bình luận về câu trả lời của <strong>'.$object->user->name.'</strong> trong câu hỏi <strong>'.$object->question->title.'</strong>';
+                $activity->link = route('detail-question', ['question_id' => $object->question->id]);
                 break;
             case 'App\Documentation':
-                $activity->content = 'đã xóa bình luận cho tài liệu <strong>'.$object->title.'</strong>';
+                $activity->content = 'đã xóa vĩnh viễn bình luận về tài liệu <strong>'.$object->title.'</strong>';
                 break;
             default:
                 # code...
                 break;
         }
-        $activity->link = route('detail-question', ['question_id' => $object->id]);
+        
         $activity->type = Auth::user()->permission->key;
         $activity->save();
 
@@ -88,10 +90,12 @@ class CommentController extends Controller
         $activity->user_related_id = $object->user->id;
         switch (get_class($object)) {
             case 'App\Question':
-                $activity->content = 'đã bình luận cho câu hỏi <strong>'.$object->title.'</strong>';
+                $activity->content = 'đã bình luận về câu hỏi <strong>'.$object->title.'</strong>';
+                $activity->link = route('detail-question', ['question_id' => $object->id]);
                 break;
             case 'App\Answer':
-                $activity->content = 'đã bình luận cho câu trả lời';
+                $activity->content = 'đã bình luận về câu trả lời của <strong>'.$object->user->name.'</strong> trong câu hỏi <strong>'.$object->question->title.'</strong>';
+                $activity->link = route('detail-question', ['question_id' => $object->question->id]);
                 break;
             case 'App\Documentation':
                 $activity->content = 'đã bình luận cho tài liệu <strong>'.$object->title.'</strong>';
@@ -100,7 +104,7 @@ class CommentController extends Controller
                 # code...
                 break;
         }
-        $activity->link = route('detail-question', ['question_id' => $object->id]);
+        
         $activity->type = Auth::user()->permission->key;
         $activity->save();
 
@@ -128,7 +132,8 @@ class CommentController extends Controller
 
     public function postEditComment(Request $request, $cmt_id = 0) {
         $comment = Comment::find($cmt_id);
-        if(Auth::id()==$comment->user_id){
+
+        if(Auth::id() == $comment->user_id) {
             $comment->content = $request->content;
             $comment->save();
             return Response()->json(['success' => true]); 
@@ -143,29 +148,6 @@ class CommentController extends Controller
 
             $comment->active = false;
             $comment->save();
-
-            //add new activity
-            $object = $comment->commentable;
-            $activity = new Activity;
-            $activity->user_id = Auth::id();
-            $activity->user_related_id = $object->user->id;
-            switch (get_class($object)) {
-                case 'App\Question':
-                    $activity->content = 'đã xóa bình luận cho câu hỏi <strong>'.$object->title.'</strong>';
-                    break;
-                case 'App\Answer':
-                    $activity->content = 'đã xóa bình luận cho câu trả lời';
-                    break;
-                case 'App\Documentation':
-                    $activity->content = 'đã xóa bình luận cho tài liệu <strong>'.$object->title.'</strong>';
-                    break;
-                default:
-                    # code...
-                    break;
-            }
-            $activity->link = route('detail-question', ['question_id' => $object->id]);
-            $activity->type = Auth::user()->permission->key;
-            $activity->save();
 
             return Response()->json(['success' => true]); 
         }
