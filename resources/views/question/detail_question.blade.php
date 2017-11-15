@@ -346,7 +346,9 @@
 			<div class="col-lg-3">
 				<div class="sub-content">
 					<div class="btn-question">
-						<button type="button" class="btn btn-success btn-block btn-lg">Đặt câu hỏi ngay !!!</button>
+						<a href="{{ route('create-question') }}">
+							<button type="button" class="btn btn-success btn-block btn-lg">Đặt câu hỏi ngay !!!</button>
+						</a>
 					</div>
 					<div class="content-card">
 						<div class="question-info">
@@ -555,7 +557,7 @@
 
 												'<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">'+
 													'<a class="dropdown-item" href="javascript:Edit('+id_cmt_storage+','+'`'+content_storage+'`'+');">Chỉnh sửa...</a>'+
-													'<a class="dropdown-item" href="javascript:DeleteComment('+id_cmt_storage+');">xóa</a>'+
+													'<a class="dropdown-item" href="javascript:DeleteComment('+id_cmt_storage+');">Xóa...</a>'+
 												'</div>'+
 											'</div>'+
 										'</div>');
@@ -592,7 +594,7 @@
 
 											'<div class="dropdown-menu dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">'+
 												'<a class="dropdown-item" href="javascript:Edit('+id_cmt_storage+','+'`'+content_storage+'`'+');">Chỉnh sửa...</a>'+
-												'<a class="dropdown-item" href="javascript:DeleteComment('+id_cmt_storage+');">xóa</a>'+
+												'<a class="dropdown-item" href="javascript:DeleteComment('+id_cmt_storage+');">Xóa...</a>'+
 											'</div>'+
 										'</div>'+
 									'</div>');
@@ -675,7 +677,7 @@
 
 						'<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">'+
 						'<a class="dropdown-item" href="javascript:Edit('+id_cmt+','+'`'+ content_new +'`'+');">Chỉnh sửa...</a>'+
-						'<a class="dropdown-item" href="javascript:DeleteComment('+id_cmt+');">xóa</a>'+
+						'<a class="dropdown-item" href="javascript:DeleteComment('+id_cmt+');">Xóa...</a>'+
 						'</div>'+
 						'</div>'+
 						'</div>');
@@ -801,11 +803,25 @@
 					$('#delete-cmt-'+cmt_id).html('');
 				}
 				else{
-					alert('Bạn không có quyền xóa bình luận này!');
+					$.sweetModal({
+						content: 'Bạn không có quyền xóa bình luận này!',
+						icon: $.sweetModal.ICON_WARNING
+					});
 				}
 
 			}).fail(function () {
-				alert('Error 500');
+				$.sweetModal({
+					content: 'Error 500',
+					title: 'Oh noes…',
+					icon: $.sweetModal.ICON_ERROR,
+
+					buttons: [
+					{
+						label: 'OK',
+						classes: 'redB'
+					}
+					]
+				});
 			});
     	}	
 	}
@@ -946,41 +962,6 @@
 					classes: 'redB'
 				}
 				]
-			});
-		});
-	}
-
-	function DeleteComment(cmt_id){
-		$.sweetModal.confirm('Bạn muốn xóa comment này?', function() {
-			var url = 'comment/delete/'+cmt_id;
-			$.ajax({
-				type: "GET",
-				url : url,
-				cache: false
-			}).done(function (data) {
-				if(data['success']){
-					$('#delete-cmt-'+cmt_id).html('');
-				}
-				else{
-					$.sweetModal({
-						content: 'Bạn không có quyền xóa bình luận này!',
-						icon: $.sweetModal.ICON_WARNING
-					});
-				}
-
-			}).fail(function () {
-				$.sweetModal({
-					content: 'Error 500',
-					title: 'Oh noes…',
-					icon: $.sweetModal.ICON_ERROR,
-
-					buttons: [
-					{
-						label: 'OK',
-						classes: 'redB'
-					}
-					]
-				});
 			});
 		});
 	}
