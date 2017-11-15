@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Auth;
 
-class CheckLogin
+class LoginEditUser
 {
     /**
      * Handle an incoming request.

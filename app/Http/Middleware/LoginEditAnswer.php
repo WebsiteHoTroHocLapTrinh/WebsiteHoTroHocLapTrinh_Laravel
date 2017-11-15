@@ -3,8 +3,10 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Auth;
+use App\Answer;
 
-class Comment
+class LoginEditAnswer
 {
     /**
      * Handle an incoming request.
@@ -14,10 +16,13 @@ class Comment
      * @return mixed
      */
     public function handle($request, Closure $next)
-    {
-        if(Auth::check()){
+    {   
+        $answer_id = $request->route()->parameter('answer_id');
+        $answer = Answer::find($answer_id);
+        if(Auth::id()==$answer->user_id){
             return $next($request);
         }
-        return redirect('user.login')->with('thonbao', 'Bạn phải đăng nhập để được bình luận bài viết này');
+        return redirect('/');
+        
     }
 }

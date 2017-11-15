@@ -12,8 +12,10 @@
 				<span class="text-muted">
 					@if($cmt->created_at == $cmt->updated_at)
 					đã bình luận vào {{ date('d-m-Y', strtotime($cmt->created_at)) }}
+					@if($cmt->created_at==$cmt->updated_at)
+					đã bình luận vào {{ date('d-m-Y, h:i A', strtotime($cmt->created_at)) }}
 					@else
-					đã chỉnh sửa vào {{ date('d-m-Y', strtotime($cmt->updated_at)) }}
+					đã chỉnh sửa vào {{ date('d-m-Y, h:i A', strtotime($cmt->updated_at)) }}
 					@endif
 				</span>
 			</div>

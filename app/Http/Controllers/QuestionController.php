@@ -370,8 +370,8 @@ class QuestionController extends Controller
             $question->save();;
             //Create Activity
             $activity = new Activity;
-            $activity->user_id = Auth::user()->id;
-            $activity->user_related_id = Auth::user()->id;
+            $activity->user_id = Auth::id();
+            $activity->user_related_id = $question->user->id;
             $activity->content = 'đã xóa câu hỏi '.$question->title;
             $activity->link = route('detail-question', ['question_id' => $question->id]);
             $activity->type = Auth::user()->permission->key;
@@ -389,8 +389,8 @@ class QuestionController extends Controller
             $question->save();;
             //Create Activity
             $activity = new Activity;
-            $activity->user_id = Auth::user()->id;
-            $activity->user_related_id = Auth::user()->id;
+            $activity->user_id = Auth::id();
+            $activity->user_related_id = $question->user->id;
             $activity->content = 'đã khôi phục câu hỏi '.$question->title;
             $activity->link = route('detail-question', ['question_id' => $question->id]);
             $activity->type = Auth::user()->permission->key;

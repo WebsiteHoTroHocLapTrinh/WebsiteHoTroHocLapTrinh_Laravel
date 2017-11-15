@@ -162,8 +162,12 @@ Route::group(['prefix' => 'question'], function() {
 //Group Answer
 Route::group(['prefix'=>'answer'], function(){
     Route::post('vote-answer/{answer_id?}', 'AnswerController@postVoteAnswer')->name('vote-answer');
-    Route::get('delete/{answer_id}', 'AnswerController@getDelete');
     Route::post('vote-best-answer/{answer_id?}', 'AnswerController@postVoteBestAnswer')->name('vote-best-answer');
+    Route::post('add/{question_id}', 'AnswerController@postAddAnswer')->middleware('loginanswer');
+    Route::get('edit/{answer_id}', 'AnswerController@getEditAnswer')->middleware('logineditnanswer');
+    Route::post('edit/{answer_id}', 'AnswerController@postEditAnswer');
+    Route::get('delete/{answer_id}', 'AnswerController@getDelete');
+
 });
 
 //Group Documentation
@@ -189,7 +193,10 @@ Route:: group(['prefix'=>'tag'], function(){
 //Group User
 Route::group(['prefix'=>'user'], function() {
     Route::get('user-information/{user_id}', 'UserController@getUserInformation')->name('user-information');
-    Route::get('edit-user', 'UserController@getEdit')->middleware('checklogin');
+
+    Route::get('info/user_{user_id}', 'UserController@getInfo');
+    Route::get('edit-user', 'UserController@getEdit')->middleware('loginedituser');
+
     Route::post('edit-info', 'UserController@postEditInfo');
     Route::post('edit-avatar', 'UserController@postEditAvatar');
     Route::post('edit-changepass', 'UserController@postChangePass');

@@ -61,7 +61,8 @@ class Kernel extends HttpKernel
         'admin' => \App\Http\Middleware\Admin::class,
         'login' => \App\Http\Middleware\Login::class,
         'preventLogin' => \App\Http\Middleware\PreventLogin::class,
-        'checklogin' => \App\Http\Middleware\CheckLogin::class,
-        'comment' => \App\Http\Middleware\Commnent::class,
+        'loginedituser' => \App\Http\Middleware\LoginEditUser::class,
+        'loginanswer' => \App\Http\Middleware\LoginAnswer::class,
+        'logineditnanswer' => \App\Http\Middleware\LoginEditAnswer::class,
     ];
 }

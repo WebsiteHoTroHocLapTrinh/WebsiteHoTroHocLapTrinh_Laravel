@@ -118,9 +118,9 @@
 															<a href="user/info/user_{{ $cmt->user_id }}">{{ $cmt->user->name }}</a> 
 															<span class="text-muted">
 																@if($cmt->created_at==$cmt->updated_at)
-																đã bình luận vào {{ date('d-m-Y', strtotime($cmt->created_at)) }}
+																đã bình luận vào {{ date('d-m-Y, h:i A', strtotime($cmt->created_at)) }}
 																@else
-																đã chỉnh sửa vào {{ date('d-m-Y', strtotime($cmt->updated_at)) }}
+																đã chỉnh sửa vào {{ date('d-m-Y, h:i A', strtotime($cmt->updated_at)) }}
 																@endif
 															</span>
 														</div>
@@ -173,7 +173,7 @@
 					<div class="content-card">
 						<div class="action-answer">
 							(<strong>{{ count($answers) }}</strong>) câu trả lời -
-							<a href="">Thêm câu trả lời</a>
+							<a href="javascript:LinkToTop();">Thêm câu trả lời</a>
 						</div>
 						<hr>
 						<div class="list-answer">
@@ -212,7 +212,13 @@
 									<div class="col-lg-11">
 										<div class="detail-right">
 											<div class="avatar-name">
-												<a href="user/info/user_{{ $answer->user_id }}">{{ $answer->user->name }}</a> <span class="text-muted mr-3">đã trả lời vào {{ date('d-m-Y', strtotime($answer->created_at)) }}</span>
+												<a href="user/info/user_{{ $answer->user_id }}">{{ $answer->user->name }}</a> <span class="text-muted mr-3">
+													@if($answer->created_at==$answer->updated_at)
+													đã trả lời vào {{ date('d-m-Y, h:i A', strtotime($answer->created_at)) }}
+													@else
+													đã chỉnh sửa vào {{ date('d-m-Y, h:i A', strtotime($answer->updated_at)) }}
+													@endif
+												</span>
 												@if(Auth::id()==$question->user_id)
 													<span onclick="BestAnswer({{ $answer->id }})" id="best-answer-{{ $answer->id }}" class="oi oi-check best-answer
 													@if($answer->best_answer)
@@ -223,13 +229,18 @@
 													<span class="oi oi-check best-answer-normal"></span>
 												@endif
 											</div>
-											<div class="answer-detail-content">
-												{!! $answer->content !!}
-											</div>
-											@if(Auth::id()==$answer->user_id)
-											<a href="" style="border-right: solid 1px black; padding-right: 10px;">Chỉnh sửa</a>
-											<a href="answer/delete/{{ $answer->id }}" style=" padding-left: 5px" onclick="return confirm('Bạn có chắc là muốn xóa không?')">Xóa</a>
-											@endif
+											<div id="answer-{{ $answer->id }}" class="answer-detail-content break-word">
+												<div>
+													{!! $answer->content !!}
+												</div>
+												</div>
+												@if(Auth::id()==$answer->user_id)
+												<div>
+													<a href="answer/edit/{{ $answer->id }}" style="border-right: solid 1px black; padding-right: 10px;">Chỉnh sửa...</a>
+													<a href="answer/delete/{{ $answer->id }}" style=" padding-left: 5px" onclick="return confirm('Bạn có chắc là muốn xóa không?')">Xóa...</a>
+												</div>
+												@endif
+											
 											<br>
 											<br>
 											<br>
@@ -262,16 +273,16 @@
 																	<a href="user/info/user_{{ $cmt->user_id }}">{{ $cmt->user->name }}</a> 
 																	<span class="text-muted">
 																		@if($cmt->created_at==$cmt->updated_at)
-																		đã bình luận vào {{ date('d-m-Y', strtotime($cmt->created_at)) }}
+																		đã bình luận vào {{ date('d-m-Y, h:i A', strtotime($cmt->created_at)) }}
 																		@else
-																		đã chỉnh sửa vào {{ date('d-m-Y', strtotime($cmt->updated_at)) }}
+																		đã chỉnh sửa vào {{ date('d-m-Y, h:i A', strtotime($cmt->updated_at)) }}
 																		@endif
 																	</span>
 																</div>
 																<div id="{{ $cmt->id }}" class="row">
 																	<div class="col-lg-11">
 																		<div class="break-word">
-																			{!! $cmt->content !!}
+																			{{ $cmt->content }}
 																		</div>
 																	</div>
 																	<!--col edit-->
@@ -318,14 +329,15 @@
 							@endforeach
 						</div>
 						<div class="add-answer">
-							<form>
+							<form id="form-new-answer" action="answer/add/{{ $question->id }}" method="POST" enctype="multipart/form-data">
+								{{ csrf_field() }}
 								<h2>Câu trả lời của bạn</h2>
 								<br>
 								<h5>Bạn có thể trả lời câu hỏi này? Hãy chia sẻ nó cho mọi người.</h5>
 								<div class="form-group">
-									<textarea class="form-control tinymce" name="content" rows="10"></textarea>
+									<textarea id="new-answer" class="form-control tinymce" name="content_new_answer" rows="10"></textarea>
 								</div>
-								<button type="submit" class="btn btn-primary" style="padding: 10px 50px;">Trả lời</button>
+								<button id="btn-submit-new-answer" type="submit" class="btn btn-primary" style="padding: 10px 50px;" >Trả lời</button>
 							</form>
 						</div>
 					</div>
@@ -515,14 +527,16 @@
 @endsection
 
 @section('css')
-
+<link rel="stylesheet" href="css/jquery.sweet-modal.min.css" />
 @endsection
 
 @section('script')
 <!-- TinyMCE -->
 <script type="text/javascript" src="admin_asset/tinymce/tinymce.min.js"></script>
 <script type="text/javascript" src="admin_asset/tinymce/init_tinymce.js"></script> 
+<script src="js/jquery.sweet-modal.min.js"></script>
 <script type="text/javascript ">
+	
     function Edit(id_cmt, content){
     	if(localStorage.getItem('id_cmt')){
     		var id_cmt_storage = localStorage.getItem('id_cmt');
@@ -612,7 +626,18 @@
     				$('#img_loading_cmt_as_'+id_target).html('');
     			}
     		}).fail(function () {
-    			alert('comment could not be loaded.');
+    			$.sweetModal({
+    				content: 'comment could not be loaded.',
+    				title: 'Oh noes…',
+    				icon: $.sweetModal.ICON_ERROR,
+
+    				buttons: [
+    				{
+    					label: 'OK',
+    					classes: 'redB'
+    				}
+    				]
+    			});
     		});
     	}
     	else{
@@ -659,15 +684,32 @@
 					localStorage.removeItem('content');
 				}
 				else{
-					alert('phát hiện nghi vấn hack!');
+					$.sweetModal({
+						content: 'Phát hiện nghi vấn hack :))',
+						icon: $.sweetModal.ICON_WARNING
+					});
 				}
 
 			}).fail(function () {
-				alert('comment could not be updated.');
+				$.sweetModal({
+					content: 'comment could not be updated',
+					title: 'Oh noes…',
+					icon: $.sweetModal.ICON_ERROR,
+
+					buttons: [
+					{
+						label: 'Ok',
+						classes: 'redB'
+					}
+					]
+				});
 			});
 		}
 		else{
-			alert('Bạn chưa nhập nội dung!');
+			$.sweetModal({
+				content: 'Bạn chưa nhập nội dung!',
+				icon: $.sweetModal.ICON_WARNING
+			});
 		}
 	}
 
@@ -703,11 +745,17 @@
 				$('#new-comment-qs').val('');
 				document.getElementById('start_button_qs').disabled = true;
 			}).fail(function () {
-				alert('Bạn phải đăng nhập trước khi bình luận');
+				$.sweetModal({
+					content: 'Bạn phải đăng nhập trước khi bình luận',
+					icon: $.sweetModal.ICON_WARNING
+				});
 			});
 		}
 		else{
-			alert('Bạn chưa nhập nội dung');
+			$.sweetModal({
+				content: 'Bạn chưa nhập nội dung',
+				icon: $.sweetModal.ICON_WARNING
+			});
 		}
 	}
 
@@ -727,11 +775,17 @@
 				$('#new-comment-as-'+id_answer).val('');
 				document.getElementById('start_button_as_'+id_answer).disabled = true;
 			}).fail(function () {
-				alert('Bạn phải đăng nhập trước khi bình luận');
+				$.sweetModal({
+					content: 'Bạn phải đăng nhập trước khi bình luận',
+					icon: $.sweetModal.ICON_WARNING
+				});
 			});
 		}
 		else{
-			alert('Bạn chưa nhập nội dung!');
+			$.sweetModal({
+				content: 'Bạn chưa nhập nội dung!',
+				icon: $.sweetModal.ICON_WARNING
+			});
 		}
 	}
 
@@ -805,12 +859,24 @@
 				}
 			}
 			else{
-				alert(data['message']);
+				$.sweetModal({
+					content: data['message'],
+					icon: $.sweetModal.ICON_WARNING
+				});
 			}
-			
-		})
-		.fail(function () {
-			alert('Error 500');
+		}).fail(function () {
+			$.sweetModal({
+				content: 'Error 500',
+				title: 'Oh noes…',
+				icon: $.sweetModal.ICON_ERROR,
+
+				buttons: [
+				{
+					label: 'OK',
+					classes: 'redB'
+				}
+				]
+			});
 		});
 	}
 
@@ -863,12 +929,59 @@
 				}
 			}
 			else{
-				alert(data['message']);
+				$.sweetModal({
+					content: data['message'],
+					icon: $.sweetModal.ICON_WARNING
+				});
 			}
-			
-		})
-		.fail(function () {
-			alert('Error 500');
+		}).fail(function () {
+			$.sweetModal({
+				content: 'Error 500',
+				title: 'Oh noes…',
+				icon: $.sweetModal.ICON_ERROR,
+
+				buttons: [
+				{
+					label: 'OK',
+					classes: 'redB'
+				}
+				]
+			});
+		});
+	}
+
+	function DeleteComment(cmt_id){
+		$.sweetModal.confirm('Bạn muốn xóa comment này?', function() {
+			var url = 'comment/delete/'+cmt_id;
+			$.ajax({
+				type: "GET",
+				url : url,
+				cache: false
+			}).done(function (data) {
+				if(data['success']){
+					$('#delete-cmt-'+cmt_id).html('');
+				}
+				else{
+					$.sweetModal({
+						content: 'Bạn không có quyền xóa bình luận này!',
+						icon: $.sweetModal.ICON_WARNING
+					});
+				}
+
+			}).fail(function () {
+				$.sweetModal({
+					content: 'Error 500',
+					title: 'Oh noes…',
+					icon: $.sweetModal.ICON_ERROR,
+
+					buttons: [
+					{
+						label: 'OK',
+						classes: 'redB'
+					}
+					]
+				});
+			});
 		});
 	}
 
@@ -894,15 +1007,85 @@
 			}
 			
 		}).fail(function () {
-			alert('Error 500');
+			$.sweetModal({
+				content: 'Error 500',
+				title: 'Oh noes…',
+				icon: $.sweetModal.ICON_ERROR,
+
+				buttons: [
+				{
+					label: 'OK',
+					classes: 'redB'
+				}
+				]
+			});
 		});
 	}
 
+	function LinkToTop(){
+		$('html, body').animate({scrollTop:$(document).height()}, 'slow');
+		return false;
+	}
+
+
 	 $(document).ready(function(){
+
+	 	//xóa answer
         var confirm = '{{ session('thongbao') }}';
         if(confirm){
-            alert('{!! session('thongbao') !!}');
+            $.sweetModal({
+            	content: '{{ session('thongbao') }}',
+            	icon: $.sweetModal.ICON_SUCCESS
+            });
         }
+
+        //câu trả lời đã được đăng
+        var confirm_answer_success='{{ session('AnswerSuccess') }}';
+        if(confirm_answer_success){
+             $.sweetModal({
+            	content: '{!! session('AnswerSuccess') !!}',
+            	icon: $.sweetModal.ICON_SUCCESS
+            });
+
+        }
+
+        //đăng nhập để trả lời câu hỏi
+        var confirm_answer_unsuccess='{{ session('AnswerUnsuccess') }}';
+        if(confirm_answer_unsuccess){
+            $.sweetModal({
+            	content: '{!! session('AnswerUnsuccess') !!}',
+            	icon: $.sweetModal.ICON_WARNING
+            });
+
+        }
+
+        //edit Answer
+        var confirm_Edit_Answer = '{{ session('successEditAnswer') }}';
+        if(confirm_Edit_Answer){
+        	$.sweetModal({
+            	content: 'Update thành công!',
+            	icon: $.sweetModal.ICON_SUCCESS
+            });
+        }
+
+       //check add answer
+       	$('#btn-submit-new-answer').click(function(){
+       		var content = tinymce.get('new-answer').getContent();
+       		// $('#' + 'your_editor_id').html( tinymce.get('your_editor_id').getContent() );
+       		if((content.length <= 0)){
+       			$('#form-new-answer').submit(function(e){
+       				e.preventDefault();
+       			});
+       			$.sweetModal({
+            	content: 'Bạn chưa nhập nội dung!',
+            	icon: $.sweetModal.ICON_WARNING
+            });
+       		}
+       		else{
+       			document.getElementById("form-new-answer").submit();
+       		}
+       	})
+     
     });
 	$(document).ready(function(){
         var confirm = '{{ session('action') }}';

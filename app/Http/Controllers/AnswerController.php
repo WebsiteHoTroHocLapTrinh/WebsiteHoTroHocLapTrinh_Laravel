@@ -19,6 +19,7 @@ use App\Activity;
 use App\Ping;
 use App\Vote;
 use App\PasswordReset;
+use Session;
 
 class AnswerController extends Controller
 {
@@ -270,6 +271,83 @@ class AnswerController extends Controller
                 
                 return Response()->json(['exist'=> false]);
             }  
+        }
+        return view('404_page');
+    }
+
+    public function postAddAnswer(Request $request, $question_id){
+        $validator = Validator::make($request->all(), 
+            [
+                'content_new_answer' => 'required',
+            ],
+            [
+                'content_new_answer' => 'Bạn chưa nhập nội dung',
+            ] 
+        );
+        if ($validator->fails()) {
+            return redirect()->back()
+            ->withErrors($validator)
+            ->withInput();
+        }
+
+        $answer = new Answer;
+        $answer->user_id = Auth::id();
+        $answer->question_id = $question_id;
+        $answer->content = $request->content_new_answer;
+        $answer->save();
+
+        //Create Activity
+        $activity = new Activity;
+        $activity->user_id = Auth::id();
+        $activity->user_related_id = $answer->user->id;
+        $activity->content = 'đã thêm câu trả lời';
+        $activity->link = route('detail-question', ['question_id' => $question_id]);
+        $activity->type = Auth::user()->permission->key;
+        $activity->save();
+        
+        return redirect()->back()->with('AnswerSuccess', 'Câu trả lời đã được đăng!');
+    }
+
+    public function getEditAnswer($answer_id){
+        $answer = Answer::find($answer_id);
+        $question = $answer->question;
+        Session::put('previousURLEditAnswer', Session::previousUrl());    
+        return view('question.edit_answer',['answer'=> $answer, 'question' => $question]);
+    }
+
+    public function postEditAnswer(Request $request, $answer_id){
+        $answer = Answer::find($answer_id);
+        $answer->content = $request->content_edit_answer;
+        $answer->save();
+
+        //Create Activity
+        $activity = new Activity;
+        $activity->user_id = Auth::id();
+        $activity->user_related_id = $answer->user->id;
+        $activity->content = 'đã chỉnh sửa câu trả lời';
+        $activity->link = route('detail-question', ['question_id' => $answer->question->id]);
+        $activity->type = Auth::user()->permission->key;
+        $activity->save();
+
+        return redirect(session('previousURLEditAnswer'))->with('successEditAnswer', true);
+
+    }
+
+    public function getDeleteAnswer($answer_id) {
+        $answer = Answer::find($answer_id);
+        if ($answer->user_id == Auth::id()) {
+            $answer->active = false;
+            $answer->save();
+            //Create Activity
+            $activity = new Activity;
+            $activity->user_id = Auth::id();
+            $activity->user_related_id = $answer->user->id;
+            $activity->content = 'đã xóa câu trả lời';
+            $activity->link = route('detail-question', ['question_id' => $answer->question->id]);
+            $activity->type = Auth::user()->permission->key;
+            $activity->save();
+
+            return redirect(route('detail-question', ['question_id' => $question->id]))->with('action', 'Câu trả lời đã được xóa !');
         }
         return view('404_page');
     }
