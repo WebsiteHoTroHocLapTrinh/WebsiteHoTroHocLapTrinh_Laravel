@@ -83,7 +83,7 @@
                             <a href="{{ route('user-information', ['user_id' => $top_user->id]) }}" style="color: black;text-decoration: none;">
                                 <div class="item">
                                     <div class="d-inline" style="">
-                                        #{{ $i }}
+                                        <span class="oi oi-star" style="color: #DFDF39;"></span>{{ $i }}
                                     </div>
                                     <div class="d-inline">
                                         <img src="image/avatar_users/{{ $top_user->avatar }}" class="rounded-circle" width="30" height="30">

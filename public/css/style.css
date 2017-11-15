@@ -138,12 +138,12 @@ button {
 }
 
 .answered {
-    border: solid #01A920 1px;
+    border: solid #00A267 1px;
     font-size: 15px;
 }
 
 .answered-accepted {
-    background-color: #01A920;
+    background-color: #00A267;
     color: #FFFFFF;
     font-size: 15px;
 }

@@ -20,6 +20,7 @@ use App\Activity;
 use App\Ping;
 use App\Vote;
 use App\PasswordReset;
+use Event;
 
 class QuestionController extends Controller
 {
@@ -273,6 +274,7 @@ class QuestionController extends Controller
                 }
 
             }
+            Event::fire('question.view', $question);//increase view
             return view('question.detail_question', ['question'=>$question, 'answers'=>$answers]);
         }
         else {

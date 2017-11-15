@@ -11,7 +11,13 @@
                     <span>{{ $lt->view }}</span>
                     <div>lượt xem</div>
                 </div>
-                <div class="count-answers answered">
+                <div class="count-answers 
+                @if(!is_null($lt->answers->where('best_answer',1)->first()))
+                    {{ 'answered-accepted' }}
+                    @elseif(count($lt->answers->where('active',1))>0)
+                    {{ 'answered' }}
+                @endif
+                ">
                     <span>{{ count($lt->answers->where('active',1))}}</span>
                     <div>câu trả lời</div>
                 </div>
@@ -20,7 +26,7 @@
                     <div>bình chọn</div>
                 </div>
             </div>
-            <div class="summary col-lg-8">
+            <div class="summary col-lg-8 break-word">
                 <div class="summary-title">
                     <div class="summary-title">
                         <h6><a href="{{ route('detail-question', ['question_id' => $lt->id]) }}">{{ $lt->title }}</a></h6>
