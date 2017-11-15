@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use App\Question;
+use Auth;
 
 class Active
 {
@@ -28,7 +29,7 @@ class Active
                     break;
             }
         }
-        if ($object->active) {
+        if ($object->active || $object->user_id == Auth::id()) {
             return $next($request);
         }
         return redirect(route('404'));

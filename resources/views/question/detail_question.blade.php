@@ -88,7 +88,7 @@
 										@endif
 									@endif
 									<br><br><br>
-									<a href="" style="pointer-events: none;">({{ count($question->comments) }}) bình luận cho câu hỏi này</a>
+									<a href="" style="pointer-events: none;">({{ count($question->comments->where('active', true)) }}) bình luận cho câu hỏi này</a>
 									<br>
 									<br>
 									<div class="comments-container">
@@ -105,7 +105,7 @@
 										</div>
 										<!--list comments-->
 										<div id="list-comments-qs">
-											@foreach($question->comments->where('active', 1)->sortBy('created_at')->take(3) as $cmt)
+											@foreach($question->comments->where('active', true)->sortBy('created_at')->take(3) as $cmt)
 											<div id="delete-cmt-{{ $cmt->id }}">
 												<div class="media">
 													<!--img media-->
@@ -161,7 +161,7 @@
 											</div>
 
 											<div class="">
-												<a id="more_cmt_qs" href="javascript:unhide('comments-question','more_cmt_qs',{{ $question->id }})" >@if(count($question->comments)>3){{ 'View more →' }}@endif</a>
+												<a id="more_cmt_qs" href="javascript:unhide('comments-question','more_cmt_qs',{{ $question->id }})" >@if(count($question->comments->where('active', true)) > 3){{ 'View more →' }}@endif</a>
 											</div>
 											<!--end view more-->
 										</div>
@@ -244,7 +244,7 @@
 											<br>
 											<br>
 											<br>
-											<a href="" style="pointer-events: none;">({{ count($answer->comments) }}) bình luận cho câu trả lời này</a>
+											<a href="" style="pointer-events: none;">({{ count($answer->comments->where('active', true)) }}) bình luận cho câu trả lời này</a>
 											<br><br>
 											<div class="comments-container">
 												<!--create comment-->
@@ -260,7 +260,7 @@
 												</div>
 												<!--list comments-->
 												<div id="list-comments-as-{{ $answer->id }}">
-													@foreach($answer->comments->sortBy('created_at')->take(3) as $cmt)
+													@foreach($answer->comments->where('active', true)->sortBy('created_at')->take(3) as $cmt)
 													<div id="delete-cmt-{{ $cmt->id }}">
 														<div class="media">
 															<!--img media-->
@@ -316,7 +316,7 @@
 													</div>
 
 													<div class="">
-														<a id="more_cmt_ans-{{ $answer->id }}" href="javascript:unhide('comments-answer-{{ $answer->id }}','more_cmt_ans-{{ $answer->id }}',{{ $answer->id }})" >@if(count($answer->comments)>3){{ 'View more →' }}@endif</a>
+														<a id="more_cmt_ans-{{ $answer->id }}" href="javascript:unhide('comments-answer-{{ $answer->id }}','more_cmt_ans-{{ $answer->id }}',{{ $answer->id }})" >@if(count($answer->comments->where('active', true)) > 3){{ 'View more →' }}@endif</a>
 													</div>
 													<!--end view more-->
 												</div>
@@ -792,7 +792,7 @@
 	}
 
 	function DeleteComment(cmt_id){
-		if (confirm("Bạn muốn xóa comment này?")) {
+		$.sweetModal.confirm('Bạn muốn xóa comment này?', function() {
 			var url = '{{ route('delete-comment') }}'+ '/' + cmt_id;
 			$.ajax({
 				type: "GET",
@@ -823,7 +823,7 @@
 					]
 				});
 			});
-    	}	
+    	});	
 	}
 
 	function VoteQuestion(up_down){
@@ -1071,7 +1071,10 @@
 	$(document).ready(function(){
         var confirm = '{{ session('action') }}';
         if(confirm){
-            alert('{!! session('action') !!}');
+            $.sweetModal({
+            	content: '{{ session('action') }}',
+            	icon: $.sweetModal.ICON_SUCCESS
+            });
         }
     });
 </script>

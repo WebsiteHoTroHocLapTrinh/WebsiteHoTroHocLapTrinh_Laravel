@@ -250,36 +250,33 @@ class QuestionController extends Controller
 
     public function getDetailQuestion(Request $request, $question_id){
         $question = Question::find($question_id);
-        if ($question->active || Auth::id() == $question->user_id) {
-            $answers = $question->answers->where('active', true);
-            if($request->ajax()){
-                switch ($request->type) {
-                    case 'comments-question':
-                        if(count($question->comments)>3){
-                            $comments_skip = $question->comments()->orderBy('created_at','asc')->get()->slice(3);
-                            return view('comment.list_comment', ['comments'=>$comments_skip]);
-                        }
-                        break;
-                    case 'comments-answer-'.$request->id_target:{
-                        $answer = Answer::find($request->id_target);
-                        if(count($answer->comments)>3){
-                            $comments_skip = $answer->comments()->where('active', true)->orderBy('created_at','asc')->get()->slice(3);
-                            return view('comment.list_comment', ['comments'=>$comments_skip]);
-                        }
+        $answers = $question->answers->where('active', true);
+        if($request->ajax()){
+            switch ($request->type) {
+                case 'comments-question':
+                    $list_comment = $question->comments->where('active', true);
+                    if(count($list_comment) > 3) {
+                        $comments_skip =  $list_comment->sortBy('created_at')->slice(3);
+                        return view('comment.list_comment', ['comments'=>$comments_skip]);
                     }
-                        break;
-                    default:
-                        # code...
-                        break;
+                    break;
+                case 'comments-answer-'.$request->id_target: {
+                    $answer = Answer::find($request->id_target);
+                    $list_comment = $answer->comments->where('active', true);
+                    if(count($list_comment) > 3) {
+                        $comments_skip = $list_comment->sortBy('created_at')->slice(3);
+                        return view('comment.list_comment', ['comments'=>$comments_skip]);
+                    }
                 }
-
+                    break;
+                default:
+                    # code...
+                    break;
             }
-            Event::fire('question.view', $question);//increase view
-            return view('question.detail_question', ['question'=>$question, 'answers'=>$answers]);
+
         }
-        else {
-            return view('404_page');
-        }
+        Event::fire('question.view', $question);//increase view
+        return view('question.detail_question', ['question'=>$question, 'answers'=>$answers]);
     }
 
     public function postVoteQuestion(Request $request, $question_id) {
@@ -368,24 +365,18 @@ class QuestionController extends Controller
 
     public function getDeleteQuestion($question_id) {
         $question = Question::find($question_id);
-        if ($question->user_id == Auth::id()) {
-            $question->active = false;
-            $question->save();
+        $question->active = false;
+        $question->save();
 
-            return redirect(route('detail-question', ['question_id' => $question->id]))->with('action', 'Câu hỏi đã được xóa !');
-        }
-        return view('404_page');
+        return redirect(route('detail-question', ['question_id' => $question->id]))->with('action', 'Câu hỏi đã được xóa !');
     }
 
     public function getRestoreQuestion($question_id) {
         $question = Question::find($question_id);
-        if ($question->user_id == Auth::id()) {
-            $question->active = true;
-            $question->save();
+        $question->active = true;
+        $question->save();
 
-            return redirect(route('detail-question', ['question_id' => $question->id]))->with('action', 'Câu hỏi đã được khôi phục !');
-        }
-        return view('404_page');
+        return redirect(route('detail-question', ['question_id' => $question->id]))->with('action', 'Câu hỏi đã được khôi phục !');
     }
 
     public function getCreateQuestion(){

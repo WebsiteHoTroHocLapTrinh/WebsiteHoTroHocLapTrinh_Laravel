@@ -45,7 +45,7 @@
 									<small class="form-text text-muted">Nếu không thấy thẻ thích hợp, hãy giúp chúng tôi thêm chúng</small>
 									<input type="text" id="list-tag" hidden=""  name="list_tag">
 								</div>
-								<button type="submit" class="btn btn-primary btn-lg">Tạo câu hỏi mới</button>
+								<button type="submit" class="btn btn-primary btn-lg">Cập nhật câu hỏi</button>
 							</form>
 							<!-- Modal -->
 							<form action="{{ route('create-tag') }}" method="POST">
