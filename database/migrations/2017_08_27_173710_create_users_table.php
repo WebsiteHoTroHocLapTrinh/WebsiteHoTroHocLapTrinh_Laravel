@@ -17,11 +17,12 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->integer('permission_id')->unsigned()->default('1');
             $table->string('name');
-            $table->string('status')->nullable();
-            $table->string('about')->nullable();
-            $table->string('location')->nullable();
-            $table->string('avatar')->nullable();
-            $table->string('job')->nullable();
+            $table->string('name_url');
+            $table->string('status')->default('Chưa cập nhật');
+            $table->string('about')->default('Chưa cập nhật');
+            $table->string('location')->default('Chưa cập nhật');
+            $table->string('avatar')->default('default_avatar.png');
+            $table->string('job')->default('Chưa cập nhật');
             $table->string('email')->unique();
             $table->string('password');
             $table->integer('point_reputation')->default('0');

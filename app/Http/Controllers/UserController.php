@@ -105,6 +105,7 @@ class UserController extends Controller
 
         $user = new User;
         $user->name = $request->name;
+        $user->name_url = changeTitle($request->name);
         $user->avatar = 'default_avatar.png';
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
@@ -160,6 +161,7 @@ class UserController extends Controller
         $user = User::find($idUser);
         $user->permission_id = $request->permission;
         $user->name = $request->name;
+        $user->name_url = changeTitle($request->name);
         if ($request->has('active')) {
             $user->active = true;
         }
@@ -171,9 +173,11 @@ class UserController extends Controller
 
         //Create Activity
         $activity = new Activity;
-        $activity->user_id = Auth::user()->id;
-        $activity->content = 'Cập nhật người dùng <a href="/admin/user/edit/'.$user->id.'" target="_blank">'.$user->name.'</a>';
-        $activity->type = 1;
+        $activity->user_id = Auth::id();
+        $activity->user_related_id = $user->id;
+        $activity->content = 'đã chỉnh sửa người dùng <strong>'.$user->name.'</strong>';
+        $activity->link = route('user-information', ['user_id' => $user->id]);
+        $activity->type = Auth::user()->permission->key;
         $activity->save();
 
         return redirect()->back()->with('thongbao', 'Cập Nhật Thành Công');  
@@ -216,6 +220,7 @@ class UserController extends Controller
         $user = new User;
         $user->permission_id = $request->permission;
         $user->name = $request->name;
+        $user->name_url = changeTitle($request->name);
         $user->email = $request->email;
         $user->avatar = 'default_avatar.png';
         $user->password = bcrypt('123456');
@@ -227,16 +232,18 @@ class UserController extends Controller
 
         //Create Activity
         $activity = new Activity;
-        $activity->user_id = Auth::user()->id;
-        $activity->content = 'Thêm người dùng mới <a href="/admin/user/edit/'.$user->id.'" target="_blank">'.$user->name.'</a>';
-        $activity->type = 1;
+        $activity->user_id = Auth::id();
+        $activity->user_related_id = $user->id;
+        $activity->content = 'đã thêm người dùng mới <strong>'.$user->name.'</strong>';
+        $activity->link = route('user-information', ['user_id' => $user->id]);
+        $activity->type = Auth::user()->permission->key;
         $activity->save();
 
          return redirect()->back()->with('thongbao', 'Thêm user Thành Công');
     }
 
     //////////////////////////////////////////////////////////
-    public function getInfo($user_id){
+    public function getUserInformation($user_id){
         $user = User::find($user_id);
         //answer group by question_id
         $answers = $user->answers()->groupBy('question_id')->get()->sortByDesc('id');

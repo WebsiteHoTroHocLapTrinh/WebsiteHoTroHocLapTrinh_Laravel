@@ -114,7 +114,7 @@
                             <img class="partner-avatar rounded-circle" src="image/avata.png" width="200">
                             <br>
                             <br>
-                            <h4 class="partner-name">Dinh Sa</h4>
+                            <h4 class="partner-name">Đinh Sa</h4>
                             <small class="partner-position"><i>Developer</i></small>
                             <br>
                             <br>

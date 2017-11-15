@@ -48,10 +48,10 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        if($exception instanceof NotFoundHttpException)
-        {
-            return response()->view('404_page');
-        }
+        // if($exception instanceof NotFoundHttpException)
+        // {
+        //     return response()->view('404_page');
+        // }
         // if ($exception instanceof \PDOException) {
         //     return response()->view('500_page');
         // }

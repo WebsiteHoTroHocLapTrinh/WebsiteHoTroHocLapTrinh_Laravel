@@ -115,7 +115,7 @@
                                     @foreach ($activities as $act)
                                     <li class="left clearfix" style="cursor: pointer;">
                                         <span class="chat-img pull-left">
-                                            <img src="image/{{ $act->user->avatar }}" alt="{{ $act->user->name }}" class="img-circle" width="80" />
+                                            <img src="image/avatar_users/{{ $act->user->avatar }}" alt="{{ $act->user->name }}" class="img-circle" width="80" />
                                         </span>
                                         <div class="chat-body clearfix" style="margin-left: 100px;">
                                             <div class="header" >

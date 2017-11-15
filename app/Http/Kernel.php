@@ -60,8 +60,9 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'admin' => \App\Http\Middleware\Admin::class,
         'login' => \App\Http\Middleware\Login::class,
+        'preventLogin' => \App\Http\Middleware\PreventLogin::class,
         'loginedituser' => \App\Http\Middleware\LoginEditUser::class,
         'loginanswer' => \App\Http\Middleware\LoginAnswer::class,
-        'logieditnanswer' => \App\Http\Middleware\LoginEditAnswer::class,
+        'logineditnanswer' => \App\Http\Middleware\LoginEditAnswer::class,
     ];
 }

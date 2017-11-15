@@ -37,7 +37,7 @@
             <div class="col-lg-3">
                 <div class="sub-content">
                     <div class="btn-question">
-                        <a href="question/create-question">
+                        <a href="{{ route('create-question') }}">
                             <button type="button" class="btn btn-success btn-block btn-lg">Đặt câu hỏi ngay !!!</button>
                         </a>
                     </div>
@@ -80,7 +80,7 @@
                         <div class="rank-items">
                             @php $i=1;@endphp
                             @foreach($top_user as $top_user)
-                            <a href="user/info/user_{{ $top_user->id }}" style="color: black;text-decoration: none;">
+                            <a href="{{ route('user-information', ['user_id' => $top_user->id]) }}" style="color: black;text-decoration: none;">
                                 <div class="item">
                                     <div class="d-inline" style="">
                                         <span class="oi oi-star" style="color: #DFDF39;"></span>{{ $i }}
@@ -115,7 +115,7 @@
                            </div>
                            @endforeach
                        </div>
-                       <a href="tags/list">Xem thêm ...</a>
+                       <a href="{{ route('list-tag') }}">Xem thêm ...</a>
                    </div>
                    <!--endrank-tag-->
                </div>

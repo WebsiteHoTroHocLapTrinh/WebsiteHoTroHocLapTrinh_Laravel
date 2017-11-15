@@ -16,14 +16,14 @@
 										<img src="image/avatar_users/{{ $question->user->avatar }}" class="rounded-circle" width="40" height="40">
 									</div>
 									@php
-										$action_vote_qs =$question->votes->where('user_id', Auth::id())->first();
+										$action_vote_qs = $question->votes->where('user_id', Auth::id())->first();
 									@endphp
 									<div class="vote-widget">
 										<div class="vote-up d-flex justify-content-center">
 											<span id="up" onclick="VoteQuestion('up')" 
 											class="oi oi-caret-top
-											@if(!is_null($action_vote_qs) && $action_vote_qs->vote_action=='up')
-											{{ 'active_vote' }}
+											@if(!is_null($action_vote_qs) && $action_vote_qs->vote_action == 'up')
+											{{ 'active-vote' }}
 											@endif
 											" style="display: block;"></span>
 										</div>
@@ -32,8 +32,8 @@
 										</div>
 										<div class="vote-down d-flex justify-content-center">
 											<span id="down" onclick="VoteQuestion('down')" class="oi oi-caret-bottom
-											@if(!is_null($action_vote_qs) && $action_vote_qs->vote_action=='down')
-											{{ 'active_vote' }}
+											@if(!is_null($action_vote_qs) && $action_vote_qs->vote_action == 'down')
+											{{ 'active-vote' }}
 											@endif
 											" style="display: block;"></span>
 										</div>
@@ -43,7 +43,7 @@
 							<div class="col-lg-11 break-word">
 								<div class="detail-right">
 									<div class="avatar-name">
-										<a href="user/info/user_{{ $question->user_id }}">{{ $question->user->name }}</a> 
+										<a href="{{ route('user-information', ['user_id' => $question->user_id]) }}">{{ $question->user->name }}</a> 
 
 									</div>
 									<div class="question-detail-title">
@@ -80,9 +80,12 @@
 											</div>
 										</div>
 									</div> --}}
-									@if(Auth::id()==$question->user_id)
-									<a href="" style="border-right: solid 1px black; padding-right: 10px;">Chỉnh sửa</a>
-									<a href="question/delete/{{ $question->id }}" style=" padding-left: 5px" onclick="return confirm('Bạn có chắc là muốn xóa không?')">Xóa</a>
+									@if(Auth::id() == $question->user_id)
+									<a href="" style="border-left: solid 1px black; padding-left: 10px; border-right: solid 1px black; padding-right: 10px;">Chỉnh sửa</a>
+									<a href="{{ route('delete-question', ['question_id' => $question->id]) }}" style=" padding-left: 5px; border-right: solid 1px black; padding-right: 10px;" onclick="return confirm('Bạn có chắc là muốn xóa không?')">Xóa</a>
+										@if (!$question->active)
+											<a href="{{ route('restore-question', ['question_id' => $question->id]) }}" style=" padding-left: 5px; border-right: solid 1px black; padding-right: 10px;" onclick="return confirm('Bạn có chắc là muốn khôi phục không?')">Khôi phục</a>
+										@endif
 									@endif
 									<br><br><br>
 									<a href="" style="pointer-events: none;">({{ count($question->comments) }}) bình luận cho câu hỏi này</a>
@@ -102,7 +105,7 @@
 										</div>
 										<!--list comments-->
 										<div id="list-comments-qs">
-											@foreach($question->comments->sortByDesc('id')->take(3) as $cmt)
+											@foreach($question->comments->sortBy('created_at')->take(3) as $cmt)
 											<div id="delete-cmt-{{ $cmt->id }}">
 												<div class="media">
 													<!--img media-->
@@ -136,8 +139,8 @@
 																	</div>
 
 																	<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-																		<a class="dropdown-item" href="javascript:Edit({{ $cmt->id }},`{{ $cmt->content }}`);">sửa</a>
-																		<a class="dropdown-item" href="javascript:DeleteComment({{ $cmt->id }});">xóa</a>
+																		<a class="dropdown-item" href="javascript:Edit({{ $cmt->id }},'{{ $cmt->content }}');">Chỉnh sửa...</a>
+																		<a class="dropdown-item" href="javascript:DeleteComment({{ $cmt->id }});">Xóa...</a>
 																	</div>
 																</div>
 																@endif
@@ -174,7 +177,7 @@
 						</div>
 						<hr>
 						<div class="list-answer">
-							@foreach($answers->sortByDesc('id') as $answer)
+							@foreach($answers->sortByDesc('best_answer') as $answer)
 							<div class="answer">
 								<div class="row">
 									<div class="col-lg-1">
@@ -188,8 +191,8 @@
 											<div class="vote-widget">
 												<div class="vote-up d-flex justify-content-center">
 													<span id="up-{{ $answer->id }}" class="oi oi-caret-top
-													@if(!is_null($action_vote_as) && $action_vote_as->vote_action=='up')
-													{{ 'active_vote' }}
+													@if(!is_null($action_vote_as) && $action_vote_as->vote_action == 'up')
+													{{ 'active-vote' }}
 													@endif
 													" style="display: block;" onclick="VoteAnswer('up',{{ $answer->id }})"></span>
 												</div>
@@ -198,8 +201,8 @@
 												</div>
 												<div class="vote-down d-flex justify-content-center">
 													<span id="down-{{ $answer->id }}" class="oi oi-caret-bottom
-													@if(!is_null($action_vote_as) && $action_vote_as->vote_action=='down')
-													{{ 'active_vote' }}
+													@if(!is_null($action_vote_as) && $action_vote_as->vote_action == 'down')
+													{{ 'active-vote' }}
 													@endif
 													" style="display: block;" onclick="VoteAnswer('down',{{ $answer->id }})"></span>
 												</div>
@@ -233,8 +236,8 @@
 												</div>
 												@if(Auth::id()==$answer->user_id)
 												<div>
-													<a href="answer/edit/{{ $answer->id }}" style="border-right: solid 1px black; padding-right: 10px;">Chỉnh sửa</a>
-													<a href="answer/delete/{{ $answer->id }}" style=" padding-left: 5px" onclick="return confirm('Bạn có chắc là muốn xóa không?')">Xóa</a>
+													<a href="answer/edit/{{ $answer->id }}" style="border-right: solid 1px black; padding-right: 10px;">Chỉnh sửa...</a>
+													<a href="answer/delete/{{ $answer->id }}" style=" padding-left: 5px" onclick="return confirm('Bạn có chắc là muốn xóa không?')">Xóa...</a>
 												</div>
 												@endif
 											
@@ -291,8 +294,8 @@
 																			</div>
 
 																			<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-																				<a class="dropdown-item" href="javascript:Edit({{ $cmt->id }},`{{ $cmt->content }}`);">sửa</a>
-																				<a class="dropdown-item" href="javascript:DeleteComment({{ $cmt->id }});">xóa</a>
+																				<a class="dropdown-item" href="javascript:Edit({{ $cmt->id }},'{{ $cmt->content }}');">Chỉnh sửa...</a>
+																				<a class="dropdown-item" href="javascript:DeleteComment({{ $cmt->id }});">Xóa...</a>
 																			</div>
 																		</div>
 																		@endif
@@ -520,7 +523,7 @@
 @endsection
 
 @section('title')
-	{{ "Chi Tiết Câu Hỏi" }}
+{{ $question->title }}
 @endsection
 
 @section('css')
@@ -551,7 +554,7 @@
 												'</div>'+
 
 												'<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">'+
-													'<a class="dropdown-item" href="javascript:Edit('+id_cmt_storage+','+'`'+content_storage+'`'+');">sửa</a>'+
+													'<a class="dropdown-item" href="javascript:Edit('+id_cmt_storage+','+'`'+content_storage+'`'+');">Chỉnh sửa...</a>'+
 													'<a class="dropdown-item" href="javascript:DeleteComment('+id_cmt_storage+');">xóa</a>'+
 												'</div>'+
 											'</div>'+
@@ -588,7 +591,7 @@
 											'</div>'+
 
 											'<div class="dropdown-menu dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">'+
-												'<a class="dropdown-item" href="javascript:Edit('+id_cmt_storage+','+'`'+content_storage+'`'+');">sửa</a>'+
+												'<a class="dropdown-item" href="javascript:Edit('+id_cmt_storage+','+'`'+content_storage+'`'+');">Chỉnh sửa...</a>'+
 												'<a class="dropdown-item" href="javascript:DeleteComment('+id_cmt_storage+');">xóa</a>'+
 											'</div>'+
 										'</div>'+
@@ -600,7 +603,7 @@
 
     function unhide(type, id_view_more, id_target){
     	var more_less = document.getElementById(id_view_more).innerHTML;
-    	var url = 'question/detail/qs_'+ {!! $question->id !!};
+    	var url = '{{ route('detail-question', ['question_id' => $question->id]) }}';
     	
     	if(more_less=='View more →'){
     		if(type=='comments-question'){
@@ -646,9 +649,9 @@
 		item.innerHTML = item.innerHTML === 'View more →' ? 'View less →' : 'View more →';
 	}
 
-	function PostEditComment(){
+	function PostEditComment() {
 		var id_cmt = localStorage.getItem('id_cmt');
-		var url = 'comment/edit/'+id_cmt;
+		var url = '{{ route('edit-comment') }}'+ '/' + id_cmt;
 		var content_new = $('#content_new').val();
 		if(content_new){
 			$.ajax({
@@ -671,7 +674,7 @@
 						'</div>'+
 
 						'<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">'+
-						'<a class="dropdown-item" href="javascript:Edit('+id_cmt+','+'`'+ content_new +'`'+');">sửa</a>'+
+						'<a class="dropdown-item" href="javascript:Edit('+id_cmt+','+'`'+ content_new +'`'+');">Chỉnh sửa...</a>'+
 						'<a class="dropdown-item" href="javascript:DeleteComment('+id_cmt+');">xóa</a>'+
 						'</div>'+
 						'</div>'+
@@ -727,15 +730,15 @@
    	}	
 
 	function PostAddCommentQuestion(){
-		var url = 'comment/add';
+		var url = '{{ route('add-comment') }}';
 		var id_qs = {!! $question->id !!};
-		var type = 1;
+		var type = 1;	// type 1: Question, type 2: Answer, type 3: Documentation
 		var comment = $('#new-comment-qs').val();
 		if(comment){
 			$.ajax({
 				type: "POST",
 				url : url,
-				data: {"_token":"{{ csrf_token() }}",content:comment, commentable_id:id_qs, type:type},
+				data: {"_token":"{{ csrf_token() }}", content: comment, commentable_id: id_qs, type: type},
 				cache: false
 			}).done(function (data) {
 				$("#list-comments-qs").html(data);
@@ -757,15 +760,15 @@
 	}
 
 	function PostAddCommentAnswer(id_answer){
-		var url = 'comment/add';
+		var url = '{{ route('add-comment') }}';
 		var id_answer = id_answer;
 		var type = 2;
 		var comment = $('#new-comment-as-'+id_answer).val();
-		if(comment){
+		if (comment) {
 			$.ajax({
 				type: "POST",
 				url : url,
-				data: {"_token":"{{ csrf_token() }}",content:comment, commentable_id:id_answer, type:type},
+				data: {"_token":"{{ csrf_token() }}", content: comment, commentable_id: id_answer, type: type},
 				cache: false
 			}).done(function (data) {
 				$("#list-comments-as-"+id_answer).html(data);
@@ -786,29 +789,74 @@
 		}
 	}
 
+	function DeleteComment(cmt_id){
+		if (confirm("Bạn muốn xóa comment này?")) {
+			var url = '{{ route('delete-comment') }}'+ '/' + cmt_id;
+			$.ajax({
+				type: "GET",
+				url : url,
+				cache: false
+			}).done(function (data) {
+				if(data['success']){
+					$('#delete-cmt-'+cmt_id).html('');
+				}
+				else{
+					alert('Bạn không có quyền xóa bình luận này!');
+				}
+
+			}).fail(function () {
+				alert('Error 500');
+			});
+    	}	
+	}
+
 	function VoteQuestion(up_down){
-		var point = document.getElementById('point-question').innerHTML;
-		var url = 'question/vote/{!! $question->id !!}';
+		var point = parseInt(document.getElementById('point-question').innerHTML);
+		var url = '{{ route('vote-question', ['question_id' => $question->id]) }}';
+		var isPressedUp = $('#up').hasClass('active-vote');
+		var isPressedDown = $('#down').hasClass('active-vote');
 		switch(up_down){
 			case 'up':
-				point = +point + +1;
-			break;
+				if (isPressedUp) {
+					point = point - 1;
+				}
+				else {
+					if (isPressedDown) {
+						point = point + 2;
+					}
+					else {
+						point = point + 1;
+					}
+				}
+				break;
 
 			case 'down':
-				point = point -1;
-			break;
+				if (isPressedUp) {
+					point = point - 2;
+				}
+				else {
+					if (isPressedDown) {
+						point = point + 1;
+					}
+					else {
+						point = point - 1;
+					}
+				}
+				break;
 		}
 		$.ajax({
 			type: "POST",
 			url : url,
-			data: {"_token":"{{ csrf_token() }}",up_down:up_down},
+			data: {"_token":"{{ csrf_token() }}", up_down: up_down, isPressedUp: isPressedUp, isPressedDown: isPressedDown},
 			cache: false
 		}).done(function (data) {
 			if(data['success']){
 				$('#point-question').html(point);
-				$('#up').removeClass('active_vote');
-				$('#down').removeClass('active_vote');
-				$('#'+up_down).addClass('active_vote');
+				$('#up').removeClass('active-vote');
+				$('#down').removeClass('active-vote');
+				if (data['isAddClass']) {	
+					$('#'+up_down).addClass('active-vote');	
+				}
 			}
 			else{
 				$.sweetModal({
@@ -816,7 +864,6 @@
 					icon: $.sweetModal.ICON_WARNING
 				});
 			}
-			
 		}).fail(function () {
 			$.sweetModal({
 				content: 'Error 500',
@@ -834,28 +881,52 @@
 	}
 
 	function VoteAnswer(up_down, answer_id){
-		var point = document.getElementById('point-answer-'+answer_id).innerHTML;
-		var url = 'answer/vote/'+answer_id;
+		var point = parseInt(document.getElementById('point-answer-'+answer_id).innerHTML);
+		var url = '{{ route('vote-answer') }}' + '/' + answer_id;
+		var isPressedUp = $('#up-'+answer_id).hasClass('active-vote');
+		var isPressedDown = $('#down-'+answer_id).hasClass('active-vote');
 		switch(up_down){
 			case 'up':
-				point = +point + +1;
-			break;
+				if (isPressedUp) {
+					point = point - 1;
+				}
+				else {
+					if (isPressedDown) {
+						point = point + 2;
+					}
+					else {
+						point = point + 1;
+					}
+				}
+				break;
 
 			case 'down':
-				point = point -1;
-			break;
+				if (isPressedUp) {
+					point = point - 2;
+				}
+				else {
+					if (isPressedDown) {
+						point = point + 1;
+					}
+					else {
+						point = point - 1;
+					}
+				}
+				break;
 		}
 		$.ajax({
 			type: "POST",
 			url : url,
-			data: {"_token":"{{ csrf_token() }}",up_down:up_down},
+			data: {"_token":"{{ csrf_token() }}", up_down: up_down, isPressedUp: isPressedUp, isPressedDown: isPressedDown},
 			cache: false
 		}).done(function (data) {
 			if(data['success']){
 				$('#point-answer-'+answer_id).html(point);
-				$('#up-'+answer_id).removeClass('active_vote');
-				$('#down-'+answer_id).removeClass('active_vote');
-				$('#'+up_down+'-'+answer_id).addClass('active_vote');
+				$('#up-'+answer_id).removeClass('active-vote');
+				$('#down-'+answer_id).removeClass('active-vote');
+				if (data['isAddClass']) {	
+					$('#'+up_down+'-'+answer_id).addClass('active-vote');
+				}
 			}
 			else{
 				$.sweetModal({
@@ -863,7 +934,6 @@
 					icon: $.sweetModal.ICON_WARNING
 				});
 			}
-			
 		}).fail(function () {
 			$.sweetModal({
 				content: 'Error 500',
@@ -916,15 +986,15 @@
 	}
 
 	function BestAnswer(answer_id){
-		var url = 'answer/bestanswer/'+answer_id;
+		var url = '{{ route('vote-best-answer') }}' + '/' + answer_id;
 		$.ajax({
 			type: "POST",
 			url : url,
-			data: {"_token":"{{ csrf_token() }}",question_id:{!! $question->id !!} },
+			data: {"_token":"{{ csrf_token() }}", question_id: {!! $question->id !!} },
 			cache: false
 		}).done(function (data) {
 			if(data['exist']){
-				if(data['trung']){
+				if(data['same']){
 					$('#best-answer-'+answer_id).removeClass('active-best');
 				}
 				else{
@@ -1016,6 +1086,12 @@
        		}
        	})
      
+    });
+	$(document).ready(function(){
+        var confirm = '{{ session('action') }}';
+        if(confirm){
+            alert('{!! session('action') !!}');
+        }
     });
 </script>
 @endsection

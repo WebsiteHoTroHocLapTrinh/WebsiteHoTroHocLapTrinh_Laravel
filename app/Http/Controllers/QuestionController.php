@@ -87,9 +87,11 @@ class QuestionController extends Controller
 
         //Create Activity
         $activity = new Activity;
-        $activity->user_id = Auth::user()->id;
-        $activity->content = 'Thêm câu hỏi mới <a href="/admin/question/edit/'.$question->id.'" target="_blank">'.$question->title.'</a>';
-        $activity->type = 1;
+        $activity->user_id = Auth::id();
+        $activity->user_related_id = $question->user->id;
+        $activity->content = 'đã thêm câu hỏi mới <strong>'.$question->title.'</strong>';
+        $activity->link = route('detail-question', ['question_id' => $question->id]);
+        $activity->type = Auth::user()->permission->key;
         $activity->save();
 
         return redirect()->back()->with('thongbao', 'Thêm Thành Công');
@@ -157,9 +159,11 @@ class QuestionController extends Controller
 
         //Create Activity
         $activity = new Activity;
-        $activity->user_id = Auth::user()->id;
-        $activity->content = 'Cập nhật câu hỏi <a href="/admin/question/edit/'.$question->id.'" target="_blank">'.$question->title.'</a>';
-        $activity->type = 1;
+        $activity->user_id = Auth::id();
+        $activity->user_related_id = $question->user->id;
+        $activity->content = 'đã chỉnh sửa câu hỏi <strong>'.$question->title.'</strong>';
+        $activity->link = route('detail-question', ['question_id' => $question->id]);
+        $activity->type = Auth::user()->permission->key;
         $activity->save();
 
         return redirect()->back()->with('thongbao', 'Cập Nhật Thành Công');
@@ -171,10 +175,6 @@ class QuestionController extends Controller
         // Delete all comment of question
         $commentsOfQuestion = $question->comments;
         foreach ($commentsOfQuestion as $cmt) {
-            $pingsOfComment = $cmt->pings;
-            foreach ($pingsOfComment as $ping) {
-                $ping->delete();    // Delete pings of comment
-            }
             $cmt->delete();  // Delete comments of question
         }
         // Delete all answer of question
@@ -182,13 +182,9 @@ class QuestionController extends Controller
         foreach ($answers as $ans) {
             $commentsOfAnswer = $ans->comments;
             foreach ($commentsOfAnswer as $cmt) {
-                $pingsOfComment = $cmt->pings;
-                foreach ($pingsOfComment as $ping) {
-                    $ping->delete();    // Delete pings of comment
-                }
                 $cmt->delete();  // Delete comments of question
             }
-            $ans->delete(); // Delete answers of quesion
+            $ans->delete(); // Delete answers of question
         }
         // Delete all taggable of question
         foreach ($question->tags as $tag) {
@@ -202,9 +198,11 @@ class QuestionController extends Controller
 
         //Create Activity
         $activity = new Activity;
-        $activity->user_id = Auth::user()->id;
-        $activity->content = 'Xóa câu hỏi <a href="/admin" target="_blank">'.$question->title.'</a>';
-        $activity->type = 1;
+        $activity->user_id = Auth::id();
+        $activity->user_related_id = $question->user->id;
+        $activity->content = 'đã xóa câu hỏi <strong>'.$question->title.'</strong>';
+        $activity->link = route('detail-question', ['question_id' => $question->id]);
+        $activity->type = Auth::user()->permission->key;
         $activity->save();
 
         return redirect()->back()->with('thongbao', 'Xóa Thành Công');
@@ -212,8 +210,7 @@ class QuestionController extends Controller
 
 
     //List Question
-    public function ListQuestion(Request $request, $tab){
-
+    public function getListQuestion(Request $request, $tab = 'new'){
         $list = Question::where('active',1)->get();
         switch ($tab) {
             case 'new':
@@ -250,151 +247,165 @@ class QuestionController extends Controller
         return view('question.list_question',['tab'=>$tab,'list'=>$list, 'list_paginate'=>$list_paginate,'top_user'=>$top_user,'top_tag'=>$top_tag]);
     }
 
-    public function getDetail(Request $request, $question_id){
+    public function getDetailQuestion(Request $request, $question_id){
         $question = Question::find($question_id);
-        $answers = $question->answers;
-        Event::fire('question.view', $question);//increase view
-        if($request->ajax()){
-            switch ($request->type) {
-                case 'comments-question':
-                    if(count($question->comments)>3){
-                        $comments_skip = $question->comments()->orderBy('id','desc')->get()->slice(3);
-                        return view('question.list_comments', ['comments'=>$comments_skip]);
+        if ($question->active || Auth::id() == $question->user_id) {
+            $answers = $question->answers;
+            if($request->ajax()){
+                switch ($request->type) {
+                    case 'comments-question':
+                        if(count($question->comments)>3){
+                            $comments_skip = $question->comments()->orderBy('created_at','asc')->get()->slice(3);
+                            return view('comment.list_comment', ['comments'=>$comments_skip]);
+                        }
+                        break;
+                    case 'comments-answer-'.$request->id_target:{
+                        $answer = Answer::find($request->id_target);
+                        if(count($answer->comments)>3){
+                            $comments_skip = $answer->comments()->orderBy('created_at','asc')->get()->slice(3);
+                            return view('comment.list_comment', ['comments'=>$comments_skip]);
+                        }
                     }
-                    break;
-                case 'comments-answer-'.$request->id_target:{
-                    $answer = Answer::find($request->id_target);
-                    if(count($answer->comments)>3){
-                        $comments_skip = $answer->comments()->orderBy('id','desc')->get()->slice(3);
-                        return view('question.list_comments', ['comments'=>$comments_skip]);
-                    }
+                        break;
+                    default:
+                        # code...
+                        break;
                 }
-                    break;
-                default:
-                    # code...
-                    break;
-            }
 
+            }
+            Event::fire('question.view', $question);//increase view
+            return view('question.detail_question', ['question'=>$question, 'answers'=>$answers]);
         }
-        return view('question.detail_question',['question'=>$question, 'answers'=>$answers]);
+        else {
+            return view('404_page');
+        }
     }
 
-    public function postVote(Request $request, $question_id){
-        if(Auth::check()){
+    public function postVoteQuestion(Request $request, $question_id) {
+        if (Auth::check()) {
             $question = Question::find($question_id);
             $user = $question->user;
             $vote_record = $question->votes->where('user_id', Auth::id())->first(); 
-            
-            if(!is_null($vote_record)){//exist user (up or down)
-                if($vote_record->vote_action != $request->up_down){
-                    if($request->up_down=='up'){
-                        $question->point_rating = $question->point_rating + 1;
-                        $user->point_reputation = $user->point_reputation + 1;
-                        $vote_record->vote_action = 'up';
-                        $question->save();
-                        $user->save();
-                        $vote_record->save();
-                    }
-                    else{
-                        $question->point_rating = $question->point_rating - 1;
-                        $user->point_reputation = $user->point_reputation - 1;
-                        $vote_record->vote_action = 'down';
-                        $question->save();
-                        $user->save();
-                        $vote_record->save();
-                    }
+            // Flag
+            $isAddClass = true;
+            //Convert string to boolen
+            $isPressedUp = $request->isPressedUp === 'true' ? true : false;
+            $isPressedDown = $request->isPressedDown === 'true' ? true : false;
 
-                    return Response()->json(['success' => true]); 
-                }
-                else{
-                    return Response()->json(['success' => false, 'message' => 'Bạn chỉ được vote (up/down) một lần!']);
-                }
+            if (!is_null($vote_record)) {
+                $vote_record->delete(); // Delete current vote if exist
             }
-            else{
-                
-                if($request->up_down=='up'){
+            if ($request->up_down == 'up') {
+
+                if ($isPressedUp) {    // Status pressed up => balance
+                    $question->point_rating = $question->point_rating - 1;
+                    $question->save();
+                    $user->point_reputation = $user->point_reputation - 1;
+                    $user->save();
+                    
+                    $isAddClass = false;
+                }
+                else {
+                    if ($isPressedDown) {  // Status pressed down => pressed up
+                        $question->point_rating = $question->point_rating + 2;
+                        $question->save();
+                        $user->point_reputation = $user->point_reputation + 2;
+                        $user->save();
+                    }
+                    else {                          // Status balance => pressed up
                         $question->point_rating = $question->point_rating + 1;
+                        $question->save();
                         $user->point_reputation = $user->point_reputation + 1;
-                        $question->save();
                         $user->save();
-                        //add vote table
-                        $vote = new Vote;
-                        $vote->user_id = Auth::id();
-                        $vote->vote_action = 'up';
-                        $vote->votable_id = $question_id;
-                        $vote->votable_type = 'App\Question';
-                        $vote->save();
                     }
-                    else{
-                        $question->point_rating = $question->point_rating - 1;
-                        $user->point_reputation = $user->point_reputation - 1;
-                        $question->save();
-                        $user->save();
-                         //add vote table
-                        $vote = new Vote;
-                        $vote->user_id = Auth::id();
-                        $vote->vote_action = 'down';
-                        $vote->votable_id = $question_id;
-                        $vote->votable_type = 'App\Question';
-                        $vote->save();
-                    }
-                    return Response()->json(['success' => true]); 
+                    // Add vote table
+                    $vote = new Vote;
+                    $vote->user_id = Auth::id();
+                    $vote->vote_action = 'up';
+                    $vote->votable_id = $question_id;
+                    $vote->votable_type = 'App\Question';
+                    $vote->save();
+                }
             }
-           
+            else {
+                if ($isPressedDown) {    // Status pressed down => balance
+                    $question->point_rating = $question->point_rating + 1;
+                    $question->save();
+                    $user->point_reputation = $user->point_reputation + 1;
+                    $user->save();
+                    
+                    $isAddClass = false;
+                }
+                else {
+                    if ($isPressedUp) {  // Status pressed up => pressed down
+                        $question->point_rating = $question->point_rating - 2;
+                        $question->save();
+                        $user->point_reputation = $user->point_reputation - 2;
+                        $user->save();
+                    }
+                    else {                          // Status balance => pressed down
+                        $question->point_rating = $question->point_rating - 1;
+                        $question->save();
+                        $user->point_reputation = $user->point_reputation - 1;
+                        $user->save();
+                    }
+                    // Add vote table
+                    $vote = new Vote;
+                    $vote->user_id = Auth::id();
+                    $vote->vote_action = 'down';
+                    $vote->votable_id = $question_id;
+                    $vote->votable_type = 'App\Question';
+                    $vote->save();
+                }
+            }
+            return Response()->json(['success' => true, 'isAddClass' => $isAddClass]); 
         }
-        //don't login yet
-        return Response()->json(['success' => false, 'message' => 'Bạn cần phải đăng nhập để được vote cho câu hỏi này']); 
+        else {
+            return Response()->json(['success' => false, 'message' => 'Bạn cần phải đăng nhập để được vote cho câu hỏi này']); 
+        }
     }
 
     public function getDeleteQuestion($question_id) {
         $question = Question::find($question_id);
-        // Delete all comment of question
-        $commentsOfQuestion = $question->comments;
-        foreach ($commentsOfQuestion as $cmt) {
-            $pingsOfComment = $cmt->pings;
-            foreach ($pingsOfComment as $ping) {
-                $ping->delete();    // Delete pings of comment
-            }
-            $cmt->delete();  // Delete comments of question
-        }
-        // Delete all answer of question
-        $answers = $question->answers;
-        foreach ($answers as $ans) {
-            $commentsOfAnswer = $ans->comments;
-            foreach ($commentsOfAnswer as $cmt) {
-                $pingsOfComment = $cmt->pings;
-                foreach ($pingsOfComment as $ping) {
-                    $ping->delete();    // Delete pings of comment
-                }
-                $cmt->delete();  // Delete comments of question
-            }
-            $ans->delete(); // Delete answers of quesion
-        }
-        // Delete all taggable of question
-        foreach ($question->tags as $tag) {
-            Taggable::where([
-                ['taggable_id', $tag->pivot->taggable_id], 
-                ['tag_id', $tag->pivot->tag_id]
-            ])->delete();
-        }
+        if ($question->user_id == Auth::id()) {
+            $question->active = false;
+            $question->save();;
+            //Create Activity
+            $activity = new Activity;
+            $activity->user_id = Auth::id();
+            $activity->user_related_id = $question->user->id;
+            $activity->content = 'đã xóa câu hỏi '.$question->title;
+            $activity->link = route('detail-question', ['question_id' => $question->id]);
+            $activity->type = Auth::user()->permission->key;
+            $activity->save();
 
-        $question->delete(); // Delete question
-
-        //Create Activity
-        $activity = new Activity;
-        $activity->user_id = Auth::user()->id;
-        $activity->content = 'Xóa câu hỏi <a href="/admin/question/list" target="_blank">'.$question->title.'</a>';
-        $activity->type = 1;
-        $activity->save();
-
-        return redirect('question/list-question/new')->with('daxoa', 'Câu hỏi đã được xóa!');
+            return redirect(route('detail-question', ['question_id' => $question->id]))->with('action', 'Câu hỏi đã được xóa !');
+        }
+        return view('404_page');
     }
 
-    public function getCreate(){
-        if(Auth::check()){
-            return view('question.create_question');
+    public function getRestoreQuestion($question_id) {
+        $question = Question::find($question_id);
+        if ($question->user_id == Auth::id()) {
+            $question->active = true;
+            $question->save();;
+            //Create Activity
+            $activity = new Activity;
+            $activity->user_id = Auth::id();
+            $activity->user_related_id = $question->user->id;
+            $activity->content = 'đã khôi phục câu hỏi '.$question->title;
+            $activity->link = route('detail-question', ['question_id' => $question->id]);
+            $activity->type = Auth::user()->permission->key;
+            $activity->save();
+
+            return redirect(route('detail-question', ['question_id' => $question->id]))->with('action', 'Câu hỏi đã được khôi phục !');
         }
-        return redirect('login')->withErrors('Bạn phải đăng nhập trước khi tạo câu hỏi!');
+        return view('404_page');
+    }
+
+    public function getCreateQuestion(){
+        $tags = Tag::where('active', true)->get();
+        return view('question.create_question', ['tags' => $tags]);
 
     }
    

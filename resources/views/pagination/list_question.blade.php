@@ -29,7 +29,7 @@
             <div class="summary col-lg-8 break-word">
                 <div class="summary-title">
                     <div class="summary-title">
-                        <h6><a href="question/detail/qs_{{ $lt->id }}">{{ $lt->title }}</a></h6>
+                        <h6><a href="{{ route('detail-question', ['question_id' => $lt->id]) }}">{{ $lt->title }}</a></h6>
                     </div>
                 </div>
                 <div class="row">
@@ -54,12 +54,12 @@
                     elseif($interval->i!=0)
                         $time= $interval->i . " phút trước";
                     else
-                        $time=" just now";
+                        $time="Vừa xong";
                     @endphp
 
-                    <p class="user"><a href="user/info/user_{{ $lt->user_id }}">{{ $lt->user->name }}</a></p>
+                    <p class="user"><a href="{{ route('user-information', ['user_id' => $lt->user_id]) }}">{{ $lt->user->name }}</a></p>
                     <p class="action">đã hỏi</p>
-                    <p class="time">{{ $lt->created_at->diffforHumans() }}</p>
+                    <p class="time">{{ $time }}</p>
                 </div>
             </div>
         </div>

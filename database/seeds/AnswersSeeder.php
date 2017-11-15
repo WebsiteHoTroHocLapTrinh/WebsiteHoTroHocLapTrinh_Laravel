@@ -18,6 +18,7 @@ class AnswersSeeder extends Seeder
 	        		'user_id' => rand(1,10),
 	        		'question_id' => rand(1,10),
 	        		'content' => 'Nội Dung Answer '.$i.' là gì',
+                    'best_answer' => false,
 	            	'created_at' => new DateTime(),
                     'updated_at' => new DateTime()
 	        	]

@@ -16,7 +16,9 @@ class CreateActivitiesTable extends Migration
         Schema::create('activities', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
+            $table->integer('user_related_id')->unsigned();
             $table->text('content');
+            $table->string('link')->nullable();
             $table->boolean('type')->default(0);    //0: user, 1:admin
             $table->boolean('is_new')->default(true);
             $table->boolean('active')->default(true);

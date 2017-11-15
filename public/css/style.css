@@ -154,7 +154,12 @@ button {
 
 .summary .summary-title {}
 
-.summary .summary-description {}
+.summary .summary-description {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
 
 .list-tag {}
 
@@ -987,7 +992,7 @@ button {
     font-style: italic;
 }
 .info>form div>button {
-    background: #162850;
+    /*background: #162850;*/
 }
 .info>form>div>input {
     border: none;
@@ -1009,7 +1014,7 @@ button {
     font-style: italic;
 }
 .change-password>form div>button {
-    background: #162850;
+    /*background: #162850;*/
     margin-bottom: 30px;
 }
 .change-password>form div>input {
@@ -1188,7 +1193,7 @@ button {
     cursor: pointer;
 }
 
-.vote-widget .active_vote{
+.vote-widget .active-vote{
     color: #0EB4EB;
 }
 .best-answer{

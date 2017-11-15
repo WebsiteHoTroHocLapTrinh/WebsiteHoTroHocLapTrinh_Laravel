@@ -11,31 +11,39 @@
 						<div class="note-content">
 							<h1 style="text-align: center;">Chia sẻ tài liệu</h1>
 							<br>
-							<form>
+							@if (count($errors) > 0)
+                                <div class="alert alert-warning">
+                                	@foreach ($errors->all() as $err)
+                                        {{ $err }} <br>
+                                    @endforeach
+                               	</div>
+                            @endif
+                			@if (session('thongbao'))
+             					<div class="alert alert-success">
+                          			{{ session('thongbao') }}
+                               	</div>
+                      		@endif
+							<form action="{{ route('create-documentation') }}" method="POST">
+								{{ csrf_field() }}
 								<div class="form-group">
 									<label>Chủ Đề</label>
-									<select class="form-control">
-										<option value="0">Chủ đề</option>
-										<option>Lập trình</option>
-										<option>Microsoft Office</option>
-										<option>IT & Phần mềm</option>
-										<option>Đồ họa</option>
-										<option>Thương mại điện tử</option>
-										<option>Ngoại ngữ</option>
-										<option>Kỹ năng mềm</option>
+									<select class="form-control" name="subject">
+										@foreach ($subjects as $sj)
+											<option value="{{ $sj->id }}">{{ $sj->name }}</option>
+										@endforeach
 									</select>
 								</div>
 								<div class="form-group">
 									<label>Tiêu Đề</label>
-									<input type="text" class="form-control" placeholder="Nhập tiêu đề câu hỏi">
+									<input type="text" class="form-control" placeholder="Nhập tiêu đề câu hỏi" name="title">
 								</div>
 								<div class="form-group">
 									<label>Nội Dung</label>
-									<textarea class="form-control tinymce" name="content" rows="10"></textarea>
+									<textarea class="form-control tinymce" rows="10" name="content"></textarea>
 								</div>
 								<div class="form-group">
 									<label>Link</label>
-									<input type="text" class="form-control" placeholder="Dán đường link để tải tài liệu">
+									<input type="url" class="form-control" placeholder="Dán đường link để tải tài liệu" name="link">
 								</div>
 								<div class="form-group">
 									<label>Thẻ</label>
@@ -46,38 +54,40 @@
 										<i class="fa fa-plus fa-fw"></i>
 									</button>
 									<small class="form-text text-muted">Nếu không thấy thẻ thích hợp, hãy giúp chúng tôi thêm chúng</small>
-									<input type="text" name="" id="list-tag" hidden="">
+									<input type="text" id="list-tag" hidden="" name="list_tag">
 								</div>
 								<button type="submit" class="btn btn-primary btn-lg"> <span class="oi oi-task"></span> Gửi bài và đợi xác nhận</button>
 							</form>
 							<!-- Modal -->
-							<div class="modal fade" id="addTagModal" tabindex="-1" role="dialog" aria-labelledby="addTagModalLabel" aria-hidden="true">
-								<div class="modal-dialog" role="document">
-									<div class="modal-content">
-										<form>
-											<div class="modal-header">
-												<h1 class="modal-title">Thêm Thẻ Mới</h1>
-											</div>
-											<div class="modal-body">
-												<div class="form-group">
-													<label>Tên Thẻ</label>
-													<input type="text" class="form-control" placeholder="Nhập tên thẻ">
-													<small class="form-text text-muted">Hãy nhập tên thẻ ngắn gọn, xúc tích</small>
+							<form action="{{ route('create-tag') }}" method="POST">
+								{{ csrf_field() }}
+								<div class="modal fade" id="addTagModal" tabindex="-1" role="dialog" aria-labelledby="addTagModalLabel" aria-hidden="true">
+									<div class="modal-dialog" role="document">
+										<div class="modal-content">
+											<form>
+												<div class="modal-header">
+													<h1 class="modal-title">Thêm Thẻ Mới</h1>
 												</div>
-												<div class="form-group">
-													<label>Mô Tả</label>
-													<textarea class="form-control" rows="5" placeholder="Nhập mô tả cho thẻ"></textarea>
+												<div class="modal-body">
+													<div class="form-group">
+														<label>Tên Thẻ</label>
+														<input type="text" class="form-control" placeholder="Nhập tên thẻ" name="name">
+														<small class="form-text text-muted">Hãy nhập tên thẻ ngắn gọn, xúc tích</small>
+													</div>
+													<div class="form-group">
+														<label>Mô Tả</label>
+														<textarea class="form-control" rows="5" placeholder="Nhập mô tả cho thẻ" name="description"></textarea>
+													</div>
 												</div>
-
-											</div>
-											<div class="modal-footer">
-												<button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
-												<button type="button" class="btn btn-primary">Lưu</button>
-											</div>
-										</form>
+												<div class="modal-footer">
+													<button type="reset" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+													<button type="submit" class="btn btn-primary">Lưu</button>
+												</div>
+											</form>
+										</div>
 									</div>
 								</div>
-							</div>
+							</form>
 							<br>
 						</div>
 					</div>
@@ -108,39 +118,19 @@
 	var tags = new Bloodhound({
 		datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
 		queryTokenizer: Bloodhound.tokenizers.whitespace,
-		local: [{ "id": 1, "name": "PHP" },
-		{ "id": 2, "name": "C#" },
-		{ "id": 3, "name": "AngularJS" },
-		{ "id": 4, "name": "Android" },
-		{ "id": 5, "name": "Java" },
-		{ "id": 6, "name": "C++" },
-		{ "id": 7, "name": "Python" },
-		{ "id": 8, "name": "MongoDB" },
-		{ "id": 9, "name": "SQL" },
-		{ "id": 10, "name": "MySQL" },
-		{ "id": 11, "name": "Laravel" },
-		{ "id": 12, "name": "NodeJS" },
-		{ "id": 13, "name": "Reactive" },
-		{ "id": 14, "name": "ExpressJS" },
-		{ "id": 15, "name": "iOS" },
-		{ "id": 16, "name": "CSS" },
-		{ "id": 17, "name": "JavaScript" },
-		{ "id": 18, "name": "ASP.NET" },
-		{ "id": 19, "name": "R" },
-		{ "id": 20, "name": "HTML" },
-		]
+		local: {!! $tags !!}
 	});
 	tags.initialize();
 
 	var elt = $('input[data-role="tagsinput"]');
-	elt.tagsinput({
-		itemValue: 'id',
-		itemText: 'name',
-		typeaheadjs: {
-			name: 'tags',
-			displayKey: 'name',
-			source: tags.ttAdapter()
-		}
-	});
+    elt.tagsinput({
+        itemValue: 'id',
+        itemText: 'name',
+        typeaheadjs: {
+            name: 'tags',
+            displayKey: 'name',
+            source: tags.ttAdapter()
+        }
+    });
 </script>
 @endsection
