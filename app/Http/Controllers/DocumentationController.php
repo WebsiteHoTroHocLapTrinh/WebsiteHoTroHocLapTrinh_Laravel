@@ -34,10 +34,6 @@ class DocumentationController extends Controller
         $comments = $document->comments;
         //
         foreach($comments as $cmt){
-            $pingsOfComment = $cmt->pings;
-            foreach ($pingsOfComment as $ping) {
-                $ping->delete();   
-            }
             $cmt->delete();
         }
         //
@@ -51,9 +47,11 @@ class DocumentationController extends Controller
 
         //Create Activity
         $activity = new Activity;
-        $activity->user_id = Auth::user()->id;
-        $activity->content = 'Xóa tài liệu <a href="/admin" target="_blank">'.$document->title.'</a>';
-        $activity->type = 1;
+        $activity->user_id = Auth::id();
+        $activity->user_related_id = $document->user->id;
+        $activity->content = 'đã xóa tài liệu <strong>'.$document->title.'</strong>';
+        // $activity->link = route('detail-question', ['question_id' => $idQuestion]);
+        $activity->type = Auth::user()->permission->key;
         $activity->save();
 
         return redirect()->back()->with('thongbao', 'Xóa Thành Công');
@@ -126,9 +124,11 @@ class DocumentationController extends Controller
 
         //Create Activity
         $activity = new Activity;
-        $activity->user_id = Auth::user()->id;
-        $activity->content = 'Cập nhật tài liệu <a href="/admin/documentation/edit/'.$Document->id.'" target="_blank">'.$Document->title.'</a>';
-        $activity->type = 1;
+        $activity->user_id = Auth::id();
+        $activity->user_related_id = $Document->user->id;
+        $activity->content = 'đã chỉnh sửa tài liệu <strong>'.$Document->title.'</strong>';
+        // $activity->link = route('detail-question', ['question_id' => $idQuestion]);
+        $activity->type = Auth::user()->permission->key;
         $activity->save();
 
         return redirect()->back()->with('thongbao', 'Cập Nhật Thành Công');  
@@ -196,9 +196,11 @@ class DocumentationController extends Controller
 
         //Create Activity
         $activity = new Activity;
-        $activity->user_id = Auth::user()->id;
-        $activity->content = 'Thêm tài liệu mới <a href="/admin/documentation/edit/'.$tbDocumentation->id.'" target="_blank">'.$tbDocumentation->title.'</a>';
-        $activity->type = 1;
+        $activity->user_id = Auth::id();
+        $activity->user_related_id = $tbDocumentation->user->id;
+        $activity->content = 'đã thêm tài liệu mới <strong>'.$tbDocumentation->title.'</strong>';
+        // $activity->link = route('detail-question', ['question_id' => $idQuestion]);
+        $activity->type = Auth::user()->permission->key;
         $activity->save();
         
         return redirect()->back()->with('thongbao', 'Thêm Thành Công');
@@ -321,6 +323,15 @@ class DocumentationController extends Controller
         // Increase User point reputation
         Auth::user()->point_reputation += 100;
         Auth::user()->save();
+
+        //Create Activity
+        $activity = new Activity;
+        $activity->user_id = Auth::id();
+        $activity->user_related_id = $tbDocumentation->user->id;
+        $activity->content = 'đã thêm tài liệu mới <strong>'.$tbDocumentation->title.'</strong>';
+        // $activity->link = route('detail-question', ['question_id' => $idQuestion]);
+        $activity->type = Auth::user()->permission->key;
+        $activity->save();
 
         $previousURL = route('documentation');  //Chuyển lại về chi tiết khi làm xong
         return redirect('congratulation')->with('thongbao', 

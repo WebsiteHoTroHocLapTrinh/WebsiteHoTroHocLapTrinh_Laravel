@@ -66,9 +66,11 @@ class SubjectController extends Controller
 
         //Create Activity
         $activity = new Activity;
-        $activity->user_id = Auth::user()->id;
-        $activity->content = 'Cập nhật chủ đề <a href="/admin/subject/edit/'.$subject->id.'" target="_blank">'.$subject->name.'</a>';
-        $activity->type = 1;
+        $activity->user_id = Auth::id();
+        $activity->user_related_id = $subject->user_created->id;
+        $activity->content = 'đã thêm chủ đề mới <strong>'.$subject->name.'</strong>';
+        // $activity->link = route('detail-question', ['question_id' => $idQuestion]);
+        $activity->type = Auth::user()->permission->key;
         $activity->save();
 
         return redirect()->back()->with('thongbao', 'Cập Nhật Thành Công');  
@@ -111,9 +113,11 @@ class SubjectController extends Controller
 
         //Create Activity
         $activity = new Activity;
-        $activity->user_id = Auth::user()->id;
-        $activity->content = 'Thêm chủ đề mới <a href="/admin/subject/edit/'.$subject->id.'" target="_blank">'.$subject->name.'</a>';
-        $activity->type = 1;
+        $activity->user_id = Auth::id();
+        $activity->user_related_id = $subject->user_created->id;
+        $activity->content = 'đã chỉnh sửa chủ đề <strong>'.$subject->name.'</strong>';
+        // $activity->link = route('detail-question', ['question_id' => $idQuestion]);
+        $activity->type = Auth::user()->permission->key;
         $activity->save();
 
         return redirect()->back()->with('thongbao', 'Thêm Thành Công');  
@@ -127,10 +131,6 @@ class SubjectController extends Controller
             $comments = $document->comments;
             //
             foreach($comments as $cmt){
-                $pingsOfComment = $cmt->pings;
-                foreach ($pingsOfComment as $ping) {
-                    $ping->delete();   
-                }
                 $cmt->delete();
             }
             //
@@ -147,9 +147,11 @@ class SubjectController extends Controller
 
         //Create Activity
         $activity = new Activity;
-        $activity->user_id = Auth::user()->id;
-        $activity->content = 'Xóa chủ đề <a href="/admin" target="_blank">'.$subject->name.'</a>';
-        $activity->type = 1;
+        $activity->user_id = Auth::id();
+        $activity->user_related_id = $subject->user_created->id;
+        $activity->content = 'đã xóa chủ đề <strong>'.$subject->name.'</strong>';
+        // $activity->link = route('detail-question', ['question_id' => $idQuestion]);
+        $activity->type = Auth::user()->permission->key;
         $activity->save();
         
         return redirect()->back()->with('thongbao', 'Xóa Thành Công');

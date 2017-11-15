@@ -19,6 +19,6 @@ class Login
         if (Auth::check()) {
             return $next($request);
         }
-        return redirect(route('login'));
+        return redirect(route('login'))->with('thongbao', 'Bạn phải đăng nhập để thực hiện thao tác');
     }
 }

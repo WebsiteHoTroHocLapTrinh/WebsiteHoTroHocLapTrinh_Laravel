@@ -32,7 +32,7 @@ class UsersSeeder extends Seeder
                  'avatar' => 'default_avatar.png',
                  'email' => 'user_'.$i.'@gmail.com',
                  'password' => bcrypt('123456'),
-                 'point_reputation' => rand(100,1000),
+                 // 'point_reputation' => rand(100,1000),
                  'last_activity_time' => new DateTime(),
                  'created_at' => new DateTime(),
                  'updated_at' => new DateTime()
@@ -52,7 +52,7 @@ class UsersSeeder extends Seeder
                 'avatar' => 'k17.jpg',
                 'email' => 'nguyenhoangthanhtung1610@gmail.com',
                 'password' => bcrypt('123456'),
-                'point_reputation' => rand(100,1000),
+                // 'point_reputation' => rand(100,1000),
                 'last_activity_time' => new DateTime(),
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime()
@@ -70,7 +70,7 @@ class UsersSeeder extends Seeder
                 'avatar' => 'avata.png',
                 'email' => 'dinhsa@gmail.com',
                 'password' => bcrypt('123456'),
-                'point_reputation' => rand(100,1000),
+                // 'point_reputation' => rand(100,1000),
                 'last_activity_time' => new DateTime(),
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime()

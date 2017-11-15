@@ -150,7 +150,7 @@
                                         #{{ $i }}
                                     </div>
                                     <div class="d-inline">
-                                        <img src="image/k17.jpg" class="rounded-circle" width="30" height="30">
+                                        <img src="image/avatar_users/{{ $top_user->avatar }}" class="rounded-circle" width="30" height="30">
                                     </div>
                                     <div class="d-inline">
                                         {{ $top_user->name }}
@@ -178,7 +178,7 @@
                            </div>
                            @endforeach
                         </div>
-                        <a href="{{ route('tag') }}">Xem thêm ...</a>
+                        <a href="{{ route('list-tag') }}">Xem thêm ...</a>
                     </div>
                     <!--endrank-tag-->
                 </div>
@@ -242,7 +242,7 @@
                     tags = 0;
                 }
                 var sort = $('select#sort').val();
-                window.location.href = '{{ route('documentation') }}' + '/' + subject + '/' + tags + '/' + sort;
+                window.location.href = '{{ route('list-documentation') }}' + '/' + subject + '/' + tags + '/' + sort;
 
             })  
         });

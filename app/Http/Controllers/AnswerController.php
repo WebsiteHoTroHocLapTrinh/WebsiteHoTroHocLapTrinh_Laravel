@@ -67,9 +67,11 @@ class AnswerController extends Controller
 
         //Create Activity
         $activity = new Activity;
-        $activity->user_id = Auth::user()->id;
-        $activity->content = 'Thêm câu trả lời <a href="/admin/question/edit/'.$answer->id.'" target="_blank">ID: '.$answer->id.'</a>';
-        $activity->type = 1;
+        $activity->user_id = Auth::id();
+        $activity->user_related_id = $answer->user->id;
+        $activity->content = 'đã thêm câu trả lời';
+        $activity->link = route('detail-question', ['question_id' => $idQuestion]);
+        $activity->type = Auth::user()->permission->key;
         $activity->save();
 
         return redirect()->back()->with('thongbao', 'Thêm Thành Công');
@@ -111,9 +113,11 @@ class AnswerController extends Controller
 
         //Create Activity
         $activity = new Activity;
-        $activity->user_id = Auth::user()->id;
-        $activity->content = 'Cập nhật câu trả lời <a href="/admin/question/edit/'.$answer->id.'" target="_blank">ID: '.$answer->id.'</a>';
-        $activity->type = 1;
+        $activity->user_id = Auth::id();
+        $activity->user_related_id = $answer->user->id;
+        $activity->content = 'đã chỉnh sửa câu trả lời';
+        $activity->link = route('detail-question', ['question_id' => $idQuestion]);
+        $activity->type = Auth::user()->permission->key;
         $activity->save();
 
         return redirect()->back()->with('thongbao', 'Cập Nhật Thành Công');
@@ -123,10 +127,6 @@ class AnswerController extends Controller
         $answer = Answer::find($idAnswer);
         $commentsOfAnswer = $answer->comments;
         foreach ($commentsOfAnswer as $cmt) {
-            $pingsOfComment = $cmt->pings;
-            foreach ($pingsOfComment as $ping) {
-                $ping->delete();    // Delete pings of comment
-            }
             $cmt->delete();  // Delete comments of answer
         }
 
@@ -134,54 +134,55 @@ class AnswerController extends Controller
 
         //Create Activity
         $activity = new Activity;
-        $activity->user_id = Auth::user()->id;
-        $activity->content = 'Xóa câu trả lời <a href="/admin" target="_blank">ID: '.$answer->id.'</a>';
-        $activity->type = 1;
+        $activity->user_id = Auth::id();
+        $activity->user_related_id = $answer->user->id;
+        $activity->content = 'đã xóa câu trả lời';
+        $activity->link = route('detail-question', ['question_id' => $idQuestion]);
+        $activity->type = Auth::user()->permission->key;
         $activity->save();
 
         return redirect()->back()->with('thongbao', 'Xóa Thành Công');
     }
 
     ////
-    public function postVote(Request $request, $answer_id){
-        if(Auth::check()){
+    public function postVoteAnswer(Request $request, $answer_id = 0){
+        if (Auth::check()) {
             $answer = Answer::find($answer_id);
             $user = $answer->user;
             $vote_record = $answer->votes->where('user_id', Auth::id())->first(); 
-            
-            if(!is_null($vote_record)){//exist user (up or down)
-                if($vote_record->vote_action != $request->up_down){
-                    if($request->up_down=='up'){
-                        $answer->point_rating = $answer->point_rating + 1;
-                        $user->point_reputation = $user->point_reputation + 1;
-                        $vote_record->vote_action = 'up';
-                        $answer->save();
-                        $user->save();
-                        $vote_record->save();
-                    }
-                    else{
-                        $answer->point_rating = $answer->point_rating - 1;
-                        $user->point_reputation = $user->point_reputation - 1;
-                        $vote_record->vote_action = 'down';
-                        $answer->save();
-                        $user->save();
-                        $vote_record->save();
-                    }
+            // Flag
+            $isAddClass = true;
+            //Convert string to boolen
+            $isPressedUp = $request->isPressedUp === 'true' ? true : false;
+            $isPressedDown = $request->isPressedDown === 'true' ? true : false;
 
-                    return Response()->json(['success' => true]); 
-                }
-                else{
-                    return Response()->json(['success' => false, 'message' => 'Bạn chỉ được vote (up/down) một lần!']);
-                }
+            if (!is_null($vote_record)) {
+                $vote_record->delete(); // Delete current vote if exist
             }
-            else{
+            if ($request->up_down == 'up') {
 
-                if($request->up_down=='up'){
-                    $answer->point_rating = $answer->point_rating + 1;
-                    $user->point_reputation = $user->point_reputation + 1;
+                if ($isPressedUp) {    // Status pressed up => balance
+                    $answer->point_rating = $answer->point_rating - 1;
                     $answer->save();
+                    $user->point_reputation = $user->point_reputation - 1;
                     $user->save();
-                        //add vote table
+                    
+                    $isAddClass = false;
+                }
+                else {
+                    if ($isPressedDown) {  // Status pressed down => pressed up
+                        $answer->point_rating = $answer->point_rating + 2;
+                        $answer->save();
+                        $user->point_reputation = $user->point_reputation + 2;
+                        $user->save();
+                    }
+                    else {                          // Status balance => pressed up
+                        $answer->point_rating = $answer->point_rating + 1;
+                        $answer->save();
+                        $user->point_reputation = $user->point_reputation + 1;
+                        $user->save();
+                    }
+                    // Add vote table
                     $vote = new Vote;
                     $vote->user_id = Auth::id();
                     $vote->vote_action = 'up';
@@ -189,59 +190,87 @@ class AnswerController extends Controller
                     $vote->votable_type = 'App\Answer';
                     $vote->save();
                 }
-                else{
-                    $answer->point_rating = $answer->point_rating - 1;
-                    $user->point_reputation = $user->point_reputation - 1;
+            }
+            else {
+                if ($isPressedDown) {    // Status pressed down => balance
+                    $answer->point_rating = $answer->point_rating + 1;
                     $answer->save();
+                    $user->point_reputation = $user->point_reputation + 1;
                     $user->save();
-                         //add vote table
+                    
+                    $isAddClass = false;
+                }
+                else {
+                    if ($isPressedUp) {  // Status pressed up => pressed down
+                        $answer->point_rating = $answer->point_rating - 2;
+                        $answer->save();
+                        $user->point_reputation = $user->point_reputation - 2;
+                        $user->save();
+                    }
+                    else {                          // Status balance => pressed down
+                        $answer->point_rating = $answer->point_rating - 1;
+                        $answer->save();
+                        $user->point_reputation = $user->point_reputation - 1;
+                        $user->save();
+                    }
+                    // Add vote table
                     $vote = new Vote;
                     $vote->user_id = Auth::id();
                     $vote->vote_action = 'down';
-                    $vote->votable_id = $question_id;
+                    $vote->votable_id = $answer_id;
                     $vote->votable_type = 'App\Answer';
                     $vote->save();
                 }
-                return Response()->json(['success' => true]); 
             }
-
+            return Response()->json(['success' => true, 'isAddClass' => $isAddClass]); 
         }
-        //don't login yet
-        return Response()->json(['success' => false, 'message' => 'Bạn cần phải đăng nhập để được vote cho câu hỏi này']); 
+        else {
+            return Response()->json(['success' => false, 'message' => 'Bạn cần phải đăng nhập để được vote cho câu hỏi này']); 
+        }
         
     }
 
-    public function postBestAnswer(Request $request, $answer_id){
-        $best_answer_old = Answer::where([['question_id',$request->question_id], ['best_answer', 1]])->first();
-        if(!is_null($best_answer_old)){
-            $best_answer_old->best_answer =false;
-            $user_old = $best_answer_old->user;
-            $user_old->point_reputation = $user_old->point_reputation -10;
-            $user_old->save();
-            $best_answer_old->save();
+    public function postVoteBestAnswer(Request $request, $answer_id = 0){
+        $question = Question::find($request->question_id);
+        if ($question->user->id == Auth::id()) {
+            $best_answer_old = Answer::where([['question_id', $request->question_id], ['best_answer', true]])->first();
 
-            if($best_answer_old->id==$answer_id){
-                return Response()->json(['exist'=>true,'trung' =>true]);
+            if(!is_null($best_answer_old)) {
+                $best_answer_old->best_answer = false;
+                $best_answer_old->save();
+
+                $user_old = $best_answer_old->user;
+                $user_old->point_reputation = $user_old->point_reputation - 10;
+                $user_old->save();  
+
+                if ($best_answer_old->id == $answer_id) {   //Status best => normal
+                    return Response()->json(['exist' => true,'same' => true]);
+                }
+                else {  // Status normal => best
+                    $best_answer = Answer::find($answer_id);
+                    $best_answer->best_answer = true;
+                    $best_answer->save();
+
+                    $user_new = $best_answer->user;
+                    $user_new->point_reputation =$user_new->point_reputation + 10;
+                    $user_new->save();
+
+                    return Response()->json(['exist' => true, 'same' => false, 'best_answer_old' => $best_answer_old->id]);
+                }
             }
-            
+            else{
 
-            $best_answer = Answer::find($answer_id);
-            $user_new = $best_answer->user;
-            $best_answer->best_answer = true;
-            $user_new->point_reputation =$user_new->point_reputation +10;
-            $best_answer->save();
-            $user_new->save();
-            return Response()->json(['exist'=>true, 'trung'=>false, 'best_answer_old'=>$best_answer_old->id]);
+                $best_answer = Answer::find($answer_id);
+                $best_answer->best_answer = true;
+                $best_answer->save();
+                
+                $user_new = $best_answer->user;
+                $user_new->point_reputation = $user_new->point_reputation + 10;
+                $user_new->save();
+                
+                return Response()->json(['exist'=> false]);
+            }  
         }
-        else{
-
-            $best_answer = Answer::find($answer_id);
-            $user_new = $best_answer->user;
-            $user_new->point_reputation =$user_new->point_reputation +10;
-            $best_answer->best_answer = true;
-            $user_new->save();
-            $best_answer->save();
-            return Response()->json(['exist'=> false]);
-        }  
+        return view('404_page');
     }
 }

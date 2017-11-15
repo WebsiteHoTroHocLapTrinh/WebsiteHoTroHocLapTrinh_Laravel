@@ -16,13 +16,13 @@
             <!--danh mục-->
             <ul class="navbar-nav">
                 <li class="nav-item mr-sm-3">
-                    <a class="nav-link" href="question/list-question/new"><strong>Questions</strong> <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="{{ route('list-question') }}"><strong>Questions</strong> <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item mr-sm-3">
-                    <a class="nav-link" href="{{ route('documentation') }}"><strong>Documentations</strong></a>
+                    <a class="nav-link" href="{{ route('list-documentation') }}"><strong>Documentations</strong></a>
                 </li>
                 <li class="nav-item mr-sm-3">
-                    <a class="nav-link" href="list-tag"><strong>Tags</strong></a>
+                    <a class="nav-link" href="{{ route('list-tag') }}"><strong>Tags</strong></a>
                 </li>
                 <li class="nav-item mr-sm-3">
                     <a class="nav-link" href="list-user"><strong>Users</strong></a>

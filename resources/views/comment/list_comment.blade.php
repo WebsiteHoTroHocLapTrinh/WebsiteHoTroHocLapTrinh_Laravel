@@ -10,7 +10,7 @@
 			<div class="name-user-cmt">
 				<a href="user/info/user_{{ $cmt->user_id }}">{{ $cmt->user->name }}</a>
 				<span class="text-muted">
-					@if($cmt->created_at==$cmt->updated_at)
+					@if($cmt->created_at == $cmt->updated_at)
 					đã bình luận vào {{ date('d-m-Y', strtotime($cmt->created_at)) }}
 					@else
 					đã chỉnh sửa vào {{ date('d-m-Y', strtotime($cmt->updated_at)) }}
@@ -25,15 +25,15 @@
 				</div>
 				<!--col edit-->
 				<div class="col-lg-1">
-					@if(Auth::id()==$cmt->user_id)
+					@if(Auth::id() == $cmt->user_id)
 					<div class="dropdown-cmt">
 						<div id="dropdownMenuLink" data-toggle="dropdown">
 							<img src="image/three_dots.png" height="10" width="20">
 						</div>
 
 						<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-							<a class="dropdown-item" href="javascript:Edit({{ $cmt->id }},'{{ $cmt->content }}');">sửa</a>
-							<a class="dropdown-item" href="javascript:DeleteComment({{ $cmt->id }});">xóa</a>
+							<a class="dropdown-item" href="javascript:Edit({{ $cmt->id }},'{{ $cmt->content }}');">Chỉnh sửa...</a>
+							<a class="dropdown-item" href="javascript:DeleteComment({{ $cmt->id }});">Xóa...</a>
 						</div>
 					</div>
 					@endif

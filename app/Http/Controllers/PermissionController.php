@@ -68,10 +68,13 @@ class PermissionController extends Controller
 
         //Create Activity
         $activity = new Activity;
-        $activity->user_id = Auth::user()->id;
-        $activity->content = 'Thêm quyền mới <a href="/admin/permission/edit/'.$permission->id.'" target="_blank">'.$permission->name.'</a>';
-        $activity->type = 1;
+        $activity->user_id = Auth::id();
+        $activity->user_related_id = $permission->user_created->id;
+        $activity->content = 'đã thêm quyền mới <strong>'.$permission->name.'</strong>';
+        // $activity->link = route('detail-question', ['question_id' => $idQuestion]);
+        $activity->type = Auth::user()->permission->key;
         $activity->save();
+
 
         return redirect()->back()->with('thongbao', 'Thêm Thành Công');
     }
@@ -116,9 +119,11 @@ class PermissionController extends Controller
 
         //Create Activity
         $activity = new Activity;
-        $activity->user_id = Auth::user()->id;
-        $activity->content = 'Cập nhật quyền <a href="/admin/permission/edit/'.$permission->id.'" target="_blank">'.$permission->name.'</a>';
-        $activity->type = 1;
+        $activity->user_id = Auth::id();
+        $activity->user_related_id = $permission->user_created->id;
+        $activity->content = 'đã chỉnh sửa quyền <strong>'.$permission->name.'</strong>';
+        // $activity->link = route('detail-question', ['question_id' => $idQuestion]);
+        $activity->type = Auth::user()->permission->key;
         $activity->save();
 
         return redirect()->back()->with('thongbao', 'Thêm Thành Công');
@@ -130,9 +135,11 @@ class PermissionController extends Controller
 
         //Create Activity
         $activity = new Activity;
-        $activity->user_id = Auth::user()->id;
-        $activity->content = 'Xóa quyền <a href="/admin" target="_blank">'.$permission->name.'</a>';
-        $activity->type = 1;
+        $activity->user_id = Auth::id();
+        $activity->user_related_id = $permission->user_created->id;
+        $activity->content = 'đã xóa quyền <strong>'.$permission->name.'</strong>';
+        // $activity->link = route('detail-question', ['question_id' => $idQuestion]);
+        $activity->type = Auth::user()->permission->key;
         $activity->save();
     	
     	return redirect()->back()->with('thongbao', 'Xóa Thành Công');

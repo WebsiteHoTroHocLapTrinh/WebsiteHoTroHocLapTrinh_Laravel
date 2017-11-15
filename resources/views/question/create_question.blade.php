@@ -93,27 +93,7 @@
 	var tags = new Bloodhound({
 		datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
 		queryTokenizer: Bloodhound.tokenizers.whitespace,
-		local: [{ "id": 1, "name": "PHP" },
-		{ "id": 2, "name": "C#" },
-		{ "id": 3, "name": "AngularJS" },
-		{ "id": 4, "name": "Android" },
-		{ "id": 5, "name": "Java" },
-		{ "id": 6, "name": "C++" },
-		{ "id": 7, "name": "Python" },
-		{ "id": 8, "name": "MongoDB" },
-		{ "id": 9, "name": "SQL" },
-		{ "id": 10, "name": "MySQL" },
-		{ "id": 11, "name": "Laravel" },
-		{ "id": 12, "name": "NodeJS" },
-		{ "id": 13, "name": "Reactive" },
-		{ "id": 14, "name": "ExpressJS" },
-		{ "id": 15, "name": "iOS" },
-		{ "id": 16, "name": "CSS" },
-		{ "id": 17, "name": "JavaScript" },
-		{ "id": 18, "name": "ASP.NET" },
-		{ "id": 19, "name": "R" },
-		{ "id": 20, "name": "HTML" },
-		]
+		local: {!! $tags !!}
 	});
 	tags.initialize();
 
