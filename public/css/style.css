@@ -633,7 +633,7 @@ button {
 .img-card {
     width: 50%;
     margin: auto;
-    padding-top: 10px;
+    margin-top: 10px; 
 }
 
 .card-title-text-center {
@@ -1290,4 +1290,15 @@ button {
 }
 .content-edit-answer{
     padding-bottom: 50px;
+}
+#one-tag{
+    padding-bottom: 30px;
+}
+.info-list-user >span{
+    display: block;
+    font-size: 11px;
+}
+.name-list-user{
+    font-size: 15px;
+    
 }

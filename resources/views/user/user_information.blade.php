@@ -100,7 +100,7 @@
 					@foreach($user->questions->take(3) as $qs)
 					<div class="user_active">
 						<p class="point">{{ $qs->point_rating }}</p>
-						<p><a href="question/detail/qs_{{ $qs->id }}">{{ $qs->title }}</a></p>
+						<p><a href="{{ route('detail-question', ['question_id'=>$qs->id]) }}">{{ $qs->title }}</a></p>
 						<p class=" date float-right text-muted">{{ date('d-m-Y h:i:s', strtotime($qs->created_at ))}}</p>
 					</div>
 					@endforeach
@@ -128,7 +128,7 @@
 					@endphp
 					<div class="user_active">
 						<p class="point">{{ $answer->question->point_rating }}</p>
-						<p><a href="question/detail/qs_{{ $answer->question->id }}">{{ $answer->question->title }}</a></p>
+						<p><a href="{{ route('detail-question', ['question_id'=>$answer->question->id]) }}">{{ $answer->question->title }}</a></p>
 						<p class=" date float-right text-muted">{{ $count }}</p>
 					</div>
 					@endforeach

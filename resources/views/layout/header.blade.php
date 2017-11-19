@@ -25,10 +25,10 @@
                     <a class="nav-link" href="{{ route('list-tag') }}"><strong>Tags</strong></a>
                 </li>
                 <li class="nav-item mr-sm-3">
-                    <a class="nav-link" href="list-user"><strong>Users</strong></a>
+                    <a class="nav-link" href="{{ route('list-user') }}"><strong>Users</strong></a>
                 </li>
                 <li class="nav-item mr-sm-3">
-                    <a class="nav-link mr-sm-5" href="about"><strong>About</strong></a>
+                    <a class="nav-link mr-sm-5" href="{{ route('about') }}"><strong>About</strong></a>
                 </li>
             </ul>
             <!--/danh mục-->
@@ -59,7 +59,7 @@
                             <span>Về Trang Admin</span>
                         </a>
                     @endif
-                    <a class="dropdown-item" href="user/info/user_{{ Auth::id() }}">
+                    <a class="dropdown-item" href="{{ route('user-information', ['user_id' => Auth::id()]) }}">
                         <span class="oi oi-person"></span>
                         <span>Thông Tin Cá Nhân</span>
                     </a>

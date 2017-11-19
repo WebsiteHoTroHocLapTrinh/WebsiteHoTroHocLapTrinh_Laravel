@@ -15,11 +15,12 @@
 							<br>
 							<div class="row">
 								<div class="col-lg-6">
-									<form>
+									<form id="form-search" action="{{ route('search-user') }}" method="POST">
+										{{ csrf_field() }}
 										<div class="input-group">
-											<input type="text" class="form-control" placeholder="Nhập từ khóa cần tìm" >
+											<input id="key_search" type="text" class="form-control" name="key_search" placeholder="Nhập từ khóa cần tìm" >
 											<span class="input-group-btn" >
-												<button type="submit" class="btn btn-success">Tìm kiếm</button>
+												<button id="btn-search" type="button" class="btn btn-success">Tìm kiếm</button>
 											</span>
 										</div>
 									</form>
@@ -28,729 +29,19 @@
 							<br>
 							<ul class="nav nav-tabs d-flex justify-content-end" id="UsersTab" role="tablist">
 								<li class="nav-item">
-									<a class="nav-link active" id="diem-tab" data-toggle="tab" href="#diem" role="tab" aria-controls="diem" aria-expanded="true">Điểm</a>
+									<a class="nav-link active" id="point" href="javascript:ChangeTab('point')" role="tab">Điểm</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link" id="ten-tab" data-toggle="tab" href="#ten" role="tab" aria-controls="ten">Tên</a>
+									<a class="nav-link" id="name" href="javascript:ChangeTab('name')" role="tab">Tên</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link" id="moi-tab" data-toggle="tab" href="#moi" role="tab" aria-controls="moi">Mới</a>
+									<a class="nav-link" id="new" href="javascript:ChangeTab('new')" role="tab">Mới</a>
 								</li>
 							</ul>
-							<div class="tab-content" id="UsersTabContent">
-								<div class="tab-pane fade show active" id="diem" role="tabpanel" aria-labelledby="diem-tab">
-									<br>
-									<div class="card-deck">
-										<div class="card">
-											<img class="card-img-top rounded-circle img-card" src="image/k17.jpg">
-											<div class="card-body">
-												<div class="card-title">
-													<h4 class="card-title-text-center">Thanh Tùng</h4>
-												</div>
-												<div class="card-text">
-													<p>TP.HCM</p>
-													<p>6969 điểm</p>
-												</div>
-												<div class="list-tag">
-													<p class="tag">C#</p>
-													<p class="tag">Android</p>
-													<p class="tag">PHP</p>
-												</div>
-											</div>
-										</div>
-										<div class="card">
-											<img class="card-img-top rounded-circle img-card" src="image/k17.jpg">
-											<div class="card-body">
-												<div class="card-title">
-													<h4 class="card-title-text-center">Thanh Tùng</h4>
-												</div>
-												<div class="card-text">
-													<p>TP.HCM</p>
-													<p>6969 điểm</p>
-												</div>
-												<div class="list-tag">
-													<p class="tag">C#</p>
-													<p class="tag">Android</p>
-													<p class="tag">PHP</p>
-												</div>
-											</div>
-										</div>
-										<div class="card">
-											<img class="card-img-top rounded-circle img-card" src="image/k17.jpg">
-											<div class="card-body">
-												<div class="card-title">
-													<h4 class="card-title-text-center">Thanh Tùng</h4>
-												</div>
-												<div class="card-text">
-													<p>TP.HCM</p>
-													<p>6969 điểm</p>
-												</div>
-												<div class="list-tag">
-													<p class="tag">C#</p>
-													<p class="tag">Android</p>
-													<p class="tag">PHP</p>
-												</div>
-											</div>
-										</div>
-										<div class="card">
-											<img class="card-img-top rounded-circle img-card" src="image/k17.jpg">
-											<div class="card-body">
-												<div class="card-title">
-													<h4 class="card-title-text-center">Thanh Tùng</h4>
-												</div>
-												<div class="card-text">
-													<p>TP.HCM</p>
-													<p>6969 điểm</p>
-												</div>
-												<div class="list-tag">
-													<p class="tag">C#</p>
-													<p class="tag">Android</p>
-													<p class="tag">PHP</p>
-												</div>
-											</div>
-										</div>
-									</div>
-									<br>
-									<div class="card-deck">
-										<div class="card">
-											<img class="card-img-top rounded-circle img-card" src="image/k17.jpg">
-											<div class="card-body">
-												<div class="card-title">
-													<h4 class="card-title-text-center">Thanh Tùng</h4>
-												</div>
-												<div class="card-text">
-													<p>TP.HCM</p>
-													<p>6969 điểm</p>
-												</div>
-												<div class="list-tag">
-													<p class="tag">C#</p>
-													<p class="tag">Android</p>
-													<p class="tag">PHP</p>
-												</div>
-											</div>
-										</div>
-										<div class="card">
-											<img class="card-img-top rounded-circle img-card" src="image/k17.jpg">
-											<div class="card-body">
-												<div class="card-title">
-													<h4 class="card-title-text-center">Thanh Tùng</h4>
-												</div>
-												<div class="card-text">
-													<p>TP.HCM</p>
-													<p>6969 điểm</p>
-												</div>
-												<div class="list-tag">
-													<p class="tag">C#</p>
-													<p class="tag">Android</p>
-													<p class="tag">PHP</p>
-												</div>
-											</div>
-										</div>
-										<div class="card">
-											<img class="card-img-top rounded-circle img-card" src="image/k17.jpg">
-											<div class="card-body">
-												<div class="card-title">
-													<h4 class="card-title-text-center">Thanh Tùng</h4>
-												</div>
-												<div class="card-text">
-													<p>TP.HCM</p>
-													<p>6969 điểm</p>
-												</div>
-												<div class="list-tag">
-													<p class="tag">C#</p>
-													<p class="tag">Android</p>
-													<p class="tag">PHP</p>
-												</div>
-											</div>
-										</div>
-										<div class="card">
-											<img class="card-img-top rounded-circle img-card" src="image/k17.jpg">
-											<div class="card-body">
-												<div class="card-title">
-													<h4 class="card-title-text-center">Thanh Tùng</h4>
-												</div>
-												<div class="card-text">
-													<p>TP.HCM</p>
-													<p>6969 điểm</p>
-												</div>
-												<div class="list-tag">
-													<p class="tag">C#</p>
-													<p class="tag">Android</p>
-													<p class="tag">PHP</p>
-												</div>
-											</div>
-										</div>
-									</div>
-									<br>
-									<div class="card-deck">
-										<div class="card">
-											<img class="card-img-top rounded-circle img-card" src="image/k17.jpg">
-											<div class="card-body">
-												<div class="card-title">
-													<h4 class="card-title-text-center">Thanh Tùng</h4>
-												</div>
-												<div class="card-text">
-													<p>TP.HCM</p>
-													<p>6969 điểm</p>
-												</div>
-												<div class="list-tag">
-													<p class="tag">C#</p>
-													<p class="tag">Android</p>
-													<p class="tag">PHP</p>
-												</div>
-											</div>
-										</div>
-										<div class="card">
-											<img class="card-img-top rounded-circle img-card" src="image/k17.jpg">
-											<div class="card-body">
-												<div class="card-title">
-													<h4 class="card-title-text-center">Thanh Tùng</h4>
-												</div>
-												<div class="card-text">
-													<p>TP.HCM</p>
-													<p>6969 điểm</p>
-												</div>
-												<div class="list-tag">
-													<p class="tag">C#</p>
-													<p class="tag">Android</p>
-													<p class="tag">PHP</p>
-												</div>
-											</div>
-										</div>
-										<div class="card">
-											<img class="card-img-top rounded-circle img-card" src="image/k17.jpg">
-											<div class="card-body">
-												<div class="card-title">
-													<h4 class="card-title-text-center">Thanh Tùng</h4>
-												</div>
-												<div class="card-text">
-													<p>TP.HCM</p>
-													<p>6969 điểm</p>
-												</div>
-												<div class="list-tag">
-													<p class="tag">C#</p>
-													<p class="tag">Android</p>
-													<p class="tag">PHP</p>
-												</div>
-											</div>
-										</div>
-										<div class="card">
-											<img class="card-img-top rounded-circle img-card" src="image/k17.jpg">
-											<div class="card-body">
-												<div class="card-title">
-													<h4 class="card-title-text-center">Thanh Tùng</h4>
-												</div>
-												<div class="card-text">
-													<p>TP.HCM</p>
-													<p>6969 điểm</p>
-												</div>
-												<div class="list-tag">
-													<p class="tag">C#</p>
-													<p class="tag">Android</p>
-													<p class="tag">PHP</p>
-												</div>
-											</div>
-										</div>
-									</div>
-									<br>
-									<nav aria-label="Page navigation question">
-										<ul class="pagination justify-content-center" style="margin-top: 20px;">
-											<li class="page-item">
-												<a class="page-link" href="#" aria-label="Previous">
-													<span aria-hidden="true">&laquo;</span>
-													<span class="sr-only">Previous</span>
-												</a>
-											</li>
-											<li class="page-item"><a class="page-link" href="#">1</a></li>
-											<li class="page-item"><a class="page-link" href="#">2</a></li>
-											<li class="page-item"><a class="page-link" href="#">3</a></li>
-											<li class="page-item"><a class="page-link" href="#">4</a></li>
-											<li class="page-item"><a class="page-link" href="#">5</a></li>
-											<li class="page-item"><a class="page-link" href="#">6</a></li>
-											<li class="page-item">
-												<a class="page-link" href="#" aria-label="Next">
-													<span aria-hidden="true">&raquo;</span>
-													<span class="sr-only">Next</span>
-												</a>
-											</li>
-										</ul>
-									</nav>
-								</div>
-								<div class="tab-pane fade show" id="ten" role="tabpanel" aria-labelledby="teb-tab">
-									<br>
-									<div class="card-deck">
-										<div class="card">
-											<img class="card-img-top rounded-circle img-card" src="image/k17.jpg">
-											<div class="card-body">
-												<div class="card-title">
-													<h4 class="card-title-text-center">Thanh Tùng</h4>
-												</div>
-												<div class="card-text">
-													<p>TP.HCM</p>
-													<p>6969 điểm</p>
-												</div>
-												<div class="list-tag">
-													<p class="tag">C#</p>
-													<p class="tag">Android</p>
-													<p class="tag">PHP</p>
-												</div>
-											</div>
-										</div>
-										<div class="card">
-											<img class="card-img-top rounded-circle img-card" src="image/k17.jpg">
-											<div class="card-body">
-												<div class="card-title">
-													<h4 class="card-title-text-center">Thanh Tùng</h4>
-												</div>
-												<div class="card-text">
-													<p>TP.HCM</p>
-													<p>6969 điểm</p>
-												</div>
-												<div class="list-tag">
-													<p class="tag">C#</p>
-													<p class="tag">Android</p>
-													<p class="tag">PHP</p>
-												</div>
-											</div>
-										</div>
-										<div class="card">
-											<img class="card-img-top rounded-circle img-card" src="image/k17.jpg">
-											<div class="card-body">
-												<div class="card-title">
-													<h4 class="card-title-text-center">Thanh Tùng</h4>
-												</div>
-												<div class="card-text">
-													<p>TP.HCM</p>
-													<p>6969 điểm</p>
-												</div>
-												<div class="list-tag">
-													<p class="tag">C#</p>
-													<p class="tag">Android</p>
-													<p class="tag">PHP</p>
-												</div>
-											</div>
-										</div>
-										<div class="card">
-											<img class="card-img-top rounded-circle img-card" src="image/k17.jpg">
-											<div class="card-body">
-												<div class="card-title">
-													<h4 class="card-title-text-center">Thanh Tùng</h4>
-												</div>
-												<div class="card-text">
-													<p>TP.HCM</p>
-													<p>6969 điểm</p>
-												</div>
-												<div class="list-tag">
-													<p class="tag">C#</p>
-													<p class="tag">Android</p>
-													<p class="tag">PHP</p>
-												</div>
-											</div>
-										</div>
-									</div>
-									<br>
-									<div class="card-deck">
-										<div class="card">
-											<img class="card-img-top rounded-circle img-card" src="image/k17.jpg">
-											<div class="card-body">
-												<div class="card-title">
-													<h4 class="card-title-text-center">Thanh Tùng</h4>
-												</div>
-												<div class="card-text">
-													<p>TP.HCM</p>
-													<p>6969 điểm</p>
-												</div>
-												<div class="list-tag">
-													<p class="tag">C#</p>
-													<p class="tag">Android</p>
-													<p class="tag">PHP</p>
-												</div>
-											</div>
-										</div>
-										<div class="card">
-											<img class="card-img-top rounded-circle img-card" src="image/k17.jpg">
-											<div class="card-body">
-												<div class="card-title">
-													<h4 class="card-title-text-center">Thanh Tùng</h4>
-												</div>
-												<div class="card-text">
-													<p>TP.HCM</p>
-													<p>6969 điểm</p>
-												</div>
-												<div class="list-tag">
-													<p class="tag">C#</p>
-													<p class="tag">Android</p>
-													<p class="tag">PHP</p>
-												</div>
-											</div>
-										</div>
-										<div class="card">
-											<img class="card-img-top rounded-circle img-card" src="image/k17.jpg">
-											<div class="card-body">
-												<div class="card-title">
-													<h4 class="card-title-text-center">Thanh Tùng</h4>
-												</div>
-												<div class="card-text">
-													<p>TP.HCM</p>
-													<p>6969 điểm</p>
-												</div>
-												<div class="list-tag">
-													<p class="tag">C#</p>
-													<p class="tag">Android</p>
-													<p class="tag">PHP</p>
-												</div>
-											</div>
-										</div>
-										<div class="card">
-											<img class="card-img-top rounded-circle img-card" src="image/k17.jpg">
-											<div class="card-body">
-												<div class="card-title">
-													<h4 class="card-title-text-center">Thanh Tùng</h4>
-												</div>
-												<div class="card-text">
-													<p>TP.HCM</p>
-													<p>6969 điểm</p>
-												</div>
-												<div class="list-tag">
-													<p class="tag">C#</p>
-													<p class="tag">Android</p>
-													<p class="tag">PHP</p>
-												</div>
-											</div>
-										</div>
-									</div>
-									<br>
-									<div class="card-deck">
-										<div class="card">
-											<img class="card-img-top rounded-circle img-card" src="image/k17.jpg">
-											<div class="card-body">
-												<div class="card-title">
-													<h4 class="card-title-text-center">Thanh Tùng</h4>
-												</div>
-												<div class="card-text">
-													<p>TP.HCM</p>
-													<p>6969 điểm</p>
-												</div>
-												<div class="list-tag">
-													<p class="tag">C#</p>
-													<p class="tag">Android</p>
-													<p class="tag">PHP</p>
-												</div>
-											</div>
-										</div>
-										<div class="card">
-											<img class="card-img-top rounded-circle img-card" src="image/k17.jpg">
-											<div class="card-body">
-												<div class="card-title">
-													<h4 class="card-title-text-center">Thanh Tùng</h4>
-												</div>
-												<div class="card-text">
-													<p>TP.HCM</p>
-													<p>6969 điểm</p>
-												</div>
-												<div class="list-tag">
-													<p class="tag">C#</p>
-													<p class="tag">Android</p>
-													<p class="tag">PHP</p>
-												</div>
-											</div>
-										</div>
-										<div class="card">
-											<img class="card-img-top rounded-circle img-card" src="image/k17.jpg">
-											<div class="card-body">
-												<div class="card-title">
-													<h4 class="card-title-text-center">Thanh Tùng</h4>
-												</div>
-												<div class="card-text">
-													<p>TP.HCM</p>
-													<p>6969 điểm</p>
-												</div>
-												<div class="list-tag">
-													<p class="tag">C#</p>
-													<p class="tag">Android</p>
-													<p class="tag">PHP</p>
-												</div>
-											</div>
-										</div>
-										<div class="card">
-											<img class="card-img-top rounded-circle img-card" src="image/k17.jpg">
-											<div class="card-body">
-												<div class="card-title">
-													<h4 class="card-title-text-center">Thanh Tùng</h4>
-												</div>
-												<div class="card-text">
-													<p>TP.HCM</p>
-													<p>6969 điểm</p>
-												</div>
-												<div class="list-tag">
-													<p class="tag">C#</p>
-													<p class="tag">Android</p>
-													<p class="tag">PHP</p>
-												</div>
-											</div>
-										</div>
-									</div>
-									<br>
-									<nav aria-label="Page navigation question">
-										<ul class="pagination justify-content-center" style="margin-top: 20px;">
-											<li class="page-item">
-												<a class="page-link" href="#" aria-label="Previous">
-													<span aria-hidden="true">&laquo;</span>
-													<span class="sr-only">Previous</span>
-												</a>
-											</li>
-											<li class="page-item"><a class="page-link" href="#">1</a></li>
-											<li class="page-item"><a class="page-link" href="#">2</a></li>
-											<li class="page-item"><a class="page-link" href="#">3</a></li>
-											<li class="page-item"><a class="page-link" href="#">4</a></li>
-											<li class="page-item"><a class="page-link" href="#">5</a></li>
-											<li class="page-item"><a class="page-link" href="#">6</a></li>
-											<li class="page-item">
-												<a class="page-link" href="#" aria-label="Next">
-													<span aria-hidden="true">&raquo;</span>
-													<span class="sr-only">Next</span>
-												</a>
-											</li>
-										</ul>
-									</nav>
-								</div>
-								<div class="tab-pane fade show" id="moi" role="tabpanel" aria-labelledby="moi-tab">
-									<br>
-									<div class="card-deck">
-										<div class="card">
-											<img class="card-img-top rounded-circle img-card" src="image/k17.jpg">
-											<div class="card-body">
-												<div class="card-title">
-													<h4 class="card-title-text-center">Thanh Tùng</h4>
-												</div>
-												<div class="card-text">
-													<p>TP.HCM</p>
-													<p>6969 điểm</p>
-												</div>
-												<div class="list-tag">
-													<p class="tag">C#</p>
-													<p class="tag">Android</p>
-													<p class="tag">PHP</p>
-												</div>
-											</div>
-										</div>
-										<div class="card">
-											<img class="card-img-top rounded-circle img-card" src="image/k17.jpg">
-											<div class="card-body">
-												<div class="card-title">
-													<h4 class="card-title-text-center">Thanh Tùng</h4>
-												</div>
-												<div class="card-text">
-													<p>TP.HCM</p>
-													<p>6969 điểm</p>
-												</div>
-												<div class="list-tag">
-													<p class="tag">C#</p>
-													<p class="tag">Android</p>
-													<p class="tag">PHP</p>
-												</div>
-											</div>
-										</div>
-										<div class="card">
-											<img class="card-img-top rounded-circle img-card" src="image/k17.jpg">
-											<div class="card-body">
-												<div class="card-title">
-													<h4 class="card-title-text-center">Thanh Tùng</h4>
-												</div>
-												<div class="card-text">
-													<p>TP.HCM</p>
-													<p>6969 điểm</p>
-												</div>
-												<div class="list-tag">
-													<p class="tag">C#</p>
-													<p class="tag">Android</p>
-													<p class="tag">PHP</p>
-												</div>
-											</div>
-										</div>
-										<div class="card">
-											<img class="card-img-top rounded-circle img-card" src="image/k17.jpg">
-											<div class="card-body">
-												<div class="card-title">
-													<h4 class="card-title-text-center">Thanh Tùng</h4>
-												</div>
-												<div class="card-text">
-													<p>TP.HCM</p>
-													<p>6969 điểm</p>
-												</div>
-												<div class="list-tag">
-													<p class="tag">C#</p>
-													<p class="tag">Android</p>
-													<p class="tag">PHP</p>
-												</div>
-											</div>
-										</div>
-									</div>
-									<br>
-									<div class="card-deck">
-										<div class="card">
-											<img class="card-img-top rounded-circle img-card" src="image/k17.jpg">
-											<div class="card-body">
-												<div class="card-title">
-													<h4 class="card-title-text-center">Thanh Tùng</h4>
-												</div>
-												<div class="card-text">
-													<p>TP.HCM</p>
-													<p>6969 điểm</p>
-												</div>
-												<div class="list-tag">
-													<p class="tag">C#</p>
-													<p class="tag">Android</p>
-													<p class="tag">PHP</p>
-												</div>
-											</div>
-										</div>
-										<div class="card">
-											<img class="card-img-top rounded-circle img-card" src="image/k17.jpg">
-											<div class="card-body">
-												<div class="card-title">
-													<h4 class="card-title-text-center">Thanh Tùng</h4>
-												</div>
-												<div class="card-text">
-													<p>TP.HCM</p>
-													<p>6969 điểm</p>
-												</div>
-												<div class="list-tag">
-													<p class="tag">C#</p>
-													<p class="tag">Android</p>
-													<p class="tag">PHP</p>
-												</div>
-											</div>
-										</div>
-										<div class="card">
-											<img class="card-img-top rounded-circle img-card" src="image/k17.jpg">
-											<div class="card-body">
-												<div class="card-title">
-													<h4 class="card-title-text-center">Thanh Tùng</h4>
-												</div>
-												<div class="card-text">
-													<p>TP.HCM</p>
-													<p>6969 điểm</p>
-												</div>
-												<div class="list-tag">
-													<p class="tag">C#</p>
-													<p class="tag">Android</p>
-													<p class="tag">PHP</p>
-												</div>
-											</div>
-										</div>
-										<div class="card">
-											<img class="card-img-top rounded-circle img-card" src="image/k17.jpg">
-											<div class="card-body">
-												<div class="card-title">
-													<h4 class="card-title-text-center">Thanh Tùng</h4>
-												</div>
-												<div class="card-text">
-													<p>TP.HCM</p>
-													<p>6969 điểm</p>
-												</div>
-												<div class="list-tag">
-													<p class="tag">C#</p>
-													<p class="tag">Android</p>
-													<p class="tag">PHP</p>
-												</div>
-											</div>
-										</div>
-									</div>
-									<br>
-									<div class="card-deck">
-										<div class="card">
-											<img class="card-img-top rounded-circle img-card" src="image/k17.jpg">
-											<div class="card-body">
-												<div class="card-title">
-													<h4 class="card-title-text-center">Thanh Tùng</h4>
-												</div>
-												<div class="card-text">
-													<p>TP.HCM</p>
-													<p>6969 điểm</p>
-												</div>
-												<div class="list-tag">
-													<p class="tag">C#</p>
-													<p class="tag">Android</p>
-													<p class="tag">PHP</p>
-												</div>
-											</div>
-										</div>
-										<div class="card">
-											<img class="card-img-top rounded-circle img-card" src="image/k17.jpg">
-											<div class="card-body">
-												<div class="card-title">
-													<h4 class="card-title-text-center">Thanh Tùng</h4>
-												</div>
-												<div class="card-text">
-													<p>TP.HCM</p>
-													<p>6969 điểm</p>
-												</div>
-												<div class="list-tag">
-													<p class="tag">C#</p>
-													<p class="tag">Android</p>
-													<p class="tag">PHP</p>
-												</div>
-											</div>
-										</div>
-										<div class="card">
-											<img class="card-img-top rounded-circle img-card" src="image/k17.jpg">
-											<div class="card-body">
-												<div class="card-title">
-													<h4 class="card-title-text-center">Thanh Tùng</h4>
-												</div>
-												<div class="card-text">
-													<p>TP.HCM</p>
-													<p>6969 điểm</p>
-												</div>
-												<div class="list-tag">
-													<p class="tag">C#</p>
-													<p class="tag">Android</p>
-													<p class="tag">PHP</p>
-												</div>
-											</div>
-										</div>
-										<div class="card">
-											<img class="card-img-top rounded-circle img-card" src="image/k17.jpg">
-											<div class="card-body">
-												<div class="card-title">
-													<h4 class="card-title-text-center">Thanh Tùng</h4>
-												</div>
-												<div class="card-text">
-													<p>TP.HCM</p>
-													<p>6969 điểm</p>
-												</div>
-												<div class="list-tag">
-													<p class="tag">C#</p>
-													<p class="tag">Android</p>
-													<p class="tag">PHP</p>
-												</div>
-											</div>
-										</div>
-									</div>
-									<br>
-									<nav aria-label="Page navigation question">
-										<ul class="pagination justify-content-center" style="margin-top: 20px;">
-											<li class="page-item">
-												<a class="page-link" href="#" aria-label="Previous">
-													<span aria-hidden="true">&laquo;</span>
-													<span class="sr-only">Previous</span>
-												</a>
-											</li>
-											<li class="page-item"><a class="page-link" href="#">1</a></li>
-											<li class="page-item"><a class="page-link" href="#">2</a></li>
-											<li class="page-item"><a class="page-link" href="#">3</a></li>
-											<li class="page-item"><a class="page-link" href="#">4</a></li>
-											<li class="page-item"><a class="page-link" href="#">5</a></li>
-											<li class="page-item"><a class="page-link" href="#">6</a></li>
-											<li class="page-item">
-												<a class="page-link" href="#" aria-label="Next">
-													<span aria-hidden="true">&raquo;</span>
-													<span class="sr-only">Next</span>
-												</a>
-											</li>
-										</ul>
-									</nav>
+							<div class="tab-content" id="">
+								<div class="tab-pane fade show active" id="load_list" role="tabpanel">
+									@include('user.items_user')
+									
 								</div>
 							</div>
 						</div>
@@ -768,9 +59,69 @@
 @endsection
 
 @section('css')
-    {{-- expr --}}
+    <link rel="stylesheet" href="css/jquery.sweet-modal.min.css" />
 @endsection
 
 @section('script')
-    {{-- expr --}}
+<script src="js/jquery.sweet-modal.min.js"></script>
+<script>
+	function ChangeTab(id_tab) {
+		document.getElementById("point").className = "nav-link";
+		document.getElementById("name").className = "nav-link";
+		document.getElementById("new").className = "nav-link";
+		document.getElementById(id_tab).className = "nav-link active";
+		$('#load a').css('color', '#dfecf6');
+		$('#img_loading').append('<img style="position: absolute; z-index: 100000; width: 100%; height:2px;" src="/image/loading.gif"/>');
+		var url = '{{ route('list-user') }}'+ '/' + id_tab;
+		getListTag(url);
+		window.history.pushState("", "", url);
+	};
+
+	function getListTag(url) {
+		$.ajax({
+			url : url,
+			cache: false
+		}).done(function (data) {
+			$('#load_list').html(data);
+		}).fail(function () {
+			$.sweetModal({
+				content: 'Tab could not be loaded.',
+				title: 'Oh noes…',
+				icon: $.sweetModal.ICON_ERROR,
+
+				buttons: [
+				{
+					label: 'OK',
+					classes: 'redB'
+				}
+				]
+			});
+		});
+	};
+
+	$(function(){
+		document.getElementById("point").className = "nav-link";
+		document.getElementById("name").className = "nav-link";
+		document.getElementById("new").className = "nav-link";
+		document.getElementById("{!! $tab !!}").className = "nav-link active";
+
+		$('#btn-search').click(function(){
+			var content = $('#key_search').val();
+    			//alert(content)
+    			if(content.length<=0){
+    				$('#form-search').submit(function(e){
+    					e.preventDefault();
+    				});
+
+    				$.sweetModal({
+    					content: 'Bạn chưa nhập từ khóa tìm kiếm',
+    					icon: $.sweetModal.ICON_WARNING
+    				});
+    			}
+    			else{
+    				document.getElementById('form-search').submit();
+    			}
+    		});
+	});
+</script>
 @endsection
