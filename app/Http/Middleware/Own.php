@@ -6,6 +6,8 @@ use Closure;
 use Auth;
 use App\Answer;
 use App\Question;
+use App\Comment;
+use App\Documentation;
 
 class Own
 {
@@ -26,6 +28,12 @@ class Own
                     break;
                 case 'answer_id':
                     $object = Answer::find($value);
+                    break;
+                case 'cmt_id':
+                    $object = Comment::find($value);
+                    break;
+                case 'documentation_id':
+                    $object = Documentation::find($value);
                     break;
                 default:
                     # code...

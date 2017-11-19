@@ -92,17 +92,20 @@
 									<br>
 									<br>
 									<div class="comments-container">
-										<!--create comment-->
-										<div class="form-comment">
-											<div>
-												<div class="form-group">
-													<textarea id="new-comment-qs" class="form-control" placeholder="Viết bình luận của bạn..." rows="2" onkeyup="stoppedTyping_Qs()"></textarea>
+										@if (Auth::check())
+											<!--create comment-->
+											<div class="form-comment">
+												<div>
+													<div class="form-group">
+														<textarea id="new-comment-qs" class="form-control" placeholder="Viết bình luận của bạn..." rows="2" onkeyup="stoppedTyping_Qs()"></textarea>
+													</div>
+													<button id="start_button_qs" onclick="PostAddCommentQuestion()" class="btn btn-primary btn-sm float-right" disabled >Bình luận</button>
+													<br>
+													<br>
 												</div>
-												<button id="start_button_qs" onclick="PostAddCommentQuestion()" class="btn btn-primary btn-sm float-right" disabled >Bình luận</button>
-												<br>
-												<br>
 											</div>
-										</div>
+										@endif
+										
 										<!--list comments-->
 										<div id="list-comments-qs">
 											@foreach($question->comments->where('active', true)->sortBy('created_at')->take(3) as $cmt)
@@ -207,6 +210,17 @@
 													" style="display: block;" onclick="VoteAnswer('down',{{ $answer->id }})"></span>
 												</div>
 											</div>
+											<div class="best-answer-widget d-flex justify-content-center">
+												@if(Auth::id()==$question->user_id)
+													<span onclick="BestAnswer({{ $answer->id }})" id="best-answer-{{ $answer->id }}" class="oi oi-check best-answer
+													@if($answer->best_answer)
+													{{ 'active-best' }}
+													@endif
+													"></span>
+												@elseif($answer->best_answer)
+													<span class="oi oi-check best-answer-normal"></span>
+												@endif
+											</div>
 										</div>
 									</div>
 									<div class="col-lg-11 break-word">
@@ -219,15 +233,7 @@
 													đã chỉnh sửa vào {{ date('d-m-Y, h:i A', strtotime($answer->updated_at)) }}
 													@endif
 												</span>
-												@if(Auth::id()==$question->user_id)
-													<span onclick="BestAnswer({{ $answer->id }})" id="best-answer-{{ $answer->id }}" class="oi oi-check best-answer
-													@if($answer->best_answer)
-													{{ 'active-best' }}
-													@endif
-													"></span>
-												@elseif($answer->best_answer)
-													<span class="oi oi-check best-answer-normal"></span>
-												@endif
+												
 											</div>
 											<div id="answer-{{ $answer->id }}" class="answer-detail-content">
 												<div>
@@ -247,17 +253,20 @@
 											<a href="" style="pointer-events: none;">({{ count($answer->comments->where('active', true)) }}) bình luận cho câu trả lời này</a>
 											<br><br>
 											<div class="comments-container">
-												<!--create comment-->
-												<div class="form-comment">
-													<div>
-														<div class="form-group">
-															<textarea id="new-comment-as-{{ $answer->id }}" class="form-control" name="content" placeholder="Viết bình luận của bạn..." rows="2" onkeyup="stoppedTyping_As({{ $answer->id }})"></textarea>
+												@if (Auth::check())
+													<!--create comment-->
+													<div class="form-comment">
+														<div>
+															<div class="form-group">
+																<textarea id="new-comment-as-{{ $answer->id }}" class="form-control" name="content" placeholder="Viết bình luận của bạn..." rows="2" onkeyup="stoppedTyping_As({{ $answer->id }})"></textarea>
+															</div>
+															<button id="start_button_as_{{ $answer->id }}" onclick="PostAddCommentAnswer({{ $answer->id }})" class="btn btn-primary btn-sm float-right" disabled >Bình luận</button>
+															<br>
+															<br>
 														</div>
-														<button id="start_button_as_{{ $answer->id }}" onclick="PostAddCommentAnswer({{ $answer->id }})" class="btn btn-primary btn-sm float-right" disabled >Bình luận</button>
-														<br>
-														<br>
 													</div>
-												</div>
+												@endif
+												
 												<!--list comments-->
 												<div id="list-comments-as-{{ $answer->id }}">
 													@foreach($answer->comments->where('active', true)->sortBy('created_at')->take(3) as $cmt)
@@ -328,18 +337,21 @@
 							</div>
 							@endforeach
 						</div>
-						<div class="add-answer">
-							<form id="form-new-answer" action="{{ route('add-answer', ['question_id' => $question->id]) }}" method="POST" enctype="multipart/form-data">
-								{{ csrf_field() }}
-								<h2>Câu trả lời của bạn</h2>
-								<br>
-								<h5>Bạn có thể trả lời câu hỏi này? Hãy chia sẻ nó cho mọi người.</h5>
-								<div class="form-group">
-									<textarea id="new-answer" class="form-control tinymce" name="content_new_answer" rows="10"></textarea>
-								</div>
-								<button id="btn-submit-new-answer" type="submit" class="btn btn-primary" style="padding: 10px 50px;" >Trả lời</button>
-							</form>
-						</div>
+						@if (Auth::check())
+							<div class="add-answer">
+								<form id="form-new-answer" action="{{ route('add-answer', ['question_id' => $question->id]) }}" method="POST" enctype="multipart/form-data">
+									{{ csrf_field() }}
+									<h2>Câu trả lời của bạn</h2>
+									<br>
+									<h5>Bạn có thể trả lời câu hỏi này? Hãy chia sẻ nó cho mọi người.</h5>
+									<div class="form-group">
+										<textarea id="new-answer" class="form-control tinymce" name="content_new_answer" rows="10"></textarea>
+									</div>
+									<button id="btn-submit-new-answer" type="submit" class="btn btn-primary" style="padding: 10px 50px;" >Trả lời</button>
+								</form>
+							</div>
+						@endif
+						
 					</div>
 				</div>
 			</div>
@@ -373,7 +385,7 @@
 											<p>Đã xem</p>
 										</div>
 										<div class="col-lg-8 info-content-right">
-											<p>{{ $question->view }}</p>
+											<p>{{ $question->view }} lần</p>
 										</div>
 									</div>
 								</div>
@@ -383,7 +395,7 @@
 											<p>Trả lời</p>
 										</div>
 										<div class="col-lg-8 .info-content-right">
-											<p>{{ count($answers) }}</p>
+											<p>{{ count($answers) }} câu trả lời</p>
 										</div>
 									</div>
 								</div>
@@ -411,106 +423,23 @@
 							</div>
 							<hr>
 							<div class="related-content">
-								<div class="related-question">
-									<div class="row">
-										<div class="col-lg-3 answered-accepted related-question-left">
-											696
-										</div>
-										<div class="col-lg-9">
-											<a href="">Bài viết liên quan</a>
-										</div>
-									</div>
-								</div>
-								<div class="related-question">
-									<div class="row">
-										<div class="col-lg-3 non-answered-accepted related-question-left">
-											696
-										</div>
-										<div class="col-lg-9">
-											<a href="">Bài viết liên quan</a>
+								@foreach ($top10_question_related as $qs_rl)
+									<div class="related-question">
+										<div class="row">
+											<div class="col-lg-3 related-question-left 
+											@if ($qs_rl->haveBestAnswer())
+												{{ "answered-accepted" }}
+											@else
+												{{ "non-answered-accepted" }}
+											@endif">
+												{{ $qs_rl->point_rating }}
+											</div>
+											<div class="col-lg-9">
+												<a href="{{ route('detail-question', ['question_id' => $qs_rl->id]) }}">{{ $qs_rl->title }}</a>
+											</div>
 										</div>
 									</div>
-								</div>
-								<div class="related-question">
-									<div class="row">
-										<div class="col-lg-3 non-answered-accepted related-question-left">
-											696
-										</div>
-										<div class="col-lg-9">
-											<a href="">Bài viết liên quan</a>
-										</div>
-									</div>
-								</div>
-								<div class="related-question">
-									<div class="row">
-										<div class="col-lg-3 answered-accepted related-question-left">
-											696
-										</div>
-										<div class="col-lg-9">
-											<a href="">Bài viết liên quan</a>
-										</div>
-									</div>
-								</div>
-								<div class="related-question">
-									<div class="row">
-										<div class="col-lg-3 answered-accepted related-question-left">
-											696
-										</div>
-										<div class="col-lg-9">
-											<a href="">Bài viết liên quan</a>
-										</div>
-									</div>
-								</div>
-								<div class="related-question">
-									<div class="row">
-										<div class="col-lg-3 answered-accepted related-question-left">
-											696
-										</div>
-										<div class="col-lg-9">
-											<a href="">Bài viết liên quan</a>
-										</div>
-									</div>
-								</div>
-								<div class="related-question">
-									<div class="row">
-										<div class="col-lg-3 non-answered-accepted related-question-left">
-											696
-										</div>
-										<div class="col-lg-9">
-											<a href="">Bài viết liên quan</a>
-										</div>
-									</div>
-								</div>
-								<div class="related-question">
-									<div class="row">
-										<div class="col-lg-3 answered-accepted related-question-left">
-											696
-										</div>
-										<div class="col-lg-9" ">
-											<a href=" ">Bài viết liên quan</a>
-										</div>
-									</div>
-								</div>
-								<div class="related-question ">
-									<div class="row ">
-										<div class="col-lg-3 non-answered-accepted related-question-left ">
-											696
-										</div>
-										<div class="col-lg-9 ">
-											<a href=" ">Bài viết liên quan</a>
-										</div>
-									</div>
-								</div>
-								<div class="related-question ">
-									<div class="row ">
-										<div class="col-lg-3 non-answered-accepted related-question-left ">
-											696
-										</div>
-										<div class="col-lg-9 ">
-											<a href=" ">Bài viết liên quan</a>
-										</div>
-									</div>
-								</div>
+								@endforeach
 							</div>
 						</div>
 					</div>

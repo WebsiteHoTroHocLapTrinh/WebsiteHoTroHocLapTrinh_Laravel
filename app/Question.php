@@ -33,4 +33,12 @@ class Question extends Model
     public function countvotes() {
         return $this->morphMany('App\Vote', 'votable')->count();
     }
+
+    public function haveBestAnswer() {
+        $best_answer = $this->answers->where('best_answer', true);
+        if (count($best_answer) > 0) {
+            return true;
+        }
+        return false;
+    }
 }

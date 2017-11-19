@@ -112,15 +112,15 @@ class CommentController extends Controller
         switch ($type) {
             case 1:
                 $question = Question::find($request->commentable_id);
-                $new_comments = $question->comments()->orderBy('created_at','asc')->get();
+                $new_comments = $question->comments->where('active', true)->sortBy('created_at');
                 break;
             case 2:
                 $answer = Answer::find($request->commentable_id);
-                $new_comments = $answer->comments()->orderBy('created_at','asc')->get();
+                $new_comments = $answer->comments->where('active', true)->sortBy('created_at');
                 break;
             case 3:
                 $documentation = Documentation::find($request->commentable_id);
-                $new_comments = $documentation->comments()->orderBy('created_at','asc')->get();
+                $new_comments = $documentation->comments->where('active', true)->sortBy('created_at');
                 break;
             default:
                 # code...
@@ -132,27 +132,19 @@ class CommentController extends Controller
 
     public function postEditComment(Request $request, $cmt_id = 0) {
         $comment = Comment::find($cmt_id);
+        $comment->content = $request->content;
+        $comment->save();
 
-        if(Auth::id() == $comment->user_id) {
-            $comment->content = $request->content;
-            $comment->save();
-            return Response()->json(['success' => true]); 
-        } 
-        return Response()->json(['success' => false]); 
+        return Response()->json(['success' => true]); 
     }
 
     public function getDeleteComment($cmt_id = 0) {
         $comment = Comment::find($cmt_id);
 
-        if (Auth::id() == $comment->user_id) {
+        $comment->active = false;
+        $comment->save();
 
-            $comment->active = false;
-            $comment->save();
-
-            return Response()->json(['success' => true]); 
-        }
-
-       return Response()->json(['success' => false]); 
+        return Response()->json(['success' => true]); 
     }
     
 }

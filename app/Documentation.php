@@ -25,7 +25,7 @@ class Documentation extends Model
     {
         return $this->morphMany('App\Vote', 'votable');
     }
-    public function subjects()
+    public function subject()
     {
         return $this->belongsTo('App\Subject', 'subject_id','id');
     }

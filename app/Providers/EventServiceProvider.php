@@ -42,5 +42,19 @@ class EventServiceProvider extends ServiceProvider
            }
             
         });
+        //
+        Event::listen('documentation.view', function ($documentation) {
+           if(!Session::has('lastViewDocumentation-'.$documentation->id)){
+                Session::put('lastViewDocumentation-'.$documentation->id, time());
+                $documentation->increment('view');
+                return;
+           }
+
+           if(time() - Session::get('lastViewDocumentation-'.$documentation->id) > 60 ){
+                $documentation->increment('view');
+                Session::put('lastViewDocumentation-'.$documentation->id, time());
+           }
+            
+        });
     }
 }

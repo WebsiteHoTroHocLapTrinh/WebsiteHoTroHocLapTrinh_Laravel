@@ -7,6 +7,8 @@ use Auth;
 use Validator;
 use DateTime;
 use Session;
+use Event;
+use Illuminate\Database\Eloquent\Collection;
 use App\Permission;
 use App\User;
 use App\Tag;
@@ -20,7 +22,6 @@ use App\Activity;
 use App\Ping;
 use App\Vote;
 use App\PasswordReset;
-use Event;
 
 class QuestionController extends Controller
 {
@@ -275,8 +276,19 @@ class QuestionController extends Controller
             }
 
         }
+        // Question related
+        $tags = $question->tags;
+        $all_question_related = new Collection;   
+        foreach ($tags as $tag) {
+            $questions_related = $tag->questions->where('id', '!=', $question->id)->unique()->values();
+            foreach ($questions_related as $qs) {
+                $all_question_related->push($qs);
+            }  
+        }
+        $top10_question_related = $all_question_related->unique()->sortByDesc('point_rating')->values()->take(10);
+
         Event::fire('question.view', $question);//increase view
-        return view('question.detail_question', ['question'=>$question, 'answers'=>$answers]);
+        return view('question.detail_question', ['question'=>$question, 'answers'=>$answers, 'top10_question_related' => $top10_question_related]);
     }
 
     public function postVoteQuestion(Request $request, $question_id) {

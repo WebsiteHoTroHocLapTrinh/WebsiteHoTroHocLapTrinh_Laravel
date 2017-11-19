@@ -407,6 +407,18 @@ button {
     margin: 10px 0px;
 }
 
+.best-answer-widget {
+    margin: 20px 0px;
+}
+
+.best-answer-widget .oi {
+    font-size: 30px;
+}
+
+.best-answer-widget .oi:hover {
+    cursor: pointer;
+}
+
 .detail-right {
     margin: 20px 0px;
 }
@@ -590,6 +602,19 @@ button {
 .documentation-favorite-point>.oi {
     font-size: 30px;
     text-align: center;
+    color: #01A920;
+    cursor: pointer;
+}
+
+.documentation-favorite-point>.oi:hover {
+    color: #FF3232;
+}
+
+.documentation-favorite-point>.active-vote {
+    color: #FF3232;
+}
+
+.documentation-favorite-point>.active-vote:hover {
     color: #01A920;
 }
 
@@ -1200,7 +1225,7 @@ button {
     color: #B4B4B4;
     cursor: pointer;
 }
- .active-best{
+.active-best{
     color: #43CE60;
 }
 .best-answer-normal{

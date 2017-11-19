@@ -175,15 +175,21 @@ Route::group(['prefix'=>'answer'], function(){
 //Group Documentation
 Route::group(['prefix'=>'documentation'], function(){
     Route::get('list-documentation/{subject?}/{list_tag?}/{sort?}', 'DocumentationController@getListDocumentation')->name('list-documentation');
+    Route::get('detail-documentation/{documentation_id}', 'DocumentationController@getDetailDocumentation')->name('detail-documentation')->middleware('active');
+    Route::post('vote-documentation/{documentation_id}', 'DocumentationController@postVoteDocumentation')->name('vote-documentation');
     Route::get('create-documentation', 'DocumentationController@getCreateDocumentation')->name('create-documentation')->middleware('login');
     Route::post('create-documentation', 'DocumentationController@postCreateDocumentation')->name('create-documentation')->middleware('login');
+    Route::get('edit-documentation/{documentation_id}', 'DocumentationController@getEditDocumentation')->name('edit-documentation')->middleware('own');
+    Route::post('edit-documentation/{documentation_id}', 'DocumentationController@postEditDocumentation')->name('edit-documentation')->middleware('own');
+    Route::get('delete-documentation/{documentation_id}', 'DocumentationController@getDeleteDocumentation')->name('delete-documentation')->middleware('own');
+    Route::get('restore-documentation/{documentation_id}', 'DocumentationController@getRestoreDocumentation')->name('restore-documentation')->middleware('own');
 });
 
 //Group Comment
 Route::group(['prefix'=>'comment'], function(){
-    Route::post('add-comment', 'CommentController@postAddComment')->name('add-comment');
-    Route::post('edit-comment/{cmt_id?}', 'CommentController@postEditComment')->name('edit-comment');
-    Route::get('delete-comment/{cmt_id?}', 'CommentController@getDeleteComment')->name('delete-comment');
+    Route::post('add-comment', 'CommentController@postAddComment')->name('add-comment')->middleware('login');
+    Route::post('edit-comment/{cmt_id?}', 'CommentController@postEditComment')->name('edit-comment')->middleware('own');
+    Route::get('delete-comment/{cmt_id?}', 'CommentController@getDeleteComment')->name('delete-comment')->middleware('own');
 });
 
 //Group Tags
@@ -218,6 +224,3 @@ Route::get('error_404', function() {
 Route::get('error_500', function() {
     return view('500_page');
 })->name('500');
-
-
-

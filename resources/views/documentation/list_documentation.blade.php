@@ -83,7 +83,7 @@
                                         <div class="col-lg-10">
                                             <div class="summary">
                                                 <div class="summary-title">
-                                                    <h6><a href="">{{ $doc->title }}</a></h6>
+                                                    <h6><a href="{{ route('detail-documentation', ['documentation_id' => $doc->id]) }}">{{ $doc->title }}</a></h6>
                                                 </div>
                                                 <div class="summary-description">
                                                     {{ strip_tags($doc->content) }}

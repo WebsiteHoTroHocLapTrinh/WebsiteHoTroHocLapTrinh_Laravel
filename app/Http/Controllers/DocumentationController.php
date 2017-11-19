@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use Auth;
 use Validator;
 use DateTime;
+use Event;
+use Session;
+use Illuminate\Database\Eloquent\Collection;
 use App\Permission;
 use App\User;
 use App\Tag;
@@ -266,6 +269,84 @@ class DocumentationController extends Controller
             ->select('documentations.*')->distinct()->where('documentations.active', true)->where('documentations.subject_id', $subject);
     }
 
+    public function getDetailDocumentation(Request $request, $documentation_id){
+        $documentation = Documentation::find($documentation_id);
+        if($request->ajax()){
+            switch ($request->type) {
+                case 'comments-documentation':
+                    $list_comment = $documentation->comments->where('active', true);
+                    if(count($list_comment) > 3) {
+                        $comments_skip =  $list_comment->sortBy('created_at')->slice(3);
+                        return view('comment.list_comment', ['comments'=>$comments_skip]);
+                    }
+                    break;
+                default:
+                    # code...
+                    break;
+            }
+
+        }
+
+        // Documentation related
+        $tags = $documentation->tags;
+        $all_documentation_related = new Collection;   
+        foreach ($tags as $tag) {
+            $documentations_related = $tag->documentations->where('id', '!=', $documentation->id)->unique()->values();
+            foreach ($documentations_related as $doc) {
+                $all_documentation_related->push($doc);
+            }  
+        }
+        $top10_documentation_related = $all_documentation_related->unique()->sortByDesc('point_rating')->values()->take(10);
+
+        Event::fire('documentation.view', $documentation);//increase view
+        return view('documentation.detail_documentation', ['documentation'=>$documentation, 'top10_documentation_related' => $top10_documentation_related]);
+    }
+
+    public function postVoteDocumentation(Request $request, $documentation_id) {
+        if (Auth::check()) {
+            $documentation = Documentation::find($documentation_id);
+            $user = $documentation->user;
+            $vote_record = $documentation->votes->where('user_id', Auth::id())->first(); 
+            // Flag
+            $isAddClass = true;
+            //Convert string to boolen
+            $isPressedUp = $request->isPressedUp === 'true' ? true : false;
+
+            if (!is_null($vote_record)) {
+                $vote_record->delete(); // Delete current vote if exist
+            }
+
+            if ($isPressedUp) {    // Status pressed up => balance
+                $documentation->point_rating = $documentation->point_rating - 1;
+                $documentation->save();
+                $user->point_reputation = $user->point_reputation - 1;
+                $user->save();
+                
+                $isAddClass = false;
+            }
+            else {
+                // Status balance => pressed up
+                $documentation->point_rating = $documentation->point_rating + 1;
+                $documentation->save();
+                $user->point_reputation = $user->point_reputation + 1;
+                $user->save();
+
+                // Add vote table
+                $vote = new Vote;
+                $vote->user_id = Auth::id();
+                $vote->vote_action = 'up';
+                $vote->votable_id = $documentation_id;
+                $vote->votable_type = 'App\Documentation';
+                $vote->save();
+            }
+
+            return Response()->json(['success' => true, 'isAddClass' => $isAddClass]); 
+        }
+        else {
+            return Response()->json(['success' => false, 'message' => 'Bạn cần phải đăng nhập để được vote cho câu hỏi này']); 
+        }
+    }
+
     public function getCreateDocumentation() {
         $subjects = Subject::where('active', true)->get();
         $tags = Tag::where('active', true)->get();
@@ -339,5 +420,80 @@ class DocumentationController extends Controller
             <br>
             <h3>Bạn nhận được 100 điểm uy tín !!!</h3>
             <br>')->with('previousURL', $previousURL);
+    }
+
+    public function getEditDocumentation($documentation_id) {
+        $subjects = Subject::where('active', true)->get();
+        $tags = Tag::where('active', true)->get();
+        $documentation = Documentation::find($documentation_id);
+        Session::put('previousURLEditDocumentation', Session::previousUrl());   
+        return view('documentation.edit_documentation', ['documentation' => $documentation, 'tags' => $tags, 'subjects' => $subjects]);
+    }
+
+    public function postEditDocumentation(Request $request, $documentation_id) {
+        // Validate date input
+        $validator = Validator::make($request->all(), 
+            [
+                'title' => 'required|min:6',
+                'content' => 'required',
+                'list_tag' => 'required',
+            ],
+            [
+                'title.required' => 'Bạn chưa nhập tiêu đề',
+                'title.min' => 'Tiêu đề phải có ít nhất 6 ký tự',
+                'content.required' => 'Bạn chưa nhập nội dung',
+                'list_tag.required' => 'Bạn chưa nhập các thẻ liên quan',
+            ] 
+        );
+        if ($validator->fails()) {
+            return redirect()->back()
+            ->withErrors($validator)
+            ->withInput();
+        }
+
+        // Create Model Documentation and set properties
+        $documentation = Documentation::find($documentation_id);
+        $documentation->subject_id = $request->subject;
+        $documentation->title = $request->title;
+        $documentation->title_url = changeTitle($request->title);
+        $documentation->content = $request->content;
+        $documentation->link = $request->link;
+        $documentation->save();
+
+        //Process list tag
+        foreach ($documentation->tags as $taggable) {
+            $taggable->pivot->delete();    // Delete old taggables
+        }
+
+        $arrayTags = explode(',', $request->list_tag);  // Split data Ex: 1,2,3 => ["1", "2", "3"]
+        foreach ($arrayTags as $tag) {
+            // Create Model Taggable and set properties
+            $taggable = new Taggable;
+            $taggable->tag_id = $tag;
+            $taggable->taggable_id = $documentation->id;
+            $taggable->taggable_type = "App\Documentation";
+            $taggable->active = true;
+            $taggable->created_at = new DateTime();
+            $taggable->updated_at = new DateTime();
+            $taggable->save();   // Save into database
+        }
+
+        return redirect(session('previousURLEditDocumentation'))->with('successEditDocumentation', true);
+    }
+
+     public function getDeleteDocumentation($documentation_id) {
+        $documentation = Documentation::find($documentation_id);
+        $documentation->active = false;
+        $documentation->save();
+
+        return redirect(route('detail-documentation', ['documentation_id' => $documentation->id]))->with('action', 'Tài liệu đã được xóa !');
+    }
+
+    public function getRestoreDocumentation($documentation_id) {
+        $documentation = Documentation::find($documentation_id);
+        $documentation->active = true;
+        $documentation->save();
+
+        return redirect(route('detail-documentation', ['documentation_id' => $documentation->id]))->with('action', 'Tài liệu đã được khôi phục !');
     }
 }

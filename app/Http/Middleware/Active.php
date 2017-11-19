@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use App\Question;
+use App\Documentation;
 use Auth;
 
 class Active
@@ -23,7 +24,9 @@ class Active
                 case 'question_id':
                     $object = Question::find($value);
                     break;
-                
+                case 'documentation_id':
+                    $object = Documentation::find($value);
+                    break;
                 default:
                     # code...
                     break;
