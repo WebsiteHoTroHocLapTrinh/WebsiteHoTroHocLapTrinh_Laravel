@@ -135,13 +135,13 @@ class UserController extends Controller
         return view('admin.user.list',['users'=>$Users]);
     }
 
-    public function getEditAdmin($idUser){
+    public function getEdit($idUser){
         $user = User::find($idUser);
         $permission = Permission::where('active', '1')->get();
         return view('admin.user.edit',['user'=>$user, 'permission'=>$permission]);
     }
 
-    public function postEditAdmin(Request $request, $idUser){
+    public function postEdit(Request $request, $idUser){
         // Validate date input
         $validator = Validator::make($request->all(), 
             [
@@ -287,7 +287,7 @@ class UserController extends Controller
         return view('user.user_information',['user'=>$user, 'answers'=>$answers, 'last_online'=>$time,'rs_all'=>$result_all, 'rs_gr'=>$result_group]);
     }
 
-    public function getEdit(){
+    public function getEditUser(){
         
         return view('user.edit_user',['user'=>Auth::user()]);
     }
@@ -404,5 +404,37 @@ class UserController extends Controller
         }
         return redirect()->back()->with('thongbao', 'Password không trùng khớp!');
     }   
+
+    public function getListUser(Request $request, $tab ='point'){
+       switch ($tab) {
+        case 'point':
+        $list_paginate = User::where('active',1)->orderBy('point_reputation', 'desc')->paginate(16);
+        break;
+        case 'name':
+        $list_paginate = User::where('active',1)->orderBy('name')->paginate(16);
+        break;
+        case 'new':
+        $list_paginate = User::where('active',1)->orderBy('id', 'desc')->paginate(16);
+        break;
+        default:
+        break;
+        }
+        if($request->ajax()){
+            return view('user.items_user',['list_paginate'=>$list_paginate, 'tab'=>$tab]);
+        }
+        return view('user.list_user',['list_paginate'=>$list_paginate, 'tab'=>$tab]);
+    }
+
+    public function postSearchUser(Request $request){
+        $key = $request->key_search;
+        $words = explode(' ', $key);
+        $list_paginate = User::where(function ($query)use($words) {
+            foreach($words as $word) {
+                $query->orWhere('name', 'LIKE', '%' . $word . '%');
+            }
+        })->get();
+
+        return view('user.result_search',['list_paginate'=>$list_paginate, 'key'=>$key]);
+    }
 }
     

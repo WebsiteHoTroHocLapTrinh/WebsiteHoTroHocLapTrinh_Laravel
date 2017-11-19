@@ -100,8 +100,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function() {
     //User
    Route::group(['prefix' => 'user'], function() {
         Route::get('list','UserController@getList');
-        Route::get('edit/{idUser}','UserController@getEditAdmin');
-        Route::post('edit/{idUser}','UserController@postEditAdmin');
+        Route::get('edit/{idUser}','UserController@getEdit');
+        Route::post('edit/{idUser}','UserController@postEdit');
         Route::get('editpass/{idUser}','UserController@getResetPassword');
         Route::get('add','UserController@getAdd');
         Route::post('add','UserController@postAdd');
@@ -194,18 +194,20 @@ Route::group(['prefix'=>'comment'], function(){
 
 //Group Tags
 Route:: group(['prefix'=>'tag'], function(){
-    Route::get('list-tag', 'TagController@getList_tag')->name('list-tag');
+    Route::get('list-tag/{tab?}', 'TagController@getListTag')->name('list-tag');
     Route::post('create-tag', 'TagController@postCreateTag')->name('create-tag')->middleware('login');
+    Route::post('search-tag', 'TagController@postSearchTag')->name('search-tag');
 });
 
 //Group User
 Route::group(['prefix'=>'user'], function() {
     Route::get('user-information/{user_id}', 'UserController@getUserInformation')->name('user-information');
-    Route::get('info/user_{user_id}', 'UserController@getUserInformation');
-    Route::get('edit-user', 'UserController@getEdit')->middleware('login');
+    Route::get('edit-user', 'UserController@getEditUser')->middleware('login');
     Route::post('edit-info', 'UserController@postEditInfo');
     Route::post('edit-avatar', 'UserController@postEditAvatar');
     Route::post('edit-changepass', 'UserController@postChangePass');
+    Route::get('list/{tab?}', 'UserController@getListUser')->name('list-user');
+    Route::post('search-user', 'UserController@postSearchUser')->name('search-user');
 
 });
 
@@ -224,3 +226,8 @@ Route::get('error_404', function() {
 Route::get('error_500', function() {
     return view('500_page');
 })->name('500');
+
+Route::get('about', function(){
+    return view('about');
+})->name('about');
+

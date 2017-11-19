@@ -169,9 +169,28 @@ class TagController extends Controller
 
 
     //////
-    public function getList_tag(){
-        $tags = Tag::where('active',1)->get();
-        return view('tag.list_tag',['tags'=>$tags]);
+    public function getListTag(Request $request, $tab='popular'){
+        switch ($tab) {
+            case 'new':
+                $list_paginate = Tag::where('active',1)->orderBy('id', 'desc')->paginate(16);
+                break;
+            case 'name':
+                $list_paginate = Tag::where('active',1)->orderBy('name')->paginate(16);
+                break;
+            case 'popular':
+                $list_paginate = Tag::leftJoin('taggables','taggables.tag_id','=','tags.id')->
+                selectRaw('count(taggables.tag_id) AS `kount`, tags.*')->
+                groupBy('tags.id')->
+                orderBy('kount', 'desc')->
+                paginate(16);
+                break;
+            default:
+                break;
+        }
+        if($request->ajax()){
+            return view('tag.items_tag',['list_paginate'=>$list_paginate, 'tab'=>$tab]);
+        }
+        return view('tag.list_tag',['list_paginate'=>$list_paginate, 'tab'=>$tab]);
     }
 
     public function postCreateTag(Request $request) {
@@ -212,5 +231,21 @@ class TagController extends Controller
         $activity->save();
 
         return redirect()->back()->with('thongbao', 'Đã Thêm thẻ '.$tag->name);
+    }
+
+    public function postSearchTag(Request $request){
+        $key = $request->key_search;
+        $words = explode(' ', $key);
+        $list_paginate = Tag::where(function ($query)use($words) {
+            foreach($words as $word) {
+                $query->orWhere('name', 'LIKE', '%' . $word . '%');
+            }
+        })->orWhere(function ($query)use($words) {
+            foreach($words as $word) {
+                $query->orWhere('description', 'LIKE', '%' . $word . '%');
+            }
+        })->get();
+
+        return view('tag.result_search',['list_paginate'=>$list_paginate, 'key'=>$key]);
     }
 }

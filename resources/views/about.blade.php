@@ -8,10 +8,12 @@
 		<div class="title-about">
 			<span>Come help us build the education </span>
 			<span>the world deserves</span>
+			@if(!Auth::check())
 			<div id="want-join">
 				<span>Want to join us?</span>
-				<span><a href="Login" style="color: red;">Longin</a></span>
+				<span><a href="{{ route('login') }}" style="color: red;">Longin</a></span>
 			</div>
+			@endif
 		</div>
 		<div class="main-about">
 			<div class="row">
@@ -62,7 +64,7 @@
 						Developers
 					</div>
 				</div>
-				<div class="col">
+				{{-- <div class="col">
 					<div class="image-avt">
 						<img src="image/boss2.jpg" alt="" class="rounded-circle">
 					</div>
@@ -83,7 +85,7 @@
 					<div id="job">
 						Boss
 					</div>
-				</div>
+				</div> --}}
 			</div>
 		</div>
 	</div>
