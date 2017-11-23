@@ -83,38 +83,9 @@
                         <!-- /.panel-body -->
                     </div>
                     <!-- /.panel -->
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3><small>Các bình luận của câu trả lời:</small> </h3>
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            @if (session('thongbao_comment'))
-                                <div class="alert alert-success">
-                                    {{ session('thongbao_comment') }}
-                                </div>
-                            @endif
-                            <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-list-comment">
-                                <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Nội dung</th>
-                                        <th>Người bình luận</th>
-                                        <th>Thời gian tạo</th>
-                                        <th>Thời gian chỉnh sửa</th>
-                                        <th>Ẩn/Hiện</th>
-                                        <th>Xóa</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    
-                                </tbody>
-                            </table>
-                            <!-- /.table-responsive -->
-                        </div>
-                        <!-- /.panel-body -->
+                    <div class="list-comment">
+                        
                     </div>
-                    <!-- /.panel -->
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -179,7 +150,7 @@
                 $(this).children('td').first().children('p').fadeOut('slow');
                 var idAnswer = $(this).find('td').first().children('div.id').html();
                 $.get("ajax/commentsOfAnswer/"+idAnswer, function(data) {           
-                    $("table#dataTables-list-comment > tbody").html(data);
+                    $(".list-comment").html(data);
                     $("div.panel").has("table#dataTables-list-comment").find("h3 > a").remove();
                     $("div.panel").has("table#dataTables-list-comment").find("h3").append('<a href="" target="_blank">ID: '+idAnswer+'</a>');
                 });

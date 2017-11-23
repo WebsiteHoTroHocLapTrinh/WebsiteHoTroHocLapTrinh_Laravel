@@ -27,28 +27,7 @@ class AjaxController extends Controller
 		$question = Question::find($idQuestion);
 		if ($question != null) {
 			$comments = $question->comments->sortByDesc('created_at');
-			foreach ($comments as $cmt) {
-				echo '
-				<tr>
-					<td>
-						<div class="id">'.$cmt->id.'</div>'
-						.(($cmt->is_new) ? '<p style="padding-top: 10px;"><span style="padding: 5px;" class="label label-success">Mới</span></p>' : "").
-					'</td>
-					<td>'.$cmt->content.'</td>
-					<td>'.$cmt->user->name.'</td>
-					<td>'.$cmt->created_at.'</td>
-					<td>'.$cmt->updated_at.'</td>
-					<td>
-						<label class="switch">
-							<input type="checkbox" '
-							.(($cmt->active) ? "checked" : "").'>
-							<span class="slider round"></span>
-						</label>
-					</td>
-					<td><a onclick="return confirm('."'Bạn có chắc là muốn xóa không?'".')" href="admin/comment/delete/'.$cmt->id.'"><i style="font-size: 40px;" class="fa fa-trash-o"></i></a></td>
-				</tr>
-				';
-			}
+			return view('admin.comment.list', ['comments' => $comments]);
 		}
 	}
 
@@ -56,28 +35,7 @@ class AjaxController extends Controller
 		$document = Documentation::find($idDocument);
 		if ($document != null) {
 			$comments = $document->comments->sortByDesc('created_at');
-			foreach($comments as $cmt){
-				echo '
-					<tr>
-					<td>
-						<div class="id">'.$cmt->id.'</div>'
-						.(($cmt->is_new) ? '<p style="padding-top: 10px;"><span style="padding: 5px;" class="label label-success">Mới</span></p>' : "").
-					'</td>
-					<td>'.$cmt->content.'</td>
-					<td>'.$cmt->user->name.'</td>
-					<td>'.$cmt->created_at.'</td>
-					<td>'.$cmt->updated_at.'</td>
-					<td>
-						<label class="switch">
-							<input type="checkbox" '
-							.(($cmt->active) ? "checked" : "").'>
-							<span class="slider round"></span>
-						</label>
-					</td>
-					<td><a onclick="return confirm('."'Bạn có chắc là muốn xóa không?'".')" href="admin/comment/delete/'.$cmt->id.'"><i style="font-size: 40px;" class="fa fa-trash-o"></i></a></td>
-				</tr>
-				';
-			}
+			return view('admin.comment.list', ['comments' => $comments]);
 		}
 	}
 				
@@ -86,29 +44,7 @@ class AjaxController extends Controller
 		$answer = Answer::find($idAnswer);
 		if ($answer != null) {
 			$comments = $answer->comments->sortByDesc('created_at');
-			foreach ($comments as $cmt) {
-				echo '
-				<tr>
-					<td>
-						<div class="id">'.$cmt->id.'</div>'
-						.(($cmt->is_new) ? '<p style="padding-top: 10px;"><span style="padding: 5px;" class="label label-success">Mới</span></p>' : "").
-					'</td>
-					<td>'.$cmt->content.'</td>
-					<td>'.$cmt->user->name.'</td>
-					<td>'.$cmt->created_at.'</td>
-					<td>'.$cmt->updated_at.'</td>
-					<td>
-						<label class="switch">
-							<input type="checkbox" '
-							.(($cmt->active) ? "checked" : "").'>
-							<span class="slider round"></span>
-						</label>
-					</td>
-					<td><a onclick="return confirm('."'Bạn có chắc là muốn xóa không?'".')" href="admin/comment/delete/'.$cmt->id.'"><i style="font-size: 40px;" class="fa fa-trash-o"></i></a></td>
-
-				</tr>
-				';
-			}
+			return view('admin.comment.list', ['comments' => $comments]);
 		}
 	}
 

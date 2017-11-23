@@ -15,6 +15,22 @@
                         <div class="content-list">
                             <h4 class="topquestion d-inline-block">Tất Cả Tài Liệu</h4>
                             <hr>
+                            <br>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <form id="form-search" action="{{ route('search-documentation') }}" method="POST">
+                                        {{ csrf_field() }}
+                                        <div class="input-group">
+                                            <input id="key_search" type="text" class="form-control" name="key_search" placeholder="Nhập từ khóa cần tìm" >
+                                            <span class="input-group-btn" >
+                                                <button id="btn-search" type="button" class="btn btn-success">Tìm kiếm</button>
+                                            </span>
+                                        </div>
+                                    </form>
+                                </div>
+                                
+                            </div>
+                            <br>
                             <div class="row">
                                 <div class="col-lg-3">
                                     <select class="form-control" id="subject">
@@ -29,101 +45,34 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="col-lg-4">
+                                <div class="col-lg-7">
                                     <input class="form-control" type="text" name="" placeholder="Thẻ của tài liệu"  data-role="tagsinput">
                                     <input type="text" id="list-tag" hidden="" name="list_tag" value="0" >
-                                </div>
-                                <div class="col-lg-3">
-                                    <select class="form-control" id="sort">
-                                        <option value="0">--- Sắp xếp ---</option>
-                                        <option value="1">Yêu thích</option>
-                                        <option value="2">Lượt xem</option>
-                                        <option value="3">Ngày đăng</option>
-                                    </select>
                                 </div>
                                 <div class="col-lg-2">
                                     <button id="filter" style="padding-left: 20px; padding-right: 20px;" class="btn btn-primary"><i class="fa fa-filter fa-fw"></i>Lọc</button>
                                 </div>
                             </div>
-                            {{-- <br>
-                            <div class="row">
-                                <div class="col">
-                                    <form>
-                                        <div class="input-group">
-                                            <input type="text" class="form-control" placeholder="Nhập từ khóa cần tìm" >
-                                            <span class="input-group-btn" >
-                                                <button type="submit" class="btn btn-success">Tìm kiếm</button>
-                                            </span>
-                                        </div>
-                                    </form>
-                                    
-                                </div>
-                                
-                            </div> --}}
-                            <hr>
                             
-                            @if (count($documentations) <= 0)
-                            {!! '<p style="font-size: 50px; text-align: center;">Không có tài liệu nào</p>' !!}
-                            @else
-                            <div class="list-documentation">
-                            @foreach ($documentations as $doc)
-                                <div class="documentation-summary">
-                                    <div class="row">
-                                        <div class="col-lg-2">
-                                            <div class="statistic">
-                                                <div class="documentation-favorite">
-                                                    <span class="oi oi-heart"></span> {{ $doc->point_rating }}
-                                                </div>
-                                                <div class="documentation-count-views">
-                                                    <span>{{ $doc->view }}</span>
-                                                    <div>lượt xem</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-10">
-                                            <div class="summary">
-                                                <div class="summary-title">
-                                                    <h6><a href="{{ route('detail-documentation', ['documentation_id' => $doc->id]) }}">{{ $doc->title }}</a></h6>
-                                                </div>
-                                                <div class="summary-description">
-                                                    {{ strip_tags($doc->content) }}
-                                                </div>
-                                                <div class="list-tag">
-                                                    @foreach ($doc->tags as $tag)
-                                                    <p class="tag">{{ $tag->name }}</p>
-                                                    @endforeach
-                                                </div>
-                                                <div class="started">
-                                                    @php
-                                                    $date1 = $doc->created_at;
-                                                    $date2 = Carbon\Carbon::now();
-                                                    $interval = $date1->diff($date2);
-                                                    if($interval->y!=0) 
-                                                        $time= $interval->y . " năm trước"; 
-                                                    elseif ($interval->m!=0)
-                                                        $time= $interval->m . " tháng trước";
-                                                    elseif ($interval->d!=0)
-                                                        $time= $interval->d . " ngày trước";
-                                                    elseif($interval->h!=0)
-                                                        $time= $interval->h . " giờ trước";
-                                                    elseif($interval->i!=0)
-                                                        $time= $interval->i . " phút trước";
-                                                    else
-                                                        $time="Vừa xong";
-                                                    @endphp
-                                                    <p class="user"><a href="user/info/user_{{ $doc->user_id }}">{{ $doc->user->name }}</a></p>
-                                                    <p class="action">đã chia sẽ</p>
-                                                    <p class="time">{{ $time }}</p>
-                                                </div>
-                                            </div>
-                                        </div>
+                            <br>
+                            <div class="tabs">
+                                <ul class="nav nav-tabs d-flex justify-content-end" id="TagsTabContent" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" id="new" href="javascript:ChangeTab('new')" role="tab">Mới Nhất</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="view" href="javascript:ChangeTab('view')" role="tab">Lượt Xem</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="favorite" href="javascript:ChangeTab('favorite')" role="tab">Yêu thích</a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content" id="">
+                                    <div class="tab-pane fade show active" id="load_list" role="tabpanel" aria-labelledby="">
+                                        @include('documentation.items_documentation')
                                     </div>
-                                    <br>
                                 </div>
-                            @endforeach
                             </div>
-                            {{ $documentations->links('pagination.custom') }}
-                            @endif
                         </div>
                     </div>
 
@@ -144,7 +93,7 @@
                         <div class="rank-items">
                             @php $i=1;  @endphp
                             @foreach($top_user as $top_user)
-                            <a href="user/info/user_{{ $top_user->id }}" style="color: black;text-decoration: none;">
+                            <a href="{{ route('user-information', ['user_id' => $top_user->id] ) }}" style="color: black;text-decoration: none;">
                                 <div class="item">
                                     <div class="d-inline" style="">
                                         #{{ $i }}
@@ -197,18 +146,14 @@
 
 @section('css')
     <link rel="stylesheet" type="text/css" href="bootstrap-tagsinput/bootstrap-tagsinput.css">
+    <link rel="stylesheet" href="css/jquery.sweet-modal.min.css" />
 @endsection
 
 @section('script')
-    {{-- Re-select sort --}}
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('select#sort option[value={{ $sort_filter }}]').attr('selected','selected');
-        });
-    </script>
     <script type="text/javascript" src="bootstrap-tagsinput/bootstrap-tagsinput.min.js"></script>
     <script type="text/javascript" src="bootstrap-tagsinput/custom-bootstrap-tagsinput.js"></script>
     <script type="text/javascript" src="js/typeahead.bundle.js"></script>
+    <script src="js/jquery.sweet-modal.min.js"></script>
     <script type="text/javascript">
         var tags = new Bloodhound({
             datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
@@ -241,10 +186,77 @@
                 if (tags == '') {
                     tags = 0;
                 }
-                var sort = $('select#sort').val();
-                window.location.href = '{{ route('list-documentation') }}' + '/' + subject + '/' + tags + '/' + sort;
+                var tab = $('a.active').attr('id');
+                alert(tab);
+                window.location.href = '{{ route('list-documentation') }}' + '/' + subject + '/' + tags + '/' + tab;
 
             })  
         });
+
+        $(function(){
+            document.getElementById("new").className = "nav-link";
+            document.getElementById("view").className = "nav-link";
+            document.getElementById("favorite").className = "nav-link";
+            document.getElementById("{!! $tab !!}").className = "nav-link active";
+
+            $('#btn-search').click(function(){
+                var content = $('#key_search').val();
+                //alert(content)
+                if(content.length<=0){
+                    $('#form-search').submit(function(e){
+                        e.preventDefault();
+                    });
+
+                    $.sweetModal({
+                        content: 'Bạn chưa nhập từ khóa tìm kiếm',
+                        icon: $.sweetModal.ICON_WARNING
+                    });
+                }
+                else{
+                    document.getElementById('form-search').submit();
+                }
+            });
+        });
+
+        function ChangeTab(id_tab) {
+            var subject = $('select#subject').val();
+            var tags = $('input#list-tag').val();
+            if (tags == '') {
+                tags = 0;
+            }
+
+            document.getElementById("new").className = "nav-link";
+            document.getElementById("view").className = "nav-link";
+            document.getElementById("favorite").className = "nav-link";
+            document.getElementById(id_tab).className = "nav-link active";
+            $('#load a').css('color', '#dfecf6');
+            $('#img_loading').append('<img style="position: absolute; z-index: 100000; width: 100%; height:2px;" src="/image/loading.gif"/>');
+            var url = '{{ route('list-documentation') }}' + '/' + subject + '/' + tags + '/' + id_tab;
+            getListDocumentation(url);
+            window.history.pushState("", "", url);
+        };
+
+        function getListDocumentation(url) {
+            $.ajax({
+                url : url,
+                cache: false
+            }).done(function (data) {
+                $('#load_list').html(data);
+            }).fail(function () {
+                $.sweetModal({
+                    content: 'Tab could not be loaded.',
+                    title: 'Oh noes…',
+                    icon: $.sweetModal.ICON_ERROR,
+
+                    buttons: [
+                    {
+                        label: 'OK',
+                        classes: 'redB'
+                    }
+                    ]
+                });
+            });
+        };
+
     </script>
 @endsection

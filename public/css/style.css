@@ -464,6 +464,10 @@ button {
     font-size: 18px;
 }
 
+.list-documentation {
+    width: 100%;
+}
+
 .sub-content .btn-documentation {
     margin-top: 20px;
     margin-bottom: 50px;

@@ -70,38 +70,9 @@
                         <!-- /.panel-body -->
                     </div>
                     <!-- /.panel -->
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3><small>Các bình luận của câu hỏi:</small> </h3>
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            @if (session('thongbao_comment'))
-                                <div class="alert alert-success">
-                                    {{ session('thongbao_comment') }}
-                                </div>
-                            @endif
-                            <table width="100%" class="table table-striped table-bordered table-hover dataTables" id="dataTables-list-comment">
-                                <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Nội dung</th>
-                                        <th>Người bình luận</th>
-                                        <th>Thời gian tạo</th>
-                                        <th>Thời gian chỉnh sửa</th>
-                                        <th>Ẩn/Hiện</th>
-                                        <th>Xóa</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    
-                                </tbody>
-                            </table>
-                            <!-- /.table-responsive -->
-                        </div>
-                        <!-- /.panel-body -->
+                    <div class="list-comment">
+                        
                     </div>
-                    <!-- /.panel -->
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -168,7 +139,7 @@
                 var titleQuestion = $(this).find('td:nth-child(2)').html();
                 // alert(titleQuestion);
                 $.get("ajax/commentsOfQuestion/"+idQuestion, function(data) {           
-                    $("table#dataTables-list-comment > tbody").html(data);
+                    $(".list-comment").html(data);
                     $("div.panel").has("table#dataTables-list-comment").find("h3 > a").remove();
                     $("div.panel").has("table#dataTables-list-comment").find("h3").append(titleQuestion);
                 });

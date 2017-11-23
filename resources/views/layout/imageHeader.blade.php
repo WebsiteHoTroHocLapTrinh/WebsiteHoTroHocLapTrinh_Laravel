@@ -3,7 +3,7 @@
   <div class="container">
     <div class="row">
       <!--cột trái-->
-      <div class="col background-center-item">
+      <div class="col-lg-6 background-center-item">
         <div class="">
           <h2 class="colortextwhite">Learn, Share, Build</h2>
           <h5 class="colortextwhite">Each month, over 50 million developers come to E-Learning to learn, share their knowledge, and build their careers.</h5>
@@ -13,7 +13,7 @@
       <!--/cột trái-->
 
       <!--cột phải-->
-      <div class="col background-center-item">
+      <div class="col-lg-6 background-center-item">
        <form action="index_submit" method="get" accept-charset="utf-8" @if(Auth::check()) style="visibility: hidden;" @endif>
         <div class="input-group form-group stylish-input-group1">
           <span class="input-group-addon col-sm-3">Display name</span>
@@ -28,10 +28,10 @@
           <input type="text" class="form-control" placeholder="******">
         </div>
         <div class="input-group">
-          <div>
+          <div class="col-lg-3">
             <button type="submit" class="btn btn-default colr mr-sm-2">Sign Up</button>
           </div>
-          <div class="col">
+          <div class="col-lg-9">
             <a href="#">
               <font>By registering, you agree to the privacy policy and terms of service.</font>
             </a>

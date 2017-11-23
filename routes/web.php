@@ -174,7 +174,7 @@ Route::group(['prefix'=>'answer'], function(){
 
 //Group Documentation
 Route::group(['prefix'=>'documentation'], function(){
-    Route::get('list-documentation/{subject?}/{list_tag?}/{sort?}', 'DocumentationController@getListDocumentation')->name('list-documentation');
+    Route::get('list-documentation/{subject?}/{list_tag?}/{tab?}', 'DocumentationController@getListDocumentation')->name('list-documentation');
     Route::get('detail-documentation/{documentation_id}', 'DocumentationController@getDetailDocumentation')->name('detail-documentation')->middleware('active');
     Route::post('vote-documentation/{documentation_id}', 'DocumentationController@postVoteDocumentation')->name('vote-documentation');
     Route::get('create-documentation', 'DocumentationController@getCreateDocumentation')->name('create-documentation')->middleware('login');
@@ -183,6 +183,7 @@ Route::group(['prefix'=>'documentation'], function(){
     Route::post('edit-documentation/{documentation_id}', 'DocumentationController@postEditDocumentation')->name('edit-documentation')->middleware('own');
     Route::get('delete-documentation/{documentation_id}', 'DocumentationController@getDeleteDocumentation')->name('delete-documentation')->middleware('own');
     Route::get('restore-documentation/{documentation_id}', 'DocumentationController@getRestoreDocumentation')->name('restore-documentation')->middleware('own');
+    Route::post('search-documentation', 'DocumentationController@postSearchDocumentation')->name('search-documentation');
 });
 
 //Group Comment
@@ -206,7 +207,7 @@ Route::group(['prefix'=>'user'], function() {
     Route::post('edit-info', 'UserController@postEditInfo');
     Route::post('edit-avatar', 'UserController@postEditAvatar');
     Route::post('edit-changepass', 'UserController@postChangePass');
-    Route::get('list/{tab?}', 'UserController@getListUser')->name('list-user');
+    Route::get('list-user/{tab?}', 'UserController@getListUser')->name('list-user');
     Route::post('search-user', 'UserController@postSearchUser')->name('search-user');
 
 });

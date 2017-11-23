@@ -1,12 +1,12 @@
     <div class="colorfooter">
         <div class="container">
             <div class="row">
-                <div class="col">
+                <div class="col-lg-3">
                     <a class="navbar-brand" href="">
 						<img class="img-responsive mr-sm-5" src="/image/logofooter.png" width="150" height="50" alt=" ">
 					</a>
                 </div>
-                <div class="col">
+                <div class="col-lg-3">
                     <br>
                     <h5 class="colortextfooter">E-Learning</h5>
                     <a href="mailto:joe@example.com?subject=feedback" class="colortextfooter">
@@ -27,7 +27,7 @@
                     <br>
                     <br>
                 </div>
-                <div class="col">
+                <div class="col-lg-3">
                     <br>
                     <h5 class="colortextfooter">Developers</h5>
                     <a href="mailto:joe@example.com?subject=feedback" class="colortextfooter">
@@ -39,7 +39,7 @@
                     </a>
                     <br>
                 </div>
-                <div class="col">
+                <div class="col-lg-3">
                     <br>
                     <a href="mailto:joe@example.com?subject=feedback" class="colortextfooter mr-sm-2">Facebook</a>
                     <a href="mailto:joe@example.com?subject=feedback" class="colortextfooter mr-sm-2">Google</a>

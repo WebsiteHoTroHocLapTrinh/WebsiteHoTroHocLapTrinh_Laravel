@@ -210,26 +210,29 @@ class DocumentationController extends Controller
     }
 
     //User
-    public function getListDocumentation($subject = 0, $list_tag = 0, $sort = 0) {
+    public function getListDocumentation(Request $request, $subject = 0, $list_tag = 0, $tab = 'new') {
         $subjects = Subject::where('active', true)->get();
         $tags = Tag::where('active', true)->get();
         
         $documentations = $this->collectDocumentation($subject, $list_tag);
-        switch ($sort) {
-            case 1:
-                $documentations = $documentations->orderBy('point_rating', 'desc')->paginate(5);
+        switch ($tab) {
+            case 'new':
+                $documentations = $documentations->orderBy('created_at', 'desc')->paginate(5);
                 break;
-            case 2:
+            case 'view':
                 $documentations = $documentations->orderBy('view', 'desc')->paginate(5);
                 break;
-            case 3:
-                $documentations = $documentations->orderBy('created_at', 'desc')->paginate(5);
+            case 'favorite':
+                $documentations = $documentations->orderBy('point_rating', 'desc')->paginate(5);
                 break;
             default:
                 $documentations = $documentations->paginate(5);
                 break;
         }
-        
+
+        if($request->ajax()){
+            return view('documentation.items_documentation', ['documentations' => $documentations, 'tab' => $tab]);
+        }
 
         $top_user = User::where('active',1)->orderBy('point_reputation','desc')->get()->take(10);
         $top_tag = Tag::join('taggables','taggables.tag_id','=','tags.id')->
@@ -239,7 +242,7 @@ class DocumentationController extends Controller
         get();
 
         $tags_filter = $tags->whereIn('id', explode(',', $list_tag))->values();
-        return view('documentation.list_documentation', ['subjects' => $subjects, 'tags' => $tags, 'documentations' => $documentations,'top_user'=>$top_user,'top_tag'=>$top_tag, 'subject_filter' => $subject, 'tags_filter' => $tags_filter, 'sort_filter' => $sort]);
+        return view('documentation.list_documentation', ['subjects' => $subjects, 'tags' => $tags, 'documentations' => $documentations,'top_user'=>$top_user,'top_tag'=>$top_tag, 'subject_filter' => $subject, 'tags_filter' => $tags_filter, 'tab' => $tab]);
     }
 
     public function collectDocumentation($subject, $list_tag) {
@@ -495,5 +498,28 @@ class DocumentationController extends Controller
         $documentation->save();
 
         return redirect(route('detail-documentation', ['documentation_id' => $documentation->id]))->with('action', 'Tài liệu đã được khôi phục !');
+    }
+
+    public function postSearchDocumentation(Request $request){
+        $key = $request->key_search;
+        $words = explode(' ', $key);
+        $documentations = Documentation::where(function ($query)use($words) {
+            foreach($words as $word) {
+                $query->orWhere('title', 'LIKE', '%' . $word . '%');
+            }
+        })->orWhere(function ($query)use($words) {
+            foreach($words as $word) {
+                $query->orWhere('content', 'LIKE', '%' . $word . '%');
+            }
+        })->get();
+
+        $top_user = User::where('active',1)->orderBy('point_reputation','desc')->get()->take(10);
+        $top_tag = Tag::join('taggables','taggables.tag_id','=','tags.id')->
+        selectRaw('count(taggables.tag_id) AS `kount`, tags.name')->
+        groupBy('tags.id')->
+        orderBy('kount', 'desc')->
+        get();
+
+        return view('documentation.result_search', ['documentations' => $documentations,'top_user'=>$top_user,'top_tag'=>$top_tag, 'key' => $key]);
     }
 }

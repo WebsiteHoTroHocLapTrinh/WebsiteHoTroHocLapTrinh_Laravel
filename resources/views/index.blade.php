@@ -139,7 +139,7 @@
                     </div>
                     <div class="contact-content">
                         <div class="row">
-                            <div class="col">
+                            <div class="col-lg-6">
                                 <div class="contact-form">
                                     <form>
                                         <div class="form-group">
@@ -158,7 +158,7 @@
                                     </form>
                                 </div>
                             </div>
-                            <div class="col">
+                            <div class="col-lg-6">
                                 <div class="contact-info">
                                     <h4>Thông Tin Liên Hệ</h4>
                                     <hr style="background-color: orange;">
