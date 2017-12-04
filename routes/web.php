@@ -212,6 +212,14 @@ Route::group(['prefix'=>'user'], function() {
 
 });
 
+//Group Reset Password
+Route::group(['prefix'=>'password'], function(){
+    Route::get('showform', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('showform');
+    Route::post('sendlink', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('sendlink');
+    Route::get('reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('reset.token');
+    Route::post('reset', 'Auth\ResetPasswordController@reset')->name('reset');
+});
+
 //Group Authencation
 Route::get('login', 'UserController@getLogin')->name('login')->middleware('preventLogin');
 Route::post('login', 'UserController@postLogin')->name('login')->middleware('preventLogin');

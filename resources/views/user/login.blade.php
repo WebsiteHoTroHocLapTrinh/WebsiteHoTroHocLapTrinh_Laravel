@@ -38,7 +38,7 @@
 				</div>
 				<div id="btnlogin">
 					<button class="btn colr" type="submit">Log in</button>
-					<a href="#">forgot password?</a>
+					<a href="{{ Route('showform') }}">forgot password?</a>
 				</div>
 			</form>
 			<!--/login main-->
