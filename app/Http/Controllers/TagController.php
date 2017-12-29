@@ -233,19 +233,15 @@ class TagController extends Controller
         return redirect()->back()->with('thongbao', 'Đã Thêm thẻ '.$tag->name);
     }
 
-    public function postSearchTag(Request $request){
-        $key = $request->key_search;
+    public function getSearchTag(Request $request){
+        $key = $request->keyword;
         $words = explode(' ', $key);
         $list_paginate = Tag::where(function ($query)use($words) {
             foreach($words as $word) {
                 $query->orWhere('name', 'LIKE', '%' . $word . '%');
             }
-        })->orWhere(function ($query)use($words) {
-            foreach($words as $word) {
-                $query->orWhere('description', 'LIKE', '%' . $word . '%');
-            }
-        })->get();
+        })->paginate(16);
 
-        return view('tag.result_search',['list_paginate'=>$list_paginate, 'key'=>$key]);
+        return view('tag.result_search',['list_paginate'=>$list_paginate, 'keyword'=>$key]);
     }
 }

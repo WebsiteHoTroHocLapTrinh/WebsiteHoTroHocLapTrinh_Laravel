@@ -425,16 +425,16 @@ class UserController extends Controller
         return view('user.list_user',['list_paginate'=>$list_paginate, 'tab'=>$tab]);
     }
 
-    public function postSearchUser(Request $request){
-        $key = $request->key_search;
+    public function getSearchUser(Request $request){
+        $key = $request->keyword;
         $words = explode(' ', $key);
         $list_paginate = User::where(function ($query)use($words) {
             foreach($words as $word) {
                 $query->orWhere('name', 'LIKE', '%' . $word . '%');
             }
-        })->get();
+        })->paginate(16);
 
-        return view('user.result_search',['list_paginate'=>$list_paginate, 'key'=>$key]);
+        return view('user.result_search',['list_paginate'=>$list_paginate, 'keyword'=>$key]);
     }
 }
     

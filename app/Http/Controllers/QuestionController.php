@@ -9,6 +9,8 @@ use DateTime;
 use Session;
 use Event;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Pagination\LengthAwarePaginator;
 use App\Permission;
 use App\User;
 use App\Tag;
@@ -238,7 +240,7 @@ class QuestionController extends Controller
 
         $top_user = User::where('active',1)->orderBy('point_reputation','desc')->get()->take(10);
         $top_tag = Tag::join('taggables','taggables.tag_id','=','tags.id')->
-        selectRaw('count(taggables.tag_id) AS `kount`, tags.name')->
+        selectRaw('count(taggables.tag_id) AS `kount`, tags.id, tags.name')->
         groupBy('tags.id')->
         orderBy('kount', 'desc')->
         get()->take(10);
@@ -517,6 +519,65 @@ class QuestionController extends Controller
         }
 
         return redirect(session('previousURLEditQuestion'));
+    }
+
+    public function getSearchQuestion(Request $request) {
+        $searchByKeyWord = $this->searchByKeyWord($request->keyword);
+        $searchByTag = $this->searchByTag($request->list_tag);
+        $collection = $searchByKeyWord->intersect($searchByTag)->sortByDesc('created_at');
+        $list_paginate = $this->paginate($collection, 5, $request->page,['path' => LengthAwarePaginator::resolveCurrentPath()]);
+
+
+        $top_user = User::where('active',1)->orderBy('point_reputation','desc')->get()->take(10);
+        $top_tag = Tag::join('taggables','taggables.tag_id','=','tags.id')->
+        selectRaw('count(taggables.tag_id) AS `kount`, tags.id, tags.name')->
+        groupBy('tags.id')->
+        orderBy('kount', 'desc')->
+        get()->take(10);
+
+        $tags = Tag::where('active', true)->get();
+        $tags_filter = $tags->whereIn('id', explode(',', $request->list_tag))->values();
+
+        return view('question.result_search', ['list_paginate'=>$list_paginate,'top_user'=>$top_user,'top_tag'=>$top_tag, 'keyword' => $request->keyword, 'list_tag' => $request->list_tag, 'tags_filter' => $tags_filter, 'tags' => $tags]);
+    }
+
+    public function searchByKeyWord($keyword) {
+        if ($keyword == null) {
+            return Question::where('active', true)->get();
+        }
+        else {
+            $words = explode(' ', $keyword);
+            $questions = Question::where(function ($query)use($words) {
+                foreach($words as $word) {
+                    $query->orWhere('title', 'LIKE', '%' . $word . '%');
+                }
+            })->where('active', true)->get();
+            return $questions;
+        }
+    }
+
+    public function searchByTag($list_tag) {
+        if ($list_tag == null) {
+            return Question::where('active', true)->get();
+        }
+        else {
+            $questions = Question::join('taggables', function($join) {
+                    $join->on('questions.id', '=', 'taggables.taggable_id')
+                    ->where('taggables.taggable_type', '=', 'App\Question');
+                })->join('tags', function($join) use ($list_tag) {
+                    $join->on('taggables.tag_id', '=', 'tags.id')
+                    ->whereIn('tags.id', explode(',', $list_tag));
+                })
+            ->where('questions.active', true)->select('questions.*')->distinct()->get();
+            return $questions;
+        }
+    }
+
+    public function paginate($items, $perPage = 5, $page = null, $options = [])
+    {
+        $page = $page ?: (Paginator::resolveCurrentPage() ?: 1);
+        $items = $items instanceof Collection ? $items : Collection::make($items);
+        return new LengthAwarePaginator($items->forPage($page, $perPage), $items->count(), $perPage, $page, $options);
     }
    
 }

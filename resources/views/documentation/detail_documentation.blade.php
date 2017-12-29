@@ -35,9 +35,11 @@
 									</div>
 									<div class="list-tag">
 										@foreach($documentation->tags as $tag)
-										<div class="tag">
-											{{ $tag->name }}
-										</div>
+										<a href="{{ route('search-documentation') }}?list_tag={{ $tag->id }}">
+											<div class="tag">
+												{{ $tag->name }}
+											</div>
+										</a>
 										@endforeach
 									</div>
 									<br>
@@ -154,7 +156,7 @@
 			<div class="col-lg-3">
 				<div class="sub-content" >
 					<div class="btn-documentation">
-						<a href="{{ route('create-documentation') }}"><button type="button" class="btn btn-success btn-block btn-lg">Chia sẽ tài liệu ngay !!!</button></a>
+						<a style="text-decoration: none;" href="{{ route('create-documentation') }}"><button type="button" class="btn btn-success btn-block btn-lg">Chia sẽ tài liệu ngay !!!</button></a>
 					</div>
 					<div class="content-card">
 						<div class="documentation-author">

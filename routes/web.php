@@ -159,6 +159,7 @@ Route::group(['prefix' => 'question'], function() {
     Route::post('edit-question/{question_id}', 'QuestionController@postEditQuestion')->name('edit-question')->middleware('own');
     Route::get('delete-question/{question_id}', 'QuestionController@getDeleteQuestion')->name('delete-question')->middleware('own');
     Route::get('restore-question/{question_id}', 'QuestionController@getRestoreQuestion')->name('restore-question')->middleware('own');
+    Route::get('search-question', 'QuestionController@getSearchQuestion')->name('search-question');
 });
 
 //Group Answer
@@ -174,7 +175,7 @@ Route::group(['prefix'=>'answer'], function(){
 
 //Group Documentation
 Route::group(['prefix'=>'documentation'], function(){
-    Route::get('list-documentation/{subject?}/{list_tag?}/{tab?}', 'DocumentationController@getListDocumentation')->name('list-documentation');
+    Route::get('list-documentation/{tab?}', 'DocumentationController@getListDocumentation')->name('list-documentation');
     Route::get('detail-documentation/{documentation_id}', 'DocumentationController@getDetailDocumentation')->name('detail-documentation')->middleware('active');
     Route::post('vote-documentation/{documentation_id}', 'DocumentationController@postVoteDocumentation')->name('vote-documentation');
     Route::get('create-documentation', 'DocumentationController@getCreateDocumentation')->name('create-documentation')->middleware('login');
@@ -183,7 +184,7 @@ Route::group(['prefix'=>'documentation'], function(){
     Route::post('edit-documentation/{documentation_id}', 'DocumentationController@postEditDocumentation')->name('edit-documentation')->middleware('own');
     Route::get('delete-documentation/{documentation_id}', 'DocumentationController@getDeleteDocumentation')->name('delete-documentation')->middleware('own');
     Route::get('restore-documentation/{documentation_id}', 'DocumentationController@getRestoreDocumentation')->name('restore-documentation')->middleware('own');
-    Route::post('search-documentation', 'DocumentationController@postSearchDocumentation')->name('search-documentation');
+    Route::get('search-documentation', 'DocumentationController@getSearchDocumentation')->name('search-documentation');
 });
 
 //Group Comment
@@ -197,7 +198,7 @@ Route::group(['prefix'=>'comment'], function(){
 Route:: group(['prefix'=>'tag'], function(){
     Route::get('list-tag/{tab?}', 'TagController@getListTag')->name('list-tag');
     Route::post('create-tag', 'TagController@postCreateTag')->name('create-tag')->middleware('login');
-    Route::post('search-tag', 'TagController@postSearchTag')->name('search-tag');
+    Route::get('search-tag', 'TagController@getSearchTag')->name('search-tag');
 });
 
 //Group User
@@ -208,7 +209,7 @@ Route::group(['prefix'=>'user'], function() {
     Route::post('edit-avatar', 'UserController@postEditAvatar');
     Route::post('edit-changepass', 'UserController@postChangePass');
     Route::get('list-user/{tab?}', 'UserController@getListUser')->name('list-user');
-    Route::post('search-user', 'UserController@postSearchUser')->name('search-user');
+    Route::get('search-user', 'UserController@getSearchUser')->name('search-user');
 
 });
 
@@ -239,4 +240,3 @@ Route::get('error_500', function() {
 Route::get('about', function(){
     return view('about');
 })->name('about');
-

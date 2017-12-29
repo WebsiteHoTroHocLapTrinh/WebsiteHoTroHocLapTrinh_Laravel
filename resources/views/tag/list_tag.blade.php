@@ -14,10 +14,9 @@
 							<br>
 							<div class="row">
 								<div class="col-lg-6">
-									<form id="form-search" action="{{ route('search-tag') }}" method="POST">
-										{{ csrf_field() }}
+									<form id="form-search" action="{{ route('search-tag') }}" method="GET">
 										<div class="input-group">
-											<input id="key_search" type="text" class="form-control" name="key_search" placeholder="Nhập từ khóa cần tìm" >
+											<input id="key_search" type="text" class="form-control" name="keyword" placeholder="Nhập từ khóa cần tìm" >
 											<span class="input-group-btn" >
 												<button id="btn-search" type="button" class="btn btn-success">Tìm kiếm</button>
 											</span>

@@ -181,7 +181,7 @@
 @endsection
 
 @section('title')
-    {{ "Trang Chủ" }}
+    {{ "Website Hỗ Trợ Học Lập Trình - Hỏi Đáp - Tài Liệu" }}
 @endsection
 
 @section('css')

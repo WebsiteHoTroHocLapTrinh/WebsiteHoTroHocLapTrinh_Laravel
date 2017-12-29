@@ -12,7 +12,7 @@
 				<a class="name-list-user" href="{{ route('user-information', ['user_id' => $list->id]) }}" >{{ $list->name }}</a>
 				<div class="text-muted info-list-user">
 					<span>{{ $list->location }}</span>
-					<span>Point: {{ $list->point_reputation }}</span>
+					<span>Điểm: {{ $list->point_reputation }}</span>
 					<span>Tham gia: {{ date('d-m-Y', strtotime($list->created_at)) }}</span>
 				</div>
 			</div>

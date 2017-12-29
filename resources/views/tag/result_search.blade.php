@@ -10,18 +10,17 @@
 					<div class="content-card">
 						<div class="tabs">
 							@if(count($list_paginate)<=0)
-								<h4 class="topquestion d-inline-block">Không tìm thấy kết quả cho từ khóa: "{{ $key }}"</h4>
+								<h4 class="topquestion d-inline-block">Không tìm thấy kết quả cho từ khóa: "{{ $keyword }}"</h4>
 								@else
-								<h4 class="topquestion d-inline-block">Kết quả cho từ khóa: "{{ $key }}"</h4>
+								<h4 class="topquestion d-inline-block">Kết quả cho từ khóa: "{{ $keyword }}"</h4>
 							@endif
 							<br>
 							<br>
 							<div class="row">
 								<div class="col-lg-6">
-									<form id="form-search" action="{{ route('search-tag') }}" method="POST">
-										{{ csrf_field() }}
+									<form id="form-search" action="{{ route('search-tag') }}" method="GET">
 										<div class="input-group">
-											<input id="key_search" type="text" class="form-control" name="key_search" placeholder="Nhập từ khóa cần tìm" >
+											<input id="key_search" type="text" class="form-control" name="keyword" placeholder="Nhập từ khóa cần tìm" value="{{ $keyword }}">
 											<span class="input-group-btn" >
 												<button id="btn-search" type="button" class="btn btn-success">Tìm kiếm</button>
 											</span>
@@ -33,11 +32,6 @@
 							<hr>
 							<br>
 							<div>
-								@php
-								function changeColor($str, $key){
-									return str_replace($key, "<span style='background-color:yellow;'>$key</span>", $str);
-								}
-								@endphp
 								<div class="row">
 									@foreach($list_paginate as $list)
 									<div class="col-lg-3 break-word" id="one-tag">
@@ -46,9 +40,11 @@
 												<div class="card-body">
 													<div class="card-title">
 														<div class="tag-item ToolTip">
-															<button class="btn btn-tag">
-																{!! changeColor($list->name, $key) !!} <span class="badge badge-pill badge-primary">x{{ count($list->questions)+ count($list->documentations) }}</span>
-															</button>
+															<a href="{{ route('search-question') }}?list_tag={{ $list->id }}">
+																<button class="btn btn-tag">
+																	{{  $list->name }} <span class="badge badge-pill badge-primary">x{{ count($list->questions)+ count($list->documentations) }}</span>
+																</button>
+															</a>
 															<div class="show-hide">
 																<div class="head-popup">
 																	<p><span class="oi oi-eye"></span></span></p>
@@ -65,7 +61,7 @@
 														</div>
 													</div>
 													<div class="card-text">
-														<p class="tag-description line-clamp">{!! changeColor($list->description, $key) !!}</p>
+														<p class="tag-description line-clamp">{{ $list->description }}</p>
 													</div>
 												</div>
 											</div>
@@ -73,9 +69,8 @@
 									</div>
 									@endforeach
 								</div>
-								
 							</div>
-							{{-- {{ $list_paginate->links('pagination.custom') }} --}}
+							{{ $list_paginate->appends(['keyword' => $keyword])->links('pagination.custom') }}
 						</div>
 					</div>
 				</div>
@@ -89,7 +84,7 @@
 @endsection
 
 @section('title')
-{{ "Kết quả tìm kiếm" }}
+{{ "$keyword - Tìm Kiếm Thẻ" }}
 @endsection
 
 @section('css')

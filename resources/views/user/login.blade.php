@@ -4,7 +4,7 @@
 <!--login-->
 <div class="container" style="background-color: #FFFFFF;">
 	<div class="form-login-signup" >
-		<h3 id="text-login">Login E-Learning</h3>
+		<h3 id="text-login">Đăng Nhập <br> E-Learning</h3>
 		<div class="border-login">
 			<!--login gg fb-->
 			<div id="border-gg-fb">
@@ -33,12 +33,12 @@
 					<input class="form-login form-control" type="email" name="email" placeholder="you@example.com" value="{{ old('email') }}">
 				</div>
 				<div class="form-group ">
-					<label class="form-login">Password</label>
+					<label class="form-login">Mật Khẩu</label>
 					<input class="form-login form-control" type="password" name="password" placeholder="*****">
 				</div>
 				<div id="btnlogin">
-					<button class="btn colr" type="submit">Log in</button>
-					<a href="{{ Route('showform') }}">forgot password?</a>
+					<button class="btn colr" type="submit">Đăng Nhập</button>
+					<a href="{{ Route('showform') }}">Quên mật khẩu ?</a>
 				</div>
 			</form>
 			<!--/login main-->
@@ -46,8 +46,8 @@
 		<!--dont acc-->
 		<div class="border-login">
 			<div id="dont-acc">
-				<span>Don't have account?</span>
-				<a href="#"email me">Sign Up</a>
+				<span>Bạn chưa có tài khoản ?</span>
+				<a href="{{ route('register') }}">Đăng ký ngay</a>
 			</div>
 		</div>
 	</div>

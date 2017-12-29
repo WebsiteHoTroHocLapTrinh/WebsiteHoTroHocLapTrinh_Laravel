@@ -15,46 +15,42 @@
                         <div class="content-list">
                             <h4 class="topquestion d-inline-block">Tất Cả Tài Liệu</h4>
                             <hr>
-                            <br>
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <form id="form-search" action="{{ route('search-documentation') }}" method="POST">
-                                        {{ csrf_field() }}
+
+                            <form id="form-search" action="{{ route('search-documentation') }}" method="GET">
+                                <div class="row">
+                                    <div class="col-lg-12">
                                         <div class="input-group">
-                                            <input id="key_search" type="text" class="form-control" name="key_search" placeholder="Nhập từ khóa cần tìm" >
+                                            <input id="key_search" type="text" class="form-control" name="keyword" placeholder="Nhập từ khóa cần tìm" >
                                             <span class="input-group-btn" >
                                                 <button id="btn-search" type="button" class="btn btn-success">Tìm kiếm</button>
+                                                <button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                                    Nâng cao
+                                                </button>
                                             </span>
                                         </div>
-                                    </form>
+                                    </div>
                                 </div>
-                                
-                            </div>
-                            <br>
-                            <div class="row">
-                                <div class="col-lg-3">
-                                    <select class="form-control" id="subject">
-                                        <option value="0">--- Chủ đề ---</option>
-                                        @foreach ($subjects as $sj)
-                                        <option value="{{ $sj->id }}" 
-                                            @if ($sj->id == $subject_filter)
-                                            {{ "selected" }}
-                                            @endif>
-                                        {{ $sj->name }}
-                                        </option>
-                                        @endforeach
-                                    </select>
+                                <br>
+                                <div class="collapse" id="collapseExample">
+                                    <div class="row">
+                                        <div class="col-lg-3">
+                                            <select class="form-control" name="subject">
+                                                <option value="0">--- Chủ đề ---</option>
+                                                @foreach ($subjects as $sj)
+                                                <option value="{{ $sj->id }}" >
+                                                    {{ $sj->name }}
+                                                </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="col-lg-9">
+                                            <input class="form-control" type="text" name="" placeholder="Thẻ của tài liệu"  data-role="tagsinput">
+                                            <input type="text" id="list-tag" hidden="" name="list_tag" value="0" >
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-lg-7">
-                                    <input class="form-control" type="text" name="" placeholder="Thẻ của tài liệu"  data-role="tagsinput">
-                                    <input type="text" id="list-tag" hidden="" name="list_tag" value="0" >
-                                </div>
-                                <div class="col-lg-2">
-                                    <button id="filter" style="padding-left: 20px; padding-right: 20px;" class="btn btn-primary"><i class="fa fa-filter fa-fw"></i>Lọc</button>
-                                </div>
-                            </div>
+                            </form>
                             
-                            <br>
                             <div class="tabs">
                                 <ul class="nav nav-tabs d-flex justify-content-end" id="TagsTabContent" role="tablist">
                                     <li class="nav-item">
@@ -121,9 +117,11 @@
                         <div class="tag-common-list">
                             @foreach($top_tag->take(10) as $top_tag)
                             <div class="tag-item">
-                                <button class="btn btn-tag">
-                                   {{ $top_tag->name }} <span class="badge badge-pill badge-primary">{{ $top_tag->kount }}</span>
-                               </button>
+                                <a href="{{ route('search-documentation') }}?list_tag={{ $top_tag->id }}">
+                                    <button class="btn btn-tag">
+                                       {{ $top_tag->name }} <span class="badge badge-pill badge-primary">{{ $top_tag->kount }}</span>
+                                   </button>
+                               </a>
                            </div>
                            @endforeach
                         </div>
@@ -173,25 +171,21 @@
             }
         });
 
-        var stringTags = {!! $tags_filter !!}
-        stringTags.forEach(function(item) {
-            elt.tagsinput('add', item);
-        });
+        
     </script>
     <script type="text/javascript">
-        $(document).ready(function() {
-            $('button#filter').click(function() {
-                var subject = $('select#subject').val();
-                var tags = $('input#list-tag').val();
-                if (tags == '') {
-                    tags = 0;
-                }
-                var tab = $('a.active').attr('id');
-                alert(tab);
-                window.location.href = '{{ route('list-documentation') }}' + '/' + subject + '/' + tags + '/' + tab;
+        // $(document).ready(function() {
+        //     $('button#filter').click(function() {
+        //         var subject = $('select#subject').val();
+        //         var tags = $('input#list-tag').val();
+        //         if (tags == '') {
+        //             tags = 0;
+        //         }
+        //         var tab = $('a.active').attr('id');
+        //         window.location.href = '{{ route('list-documentation') }}' + '/' + subject + '/' + tags + '/' + tab;
 
-            })  
-        });
+        //     })  
+        // });
 
         $(function(){
             document.getElementById("new").className = "nav-link";
@@ -201,7 +195,6 @@
 
             $('#btn-search').click(function(){
                 var content = $('#key_search').val();
-                //alert(content)
                 if(content.length<=0){
                     $('#form-search').submit(function(e){
                         e.preventDefault();
@@ -219,11 +212,11 @@
         });
 
         function ChangeTab(id_tab) {
-            var subject = $('select#subject').val();
-            var tags = $('input#list-tag').val();
-            if (tags == '') {
-                tags = 0;
-            }
+            // var subject = $('select#subject').val();
+            // var tags = $('input#list-tag').val();
+            // if (tags == '') {
+            //     tags = 0;
+            // }
 
             document.getElementById("new").className = "nav-link";
             document.getElementById("view").className = "nav-link";
@@ -231,7 +224,8 @@
             document.getElementById(id_tab).className = "nav-link active";
             $('#load a').css('color', '#dfecf6');
             $('#img_loading').append('<img style="position: absolute; z-index: 100000; width: 100%; height:2px;" src="/image/loading.gif"/>');
-            var url = '{{ route('list-documentation') }}' + '/' + subject + '/' + tags + '/' + id_tab;
+            // var url = '{{ route('list-documentation') }}' + '/' + subject + '/' + tags + '/' + id_tab;
+            var url = '{{ route('list-documentation') }}' + '/' + id_tab;
             getListDocumentation(url);
             window.history.pushState("", "", url);
         };

@@ -13,7 +13,7 @@
 						<h4 class="card-title">{{ $user->name }}</h4>
 						<div class="point">
 							<span class="oi oi-star"></span>
-							<span class="card-text">Point: {{ $user->point_reputation }}</span>
+							<span class="card-text">Điểm: {{ $user->point_reputation }}</span>
 						</div>
 					</div>
 					<ul class="list-group list-group-flush">
@@ -32,7 +32,7 @@
 					</ul>
 					@if(Auth::id()== $user->id)
 					<div class="card-body">
-						<a href="user/edit-user" class="card-link">Edit Profile</a>
+						<a href="user/edit-user" class="card-link">Cập Nhật</a>
 					</div>
 					@endif
 				</div>
@@ -119,17 +119,17 @@
 						<a href=""><strong>Trả lời</strong></a>
 						<span>({{ count($user->answers) }})</span>
 						<div class="float-right">
-							<a href="#">Số answer(s)</a>
+							<a href="#">Thời gian trả lời</a>
 						</div>
 					</div>
 					@foreach($answers->take(3) as $answer)
-					@php
+					{{-- @php
 						$count = count($user->answers->where('question_id', $answer->question_id));
-					@endphp
+					@endphp --}}
 					<div class="user_active">
 						<p class="point">{{ $answer->question->point_rating }}</p>
 						<p><a href="{{ route('detail-question', ['question_id'=>$answer->question->id]) }}">{{ $answer->question->title }}</a></p>
-						<p class=" date float-right text-muted">{{ $count }}</p>
+						<p class=" date float-right text-muted">{{ date('d-m-Y h:i:s',strtotime($answer->created_at)) }}</p>
 					</div>
 					@endforeach
 					<div id="answers" class="hidden">
@@ -173,7 +173,7 @@
 				<!--tags-->
 				<div>
 					<div class="border_active">
-						<a href=""><strong>Tags</strong></a>
+						<a href=""><strong>Thẻ</strong></a>
 						<span>({{ count($rs_gr) }})</span>
 						<div class="float-right">
 							<a href="" style="font-size: 13px;"></a>

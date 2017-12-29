@@ -54,9 +54,11 @@
 									</div>
 									<div class="list-tag">
 										@foreach($question->tags as $tag)
-										<div class="tag">
-											{{ $tag->name }}
-										</div>
+										<a href="{{ route('search-question') }}?list_tag={{ $tag->id }}">
+											<div class="tag">
+												{{ $tag->name }}
+											</div>
+										</a>
 										@endforeach
 									</div>
 

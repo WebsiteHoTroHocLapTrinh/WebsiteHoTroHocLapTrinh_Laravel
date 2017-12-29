@@ -31,7 +31,9 @@
 						</div>
 						<div class="list-tag">
 							@foreach ($doc->tags as $tag)
-							<p class="tag">{{ $tag->name }}</p>
+							<a href="{{ route('search-documentation') }}?list_tag={{ $tag->id }}">
+								<p class="tag">{{ $tag->name }}</p>
+							</a>
 							@endforeach
 						</div>
 						<div class="started">

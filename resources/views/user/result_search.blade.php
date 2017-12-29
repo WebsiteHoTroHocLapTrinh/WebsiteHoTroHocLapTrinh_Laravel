@@ -10,18 +10,17 @@
 					<div class="content-card">
 						<div class="tabs">
 							@if(count($list_paginate)<=0)
-							<h4 class="topquestion d-inline-block">Không tìm thấy kết quả cho từ khóa: "{{ $key }}"</h4>
+							<h4 class="topquestion d-inline-block">Không tìm thấy kết quả cho từ khóa: "{{ $keyword }}"</h4>
 							@else
-							<h4 class="topquestion d-inline-block">Kết quả cho từ khóa: "{{ $key }}"</h4>
+							<h4 class="topquestion d-inline-block">Kết quả cho từ khóa: "{{ $keyword }}"</h4>
 							@endif
 							<br>
 							<br>
 							<div class="row">
 								<div class="col-lg-6">
-									<form id="form-search" action="{{ route('search-user') }}" method="POST">
-										{{ csrf_field() }}
+									<form id="form-search" action="{{ route('search-user') }}" method="GET">
 										<div class="input-group">
-											<input id="key_search" type="text" class="form-control" name="key_search" placeholder="Nhập từ khóa cần tìm" >
+											<input id="key_search" type="text" class="form-control" name="keyword" placeholder="Nhập từ khóa cần tìm" value="{{ $keyword }}">
 											<span class="input-group-btn" >
 												<button id="btn-search" type="button" class="btn btn-success">Tìm kiếm</button>
 											</span>
@@ -33,18 +32,13 @@
 							<hr>
 							<br>
 							<div>
-								@php
-								function changeColor($str, $key){
-									return str_replace($key, "<span style='background-color:yellow;'>$key</span>", $str);
-								}
-								@endphp
 								<div class="row">
 									@foreach($list_paginate as $list)
 									<div class="col-lg-3 break-word" id="one-tag">
 										<div class="media">
 											<a href="{{ route('user-information', ['user_id' => $list->id]) }}" ><img class="rounded-circle mr-3" src="image/avatar_users/{{ $list->avatar }}" width="50" height="50"></a>
 											<div class="media-body">
-												<a class="name-list-user" href="{{ route('user-information', ['user_id' => $list->id]) }}" >{!! changeColor($list->name, $key) !!}</a>
+												<a class="name-list-user" href="{{ route('user-information', ['user_id' => $list->id]) }}" >{{ $list->name }}</a>
 												<div class="text-muted info-list-user">
 													<span>{{ $list->location }}</span>
 													<span>Point: {{ $list->point_reputation }}</span>
@@ -57,7 +51,7 @@
 								</div>
 								
 							</div>
-							{{-- {{ $list_paginate->links('pagination.custom') }} --}}
+							{{ $list_paginate->appends(['keyword' => $keyword])->links('pagination.custom') }}
 						</div>
 					</div>
 				</div>
@@ -71,7 +65,7 @@
 @endsection
 
 @section('title')
-{{ "Kết quả tìm kiếm" }}
+{{ "$keyword - Tìm Kiếm Người Dùng" }}
 @endsection
 
 @section('css')

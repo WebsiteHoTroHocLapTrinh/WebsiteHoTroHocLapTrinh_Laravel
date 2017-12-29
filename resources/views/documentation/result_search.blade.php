@@ -14,25 +14,44 @@
                     <div class="content-card">
                         <div class="content-list">
                             @if(count($documentations)<=0)
-                                <h4 class="topquestion d-inline-block">Không tìm thấy kết quả cho từ khóa: "{{ $key }}"</h4>
+                                <h4 class="topquestion d-inline-block">Không tìm thấy kết quả cho từ khóa: "{{ $keyword }}"</h4>
                                 @else
-                                <h4 class="topquestion d-inline-block">Kết quả cho từ khóa: "{{ $key }}"</h4>
+                                <h4 class="topquestion d-inline-block">Kết quả cho từ khóa: "{{ $keyword }}"</h4>
                             @endif
                             <br>
                             <br>
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <form id="form-search" action="{{ route('search-documentation') }}" method="POST">
-                                        {{ csrf_field() }}
+                            <form id="form-search" action="{{ route('search-documentation') }}" method="GET">
+                                <div class="row">
+                                    <div class="col-lg-12">
                                         <div class="input-group">
-                                            <input id="key_search" type="text" class="form-control" name="key_search" placeholder="Nhập từ khóa cần tìm" >
+                                            <input id="key_search" type="text" class="form-control" name="keyword" placeholder="Nhập từ khóa cần tìm" value="{{ $keyword }}" >
                                             <span class="input-group-btn" >
                                                 <button id="btn-search" type="button" class="btn btn-success">Tìm kiếm</button>
                                             </span>
                                         </div>
-                                    </form>
+                                    </div>
                                 </div>
-                            </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-lg-3">
+                                        <select class="form-control" name="subject">
+                                            <option value="0">--- Chủ đề ---</option>
+                                            @foreach ($subjects as $sj)
+                                            <option value="{{ $sj->id }}" 
+                                                @if ($subject == $sj->id)
+                                                {{ "selected" }}
+                                                @endif>
+                                                {{ $sj->name }}
+                                            </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-9">
+                                        <input class="form-control" type="text" name="" placeholder="Thẻ của tài liệu"  data-role="tagsinput">
+                                        <input type="text" id="list-tag" hidden="" name="list_tag" value="0" >
+                                    </div>
+                                </div>
+                            </form>
                             <br>
                             <hr>
                             <div class="tabs">
@@ -63,7 +82,9 @@
                                                             </div>
                                                             <div class="list-tag">
                                                                 @foreach ($doc->tags as $tag)
-                                                                <p class="tag">{{ $tag->name }}</p>
+                                                                <a href="{{ route('search-documentation') }}?list_tag={{ $tag->id }}">
+                                                                    <p class="tag">{{ $tag->name }}</p>
+                                                                </a>
                                                                 @endforeach
                                                             </div>
                                                             <div class="started">
@@ -95,6 +116,7 @@
                                             </div>
                                             @endforeach
                                         </div>
+                                        {{ $documentations->appends(['keyword' => $keyword, 'list_tag' => $list_tag, 'subject' => $subject])->links('pagination.custom') }}
                                     </div>
                                 </div>
                             </div>
@@ -144,9 +166,11 @@
                         <div class="tag-common-list">
                             @foreach($top_tag->take(10) as $top_tag)
                             <div class="tag-item">
-                                <button class="btn btn-tag">
-                                   {{ $top_tag->name }} <span class="badge badge-pill badge-primary">{{ $top_tag->kount }}</span>
-                               </button>
+                                <a href="{{ route('search-documentation') }}?list_tag={{ $top_tag->id }}">
+                                    <button class="btn btn-tag">
+                                       {{ $top_tag->name }} <span class="badge badge-pill badge-primary">{{ $top_tag->kount }}</span>
+                                   </button>
+                               </a>
                            </div>
                            @endforeach
                         </div>
@@ -164,14 +188,42 @@
 @endsection
 
 @section('title')
-    {{ "Kết quả tìm kiếm" }}
+    {{ "$keyword - Tìm Kiếm Tài Liệu" }}
 @endsection
 
 @section('css')
     <link rel="stylesheet" href="css/jquery.sweet-modal.min.css" />
+    <link rel="stylesheet" type="text/css" href="bootstrap-tagsinput/bootstrap-tagsinput.css">
 @endsection
 
 @section('script')
+    <script type="text/javascript" src="bootstrap-tagsinput/bootstrap-tagsinput.min.js"></script>
+    <script type="text/javascript" src="bootstrap-tagsinput/custom-bootstrap-tagsinput.js"></script>
+    <script type="text/javascript" src="js/typeahead.bundle.js"></script>
+    <script type="text/javascript">
+        var tags = new Bloodhound({
+            datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+            queryTokenizer: Bloodhound.tokenizers.whitespace,
+            local: {!! $tags !!}
+        });
+        tags.initialize();
+
+        var elt = $('input[data-role="tagsinput"]');
+        elt.tagsinput({
+            itemValue: 'id',
+            itemText: 'name',
+            typeaheadjs: {
+                name: 'tags',
+                displayKey: 'name',
+                source: tags.ttAdapter()
+            }
+        });
+
+        var stringTags = {!! $tags_filter !!}
+        stringTags.forEach(function(item) {
+            elt.tagsinput('add', item);
+        });
+    </script>
     <script src="js/jquery.sweet-modal.min.js"></script>
     <script>
     $(function(){

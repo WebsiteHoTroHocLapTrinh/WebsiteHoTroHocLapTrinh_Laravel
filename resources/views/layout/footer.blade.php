@@ -9,20 +9,20 @@
                 <div class="col-lg-3">
                     <br>
                     <h5 class="colortextfooter">E-Learning</h5>
-                    <a href="mailto:joe@example.com?subject=feedback" class="colortextfooter">
-                        <font size="2">Questions</font>
+                    <a href="{{ route('list-question') }}" class="colortextfooter">
+                        <font size="2">Câu hỏi</font>
                     </a>
                     <br>
-                    <a href="mailto:joe@example.com?subject=feedback" class="colortextfooter">
-                        <font size="2">Users</font>
+                    <a href="{{ route('list-documentation') }}" class="colortextfooter">
+                        <font size="2">Tài liệu</font>
                     </a>
                     <br>
-                    <a href="mailto:joe@example.com?subject=feedback" class="colortextfooter">
-                        <font size="2">Documents</font>
+                    <a href="{{ route('list-tag') }}" class="colortextfooter">
+                        <font size="2">Thẻ</font>
                     </a>
                     <br>
-                    <a href="mailto:joe@example.com?subject=feedback" class="colortextfooter">
-                        <font size="2">About</font>
+                    <a href="{{ route('list-user') }}" class="colortextfooter">
+                        <font size="2">Người dùng</font>
                     </a>
                     <br>
                     <br>
@@ -30,23 +30,23 @@
                 <div class="col-lg-3">
                     <br>
                     <h5 class="colortextfooter">Developers</h5>
-                    <a href="mailto:joe@example.com?subject=feedback" class="colortextfooter">
+                    <a href="https://www.facebook.com/DinhVinhPhuc" class="colortextfooter">
                         <font size="2">Dinh Phuc</font>
                     </a>
                     <br>
-                    <a href="mailto:joe@example.com?subject=feedback" class="colortextfooter">
+                    <a href="https://www.facebook.com/thanhtung.nguyenhoang.7" class="colortextfooter">
                         <font size="2">Nguyen Tung</font>
                     </a>
                     <br>
                 </div>
                 <div class="col-lg-3">
                     <br>
-                    <a href="mailto:joe@example.com?subject=feedback" class="colortextfooter mr-sm-2">Facebook</a>
-                    <a href="mailto:joe@example.com?subject=feedback" class="colortextfooter mr-sm-2">Google</a>
-                    <a href="mailto:joe@example.com?subject=feedback" class="colortextfooter mr-sm-2">LinkedIn</a>
+                    <a href="https://www.facebook.com" class="colortextfooter mr-sm-2">Facebook</a>
+                    <a href="https://www.google.com" class="colortextfooter mr-sm-2">Google</a>
+                    <a href="https://www.linkedin.com/" class="colortextfooter mr-sm-2">LinkedIn</a>
                     <br>
                     <br>
-                    <font size="2" class="colortextfooter">Copyright © 2013, Ho Chi Minh City University of Technology and Education</font>
+                    <font size="2" class="colortextfooter">Copyright © 2017, Ho Chi Minh City University of Technology and Education</font>
                 </div>
             </div>
         </div>

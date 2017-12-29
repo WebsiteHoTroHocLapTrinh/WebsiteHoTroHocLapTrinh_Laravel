@@ -9,6 +9,8 @@ use DateTime;
 use Event;
 use Session;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Pagination\LengthAwarePaginator;
 use App\Permission;
 use App\User;
 use App\Tag;
@@ -210,23 +212,22 @@ class DocumentationController extends Controller
     }
 
     //User
-    public function getListDocumentation(Request $request, $subject = 0, $list_tag = 0, $tab = 'new') {
+    public function getListDocumentation(Request $request, $tab = 'new') {
         $subjects = Subject::where('active', true)->get();
         $tags = Tag::where('active', true)->get();
         
-        $documentations = $this->collectDocumentation($subject, $list_tag);
         switch ($tab) {
             case 'new':
-                $documentations = $documentations->orderBy('created_at', 'desc')->paginate(5);
+                $documentations = Documentation::where('active', true)->orderBy('created_at', 'desc')->paginate(5);
                 break;
             case 'view':
-                $documentations = $documentations->orderBy('view', 'desc')->paginate(5);
+                $documentations = Documentation::where('active', true)->orderBy('view', 'desc')->paginate(5);
                 break;
             case 'favorite':
-                $documentations = $documentations->orderBy('point_rating', 'desc')->paginate(5);
+                $documentations = Documentation::where('active', true)->orderBy('point_rating', 'desc')->paginate(5);
                 break;
             default:
-                $documentations = $documentations->paginate(5);
+                $documentations = Documentation::where('active', true)->paginate(5);
                 break;
         }
 
@@ -236,13 +237,13 @@ class DocumentationController extends Controller
 
         $top_user = User::where('active',1)->orderBy('point_reputation','desc')->get()->take(10);
         $top_tag = Tag::join('taggables','taggables.tag_id','=','tags.id')->
-        selectRaw('count(taggables.tag_id) AS `kount`, tags.name')->
+        selectRaw('count(taggables.tag_id) AS `kount`, tags.id, tags.name')->
         groupBy('tags.id')->
         orderBy('kount', 'desc')->
         get();
 
-        $tags_filter = $tags->whereIn('id', explode(',', $list_tag))->values();
-        return view('documentation.list_documentation', ['subjects' => $subjects, 'tags' => $tags, 'documentations' => $documentations,'top_user'=>$top_user,'top_tag'=>$top_tag, 'subject_filter' => $subject, 'tags_filter' => $tags_filter, 'tab' => $tab]);
+        // $tags_filter = $tags->whereIn('id', explode(',', $list_tag))->values();
+        return view('documentation.list_documentation', ['subjects' => $subjects, 'tags' => $tags, 'documentations' => $documentations,'top_user'=>$top_user,'top_tag'=>$top_tag, 'tab' => $tab]);
     }
 
     public function collectDocumentation($subject, $list_tag) {
@@ -500,26 +501,74 @@ class DocumentationController extends Controller
         return redirect(route('detail-documentation', ['documentation_id' => $documentation->id]))->with('action', 'Tài liệu đã được khôi phục !');
     }
 
-    public function postSearchDocumentation(Request $request){
-        $key = $request->key_search;
-        $words = explode(' ', $key);
-        $documentations = Documentation::where(function ($query)use($words) {
-            foreach($words as $word) {
-                $query->orWhere('title', 'LIKE', '%' . $word . '%');
-            }
-        })->orWhere(function ($query)use($words) {
-            foreach($words as $word) {
-                $query->orWhere('content', 'LIKE', '%' . $word . '%');
-            }
-        })->get();
+    public function getSearchDocumentation(Request $request){
+        $searchByKeyWord = $this->searchByKeyWord($request->keyword);
+        $searchByTag = $this->searchByTag($request->list_tag);
+        $searchBySubject = $this->searchBySubject($request->subject);
+        $collection = $searchByKeyWord->intersect($searchByTag->intersect($searchBySubject))->sortByDesc('created_at');
+        $documentations = $this->paginate($collection, 5, $request->page,['path' => LengthAwarePaginator::resolveCurrentPath()]);
 
         $top_user = User::where('active',1)->orderBy('point_reputation','desc')->get()->take(10);
         $top_tag = Tag::join('taggables','taggables.tag_id','=','tags.id')->
-        selectRaw('count(taggables.tag_id) AS `kount`, tags.name')->
+        selectRaw('count(taggables.tag_id) AS `kount`, tags.id, tags.name')->
         groupBy('tags.id')->
         orderBy('kount', 'desc')->
         get();
 
-        return view('documentation.result_search', ['documentations' => $documentations,'top_user'=>$top_user,'top_tag'=>$top_tag, 'key' => $key]);
+        $tags = Tag::where('active', true)->get();
+        $tags_filter = $tags->whereIn('id', explode(',', $request->list_tag))->values();
+
+        $subjects = Subject::where('active', true)->get();
+
+        return view('documentation.result_search', ['documentations' => $documentations,'top_user'=>$top_user,'top_tag'=>$top_tag, 'keyword' => $request->keyword, 'list_tag' => $request->list_tag, 'subject' => $request->subject, 'tags_filter' => $tags_filter, 'tags' => $tags, 'subjects' => $subjects]);
+    }
+
+    public function searchByKeyWord($keyword) {
+        if ($keyword == null) {
+            return Documentation::where('active', true)->get();
+        }
+        else {
+            $words = explode(' ', $keyword);
+            $documentations = Documentation::where(function ($query)use($words) {
+                foreach($words as $word) {
+                    $query->orWhere('title', 'LIKE', '%' . $word . '%');
+                }
+            })->where('active', true)->get();
+            return $documentations;
+        }
+    }
+
+    public function searchByTag($list_tag) {
+        if ($list_tag == null) {
+            return Documentation::where('active', true)->get();
+        }
+        else {
+            $documentations = Documentation::join('taggables', function($join) {
+                    $join->on('documentations.id', '=', 'taggables.taggable_id')
+                    ->where('taggables.taggable_type', '=', 'App\Documentation');
+                })->join('tags', function($join) use ($list_tag) {
+                    $join->on('taggables.tag_id', '=', 'tags.id')
+                    ->whereIn('tags.id', explode(',', $list_tag));
+                })
+            ->where('documentations.active', true)->select('documentations.*')->distinct()->get();
+            return $documentations;
+        }
+    }
+
+    public function searchBySubject($subject) {
+        if ($subject == null || $subject == 0) {
+            return Documentation::where('active', true)->get();
+        }
+        else {
+            $documentations = Documentation::where('subject_id', $subject)->where('active', true)->get();
+            return $documentations;
+        }
+    }
+
+    public function paginate($items, $perPage = 5, $page = null, $options = [])
+    {
+        $page = $page ?: (Paginator::resolveCurrentPage() ?: 1);
+        $items = $items instanceof Collection ? $items : Collection::make($items);
+        return new LengthAwarePaginator($items->forPage($page, $perPage), $items->count(), $perPage, $page, $options);
     }
 }

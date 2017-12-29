@@ -27,7 +27,12 @@
                             <div class="tab-content" id="">
                                 <div id="load_list" class="tab-pane fade show active" role="tabpanel" aria-labelledby="">
                                     {{-- // --}}
-                                    @include('question.items_question')
+                                    <div id="load" style="position: relative;">
+                                        <div id="img_loading">
+
+                                        </div>
+                                        @include('question.items_question')
+                                    </div>   
                                 </div>
                             </div>
                         </div>
@@ -102,16 +107,17 @@
                     </div>
                     <div class="tag-common">
                         <div class="tag-common-header">
-
                             <p>Tag phổ biến</p>
                         </div>
                         <hr>
                         <div class="tag-common-list">
-                            @foreach($top_tag as $top_tag)
+                            @foreach($top_tag as $tag)
                             <div class="tag-item">
-                                <button class="btn btn-tag">
-                                   {{ $top_tag->name }} <span class="badge badge-pill badge-primary">{{ $top_tag->kount }}</span>
-                               </button>
+                                <a href="{{ route('search-question') }}?list_tag={{ $tag->id }}">
+                                    <button class="btn btn-tag">
+                                       {{ $tag->name }} <span class="badge badge-pill badge-primary">{{ $tag->kount }}</span>
+                                   </button>
+                               </a>
                            </div>
                            @endforeach
                        </div>

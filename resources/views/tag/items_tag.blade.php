@@ -3,7 +3,6 @@
 </div>
 <br>
 <div class="row" id="load">
-	
 	@foreach($list_paginate as $list)
 	<div class="col-lg-3 break-word" id="one-tag">
 		<div class="card-deck">
@@ -11,9 +10,11 @@
 				<div class="card-body">
 					<div class="card-title">
 						<div class="tag-item ToolTip">
-							<button class="btn btn-tag">
-								{{ $list->name }} <span class="badge badge-pill badge-primary">x{{ count($list->questions)+ count($list->documentations) }}</span>
-							</button>
+							<a href="{{ route('search-question') }}?list_tag={{ $list->id }}">
+								<button class="btn btn-tag">
+									{{ $list->name }} <span class="badge badge-pill badge-primary">x{{ count($list->questions)+ count($list->documentations) }}</span>
+								</button>
+							</a>
 							<div class="show-hide">
 								<div class="head-popup">
 									<p><span class="oi oi-eye"></span></span></p>

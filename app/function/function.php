@@ -78,6 +78,7 @@ function stripUnicode($str){
 }
 
 function changeHightlight($str, $keyword) {
-	return str_replace($keyword, "<span style= 'background-color: yellow; font-style: italic;'>$keyword</span>", $str);
+	$pattern = preg_quote($keyword);
+	return preg_replace("/($pattern)/i", "<span style= 'background-color: yellow;'>$1</span>", $str);
 }
 ?>
