@@ -119,17 +119,17 @@
 						<a href=""><strong>Trả lời</strong></a>
 						<span>({{ count($user->answers) }})</span>
 						<div class="float-right">
-							<a href="#">Thời gian trả lời</a>
+							<a href="#">Lượt trả lời</a>
 						</div>
 					</div>
 					@foreach($answers->take(3) as $answer)
-					{{-- @php
+					@php
 						$count = count($user->answers->where('question_id', $answer->question_id));
-					@endphp --}}
+					@endphp
 					<div class="user_active">
 						<p class="point">{{ $answer->question->point_rating }}</p>
 						<p><a href="{{ route('detail-question', ['question_id'=>$answer->question->id]) }}">{{ $answer->question->title }}</a></p>
-						<p class=" date float-right text-muted">{{ date('d-m-Y h:i:s',strtotime($answer->created_at)) }}</p>
+						<p class=" date float-right text-muted">{{ $count }}</p>
 					</div>
 					@endforeach
 					<div id="answers" class="hidden">
