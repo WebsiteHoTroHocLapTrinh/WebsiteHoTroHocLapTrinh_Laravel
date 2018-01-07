@@ -32,9 +32,12 @@ class Active
                     break;
             }
         }
-        if ($object->active || $object->user_id == Auth::id()) {
-            return $next($request);
+        if ($object != null) {
+            if ($object->active || $object->user_id == Auth::id()) {
+                return $next($request);
+            }
         }
+        
         return redirect(route('404'));
     }
 }
