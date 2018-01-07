@@ -152,7 +152,7 @@ Route::group(['prefix' => 'ajax'], function() {
 Route::group(['prefix' => 'question'], function() {
     Route::get('list-question/{tab?}','QuestionController@getListQuestion')->name('list-question');
     Route::post('vote-question/{question_id}', 'QuestionController@postVoteQuestion')->name('vote-question');
-    Route::get('detail-question/{question_id}', 'QuestionController@getDetailQuestion')->name('detail-question')->middleware('active');
+    Route::get('detail-question/{question_id}/{question_url}', 'QuestionController@getDetailQuestion')->name('detail-question')->middleware('active');
     Route::get('create-question', 'QuestionController@getCreateQuestion')->name('create-question')->middleware('login');
     Route::post('create-question', 'QuestionController@postCreateQuestion')->name('create-question')->middleware('login');
     Route::get('edit-question/{question_id}', 'QuestionController@getEditQuestion')->name('edit-question')->middleware('own');
@@ -176,7 +176,7 @@ Route::group(['prefix'=>'answer'], function(){
 //Group Documentation
 Route::group(['prefix'=>'documentation'], function(){
     Route::get('list-documentation/{tab?}', 'DocumentationController@getListDocumentation')->name('list-documentation');
-    Route::get('detail-documentation/{documentation_id}', 'DocumentationController@getDetailDocumentation')->name('detail-documentation')->middleware('active');
+    Route::get('detail-documentation/{documentation_id}/{documentation_url}', 'DocumentationController@getDetailDocumentation')->name('detail-documentation')->middleware('active');
     Route::post('vote-documentation/{documentation_id}', 'DocumentationController@postVoteDocumentation')->name('vote-documentation');
     Route::get('create-documentation', 'DocumentationController@getCreateDocumentation')->name('create-documentation')->middleware('login');
     Route::post('create-documentation', 'DocumentationController@postCreateDocumentation')->name('create-documentation')->middleware('login');
@@ -203,11 +203,11 @@ Route:: group(['prefix'=>'tag'], function(){
 
 //Group User
 Route::group(['prefix'=>'user'], function() {
-    Route::get('user-information/{user_id}', 'UserController@getUserInformation')->name('user-information');
+    Route::get('user-information/{user_id}/{user_url}', 'UserController@getUserInformation')->name('user-information');
     Route::get('edit-user', 'UserController@getEditUser')->middleware('login');
-    Route::post('edit-info', 'UserController@postEditInfo');
-    Route::post('edit-avatar', 'UserController@postEditAvatar');
-    Route::post('edit-changepass', 'UserController@postChangePass');
+    Route::post('edit-info', 'UserController@postEditInfo')->middleware('login');
+    Route::post('edit-avatar', 'UserController@postEditAvatar')->middleware('login');
+    Route::post('edit-changepass', 'UserController@postChangePass')->middleware('login');
     Route::get('list-user/{tab?}', 'UserController@getListUser')->name('list-user');
     Route::get('search-user', 'UserController@getSearchUser')->name('search-user');
 

@@ -57,7 +57,7 @@
                                 <div class="summary col-lg-8 break-word">
                                     <div class="summary-title">
                                         <div class="summary-title">
-                                            <h6><a href="{{ route('detail-question', ['question_id' => $lt->id]) }}">{{ $lt->title }}</a></h6>
+                                            <h6><a href="{{ route('detail-question', ['question_id' => $lt->id, 'question_url' => $lt->title_url]) }}">{{ $lt->title }}</a></h6>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -87,7 +87,7 @@
                                             $time="Vừa xong";
                                         @endphp
 
-                                        <p class="user"><a href="{{ route('user-information', ['user_id' => $lt->user_id]) }}">{{ $lt->user->name }}</a></p>
+                                        <p class="user"><a href="{{ route('user-information', ['user_id' => $lt->user->id, 'user_url' => $lt->user->name_url]) }}">{{ $lt->user->name }}</a></p>
                                         <p class="action">đã hỏi</p>
                                         <p class="time">{{ $time }}</p>
                                     </div>
@@ -117,7 +117,7 @@
                         <div class="rank-items">
                             @php $i=1;@endphp
                             @foreach($top_user as $top_user)
-                            <a href="{{ route('user-information', ['user_id' => $top_user->id]) }}" style="color: black;text-decoration: none;">
+                            <a href="{{ route('user-information', ['user_id' => $top_user->id, 'user_url' => $top_user->name_url]) }}" style="color: black;text-decoration: none;">
                                 <div class="item">
                                     <div class="d-inline" style="">
                                         <span class="oi oi-star" style="color: #DFDF39;"></span>{{ $i }}

@@ -240,7 +240,7 @@
 											{{-- <span class="oi oi-heart"></span> --}}
 										</div>
 										<div class="col-lg-9">
-											<a href="{{ route('detail-documentation', ['documentation_id' => $doc_rl->id]) }}">{{ $doc_rl->title }}</a>
+											<a href="{{ route('detail-documentation', ['documentation_id' => $doc_rl->id, 'documentation_url' => $doc_rl->title_url]) }}">{{ $doc_rl->title }}</a>
 										</div>
 									</div>
 								</div>
@@ -263,7 +263,7 @@
 											{{-- <span class="oi oi-heart"></span> --}}
 										</div>
 										<div class="col-lg-9">
-											<a href="{{ route('detail-documentation', ['documentation_id' => $doc_sj->id]) }}">{{ $doc_sj->title }}</a>
+											<a href="{{ route('detail-documentation', ['documentation_id' => $doc_sj->id, 'documentation_url' => $doc_sj->title_url]) }}">{{ $doc_sj->title }}</a>
 										</div>
 									</div>
 								</div>
@@ -358,7 +358,7 @@
 
     function unhide(type, id_view_more, id_target){
     	var more_less = document.getElementById(id_view_more).innerHTML;
-    	var url = '{{ route('detail-documentation', ['documentation_id' => $documentation->id]) }}';
+    	var url = '{{ route('detail-documentation', ['documentation_id' => $documentation->id, 'documentation_url' => $documentation->title_url]) }}';
     	
     	if(more_less=='View more →'){
     		if(type=='comments-documentation'){

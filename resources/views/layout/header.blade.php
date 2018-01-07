@@ -64,7 +64,7 @@
                             <span>Về Trang Admin</span>
                         </a>
                         @endif
-                        <a class="dropdown-item" href="{{ route('user-information', ['user_id' => Auth::id()]) }}">
+                        <a class="dropdown-item" href="{{ route('user-information', ['user_id' => Auth::id(), 'user_url' => Auth::user()->name_url]) }}">
                             <span class="oi oi-person"></span>
                             <span>Thông Tin Cá Nhân</span>
                         </a>

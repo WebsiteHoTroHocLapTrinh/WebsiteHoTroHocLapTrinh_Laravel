@@ -43,7 +43,7 @@
 							<div class="col-lg-11 break-word">
 								<div class="detail-right">
 									<div class="avatar-name">
-										<a href="{{ route('user-information', ['user_id' => $question->user_id]) }}">{{ $question->user->name }}</a> 
+										<a href="{{ route('user-information', ['user_id' => $question->user->id, 'user_url' => $question->user->name_url]) }}">{{ $question->user->name }}</a> 
 
 									</div>
 									<div class="question-detail-title">
@@ -437,7 +437,7 @@
 												{{ $qs_rl->point_rating }}
 											</div>
 											<div class="col-lg-9">
-												<a href="{{ route('detail-question', ['question_id' => $qs_rl->id]) }}">{{ $qs_rl->title }}</a>
+												<a href="{{ route('detail-question', ['question_id' => $qs_rl->id, 'question_url' => $qs_rl->title_url]) }}">{{ $qs_rl->title }}</a>
 											</div>
 										</div>
 									</div>
@@ -536,7 +536,7 @@
 
     function unhide(type, id_view_more, id_target){
     	var more_less = document.getElementById(id_view_more).innerHTML;
-    	var url = '{{ route('detail-question', ['question_id' => $question->id]) }}';
+    	var url = '{{ route('detail-question', ['question_id' => $question->id, 'question_url' => $question->title_url]) }}';
     	
     	if(more_less=='View more →'){
     		if(type=='comments-question'){

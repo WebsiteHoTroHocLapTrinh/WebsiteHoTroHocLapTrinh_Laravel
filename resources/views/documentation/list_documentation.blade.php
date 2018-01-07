@@ -89,7 +89,7 @@
                         <div class="rank-items">
                             @php $i=1;  @endphp
                             @foreach($top_user as $top_user)
-                            <a href="{{ route('user-information', ['user_id' => $top_user->id] ) }}" style="color: black;text-decoration: none;">
+                            <a href="{{ route('user-information', ['user_id' => $top_user->id, 'user_url' => $top_user->name_url] ) }}" style="color: black;text-decoration: none;">
                                 <div class="item">
                                     <div class="d-inline" style="">
                                         #{{ $i }}

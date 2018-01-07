@@ -24,7 +24,7 @@
 				<div class="col-lg-10">
 					<div class="summary">
 						<div class="summary-title">
-							<h6><a href="{{ route('detail-documentation', ['documentation_id' => $doc->id]) }}">{{ $doc->title }}</a></h6>
+							<h6><a href="{{ route('detail-documentation', ['documentation_id' => $doc->id, 'documentation_url' => $doc->title_url]) }}">{{ $doc->title }}</a></h6>
 						</div>
 						<div class="summary-description">
 							{{ strip_tags($doc->content) }}
@@ -54,7 +54,7 @@
 							else
 								$time="Vừa xong";
 							@endphp
-							<p class="user"><a href="{{ route('user-information', ['user_id' => $doc->user_id]) }}">{{ $doc->user->name }}</a></p>
+							<p class="user"><a href="{{ route('user-information', ['user_id' => $doc->user->id, 'user_url' => $doc->user->name_url]) }}">{{ $doc->user->name }}</a></p>
 							<p class="action">đã chia sẽ</p>
 							<p class="time">{{ $time }}</p>
 						</div>
