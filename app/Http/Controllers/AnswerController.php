@@ -299,7 +299,7 @@ class AnswerController extends Controller
         //Create Activity
         $activity = new Activity;
         $activity->user_id = Auth::id();
-        $activity->user_related_id = $answer->question->id;
+        $activity->user_related_id = $answer->question->user->id;
         $activity->content = 'đã trả lời cho câu hỏi <strong>'.$answer->question->title.'</strong>';
         $activity->link = route('detail-question', ['question_id' => $answer->question->id, 'question_url' => $answer->question->title_url]);
         $activity->type = 1;

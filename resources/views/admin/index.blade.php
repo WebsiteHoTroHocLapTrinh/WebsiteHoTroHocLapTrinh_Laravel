@@ -144,7 +144,7 @@
                     </div>
                     <!-- /.panel .activities-panel -->
                 </div>
-                <div class="col-lg-6">
+                {{-- <div class="col-lg-6">
                     <div class="chat-panel panel panel-default">
                         <div class="panel-heading">
                             <i class="fa fa-globe fa-fw"></i> Hoạt động của người dùng
@@ -186,7 +186,7 @@
                         <!-- /.panel-body -->
                     </div>
                     <!-- /.panel .activities-panel -->
-                </div>
+                </div> --}}
             </div>
             <!-- /.row -->
         </div>

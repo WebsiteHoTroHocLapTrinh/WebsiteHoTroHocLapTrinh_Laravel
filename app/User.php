@@ -62,7 +62,7 @@ class User extends Authenticatable
     }
 
     public function activities() {
-        return $this->hasMany('App\Activity', 'user_id', 'id');
+        return $this->hasMany('App\Activity', 'user_related_id', 'id');
     }
 
     public function permission_created() {

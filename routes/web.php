@@ -213,6 +213,10 @@ Route::group(['prefix'=>'user'], function() {
 
 });
 
+Route::group(['prefix' => 'activity'], function() {
+    Route::get('list-activity', 'ActivityController@getListActivity')->name('list-activity')->middleware('login');
+});
+
 //Group Reset Password
 Route::group(['prefix'=>'password'], function(){
     Route::get('showform', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('showform');

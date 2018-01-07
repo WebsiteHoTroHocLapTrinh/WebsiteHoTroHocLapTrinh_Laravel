@@ -3,20 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Permission;
+use Auth;
 use App\User;
-use App\Tag;
-use App\Question;
-use App\Answer;
-use App\Taggable;
-use App\Documentation;
-use App\Comment;
-use App\UserFavoriteTag;
-use App\PasswordReset;
 use App\Activity;
-use App\Ping;
-use App\Subject;
-use App\Vote;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Pagination\LengthAwarePaginator;
+
 
 class ActivityController extends Controller
 {
@@ -34,5 +27,18 @@ class ActivityController extends Controller
     		'new_documentation' => $new_documentation, 
     		'new_tag' => $new_tag, 
     		'new_user' => $new_user,]);
+    }
+
+    public function getListActivity(Request $request) {
+        $collection = Auth::user()->activities->where('active', true)->where('type', 1)->sortByDesc('created_at');
+        $activities = $this->paginate($collection, 10, $request->page,['path' => LengthAwarePaginator::resolveCurrentPath()]);
+        return view('activity.list_activity', ['activities' => $activities]);
+    }
+
+    public function paginate($items, $perPage = 5, $page = null, $options = [])
+    {
+        $page = $page ?: (Paginator::resolveCurrentPage() ?: 1);
+        $items = $items instanceof Collection ? $items : Collection::make($items);
+        return new LengthAwarePaginator($items->forPage($page, $perPage), $items->count(), $perPage, $page, $options);
     }
 }

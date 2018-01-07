@@ -64,6 +64,15 @@
                             <span>Về Trang Admin</span>
                         </a>
                         @endif
+                        <a class="dropdown-item" href="{{ route('list-activity') }}">
+                            <span class="oi oi-globe"></span>
+                            <span>Thông Báo</span>
+                            @if ($count_new_activities != 0)
+                            <span class="badge badge-primary">
+                                {{ $count_new_activities }}   
+                            </span>
+                            @endif
+                        </a>
                         <a class="dropdown-item" href="{{ route('user-information', ['user_id' => Auth::id(), 'user_url' => Auth::user()->name_url]) }}">
                             <span class="oi oi-person"></span>
                             <span>Thông Tin Cá Nhân</span>
