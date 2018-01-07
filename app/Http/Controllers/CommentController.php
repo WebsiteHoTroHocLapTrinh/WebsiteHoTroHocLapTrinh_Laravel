@@ -36,21 +36,22 @@ class CommentController extends Controller
         switch (get_class($object)) {
             case 'App\Question':
                 $activity->content = 'đã xóa vĩnh viễn bình luận về câu hỏi <strong>'.$object->title.'</strong>';
-                $activity->link = route('detail-question', ['question_id' => $object->id]);
+                $activity->link = route('detail-question', ['question_id' => $object->id, 'question_url' => $object->title_url]);
                 break;
             case 'App\Answer':
                 $activity->content = 'đã xóa vĩnh viễn bình luận về câu trả lời của <strong>'.$object->user->name.'</strong> trong câu hỏi <strong>'.$object->question->title.'</strong>';
-                $activity->link = route('detail-question', ['question_id' => $object->question->id]);
+                $activity->link = route('detail-question', ['question_id' => $object->question->id, 'question_url' => $object->question->title_url]);
                 break;
             case 'App\Documentation':
                 $activity->content = 'đã xóa vĩnh viễn bình luận về tài liệu <strong>'.$object->title.'</strong>';
+                $activity->link = route('detail-documentation', ['documentation_id' => $object->id, 'documentation_url' => $object->title_url]);
                 break;
             default:
                 # code...
                 break;
         }
         
-        $activity->type = Auth::user()->permission->key;
+        $activity->type = 2;
         $activity->save();
 
         return redirect()->back()->with('thongbao_comment', 'Xóa Thành Công');
@@ -91,21 +92,22 @@ class CommentController extends Controller
         switch (get_class($object)) {
             case 'App\Question':
                 $activity->content = 'đã bình luận về câu hỏi <strong>'.$object->title.'</strong>';
-                $activity->link = route('detail-question', ['question_id' => $object->id]);
+                $activity->link = route('detail-question', ['question_id' => $object->id, 'question_url' => $object->title_url]);
                 break;
             case 'App\Answer':
                 $activity->content = 'đã bình luận về câu trả lời của <strong>'.$object->user->name.'</strong> trong câu hỏi <strong>'.$object->question->title.'</strong>';
-                $activity->link = route('detail-question', ['question_id' => $object->question->id]);
+                $activity->link = route('detail-question', ['question_id' => $object->question->id, 'question_url' => $object->question->title_url]);
                 break;
             case 'App\Documentation':
                 $activity->content = 'đã bình luận cho tài liệu <strong>'.$object->title.'</strong>';
+                $activity->link = route('detail-documentation', ['documentation_id' => $object->id, 'documentation_url' => $object->title_url]);
                 break;
             default:
                 # code...
                 break;
         }
         
-        $activity->type = Auth::user()->permission->key;
+        $activity->type = 1;
         $activity->save();
 
         //variable for view list comment

@@ -95,7 +95,7 @@
         $(document).ready(function() {
             $('#dataTables-list-permission').DataTable({
                 responsive: true,
-                "order": [[ 5, "desc" ]],
+                "order": [[ 4, "desc" ]],
                 "language": {
                     "decimal":        "",
                     "emptyTable":     "Không có dữ liệu",

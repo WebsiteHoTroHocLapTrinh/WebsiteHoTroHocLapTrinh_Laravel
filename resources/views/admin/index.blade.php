@@ -101,18 +101,61 @@
             </div>
             <!-- /.row -->
             <div class="row">
-                <div class="col-lg-6 col-lg-offset-3">
+                <div class="col-lg-6">
                     <div class="chat-panel panel panel-default">
                         <div class="panel-heading">
-                            <i class="fa fa-globe fa-fw"></i> Hoạt động
+                            <i class="fa fa-globe fa-fw"></i> Hoạt động của quản trị viên
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <ul class="chat">
-                                @if (count($activities) <= 0)
-                                    {!! '<p style="font-size: 50px; text-align: center;">Không có hoạt động mới nào</p>' !!}
+                                @if (count($activities_admin) <= 0)
+                                    {!! '<p style="font-size: 40px; text-align: center;">Không có hoạt động mới nào</p>' !!}
                                 @else
-                                    @foreach ($activities as $act)
+                                    @foreach ($activities_admin as $act)
+                                    <li class="left clearfix" style="cursor: pointer;">
+                                        <span class="chat-img pull-left">
+                                            <img src="image/avatar_users/{{ $act->user->avatar }}" alt="{{ $act->user->name }}" class="img-circle" width="80" />
+                                        </span>
+                                        <div class="chat-body clearfix" style="margin-left: 100px;">
+                                            <div class="header" >
+                                                <div style="display: none" class="id">{{ $act->id }}</div>
+                                                <strong class="primary-font">{{ $act->user->name }}</strong>
+                                                @if ($act->is_new)
+                                                    {!! '<p class="new" style="padding-top: 10px; display: inline;"><span style="padding: 5px;" class="label label-success">Mới</span></p>' !!}
+                                                @endif
+                                                <br><br>
+                                                <small class="pull-right text-muted">
+                                                    <i class="fa fa-clock-o fa-fw"></i> {{ $act->created_at }}
+                                                </small>
+                                            </div>
+                                            <p>
+                                                {!! $act->content !!}
+                                            </p>
+                                        </div>
+                                    </li>
+                                    @endforeach
+                                @endif
+
+                                
+                            </ul>
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel .activities-panel -->
+                </div>
+                <div class="col-lg-6">
+                    <div class="chat-panel panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa fa-globe fa-fw"></i> Hoạt động của người dùng
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <ul class="chat">
+                                @if (count($activities_user) <= 0)
+                                    {!! '<p style="font-size: 40px; text-align: center;">Không có hoạt động mới nào</p>' !!}
+                                @else
+                                    @foreach ($activities_user as $act)
                                     <li class="left clearfix" style="cursor: pointer;">
                                         <span class="chat-img pull-left">
                                             <img src="image/avatar_users/{{ $act->user->avatar }}" alt="{{ $act->user->name }}" class="img-circle" width="80" />

@@ -4,7 +4,7 @@
                 <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header"><small>Chỉnh sửa câu trả lời</small> <a href="" target="_blank">ID: {{ $answer->id }}</a>    <a href="admin/question/answer/list/{{ $answer->question->id }}"><button style="margin-left: 20px;" class="btn btn-success "><i class="fa fa-list fa-fw"></i>    Về danh sách câu trả lời</button></a></h1>
+                    <h1 class="page-header"><small>Chỉnh sửa câu trả lời</small> <a target="_blank">ID: {{ $answer->id }}</a>    <a href="admin/question/answer/list/{{ $answer->question->id }}"><button style="margin-left: 20px;" class="btn btn-success "><i class="fa fa-list fa-fw"></i>    Về danh sách câu trả lời</button></a></h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>

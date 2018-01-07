@@ -45,10 +45,12 @@
 									<br>
 									<br>
 									@if(Auth::id() == $documentation->user_id)
-									<a href="{{ route('edit-documentation', ['documentation_id' => $documentation->id]) }}" style="border-left: solid 1px black; padding-left: 10px; border-right: solid 1px black; padding-right: 10px;">Chỉnh sửa</a>
-									<a href="{{ route('delete-documentation', ['documentation_id' => $documentation->id]) }}" style=" padding-left: 5px; border-right: solid 1px black; padding-right: 10px;" onclick="return confirm('Bạn có chắc là muốn xóa không?')">Xóa</a>
+										@if ($documentation->active)
+											<a href="{{ route('edit-documentation', ['documentation_id' => $documentation->id]) }}" style="border-left: solid 1px black; padding-left: 10px; border-right: solid 1px black; padding-right: 10px;">Chỉnh sửa</a>
+											<a href="{{ route('delete-documentation', ['documentation_id' => $documentation->id]) }}" style=" padding-left: 5px; border-right: solid 1px black; padding-right: 10px;" onclick="return confirm('Bạn có chắc là muốn xóa không?')">Xóa</a>
+										@endif
 										@if (!$documentation->active)
-											<a href="{{ route('restore-documentation', ['documentation_id' => $documentation->id]) }}" style=" padding-left: 5px; border-right: solid 1px black; padding-right: 10px;" onclick="return confirm('Bạn có chắc là muốn khôi phục không?')">Khôi phục</a>
+											<a href="{{ route('restore-documentation', ['documentation_id' => $documentation->id]) }}" style=" padding-left: 5px; border-left: solid 1px black; padding-left: 10px; border-right: solid 1px black; padding-right: 10px;" onclick="return confirm('Bạn có chắc là muốn khôi phục không?')">Khôi phục</a>
 										@endif
 									@endif
 								</div>

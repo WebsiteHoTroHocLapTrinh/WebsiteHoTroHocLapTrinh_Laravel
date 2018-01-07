@@ -4,7 +4,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header"><small>Chỉnh sửa câu hỏi</small> <a href="" target="_blank">{{ $question->title }}</a></h1>
+                    <h1 class="page-header"><small>Chỉnh sửa câu hỏi</small> <a href="{{ route('detail-question', ['question_id' => $question->id, 'question_url' => $question->title_url]) }}" target="_blank">{{ $question->title }}</a></h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>

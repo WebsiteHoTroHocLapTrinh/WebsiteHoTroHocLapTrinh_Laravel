@@ -19,8 +19,6 @@
                                         <th>ID</th>
                                         <th>Giới thiệu</th>
                                         <th>Phân quyền</th>
-                                        <th>Địa chỉ</th>
-                                        <th>Nghề nghiệp</th>
                                         <th>Điểm uy tín</th>
                                         <th>Email</th>
                                         <th>Đăng nhập lần cuối</th>
@@ -43,16 +41,14 @@
                                         <td>
                                             <div class="intro">
                                                 <img src="image/avatar_users/{{ $user->avatar }}" class="img-circle intro-img" width="80">
-                                                <p class="intro-name"><strong>{{ $user->name }}</strong></p>
+                                                <p class="intro-name"><a href="{{ route('user-information', ['user_id' => $user->id, 'user_url' => $user->name_url]) }}" target="_blank"><strong>{{ $user->name }}</strong></a></p>
                                                 <p class="intro-about">{{ $user->about }}</p>
                                             </div>
                                         </td>
                                         <td>{{ $user->permission->name }}</td>
-                                        <td>{{ $user->location }}</td>
-                                        <td>{{ $user->job }}</td>
                                         <td>{{ $user->point_reputation }}</td>
                                         <td>{{ $user->email }}</td>
-                                        <td>{{ $user->last_online }}</td>
+                                        <td>{{ $user->last_activity_time }}</td>
                                         <td>{{ $user->created_at }}</td>
                                         <td>{{ $user->updated_at }}</td>
                                         <td>
@@ -104,7 +100,7 @@
         $(document).ready(function() {
             $('#dataTables-list-user').DataTable({
                 responsive: true,
-                "order": [[ 9, "desc" ]],
+                "order": [[ 6, "desc" ]],
                 "language": {
                     "decimal":        "",
                     "emptyTable":     "Không có dữ liệu",

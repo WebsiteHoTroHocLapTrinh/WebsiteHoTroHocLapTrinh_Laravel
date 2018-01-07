@@ -64,5 +64,6 @@ class Kernel extends HttpKernel
         'logout' => \App\Http\Middleware\Logout::class,
         'preventLogin' => \App\Http\Middleware\PreventLogin::class,
         'own' => \App\Http\Middleware\Own::class,
+        'comparepermission' => \App\Http\Middleware\ComparePermission::class,
     ];
 }

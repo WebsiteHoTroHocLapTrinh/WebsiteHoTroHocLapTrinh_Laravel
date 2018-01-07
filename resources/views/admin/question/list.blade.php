@@ -43,7 +43,7 @@
                                                 {!! '<p style="padding-top: 10px;"><span style="padding: 5px;" class="label label-success">Mới</span></p>' !!}
                                             @endif
                                         </td>
-                                        <td><a href="" target="_blank">{{ $qt->title }}</a></td>
+                                        <td><a href="{{ route('detail-question', ['question_id' => $qt->id, 'question_url' => $qt->title_url]) }}" target="_blank">{{ $qt->title }}</a></td>
                                         <td>{{ $qt->point_rating }}</td>
                                         <td>{{ $qt->view }}</td>
                                         <td>{{ $qt->user->name }}</td>
@@ -101,7 +101,7 @@
         $(document).ready(function() {
             $('#dataTables-list-question').DataTable({
                 responsive: true,
-                "order": [[ 6, "desc" ]],
+                "order": [[ 5, "desc" ]],
                 "language": {
                     "decimal":        "",
                     "emptyTable":     "Không có dữ liệu",
@@ -131,7 +131,7 @@
     </script>
     <script type="text/javascript">
         $(document).ready(function() {
-            $('table#dataTables-list-question > tbody > tr').click(function() {
+            $(document).on("click", "table#dataTables-list-question > tbody > tr", function() {
                 $('table#dataTables-list-question > tbody > tr').removeClass("info");
                 $(this).addClass("info");
                 $(this).children('td').first().children('p').fadeOut('slow');

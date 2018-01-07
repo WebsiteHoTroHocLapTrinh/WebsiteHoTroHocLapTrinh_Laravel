@@ -71,6 +71,9 @@ class AjaxController extends Controller
 				break;
 			case 7:
 				$object = User::find($id);
+				if (Auth::user()->permission->key <= $object->permission->key) {
+					$object = null;
+				}
 				break;
 			case 8:
 				$object = Comment::find($id);
@@ -86,9 +89,10 @@ class AjaxController extends Controller
 			else {
 				$object->active = false;
 			}
+			$object->save();
 		}
 		
-		$object->save();
+		
 	}
 
 	public function dismissNew($type, $id) {
@@ -138,9 +142,10 @@ class AjaxController extends Controller
 				if(($count-3)>0){
 					$questions_skip = $questions->get()->splice(3);
 					foreach ($questions_skip as $qs) {
+						$href = route('detail-question', ['question_id' => $qs->id, 'question_url' => $qs->title_url]);
 						echo '<div class="user_active ">
 						<p class="point">'.$qs->point_rating.'</p>
-						<p><a href="question/detail-question/'.$qs->id.'">'.$qs->title.'</a></p>
+						<p><a href="'.$href.'">'.$qs->title.'</a></p>
 						<p class=" date float-right text-muted">'.date('d-m-Y h:i:s', strtotime($qs->created_at)).'</p>
 						</div>';
 					}
@@ -151,11 +156,12 @@ class AjaxController extends Controller
 				$count = count($answers->get());
 				if(($count-3)>0){
 					$answers_skip = $answers->orderBy('id', 'desc')->get()->splice(3);
-					foreach ($answers_skip as $qs) {
-						$count_ans = count(Answer::where([['user_id', $id],['question_id', $qs->question_id]])->get());
+					foreach ($answers_skip as $ans) {
+						$href = route('detail-question', ['question_id' => $ans->question->id, 'question_url' => $ans->question->title_url]);
+						$count_ans = count(Answer::where([['user_id', $id],['question_id', $ans->question_id]])->get());
 						echo '<div class="user_active ">
-						<p class="point">'.$qs->question->point_rating.'</p>
-						<p><a href="question/detail-question/'.$qs->question->id.'">'.$qs->question->title.'</a></p>
+						<p class="point">'.$ans->question->point_rating.'</p>
+						<p><a href="'.$href.'">'.$ans->question->title.'</a></p>
 						<p class=" date float-right text-muted">'.$count_ans.'</p>
 						</div>';
 					}
@@ -167,9 +173,10 @@ class AjaxController extends Controller
 				if(($count-3)>0){
 					$documentations_skip = $documentations->orderBy('id', 'desc')->get()->splice(3);
 					foreach($documentations_skip as $documentation){
+						$href = route('detail-documentation', ['documentation_id' => $documentation->id, 'documentation_url' => $documentation->title_url]);
 						echo '<div class="user_active">
 						<p class="point">'.$documentation->point_rating.'</p>
-						<p><a href="">'.$documentation->title.'</a></p>
+						<p><a href="'.$href.'">'.$documentation->title.'</a></p>
 						<p class=" date float-right text-muted">'.date('d-m-Y h:i:s',strtotime($documentation->created_at)).'</p>
 						</div>';
 					}

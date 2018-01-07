@@ -55,8 +55,8 @@ class DocumentationController extends Controller
         $activity->user_id = Auth::id();
         $activity->user_related_id = $document->user->id;
         $activity->content = 'đã xóa vĩnh viễn tài liệu <strong>'.$document->title.'</strong>';
-        // $activity->link = route('detail-question', ['question_id' => $idQuestion]);
-        $activity->type = Auth::user()->permission->key;
+        $activity->link = route('detail-documentation', ['documentation_id' => $document->id, 'documentation_url' => $document->title_url]);
+        $activity->type = 2;
         $activity->save();
 
         return redirect()->back()->with('thongbao', 'Xóa Thành Công');
@@ -106,7 +106,7 @@ class DocumentationController extends Controller
         else {
             $Document->active = false;
         }
-        $Document->is_new = true;
+        // $Document->is_new = true;
         $Document->updated_at = new DateTime();
         $Document->save();
 
@@ -132,8 +132,8 @@ class DocumentationController extends Controller
         $activity->user_id = Auth::id();
         $activity->user_related_id = $Document->user->id;
         $activity->content = 'đã chỉnh sửa tài liệu <strong>'.$Document->title.'</strong>';
-        // $activity->link = route('detail-question', ['question_id' => $idQuestion]);
-        $activity->type = Auth::user()->permission->key;
+        $activity->link = route('detail-documentation', ['documentation_id' => $Document->id, 'documentation_url' => $Document->title_url]);
+        $activity->type = 2;
         $activity->save();
 
         return redirect()->back()->with('thongbao', 'Cập Nhật Thành Công');  
@@ -204,8 +204,8 @@ class DocumentationController extends Controller
         $activity->user_id = Auth::id();
         $activity->user_related_id = $tbDocumentation->user->id;
         $activity->content = 'đã thêm tài liệu mới <strong>'.$tbDocumentation->title.'</strong>';
-        // $activity->link = route('detail-question', ['question_id' => $idQuestion]);
-        $activity->type = Auth::user()->permission->key;
+        $activity->link = route('detail-documentation', ['documentation_id' => $tbDocumentation->id, 'documentation_url' => $tbDocumentation->title_url]);
+        $activity->type = 2;
         $activity->save();
         
         return redirect()->back()->with('thongbao', 'Thêm Thành Công');
@@ -414,8 +414,8 @@ class DocumentationController extends Controller
         $activity->user_id = Auth::id();
         $activity->user_related_id = $tbDocumentation->user->id;
         $activity->content = 'đã đăng tài liệu mới <strong>'.$tbDocumentation->title.'</strong>';
-        // $activity->link = route('detail-question', ['question_id' => $idQuestion]);
-        $activity->type = Auth::user()->permission->key;
+        $activity->link = route('detail-documentation', ['documentation_id' => $tbDocumentation->id, 'documentation_url' => $tbDocumentation->title_url]);
+        $activity->type = 1;
         $activity->save();
 
         $previousURL = route('list-documentation');  //Chuyển lại về chi tiết khi làm xong
@@ -490,7 +490,7 @@ class DocumentationController extends Controller
         $documentation->active = false;
         $documentation->save();
 
-        return redirect(route('detail-documentation', ['documentation_id' => $documentation->id]))->with('action', 'Tài liệu đã được xóa !');
+        return redirect(route('detail-documentation', ['documentation_id' => $documentation->id, 'documentation_url' => $documentation->title_url]))->with('action', 'Tài liệu đã được xóa !');
     }
 
     public function getRestoreDocumentation($documentation_id) {
@@ -498,7 +498,7 @@ class DocumentationController extends Controller
         $documentation->active = true;
         $documentation->save();
 
-        return redirect(route('detail-documentation', ['documentation_id' => $documentation->id]))->with('action', 'Tài liệu đã được khôi phục !');
+        return redirect(route('detail-documentation', ['documentation_id' => $documentation->id, 'documentation_url' => $documentation->title_url]))->with('action', 'Tài liệu đã được khôi phục !');
     }
 
     public function getSearchDocumentation(Request $request){

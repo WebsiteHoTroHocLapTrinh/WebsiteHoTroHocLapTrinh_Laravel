@@ -100,9 +100,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function() {
     //User
    Route::group(['prefix' => 'user'], function() {
         Route::get('list','UserController@getList');
-        Route::get('edit/{idUser}','UserController@getEdit');
-        Route::post('edit/{idUser}','UserController@postEdit');
-        Route::get('editpass/{idUser}','UserController@getResetPassword');
+        Route::get('edit/{idUser}','UserController@getEdit')->middleware('comparepermission');
+        Route::post('edit/{idUser}','UserController@postEdit')->middleware('comparepermission');
+        Route::get('editpass/{idUser}','UserController@getResetPassword')->middleware('comparepermission');
         Route::get('add','UserController@getAdd');
         Route::post('add','UserController@postAdd');
         

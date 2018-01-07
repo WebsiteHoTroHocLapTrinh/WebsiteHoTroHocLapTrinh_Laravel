@@ -72,7 +72,7 @@ class TagController extends Controller
         $activity->user_related_id = $tag->user_created->id;
         $activity->content = 'đã thêm thẻ mới <strong>'.$tag->name.'</strong>';
         // $activity->link = route('detail-question', ['question_id' => $idQuestion]);
-        $activity->type = Auth::user()->permission->key;
+        $activity->type = 2;
         $activity->save();
 
         return redirect()->back()->with('thongbao', 'Thêm Thành Công');
@@ -112,7 +112,7 @@ class TagController extends Controller
         else {
             $tag->active = false;
         }
-        $tag->is_new = true;
+        // $tag->is_new = true;
         $tag->updated_at = new DateTime();
         $tag->save();  // Save into database
 
@@ -122,7 +122,7 @@ class TagController extends Controller
         $activity->user_related_id = $tag->user_created->id;
         $activity->content = 'đã chỉnh sửa thẻ <strong>'.$tag->name.'</strong>';
         // $activity->link = route('detail-question', ['question_id' => $idQuestion]);
-        $activity->type = Auth::user()->permission->key;
+        $activity->type = 2;
         $activity->save();
 
         return redirect()->back()->with('thongbao', 'Cập Nhật Thành Công');
@@ -159,9 +159,9 @@ class TagController extends Controller
         $activity = new Activity;
         $activity->user_id = Auth::id();
         $activity->user_related_id = $tag->user_created->id;
-        $activity->content = 'đã xóa thẻ <strong>'.$tag->name.'</strong>';
+        $activity->content = 'đã xóa vĩnh viễn thẻ <strong>'.$tag->name.'</strong>';
         // $activity->link = route('detail-question', ['question_id' => $idQuestion]);
-        $activity->type = Auth::user()->permission->key;
+        $activity->type = 2;
         $activity->save();
 
         return redirect()->back()->with('thongbao', 'Xóa Thành Công');
@@ -227,7 +227,7 @@ class TagController extends Controller
         $activity->user_related_id = $tag->user_created->id;
         $activity->content = 'đã tạo thẻ mới <strong>'.$tag->name.'</strong>';
         // $activity->link = route('detail-question', ['question_id' => $idQuestion]);
-        $activity->type = Auth::user()->permission->key;
+        $activity->type = 1;
         $activity->save();
 
         return redirect()->back()->with('thongbao', 'Đã Thêm thẻ '.$tag->name);

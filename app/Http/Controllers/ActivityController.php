@@ -26,9 +26,10 @@ class ActivityController extends Controller
     	$new_documentation = Documentation::where('is_new', true)->count();
     	$new_tag = Tag::where('is_new', true)->count();
     	$new_user = User::where('is_new', true)->count();
-    	$activities = Activity::all()->sortByDesc('created_at');
+    	$activities_admin = Activity::where('type','=', 2)->orderByDesc('created_at')->get();
+        $activities_user = Activity::where('type', '=', 1)->orderByDesc('created_at')->get();
 
-    	return view('admin.index', ['activities' => $activities, 
+    	return view('admin.index', ['activities_admin' => $activities_admin, 'activities_user' => $activities_user, 
     		'new_question' => $new_question, 
     		'new_documentation' => $new_documentation, 
     		'new_tag' => $new_tag, 

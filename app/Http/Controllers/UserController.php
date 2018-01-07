@@ -168,7 +168,7 @@ class UserController extends Controller
         else {
             $user->active = false;
         }
-        $user->is_new = true;
+        // $user->is_new = true;
         $user->save();
 
         //Create Activity
@@ -176,8 +176,8 @@ class UserController extends Controller
         $activity->user_id = Auth::id();
         $activity->user_related_id = $user->id;
         $activity->content = 'đã chỉnh sửa người dùng <strong>'.$user->name.'</strong>';
-        $activity->link = route('user-information', ['user_id' => $user->id]);
-        $activity->type = Auth::user()->permission->key;
+        $activity->link = route('user-information', ['user_id' => $user->id, 'user_url' => $user->name_url]);
+        $activity->type = 2;
         $activity->save();
 
         return redirect()->back()->with('thongbao', 'Cập Nhật Thành Công');  
@@ -228,6 +228,7 @@ class UserController extends Controller
             $user->active = true;
         else
             $user->active=false;
+        $user->last_activity_time = new DateTime();
         $user->save();
 
         //Create Activity
@@ -235,11 +236,11 @@ class UserController extends Controller
         $activity->user_id = Auth::id();
         $activity->user_related_id = $user->id;
         $activity->content = 'đã thêm người dùng mới <strong>'.$user->name.'</strong>';
-        $activity->link = route('user-information', ['user_id' => $user->id]);
-        $activity->type = Auth::user()->permission->key;
+        $activity->link = route('user-information', ['user_id' => $user->id, 'user_url' => $user->name_url]);
+        $activity->type = 2;
         $activity->save();
 
-         return redirect()->back()->with('thongbao', 'Thêm user Thành Công');
+         return redirect()->back()->with('thongbao', 'Thêm Thành Công');
     }
 
     //////////////////////////////////////////////////////////

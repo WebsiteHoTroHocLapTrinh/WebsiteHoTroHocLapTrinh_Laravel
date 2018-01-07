@@ -4,7 +4,7 @@
                 <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h3 class="page-header">Chỉnh sửa tài liệu: <strong>{{ $document->title }}</strong></h3>
+                    <h1 class="page-header"><small>Chỉnh sửa tài liệu:</small> <a href="{{ route('detail-documentation', ['documentation_id' => $document->id, 'documentation_url' => $document->title_url]) }}" target="_blank">{{ $document->title }}</a></h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>

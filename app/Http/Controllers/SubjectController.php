@@ -60,7 +60,7 @@ class SubjectController extends Controller
         else {
             $subject->active = false;
         }
-        $subject->is_new = true;
+        // $subject->is_new = true;
         $subject->updated_at = new DateTime();
         $subject->save();
 
@@ -70,7 +70,7 @@ class SubjectController extends Controller
         $activity->user_related_id = $subject->user_created->id;
         $activity->content = 'đã chỉnh sửa chủ đề <strong>'.$subject->name.'</strong>';
         // $activity->link = route('detail-question', ['question_id' => $idQuestion]);
-        $activity->type = Auth::user()->permission->key;
+        $activity->type = 2;
         $activity->save();
 
         return redirect()->back()->with('thongbao', 'Cập Nhật Thành Công');  
@@ -117,7 +117,7 @@ class SubjectController extends Controller
         $activity->user_related_id = $subject->user_created->id;
         $activity->content = 'đã thêm chủ đề mới <strong>'.$subject->name.'</strong>';
         // $activity->link = route('detail-question', ['question_id' => $idQuestion]);
-        $activity->type = Auth::user()->permission->key;
+        $activity->type = 2;
         $activity->save();
 
         return redirect()->back()->with('thongbao', 'Thêm Thành Công');  
@@ -151,7 +151,7 @@ class SubjectController extends Controller
         $activity->user_related_id = $subject->user_created->id;
         $activity->content = 'đã xóa vĩnh viễn chủ đề <strong>'.$subject->name.'</strong>';
         // $activity->link = route('detail-question', ['question_id' => $idQuestion]);
-        $activity->type = Auth::user()->permission->key;
+        $activity->type = 2;
         $activity->save();
         
         return redirect()->back()->with('thongbao', 'Xóa Thành Công');

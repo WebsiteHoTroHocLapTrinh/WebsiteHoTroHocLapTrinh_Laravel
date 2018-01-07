@@ -44,7 +44,7 @@
                                                 {!! '<p style="padding-top: 10px;"><span style="padding: 5px;" class="label label-success">Mới</span></p>' !!}
                                             @endif
                                         </td>
-                                        <td><a href="" target="_blank">{{ $doc->title }}</a></td>
+                                        <td><a href="{{ route('detail-documentation', ['documentation_id' => $doc->id, 'documentation_url' => $doc->title_url]) }}" target="_blank">{{ $doc->title }}</a></td>
                                         <td>{{ $doc->subject->name }}</td>
                                         <td><a href="https://www.{{ $doc->link }}/" target="_blank">{{ $doc->link }}</a></td>
                                         <td>{{ $doc->point_rating }}</td>
@@ -103,7 +103,7 @@
         $(document).ready(function() {
             $('#dataTables-list-documentation').DataTable({
                 responsive: true,
-                "order": [[ 8, "desc" ]],
+                "order": [[ 7, "desc" ]],
                 "language": {
                     "decimal":        "",
                     "emptyTable":     "Không có dữ liệu",

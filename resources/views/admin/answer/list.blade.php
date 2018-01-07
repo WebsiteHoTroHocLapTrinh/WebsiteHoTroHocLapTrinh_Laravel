@@ -16,7 +16,7 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h3><small>Các câu trả lời của câu hỏi:</small> <a href="" target="_blank">{{ $question->title }}</a></h3>
+                            <h3><small>Các câu trả lời của câu hỏi:</small> <a href="{{ route('detail-question', ['question_id' => $question->id, 'question_url' => $question->title_url]) }}" target="_blank">{{ $question->title }}</a></h3>
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -114,7 +114,7 @@
         $(document).ready(function() {
             $('#dataTables-list-answer').DataTable({
                 responsive: true,
-                "order": [[ 6, "desc" ]],
+                "order": [[ 5, "desc" ]],
                 "language": {
                     "decimal":        "",
                     "emptyTable":     "Không có dữ liệu",
@@ -152,7 +152,7 @@
                 $.get("ajax/commentsOfAnswer/"+idAnswer, function(data) {           
                     $(".list-comment").html(data);
                     $("div.panel").has("table#dataTables-list-comment").find("h3 > a").remove();
-                    $("div.panel").has("table#dataTables-list-comment").find("h3").append('<a href="" target="_blank">ID: '+idAnswer+'</a>');
+                    $("div.panel").has("table#dataTables-list-comment").find("h3").append('<a target="_blank">ID: '+idAnswer+'</a>');
                 });
             });
             // $('table#dataTables-list-question > tbody > tr').first().click();

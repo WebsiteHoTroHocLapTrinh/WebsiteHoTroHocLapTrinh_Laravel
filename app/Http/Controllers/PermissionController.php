@@ -72,7 +72,7 @@ class PermissionController extends Controller
         $activity->user_related_id = $permission->user_created->id;
         $activity->content = 'đã thêm quyền mới <strong>'.$permission->name.'</strong>';
         // $activity->link = route('detail-question', ['question_id' => $idQuestion]);
-        $activity->type = Auth::user()->permission->key;
+        $activity->type = 2;
         $activity->save();
 
 
@@ -113,7 +113,7 @@ class PermissionController extends Controller
         else {
             $permission->active = false;
         }
-        $permission->is_new = true;
+        // $permission->is_new = true;
         $permission->updated_at = new DateTime();
         $permission->save();  // Save into database
 
@@ -123,7 +123,7 @@ class PermissionController extends Controller
         $activity->user_related_id = $permission->user_created->id;
         $activity->content = 'đã chỉnh sửa quyền <strong>'.$permission->name.'</strong>';
         // $activity->link = route('detail-question', ['question_id' => $idQuestion]);
-        $activity->type = Auth::user()->permission->key;
+        $activity->type = 2;
         $activity->save();
 
         return redirect()->back()->with('thongbao', 'Thêm Thành Công');
@@ -139,7 +139,7 @@ class PermissionController extends Controller
         $activity->user_related_id = $permission->user_created->id;
         $activity->content = 'đã xóa vĩnh viễn quyền <strong>'.$permission->name.'</strong>';
         // $activity->link = route('detail-question', ['question_id' => $idQuestion]);
-        $activity->type = Auth::user()->permission->key;
+        $activity->type = 2;
         $activity->save();
     	
     	return redirect()->back()->with('thongbao', 'Xóa Thành Công');

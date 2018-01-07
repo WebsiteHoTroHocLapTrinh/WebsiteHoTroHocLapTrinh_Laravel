@@ -94,8 +94,8 @@ class QuestionController extends Controller
         $activity->user_id = Auth::id();
         $activity->user_related_id = $question->user->id;
         $activity->content = 'đã thêm câu hỏi mới <strong>'.$question->title.'</strong>';
-        $activity->link = route('detail-question', ['question_id' => $question->id]);
-        $activity->type = Auth::user()->permission->key;
+        $activity->link = route('detail-question', ['question_id' => $question->id, 'question_url' => $question->title_url]);
+        $activity->type = 2;
         $activity->save();
 
         return redirect()->back()->with('thongbao', 'Thêm Thành Công');
@@ -139,7 +139,7 @@ class QuestionController extends Controller
         else {
             $question->active = false;
         }
-        $question->is_new = true;
+        // $question->is_new = true;
         $question->updated_at = new DateTime();
         $question->save();  // Save into database
 
@@ -166,8 +166,8 @@ class QuestionController extends Controller
         $activity->user_id = Auth::id();
         $activity->user_related_id = $question->user->id;
         $activity->content = 'đã chỉnh sửa câu hỏi <strong>'.$question->title.'</strong>';
-        $activity->link = route('detail-question', ['question_id' => $question->id]);
-        $activity->type = Auth::user()->permission->key;
+        $activity->link = route('detail-question', ['question_id' => $question->id, 'question_url' => $question->title_url]);
+        $activity->type = 2;
         $activity->save();
 
         return redirect()->back()->with('thongbao', 'Cập Nhật Thành Công');
@@ -205,8 +205,8 @@ class QuestionController extends Controller
         $activity->user_id = Auth::id();
         $activity->user_related_id = $question->user->id;
         $activity->content = 'đã xóa vĩnh viễn câu hỏi <strong>'.$question->title.'</strong>';
-        $activity->link = route('detail-question', ['question_id' => $question->id]);
-        $activity->type = Auth::user()->permission->key;
+        $activity->link = route('detail-question', ['question_id' => $question->id, 'question_url' => $question->title_url]);
+        $activity->type = 2;
         $activity->save();
 
         return redirect()->back()->with('thongbao', 'Xóa Thành Công');
@@ -382,7 +382,7 @@ class QuestionController extends Controller
         $question->active = false;
         $question->save();
 
-        return redirect(route('detail-question', ['question_id' => $question->id]))->with('action', 'Câu hỏi đã được xóa !');
+        return redirect(route('detail-question', ['question_id' => $question->id, 'question_url' => $question->title_url]))->with('action', 'Câu hỏi đã được xóa !');
     }
 
     public function getRestoreQuestion($question_id) {
@@ -390,7 +390,7 @@ class QuestionController extends Controller
         $question->active = true;
         $question->save();
 
-        return redirect(route('detail-question', ['question_id' => $question->id]))->with('action', 'Câu hỏi đã được khôi phục !');
+        return redirect(route('detail-question', ['question_id' => $question->id, 'question_url' => $question->title_url]))->with('action', 'Câu hỏi đã được khôi phục !');
     }
 
     public function getCreateQuestion(){
@@ -453,8 +453,8 @@ class QuestionController extends Controller
         $activity->user_id = Auth::id();
         $activity->user_related_id = $question->user->id;
         $activity->content = 'đã đăng câu hỏi mới <strong>'.$question->title.'</strong>';
-        $activity->link = route('detail-question', ['question_id' => $question->id]);
-        $activity->type = Auth::user()->permission->key;
+        $activity->link = route('detail-question', ['question_id' => $question->id, 'question_url' => $question->title_url]);
+        $activity->type = 1;
         $activity->save();
 
         $previousURL = route('list-question');  //Chuyển lại về chi tiết khi làm xong

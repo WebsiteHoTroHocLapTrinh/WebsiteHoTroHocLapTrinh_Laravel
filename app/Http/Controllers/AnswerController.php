@@ -71,8 +71,8 @@ class AnswerController extends Controller
         $activity->user_id = Auth::id();
         $activity->user_related_id = $answer->user->id;
         $activity->content = 'đã thêm câu trả lời mới trong câu hỏi <strong>'.$answer->question->title.'</strong>';
-        $activity->link = route('detail-question', ['question_id' => $answer->question->id]);
-        $activity->type = Auth::user()->permission->key;
+        $activity->link = route('detail-question', ['question_id' => $answer->question->id, 'question_url' => $answer->question->title_url]);
+        $activity->type = 2;
         $activity->save();
 
         return redirect()->back()->with('thongbao', 'Thêm Thành Công');
@@ -108,7 +108,7 @@ class AnswerController extends Controller
         else {
             $answer->active = false;
         }
-        $answer->is_new = true;
+        // $answer->is_new = true;
         $answer->updated_at = new DateTime();
         $answer->save();  // Save into database
 
@@ -117,8 +117,8 @@ class AnswerController extends Controller
         $activity->user_id = Auth::id();
         $activity->user_related_id = $answer->user->id;
         $activity->content = 'đã chỉnh sửa câu trả lời trong câu hỏi <strong>'.$answer->question->title.'</strong>';
-        $activity->link = route('detail-question', ['question_id' => $answer->question->id]);
-        $activity->type = Auth::user()->permission->key;
+        $activity->link = route('detail-question', ['question_id' => $answer->question->id, 'question_url' => $answer->question->title_url]);
+        $activity->type = 2;
         $activity->save();
 
         return redirect()->back()->with('thongbao', 'Cập Nhật Thành Công');
@@ -138,8 +138,8 @@ class AnswerController extends Controller
         $activity->user_id = Auth::id();
         $activity->user_related_id = $answer->user->id;
         $activity->content = 'đã xóa câu trả lời trong câu hỏi <strong>'.$answer->question->title.'</strong>';
-        $activity->link = route('detail-question', ['question_id' => $answer->question->id]);
-        $activity->type = Auth::user()->permission->key;
+        $activity->link = route('detail-question', ['question_id' => $answer->question->id, 'question_url' => $answer->question->title_url]);
+        $activity->type = 2;
         $activity->save();
 
         return redirect()->back()->with('thongbao', 'Xóa Thành Công');
@@ -301,8 +301,8 @@ class AnswerController extends Controller
         $activity->user_id = Auth::id();
         $activity->user_related_id = $answer->question->id;
         $activity->content = 'đã trả lời cho câu hỏi <strong>'.$answer->question->title.'</strong>';
-        $activity->link = route('detail-question', ['question_id' => $answer->question->id]);
-        $activity->type = Auth::user()->permission->key;
+        $activity->link = route('detail-question', ['question_id' => $answer->question->id, 'question_url' => $answer->question->title_url]);
+        $activity->type = 1;
         $activity->save();
         
         return redirect()->back()->with('AnswerSuccess', 'Câu trả lời đã được đăng!');
@@ -329,6 +329,6 @@ class AnswerController extends Controller
         $answer->active = false;
         $answer->save();
 
-        return redirect(route('detail-question', ['question_id' => $answer->question->id]))->with('action', 'Câu trả lời đã được xóa !');
+        return redirect(route('detail-question', ['question_id' => $answer->question->id, 'question_url' => $answer->question->title_url]))->with('action', 'Câu trả lời đã được xóa !');
     }
 }
